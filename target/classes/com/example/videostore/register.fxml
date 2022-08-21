@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.RegisterController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="73.0" prefWidth="600.0">
+               <children>
+                  <Label text="Sign Up and start buying">
+                     <font>
+                        <Font name="Calibri Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Line endX="284.29290771484375" endY="0.7928932309150696" startX="-100.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Line>
+               </children>
+            </VBox>
+            <Button layoutX="347.0" layoutY="341.0" mnemonicParsing="false" onAction="#goToLogin" text="Login">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <GridPane gridLinesVisible="false" layoutX="105.0" layoutY="76.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="0.0" prefWidth="113.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="257.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Name:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter  your address" />
+                     </tooltip></TextField>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your phone in digit" />
+                     </tooltip></TextField>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your username" />
+                     </tooltip></TextField>
+                  <Label layoutX="10.0" layoutY="24.0" text="Address" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="68.0" text="Phone" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="110.0" text="Username" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="151.0" text="Password" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your password" />
+                     </tooltip></PasswordField>
+                  <TextField layoutX="123.0" layoutY="64.0" GridPane.columnIndex="1">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your name" />
+                     </tooltip>
+                  </TextField>
+               </children>
+            </GridPane>
+            <Button layoutX="254.0" layoutY="301.0" mnemonicParsing="false" text="Sign Up">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="169.0" layoutY="344.0" text="Already have an account?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.loginController" >
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="224.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="Login">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <GridPane gridLinesVisible="false" layoutX="115.0" layoutY="131.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="0.0" prefWidth="113.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="257.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TextField GridPane.columnIndex="1">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your username" />
+                     </tooltip>
+                  </TextField>
+                  <Label layoutX="10.0" layoutY="110.0" text="Username">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="151.0" text="Password" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <tooltip>
+                        <Tooltip showDelay="0.02s" text="Please enter your password" />
+                     </tooltip>
+                  </PasswordField>
+               </children>
+            </GridPane>
+            <Button layoutX="336.0" layoutY="263.0" mnemonicParsing="false" onAction="#goToRegister" text="Sign Up">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="185.0" layoutY="268.0" text="Don't have an account?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="73.0" prefWidth="600.0">
+               <children>
+                  <Label text="Log In to Your Video Store Account">
+                     <font>
+                        <Font name="Calibri Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Line endX="284.29290771484375" endY="0.7928932309150696" startX="-100.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Line>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</StackPane>
