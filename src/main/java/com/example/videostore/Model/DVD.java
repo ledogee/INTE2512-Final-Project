@@ -60,14 +60,7 @@ public class DVD extends Item {
         private String year;
         private String imageFile;
 
-        public DVDBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
-            this.id = id;
-            this.title = title;
-            this.loanType = loanType;
-            this.copies = copies;
-            this.rentalFee = rentalFee;
-            this.genres = genres;
-        }
+
         public DVD.DVDBuilder buildTitle (String title) {
             this.title = title;
             return this;

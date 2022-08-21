@@ -1,6 +1,5 @@
 package com.example.videostore.Model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Vip extends Customer {
@@ -105,15 +104,7 @@ public class Vip extends Customer {
 
         private int rewardPoint = 0;
 
-        public VipBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password) {
-            this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.listRentals = listRentals;
-            this.balance = balance;
-            this.username = username;
-            this.password = password;
+        public VipBuilder() {
         }
 
         public Vip.VipBuilder buildName(String name) {
