@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="234.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Menu">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" text="Customer Information" />
+               </graphic></Menu>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" text="Search an Item" />
+               </graphic>
+          </Menu>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" text="Sorted by Titles" />
+               </graphic>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label text="Item's Menu" />
+      <Pane prefHeight="200.0" prefWidth="183.0">
+         <children>
+            <Label layoutX="14.0" layoutY="11.0" prefHeight="17.0" prefWidth="55.0" text="Search:" />
+            <TextField layoutX="58.0" layoutY="7.0" />
+         </children></Pane>
+      <ListView prefHeight="200.0" prefWidth="400.0" />
+      <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="376.0">
+         <children>
+            <Label layoutX="12.0" layoutY="4.0" text="Rent: ">
+               <graphic>
+                  <TextArea prefHeight="0.0" prefWidth="72.0" />
+               </graphic>
+            </Label>
+         </children></Pane>
+      <Pane prefHeight="200.0" prefWidth="400.0">
+         <children>
+            <Button alignment="BOTTOM_LEFT" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Log out" />
+         </children>
+      </Pane>
+   </children>
+</VBox>
