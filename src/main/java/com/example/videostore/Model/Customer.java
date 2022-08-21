@@ -2,7 +2,7 @@ package com.example.videostore.Model;
 
 import java.util.List;
 
-public abstract class Customer {
+public class Customer {
     enum AccountType {
         Guest,
         Regular,

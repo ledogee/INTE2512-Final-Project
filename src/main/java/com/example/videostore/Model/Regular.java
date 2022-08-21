@@ -1,6 +1,5 @@
 package com.example.videostore.Model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Regular extends Customer {
@@ -50,15 +49,7 @@ public class Regular extends Customer {
         private String username;
         private String password;
 
-        public RegularBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password){
-            this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.listRentals = listRentals;
-            this.balance = balance;
-            this.username = username;
-            this.password = password;
+        public RegularBuilder() {
         }
 
         public Regular.RegularBuilder buildName(String name) {

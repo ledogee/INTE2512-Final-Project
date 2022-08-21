@@ -62,14 +62,7 @@ public class Movie extends Item{
         private String imageFile;
 
 
-        public MovieBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
-            this.id = id;
-            this.title = title;
-            this.loanType = loanType;
-            this.copies = copies;
-            this.rentalFee = rentalFee;
-            this.genres = genres;
-        }
+
         public Movie.MovieBuilder buildTitle (String title) {
             this.title = title;
             return this;

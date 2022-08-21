@@ -37,7 +37,7 @@ public class Game extends Item{
     public static class GameBuilder {
         private String id;
         private String title;
-        private final String rentalType = "Game";
+        private final String rentalType = "DVD";
         private String loanType;
         private int copies;
         private double rentalFee;
@@ -45,13 +45,7 @@ public class Game extends Item{
         private String year;
         private String imageFile;
 
-        public GameBuilder(String id, String title, String loanType, int copies, double rentalFee){
-            this.id = id;
-            this.title = title;
-            this.loanType = loanType;
-            this.copies = copies;
-            this.rentalFee = rentalFee;
-        }
+
         public GameBuilder buildTitle (String title) {
             this.title = title;
             return this;
