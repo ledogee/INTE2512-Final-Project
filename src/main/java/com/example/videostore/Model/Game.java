@@ -1,5 +1,8 @@
 package com.example.videostore.Model;
 
+import com.example.videostore.SystemBroker.SingletonDatabase;
+import javafx.collections.ObservableMap;
+
 public class Game extends Item{
     private Game(Game.GameBuilder builder) {
         this.setTitle(builder.title);
@@ -10,14 +13,20 @@ public class Game extends Item{
         this.setRentalStatus(builder.rentalStatus);
         this.setYear(builder.year);
         this.setImageFile(builder.imageFile);
-        if(getIdCount() < 10) {
-            this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() < 100) {
-            this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() <= 999) {
-            this.setId("I" +  getIdCount() + "-" + this.getYear());
-        } else {
-            System.out.println("ID Overflow");
+        this.setId(builder.id);
+        this.setYear(builder.year);
+        this.setImageFile(builder.imageFile);
+
+        if(this.getId() == null) {
+            if (getIdCount() < 10) {
+                this.setId("I" + "00" + getIdCount() + "-" + this.getYear());
+            } else if (getIdCount() < 100) {
+                this.setId("I" + "0" + getIdCount() + "-" + this.getYear());
+            } else if (getIdCount() <= 999) {
+                this.setId("I" + getIdCount() + "-" + this.getYear());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
     }
     @Override
@@ -34,6 +43,11 @@ public class Game extends Item{
                 '}';
     }
 
+    @Override
+    public String getGenres() {
+        return null;
+    }
+
     public static class GameBuilder {
         private String id;
         private String title;
@@ -45,13 +59,11 @@ public class Game extends Item{
         private String year;
         private String imageFile;
 
-        public GameBuilder(String id, String title, String loanType, int copies, double rentalFee){
+        public Game.GameBuilder buildId (String id) {
             this.id = id;
-            this.title = title;
-            this.loanType = loanType;
-            this.copies = copies;
-            this.rentalFee = rentalFee;
+            return this;
         }
+
         public GameBuilder buildTitle (String title) {
             this.title = title;
             return this;

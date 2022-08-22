@@ -13,16 +13,20 @@ public class DVD extends Item {
         this.setRentalStatus(builder.rentalStatus);
         this.setYear(builder.year);
         this.setImageFile(builder.imageFile);
-        if(getIdCount() < 10) {
-            this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() < 100) {
-            this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() <= 999) {
-            this.setId("I" +  getIdCount() + "-" + this.getYear());
-        } else {
-            System.out.println("ID Overflow");
+        this.setId(builder.id);
+        this.setYear(builder.year);
+        this.setImageFile(builder.imageFile);
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
+            } else if(getIdCount() < 100) {
+                this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
+            } else if(getIdCount() <= 999) {
+                this.setId("I" +  getIdCount() + "-" + this.getYear());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
-
     }
 
     public String getGenres() {
@@ -60,13 +64,9 @@ public class DVD extends Item {
         private String year;
         private String imageFile;
 
-        public DVDBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
+        public DVD.DVDBuilder buildId (String id) {
             this.id = id;
-            this.title = title;
-            this.loanType = loanType;
-            this.copies = copies;
-            this.rentalFee = rentalFee;
-            this.genres = genres;
+            return this;
         }
         public DVD.DVDBuilder buildTitle (String title) {
             this.title = title;

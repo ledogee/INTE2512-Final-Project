@@ -1,6 +1,5 @@
 package com.example.videostore.Model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Regular extends Customer {
@@ -13,14 +12,17 @@ public class Regular extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
-        if(getIdCount() < 10) {
-            this.setId("C" + "00" +  getIdCount());
-        } else if(getIdCount() < 100) {
-            this.setId("C" + "0" +  getIdCount());
-        } else if(getIdCount() <= 999) {
-            this.setId("C" +  getIdCount());
-        } else {
-            System.out.println("ID Overflow");
+        this.setId(builder.id);
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
     }
 
@@ -45,22 +47,17 @@ public class Regular extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Regular";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
 
-        public RegularBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password){
-            this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.listRentals = listRentals;
-            this.balance = balance;
-            this.username = username;
-            this.password = password;
-        }
 
+
+        public Regular.RegularBuilder buildId(String name) {
+            this.name = name;
+            return this;
+        }
         public Regular.RegularBuilder buildName(String name) {
             this.name = name;
             return this;
@@ -90,7 +87,7 @@ public class Regular extends Customer {
             return this;
         }*/
 
-        public Regular.RegularBuilder buildListRentals(List<Item> listRentals) {
+        public Regular.RegularBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }

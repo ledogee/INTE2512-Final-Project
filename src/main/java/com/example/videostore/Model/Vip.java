@@ -1,6 +1,5 @@
 package com.example.videostore.Model;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class Vip extends Customer {
@@ -15,15 +14,19 @@ public class Vip extends Customer {
         this.setUsername(builder.username);
         this.setPassword(builder.password);
         this.setRewardPoint(builder.rewardPoint);
-        if(getIdCount() < 10) {
-            this.setId("C" + "00" +  getIdCount());
-        } else if(getIdCount() < 100) {
-            this.setId("C" + "0" +  getIdCount());
-        } else if(getIdCount() <= 999) {
-            this.setId("C" +  getIdCount());
-        } else {
-            System.out.println("ID Overflow");
+        this.setId(builder.id);
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
+
     }
 
     public int getRewardPoint() {
@@ -59,8 +62,8 @@ public class Vip extends Customer {
             this.setRewardPoint(0);
             System.out.println("Your reward point change from 100 to " + this.getRewardPoint());
 
-            List<Item> listRentals = super.getListRentals();
-            listRentals.add(item);
+            List<String> listRentals = super.getListRentals();
+            listRentals.add(item.getId());
             super.setListRentals(listRentals);
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
@@ -78,8 +81,8 @@ public class Vip extends Customer {
             this.setRewardPoint(this.getRewardPoint() + 10);
             System.out.println("Your reward point change from " + currentRewardPoint + " to " + this.getRewardPoint());
 
-            List<Item> listRentals = super.getListRentals();
-            listRentals.add(item);
+            List<String> listRentals = super.getListRentals();
+            listRentals.add(item.getId());
             super.setListRentals(listRentals);
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
@@ -98,22 +101,16 @@ public class Vip extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Vip";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
 
         private int rewardPoint = 0;
 
-        public VipBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password) {
+        public Vip.VipBuilder buildId(String id) {
             this.id = id;
-            this.name = name;
-            this.address = address;
-            this.phone = phone;
-            this.listRentals = listRentals;
-            this.balance = balance;
-            this.username = username;
-            this.password = password;
+            return this;
         }
 
         public Vip.VipBuilder buildName(String name) {
@@ -145,7 +142,7 @@ public class Vip extends Customer {
             return this;
         }*/
 
-        public Vip.VipBuilder buildListRentals(List<Item> listRentals) {
+        public Vip.VipBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }
