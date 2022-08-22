@@ -7,4 +7,6 @@ module com.example.videostore {
     exports com.example.videostore;
     exports com.example.videostore.Controller;
     opens com.example.videostore.Controller to javafx.fxml;
+    opens com.example.videostore.Model;
+    exports com.example.videostore.Model to javafx.fxml;
 }

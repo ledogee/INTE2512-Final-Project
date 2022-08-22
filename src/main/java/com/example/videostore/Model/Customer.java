@@ -2,7 +2,7 @@ package com.example.videostore.Model;
 
 import java.util.List;
 
-public class Customer {
+public abstract class Customer  {
     enum AccountType {
         Guest,
         Regular,
@@ -14,7 +14,7 @@ public class Customer {
     private String address;
     private String phone;
     private String accountType;
-    private List<Item> listRentals;
+    private List<String> listRentals;
     private double balance;
     private String username;
     private String password;
@@ -40,7 +40,7 @@ public class Customer {
             System.out.println("Rent successfully!");
             this.balance = this.balance - item.getRentalFee();
             System.out.println("Your balance change from " + currentBalance + " to " + this.balance);
-            this.listRentals.add(item);
+            this.listRentals.add(item.getId());
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
             return true;
@@ -68,7 +68,11 @@ public class Customer {
     }
 
     public void setId(String id) {
-        this.id = id;
+        if(this.id == null) {
+            this.id = id;
+        } else {
+            System.out.println("You cannot set the ID because it is unique!");
+        }
     }
 
     public String getName() {
@@ -103,11 +107,11 @@ public class Customer {
         this.accountType = accountType;
     }
 
-    public List<Item> getListRentals() {
+    public List<String> getListRentals() {
         return listRentals;
     }
 
-    public void setListRentals(List<Item> listRentals) {
+    public void setListRentals(List<String> listRentals) {
         this.listRentals = listRentals;
     }
 

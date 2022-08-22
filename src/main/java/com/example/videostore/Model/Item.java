@@ -1,6 +1,10 @@
 package com.example.videostore.Model;
 
 public abstract class  Item {
+
+
+    public abstract String getGenres();
+
     enum Genres {
         Action,
         Horror,
@@ -13,7 +17,7 @@ public abstract class  Item {
     }
     /* Attribute */
     private static int idCount = 0;
-    private String id;
+    protected String id;
     private String title;
     private String rentalType;
     private String loanType;

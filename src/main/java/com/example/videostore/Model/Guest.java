@@ -12,14 +12,18 @@ public class Guest extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
-        if(getIdCount() < 10) {
-            this.setId("C" + "00" +  getIdCount());
-        } else if(getIdCount() < 100) {
-            this.setId("C" + "0" +  getIdCount());
-        } else if(getIdCount() <= 999) {
-            this.setId("C" +  getIdCount());
-        } else {
-            System.out.println("ID Overflow");
+        this.setId(builder.id);
+
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
     }
 
@@ -44,12 +48,14 @@ public class Guest extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Guest";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
 
-        public GuestBuilder() {
+        public Guest.GuestBuilder buildId(String id) {
+            this.id = id;
+            return this;
         }
 
         public Guest.GuestBuilder buildName(String name) {
@@ -81,7 +87,7 @@ public class Guest extends Customer {
             return this;
         }*/
 
-        public Guest.GuestBuilder buildListRentals(List<Item> listRentals) {
+        public Guest.GuestBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }
