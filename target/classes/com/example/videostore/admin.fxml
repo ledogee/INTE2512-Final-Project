@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
@@ -69,3 +70,76 @@
     </Pane>
   </center>
 </BorderPane>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <top>
+    <MenuBar BorderPane.alignment="CENTER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Close" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+  <center>
+    <Pane prefHeight="499.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <children>
+        <Label layoutX="301.0" layoutY="12.0" text="Item List">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+        <TableView layoutX="36.0" layoutY="42.0" prefHeight="210.0" prefWidth="597.0">
+          <columns>
+            <TableColumn prefWidth="77.80001831054688" text="ID" />
+            <TableColumn prefWidth="132.40001678466797" text="Title" />
+            <TableColumn prefWidth="73.60003662109375" text="Rental Type" />
+            <TableColumn prefWidth="67.0" text="Loan Type" />
+            <TableColumn prefWidth="77.39996337890625" text="Num Copies" />
+            <TableColumn prefWidth="64.60006713867188" text="Rental Fee" />
+            <TableColumn prefWidth="49.0" text="Status" />
+            <TableColumn prefWidth="50.0" text="Genres" />
+          </columns>
+        </TableView>
+        <Label layoutX="277.0" layoutY="264.0" text="Customer List">
+          <font>
+            <Font name="System Bold" size="20.0" />
+          </font>
+        </Label>
+        <TableView layoutX="36.0" layoutY="294.0" prefHeight="210.0" prefWidth="597.0">
+          <columns>
+            <TableColumn prefWidth="75.0" text="ID" />
+            <TableColumn prefWidth="86.1999740600586" text="Name" />
+            <TableColumn prefWidth="64.20001220703125" text="Address" />
+            <TableColumn prefWidth="64.20001220703125" text="Phone" />
+            <TableColumn prefWidth="64.20001220703125" text="Balance" />
+            <TableColumn prefWidth="65.79998779296875" text="Username" />
+            <TableColumn prefWidth="71.00003051757812" text="Password" />
+            <TableColumn prefWidth="103.4000244140625" text="ListRental" />
+          </columns>
+        </TableView>
+        <Button layoutX="574.0" layoutY="15.0" mnemonicParsing="false" text="Add Item" />
+        <Button layoutX="554.0" layoutY="267.0" mnemonicParsing="false" text="Add Account" />
+      </children>
+    </Pane>
+  </center>
+</BorderPane>
+>>>>>>> Stashed changes

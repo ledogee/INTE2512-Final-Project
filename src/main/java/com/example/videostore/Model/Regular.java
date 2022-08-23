@@ -45,7 +45,7 @@ public class Regular extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Regular";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
@@ -90,7 +90,7 @@ public class Regular extends Customer {
             return this;
         }*/
 
-        public Regular.RegularBuilder buildListRentals(List<Item> listRentals) {
+        public Regular.RegularBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }

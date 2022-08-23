@@ -45,11 +45,12 @@ public class Guest extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Guest";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
 
+<<<<<<< Updated upstream
         public GuestBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password) {
             this.id = id;
             this.name = name;
@@ -59,6 +60,15 @@ public class Guest extends Customer {
             this.balance = balance;
             this.username = username;
             this.password = password;
+=======
+        public GuestBuilder(String id, String name, String username, String password, double balance, List<String> listRentals) {
+            this.id = id;
+            this.name = name;
+            this.username = username;
+            this.password = password;
+            this.balance = balance;
+            this.listRentals = listRentals;
+>>>>>>> Stashed changes
         }
 
         public Guest.GuestBuilder buildName(String name) {
@@ -90,7 +100,7 @@ public class Guest extends Customer {
             return this;
         }*/
 
-        public Guest.GuestBuilder buildListRentals(List<Item> listRentals) {
+        public Guest.GuestBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }

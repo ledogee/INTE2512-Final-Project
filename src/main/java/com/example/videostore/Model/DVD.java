@@ -60,6 +60,10 @@ public class DVD extends Item {
         private String year;
         private String imageFile;
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         public DVDBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
             this.id = id;
             this.title = title;

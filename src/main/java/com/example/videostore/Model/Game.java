@@ -52,6 +52,10 @@ public class Game extends Item{
             this.copies = copies;
             this.rentalFee = rentalFee;
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         public GameBuilder buildTitle (String title) {
             this.title = title;
             return this;
