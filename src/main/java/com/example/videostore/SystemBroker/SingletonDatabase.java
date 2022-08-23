@@ -70,7 +70,7 @@ public class SingletonDatabase {
     }
     public static void loadAccounts() throws IOException {
         ObservableList<Object> accounts = FXCollections.observableArrayList();
-        Path path = Paths.get(itemFileName);
+        Path path = Paths.get(accountFileName);
         BufferedReader br = Files.newBufferedReader(path);
         String input;
         try{
@@ -81,7 +81,7 @@ public class SingletonDatabase {
                 String accountType = customerPieces[2];
                 String username = customerPieces[3];
                 String password = customerPieces[4];
-                Float balance = Float.parseFloat(customerPieces[5]);
+                Double balance = Double.parseDouble(customerPieces[5]);
                 List<String> list = getItemListID(customerPieces[6]);
                 switch (accountType){
                     case "Guest":
@@ -89,11 +89,11 @@ public class SingletonDatabase {
                         accounts.add(guest);
                         break;
                     case "Regular":
-                        Regular regular = new Regular.RegularBuilder().build();
+                        Regular regular = new Regular.RegularBuilder(id,name,username,password,balance,list).build();
                         accounts.add(regular);
                         break;
                     case "VIP":
-                        Vip vip = new Vip.VipBuilder().build();
+                        Vip vip = new Vip.VipBuilder(id,name,username,password,balance,list).build();
                         accounts.add(vip);
                         break;
                 }

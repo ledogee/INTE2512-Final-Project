@@ -105,11 +105,9 @@ public class Vip extends Customer {
 
         private int rewardPoint = 0;
 
-        public VipBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password) {
+        public VipBuilder(String id, String name,String username, String password, double balance, List<String> listRentals ) {
             this.id = id;
             this.name = name;
-            this.address = address;
-            this.phone = phone;
             this.listRentals = listRentals;
             this.balance = balance;
             this.username = username;

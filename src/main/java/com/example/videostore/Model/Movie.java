@@ -61,10 +61,7 @@ public class Movie extends Item{
         private String year;
         private String imageFile;
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         public MovieBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
             this.id = id;
             this.title = title;
@@ -73,10 +70,7 @@ public class Movie extends Item{
             this.rentalFee = rentalFee;
             this.genres = genres;
         }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         public Movie.MovieBuilder buildTitle (String title) {
             this.title = title;
             return this;
