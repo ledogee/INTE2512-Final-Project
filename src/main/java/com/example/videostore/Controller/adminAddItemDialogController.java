@@ -50,6 +50,6 @@ public class adminAddItemDialogController {
             return newItem;
         }
 
-        return newItem;
+        return null;
     }
 }
