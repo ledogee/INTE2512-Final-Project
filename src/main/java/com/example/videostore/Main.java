@@ -23,7 +23,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        /*Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
+        Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
 
 
         Item item2 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
@@ -65,7 +65,7 @@ public class Main extends Application {
         customer1.rentItem(item1);
         System.out.println("Check the copies of item1 " + item1.getCopies());
         System.out.println("Information of customer1: ");
-        System.out.println(customer1);*/
+        System.out.println(customer1);
         launch();
     }
 }
