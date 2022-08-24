@@ -52,12 +52,21 @@ public class Regular extends Customer {
         private String username;
         private String password;
 
-
+        public RegularBuilder(String id, String name, String username, String password, Double balance, List<String> listRentals ){
+            this.id = id;
+            this.name = name;
+            this.listRentals = listRentals;
+            this.balance = balance;
+            this.username = username;
+            this.password = password;
+        }
 
         public Regular.RegularBuilder buildId(String name) {
             this.name = name;
             return this;
         }
+
+
         public Regular.RegularBuilder buildName(String name) {
             this.name = name;
             return this;

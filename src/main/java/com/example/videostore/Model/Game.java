@@ -63,7 +63,14 @@ public class Game extends Item{
             this.id = id;
             return this;
         }
-
+        
+        public GameBuilder(String id, String title, String loanType, int copies, double rentalFee){
+            this.id = id;
+            this.title = title;
+            this.loanType = loanType;
+            this.copies = copies;
+            this.rentalFee = rentalFee;
+        }
         public GameBuilder buildTitle (String title) {
             this.title = title;
             return this;
