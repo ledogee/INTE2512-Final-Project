@@ -8,22 +8,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 
 import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class adminController implements Initializable {
     @FXML
-    private Button signOut;
+    private Button signOutButton;
+    @FXML
+    private VBox adminVBOX;
 
     @FXML
     public void goToLogin(ActionEvent event) throws IOException {
@@ -85,6 +88,9 @@ public class adminController implements Initializable {
     @FXML
     private TableView<Item> i_tableView;
 
+    @FXML
+    private ListView<Item> itemListView;
+
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     ObservableList<Item> items = FXCollections.observableArrayList();
 
@@ -136,5 +142,41 @@ public class adminController implements Initializable {
         c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, List<String>>("listRentals"));
 
         c_tableView.setItems(customers);
+    }
+
+    public void showNewItemDialog() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.setTitle("Add New Item");
+        dialog.setHeaderText("Use this dialog to create a new item");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("addItemDialog.fxml"));
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+
+            // get the controller of Dialog to call the function processResults
+            adminAddItemDialogController controller = fxmlLoader.getController();
+            Item newItem = controller.processResults();
+/*
+            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
+*/
+            itemListView.getSelectionModel().select(newItem);
+
+            System.out.println("Ok pressed");
+        } else {
+            System.out.println("Cancel pressed");
+        }
     }
 }
