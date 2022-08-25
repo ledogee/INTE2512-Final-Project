@@ -1,5 +1,8 @@
 package com.example.videostore.Model;
 
+import com.example.videostore.SystemBroker.SingletonDatabase;
+import javafx.collections.ObservableList;
+
 import java.util.List;
 
 public abstract class Customer  {
@@ -43,13 +46,17 @@ public abstract class Customer  {
             this.listRentals.add(item.getId());
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
+
+
             return true;
         } else {
             System.out.println("You don't have enough money to rent");
             return false;
         }
     }
-
+    public String arraytostring (List<String> listRentals){
+        return  String.join(",",listRentals);
+    }
 
     public Customer() {
         idCount++;
@@ -138,4 +145,16 @@ public abstract class Customer  {
     public void setPassword(String password) {
         this.password = password;
     }
+    public static int generateId() {
+        ObservableList<Customer> customer = SingletonDatabase.getCustomers();
+        System.out.println(customer.size());
+        if(customer.size() > 0) {
+            Customer lastCustomer = customer.get(customer.size() - 1);
+            String substring = lastCustomer.getId().substring(1, 4);
+            System.out.println(substring);
+            return Integer.parseInt(substring);
+        }
+        return 0;
+    }
 }
+

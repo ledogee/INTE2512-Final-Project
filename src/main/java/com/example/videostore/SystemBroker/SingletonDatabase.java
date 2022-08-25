@@ -3,11 +3,8 @@ package com.example.videostore.SystemBroker;
 import com.example.videostore.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import javafx.scene.layout.Pane;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -73,40 +70,42 @@ public class SingletonDatabase {
                 br.close();
             }
         }
-        System.out.println(items);
     }
     public static List<String> getItemListID(String str) {
         String[] listStr=  str.split(" ");
         List<String> listIdItems = new ArrayList<String>(List.of(listStr));
         return listIdItems;
     }
-    public static void loadAccounts() throws IOException {
-        ObservableList<Object> accounts = FXCollections.observableArrayList();
+    public static void loadCustomers() throws IOException {
+        customers = FXCollections.observableArrayList();
         Path path = Paths.get(customerFileName);
         BufferedReader br = Files.newBufferedReader(path);
         String input;
         try{
             while((input = br.readLine()) != null){
-                String[] customerPieces = input.split("\t");
+                String[] customerPieces = input.split(",");
                 String id =  customerPieces[0];
                 String name = customerPieces[1];
-                String accountType = customerPieces[2];
-                String username = customerPieces[3];
-                String password = customerPieces[4];
-                Double balance = Double.parseDouble(customerPieces[5]);
-                List<String> list = getItemListID(customerPieces[6]);
+                String address = customerPieces[2];
+                String phoneNumber = customerPieces[3];
+                String accountType = customerPieces[4];
+                String username = customerPieces[5];
+                String password = customerPieces[6];
+                Double balance = Double.parseDouble(customerPieces[7]);
+                List<String> list = getItemListID(customerPieces[8]);
                 switch (accountType){
                     case "Guest":
-                        Guest guest = new Guest.GuestBuilder(id,name,username,password,balance,list).build();
-                        accounts.add(guest);
+                        Guest guest = new Guest.GuestBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).build();
+                        customers.add(guest);
                         break;
                     case "Regular":
-                        Regular regular = new Regular.RegularBuilder(id,name,username,password,balance,list).build();
-                        accounts.add(regular);
+                        Regular regular = new Regular.RegularBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).build();
+                        customers.add(regular);
                         break;
                     case "VIP":
-                        Vip vip = new Vip.VipBuilder(id,name,username,password,balance,list).build();
-                        accounts.add(vip);
+                        int rewardPoint = Integer.parseInt(customerPieces[9]);
+                        Vip vip = new Vip.VipBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).buildRewardPoint(rewardPoint).build();
+                        customers.add(vip);
                         break;
                 }
             }
