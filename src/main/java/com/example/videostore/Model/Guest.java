@@ -53,8 +53,10 @@ public class Guest extends Customer {
         private String username;
         private String password;
 
+        public GuestBuilder() {
+        }
 
-        public GuestBuilder(String id, String name, String address, String phone, LinkedList listRentals, float balance, String username, String password) {
+        public GuestBuilder(String id, String name, String address, String phone, List<String> listRentals, float balance, String username, String password) {
             this.id = id;
             this.name = name;
             this.address = address;

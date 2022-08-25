@@ -117,7 +117,11 @@ public class Vip extends Customer {
             this.password = password;
         }
 
-        
+        public VipBuilder() {
+
+        }
+
+
         public Vip.VipBuilder buildId(String id) {
             this.id = id;
             return this;
