@@ -12,7 +12,29 @@ public class Regular extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
-        this.setId(builder.id);
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
+        } else {
+            int id = generateId();
+            id++;
+            if(id < 10) {
+                this.setId("C" + "00" +  id);
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  id);
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  id);
+            } else {
+                System.out.println("ID Overflow");
+            }
+        }
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("C" + "00" +  getIdCount());

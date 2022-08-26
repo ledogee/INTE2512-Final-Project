@@ -2,9 +2,6 @@ package com.example.videostore.Controller;
 
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 
-import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -45,7 +41,7 @@ public class adminController implements Initializable {
     private TableColumn<Customer, String> c_id;
 
     @FXML
-    private TableColumn<Customer, List<String>> c_listRental;
+    private TableColumn<Customer, String> c_listRental;
 
     @FXML
     private TableColumn<Customer, String> c_name;
@@ -132,7 +128,7 @@ public class adminController implements Initializable {
                 i_genres.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getGenres()));
             }
         }*/
-
+        customers = SingletonDatabase.getCustomers();
 
         Customer customer1 = new Vip.VipBuilder().buildName("Quang the Guy").buildAddress("Canada").buildBalance(123).buildPhone("014351").buildUsername("Derrick").buildPassword("CaoNiMa").build();
         Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildBalance(100).build();
@@ -146,7 +142,7 @@ public class adminController implements Initializable {
         c_password.setCellValueFactory(new PropertyValueFactory<Customer, String>("password"));
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
-        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, List<String>>("listRentals"));
+        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("listRentals"));
 
         c_tableView.setItems(customers);
     }

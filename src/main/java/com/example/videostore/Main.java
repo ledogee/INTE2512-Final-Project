@@ -1,17 +1,15 @@
 package com.example.videostore;
 
-import com.example.videostore.Model.*;
+import com.example.videostore.Model.Customer;
+import com.example.videostore.Model.Item;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -29,7 +27,9 @@ public class Main extends Application {
         System.out.println("--------------------------------SINGLETON TEST--------------------------------");
         SingletonDatabase.loadItems();
         System.out.println(SingletonDatabase.getItems());
-
+        SingletonDatabase.loadCustomers();
+        System.out.println(SingletonDatabase.getCustomers());
+        System.out.println(Customer.generateId());
         System.out.println("--------------------------------SINGLETON TEST--------------------------------");
        /* Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
 
