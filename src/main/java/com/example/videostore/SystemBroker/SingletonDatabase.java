@@ -4,8 +4,7 @@ import com.example.videostore.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -113,6 +112,36 @@ public class SingletonDatabase {
             throw new RuntimeException(e);
             }
         }
+    public static void saveCustomers() throws IOException {
+        Path path = Paths.get(customerFileName);
+        BufferedWriter bw = Files.newBufferedWriter(path);
+        for(Customer save:customers){
+            switch (save.getAccountType()){
+                case "Regular":
+                case "Guest":
+                    bw.write(save.getId()+','+save.getName()+','+save.getAddress()+','+save.getPhone()+','+save.getAccountType()+','+save.getUsername()+','+save.getPassword()+','+save.saverentals(save.getListRentals())+System.lineSeparator());
+                    break;
+                case "VIP":
+                    bw.write(save.getId()+','+save.getName()+','+save.getAddress()+','+save.getPhone()+','+save.getAccountType()+','+save.getUsername()+','+save.getPassword()+','+save.saverentals(save.getListRentals())+','+((Vip) save).getRewardPoint()+System.lineSeparator());
+                    break;
+            }
+        }
+    }
+    public static void saveitems() throws IOException {
+        Path path = Paths.get(itemFileName);
+        BufferedWriter bw = Files.newBufferedWriter(path);
+        for(Item save:items){
+            switch (save.getRentalType()){
+                case "DVD":
+                    bw.write(save.getId()+','+save.getTitle()+','+save.getRentalType()+','+save.getLoanType()+','+save.getCopies()+','+save.getRentalFee()+','+save.isRentalStatus()+','+save.getYear()+','+ save.getGenres()+System.lineSeparator());
+                break;
+                case "Game":
+                    bw.write(save.getId()+','+save.getTitle()+','+save.getRentalType()+','+save.getLoanType()+','+save.getCopies()+','+save.getRentalFee()+','+save.isRentalStatus()+','+save.getYear()+System.lineSeparator());
+                case "Movie":
+                    bw.write(save.getId()+','+save.getTitle()+','+save.getRentalType()+','+save.getLoanType()+','+save.getCopies()+','+save.getRentalFee()+','+save.isRentalStatus()+','+save.getYear()+','+ save.getGenres()+System.lineSeparator());
+            }
+        }
+    }
     }
 
 

@@ -46,8 +46,6 @@ public abstract class Customer  {
             this.listRentals.add(item.getId());
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
-
-
             return true;
         } else {
             System.out.println("You don't have enough money to rent");
@@ -56,6 +54,9 @@ public abstract class Customer  {
     }
     public String arraytostring (List<String> listRentals){
         return  String.join(",",listRentals);
+    }
+    public String saverentals (List<String> listRentals){
+        return  String.join(" ",listRentals);
     }
 
     public Customer() {

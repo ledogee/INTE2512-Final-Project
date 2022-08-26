@@ -138,7 +138,9 @@ public class Vip extends Customer {
             this.username = username;
             this.password = password;
         }
-
+        public int getRewardPoint(){
+            return this.rewardPoint;
+        }
         public VipBuilder() {
 
         }
