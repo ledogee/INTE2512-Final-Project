@@ -1,5 +1,9 @@
 package com.example.videostore.Model;
 
+import com.example.videostore.SystemBroker.SingletonDatabase;
+
+import java.io.IOException;
+
 public class DVD extends Item {
     private String genres;
 
@@ -12,17 +16,31 @@ public class DVD extends Item {
         this.setRentalFee(builder.rentalFee);
         this.setRentalStatus(builder.rentalStatus);
         this.setYear(builder.year);
-        this.setImageFile(builder.imageFile);
-        if(getIdCount() < 10) {
-            this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() < 100) {
-            this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
-        } else if(getIdCount() <= 999) {
-            this.setId("I" +  getIdCount() + "-" + this.getYear());
+        this.setId(builder.id);
+        this.setYear(builder.year);
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
+            } else if(getIdCount() < 100) {
+                this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
+            } else if(getIdCount() <= 999) {
+                this.setId("I" +  getIdCount() + "-" + this.getYear());
+            } else {
+                System.out.println("ID Overflow");
+            }
         } else {
-            System.out.println("ID Overflow");
+            int id = generateId();
+            id++;
+            if(id < 10) {
+                this.setId("I" + "00" +  id + "-" + this.getYear());
+            } else if(getIdCount() < 100) {
+                this.setId("I" + "0" +  id + "-" + this.getYear());
+            } else if(getIdCount() <= 999) {
+                this.setId("I" +  id + "-" + this.getYear());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
-
     }
 
     public String getGenres() {
@@ -44,7 +62,6 @@ public class DVD extends Item {
                 ", rentalFee=" + super.getRentalFee() +
                 ", rentalStatus=" + super.isRentalStatus() +
                 ", genres= " + this.genres +
-                ", imageFile = " + super.getImageFile() +
                 '}';
     }
 
@@ -60,6 +77,29 @@ public class DVD extends Item {
         private String year;
         private String imageFile;
 
+        public DVDBuilder() {
+        }
+
+        public DVDBuilder(String id, String title, String loanType, int copies, double rentalFee, String genres){
+            this.id = id;
+            this.title = title;
+            this.loanType = loanType;
+            this.copies = copies;
+            this.rentalFee = rentalFee;
+            this.genres = genres;
+
+        }
+
+        public DVDBuilder(String id, String title, int copies, String loanType, double rentalFee, boolean rentalStatus, String year, String genres) {
+            this.id = id;
+            this.title = title;
+            this.copies = copies;
+            this.loanType = loanType;
+            this.rentalFee = rentalFee;
+            this.rentalStatus = rentalStatus;
+            this.year = year;
+            this.genres = genres;
+        }
 
         public DVD.DVDBuilder buildTitle (String title) {
             this.title = title;

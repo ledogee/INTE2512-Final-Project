@@ -38,4 +38,21 @@ public class SceneSwitcher {
         stage.setScene(scene);
         stage.show();
     }
+
+    public static void switchToCustomer(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Main.class.getResource("customer.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void switchToMenu(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(SceneSwitcher.class.getResource("menu.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

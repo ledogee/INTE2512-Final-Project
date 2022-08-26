@@ -20,7 +20,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button layoutX="224.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="Login">
+            <Button layoutX="224.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="Login" fx:id="submitBtn" onAction="#checkInput">
                <font>
                   <Font size="13.0" />
                </font>
@@ -35,7 +35,7 @@
                   <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField GridPane.columnIndex="1">
+                  <TextField GridPane.columnIndex="1" fx:id="usernameInput">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your username" />
                      </tooltip>
@@ -50,7 +50,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="passwordInput">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your password" />
                      </tooltip>

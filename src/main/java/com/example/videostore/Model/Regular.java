@@ -12,14 +12,39 @@ public class Regular extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
-        if(getIdCount() < 10) {
-            this.setId("C" + "00" +  getIdCount());
-        } else if(getIdCount() < 100) {
-            this.setId("C" + "0" +  getIdCount());
-        } else if(getIdCount() <= 999) {
-            this.setId("C" +  getIdCount());
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
         } else {
-            System.out.println("ID Overflow");
+            int id = generateId();
+            id++;
+            if(id < 10) {
+                this.setId("C" + "00" +  id);
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  id);
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  id);
+            } else {
+                System.out.println("ID Overflow");
+            }
+        }
+        if(this.getId() == null) {
+            if(getIdCount() < 10) {
+                this.setId("C" + "00" +  getIdCount());
+            } else if(getIdCount() < 100) {
+                this.setId("C" + "0" +  getIdCount());
+            } else if(getIdCount() <= 999) {
+                this.setId("C" +  getIdCount());
+            } else {
+                System.out.println("ID Overflow");
+            }
         }
     }
 
@@ -44,13 +69,25 @@ public class Regular extends Customer {
         private String address;
         private String phone;
         private final String accountType = "Regular";
-        private List<Item> listRentals;
+        private List<String> listRentals;
         private double balance;
         private String username;
         private String password;
 
-        public RegularBuilder() {
+        public RegularBuilder(String id, String name, String username, String password, Double balance, List<String> listRentals ){
+            this.id = id;
+            this.name = name;
+            this.listRentals = listRentals;
+            this.balance = balance;
+            this.username = username;
+            this.password = password;
         }
+
+        public Regular.RegularBuilder buildId(String name) {
+            this.name = name;
+            return this;
+        }
+
 
         public Regular.RegularBuilder buildName(String name) {
             this.name = name;
@@ -81,7 +118,7 @@ public class Regular extends Customer {
             return this;
         }*/
 
-        public Regular.RegularBuilder buildListRentals(List<Item> listRentals) {
+        public Regular.RegularBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
             return this;
         }
