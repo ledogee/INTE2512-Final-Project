@@ -1,9 +1,6 @@
-# an item record has the following format
-#ID,Title,Rent type,Loan type,Number of copies,rental fee,[genre] if it is a video record or a DVD
-#you can remove or ignore these comments (start with #) when you run your program
-I001-2001,Medal of Honour,Game,1-week,3,3.99
-I002-1988,White Castle,Record,1-week,3,0.99,Comedy
-I003-1992,Alpha Dog,Record,1-week,3,1.99,Action
-I004-1999,Rat Race,DVD,1-week,3,1.99,Horror
-I005-2015,Halo,Game,2-day,2,4.99
-I006-2013,Halloween,DVD,2-day,1,0.99,Horror
+I001-2001,Medal of Honour,Game,1-week,3,3.99,false,2001,
+I002-1988,White Castle,Record,1-week,3,0.99,true,1988,Comedy,
+I003-1992,Alpha Dog,Record,1-week,3,1.99,false,1992,Action,
+I004-1999,Rat Race,DVD,1-week,3,1.99,true,1999,Horror,
+I005-2015,Halo,Game,2-day,2,4.99,true,2015,
+I006-2013,Halloween,DVD,2-day,1,0.99,true,2013,Horror,

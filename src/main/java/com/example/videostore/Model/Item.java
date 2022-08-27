@@ -1,5 +1,8 @@
 package com.example.videostore.Model;
 
+import com.example.videostore.SystemBroker.SingletonDatabase;
+import javafx.collections.ObservableList;
+
 public abstract class  Item {
 
 
@@ -25,7 +28,7 @@ public abstract class  Item {
     private double rentalFee;
     private boolean rentalStatus;
     private String year;
-    private String imageFile;
+
 
     public Item() {
         idCount++;
@@ -104,11 +107,19 @@ public abstract class  Item {
         this.year = year;
     }
 
-    public String getImageFile() {
-        return imageFile;
-    }
+    public static int generateId() {
+        ObservableList<Item> listItems = SingletonDatabase.getItems();
+        System.out.println(listItems.size());
+        if(listItems.size() > 0) {
+            Item lastItem = listItems.get(listItems.size() - 1);
+            String substring = lastItem.getId().substring(1, 4);
+            System.out.println(substring);
+            return Integer.parseInt(substring);
+        }
+     /*   Item lastItem = listItems.get(listItems.size() - 1);
+        String substring = lastItem.getId().substring(1, 3);
+        return Integer.parseInt(substring);*/
+        return 0;
 
-    public void setImageFile(String imageFile) {
-        this.imageFile = imageFile;
     }
 }

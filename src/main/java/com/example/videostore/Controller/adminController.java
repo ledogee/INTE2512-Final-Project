@@ -1,9 +1,7 @@
 package com.example.videostore.Controller;
 
 import com.example.videostore.Model.*;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
+import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 
-import javax.security.auth.callback.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -44,7 +41,7 @@ public class adminController implements Initializable {
     private TableColumn<Customer, String> c_id;
 
     @FXML
-    private TableColumn<Customer, List<String>> c_listRental;
+    private TableColumn<Customer, String> c_listRental;
 
     @FXML
     private TableColumn<Customer, String> c_name;
@@ -96,18 +93,24 @@ public class adminController implements Initializable {
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Item item1 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
+      /*  Item item1 = null;
+        item1 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
         Item item2 = new Game.GameBuilder().buildTitle("Medal of Honour").buildLoanType(1).buildCopies(3).buildRentalFee(0.99).buildYear("2001").build();
-        Item item3 = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
+        Item item3 = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();*/
 
-        items.addAll(item1, item2, item3);
+        items = SingletonDatabase.getItems();
+        Item item = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
+        items.add(item);
+        /*Item itemNew = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
+        items.add(itemNew);*/
+
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
         i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
         i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
         i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
         i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
         i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalFee"));
+        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
 
 /*
@@ -125,7 +128,7 @@ public class adminController implements Initializable {
                 i_genres.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getGenres()));
             }
         }*/
-
+        customers = SingletonDatabase.getCustomers();
 
         Customer customer1 = new Vip.VipBuilder().buildName("Quang the Guy").buildAddress("Canada").buildBalance(123).buildPhone("014351").buildUsername("Derrick").buildPassword("CaoNiMa").build();
         Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildBalance(100).build();
@@ -139,7 +142,7 @@ public class adminController implements Initializable {
         c_password.setCellValueFactory(new PropertyValueFactory<Customer, String>("password"));
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
-        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, List<String>>("listRentals"));
+        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("listRentals"));
 
         c_tableView.setItems(customers);
     }
@@ -168,7 +171,7 @@ public class adminController implements Initializable {
 
             // get the controller of Dialog to call the function processResults
             adminAddItemDialogController controller = fxmlLoader.getController();
-            Item newItem = controller.processResults();
+            Item newItem = controller.processItem();
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */

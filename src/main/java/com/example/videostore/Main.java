@@ -1,6 +1,8 @@
 package com.example.videostore;
 
-import com.example.videostore.Model.*;
+import com.example.videostore.Model.Customer;
+import com.example.videostore.Model.Item;
+import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,8 +10,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -22,8 +22,16 @@ public class Main extends Application {
         logIn.show();
     }
 
-    public static void main(String[] args) {
-        Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
+    public static void main(String[] args) throws IOException {
+
+        System.out.println("--------------------------------SINGLETON TEST--------------------------------");
+        SingletonDatabase.loadItems();
+        System.out.println(SingletonDatabase.getItems());
+        SingletonDatabase.loadCustomers();
+        System.out.println(SingletonDatabase.getCustomers());
+        System.out.println(Customer.generateId());
+        System.out.println("--------------------------------SINGLETON TEST--------------------------------");
+       /* Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
 
 
         Item item2 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
@@ -65,7 +73,7 @@ public class Main extends Application {
         customer1.rentItem(item1);
         System.out.println("Check the copies of item1 " + item1.getCopies());
         System.out.println("Information of customer1: ");
-        System.out.println(customer1);
+        System.out.println(customer1);*/
         launch();
     }
 }

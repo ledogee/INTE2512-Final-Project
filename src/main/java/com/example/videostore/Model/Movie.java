@@ -2,6 +2,8 @@ package com.example.videostore.Model;
 
 import com.example.videostore.SystemBroker.SingletonDatabase;
 
+import java.io.IOException;
+
 public class Movie extends Item{
     private String genres;
 
@@ -14,10 +16,8 @@ public class Movie extends Item{
         this.setRentalFee(builder.rentalFee);
         this.setRentalStatus(builder.rentalStatus);
         this.setYear(builder.year);
-        this.setImageFile(builder.imageFile);
         this.setId(builder.id);
         this.setYear(builder.year);
-        this.setImageFile(builder.imageFile);
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
@@ -25,6 +25,18 @@ public class Movie extends Item{
                 this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
             } else if(getIdCount() <= 999) {
                 this.setId("I" +  getIdCount() + "-" + this.getYear());
+            } else {
+                System.out.println("ID Overflow");
+            }
+        } else {
+            int id = generateId();
+            id++;
+            if(id < 10) {
+                this.setId("I" + "00" +  id + "-" + this.getYear());
+            } else if(getIdCount() < 100) {
+                this.setId("I" + "0" +  id + "-" + this.getYear());
+            } else if(getIdCount() <= 999) {
+                this.setId("I" +  id + "-" + this.getYear());
             } else {
                 System.out.println("ID Overflow");
             }
@@ -66,6 +78,23 @@ public class Movie extends Item{
         private String genres;
         private String year;
         private String imageFile;
+
+        public MovieBuilder() {
+        }
+
+        public MovieBuilder(String id, String title, int copies, String loanType, double rentalFee, boolean rentalStatus, String year, String genres) {
+            this.id = id;
+            this.title = title;
+            this.copies = copies;
+            this.loanType = loanType;
+            this.rentalFee = rentalFee;
+            this.rentalStatus = rentalStatus;
+            this.year = year;
+            this.genres = genres;
+        }
+
+        /*Movie movie = new Movie.MovieBuilder(id, title, rentType, numberOfCopies, rentalFee, genres1).build();*/
+
 
         public Movie.MovieBuilder buildId (String id) {
             this.id = id;
