@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<DialogPane prefHeight="290.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane prefHeight="327.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminAddItemDialogController">
    <content>
-      <Pane prefHeight="36.0" prefWidth="672.0">
+      <Pane prefHeight="31.0" prefWidth="672.0">
          <children>
             <GridPane layoutX="22.0" layoutY="33.0" prefHeight="242.0" prefWidth="631.0">
               <columnConstraints>

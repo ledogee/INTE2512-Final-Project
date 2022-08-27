@@ -8,20 +8,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class adminController implements Initializable {
     @FXML
-    private Button signOutButton;
+    private Button returnToLoginButton;
+    @FXML
+    private Button addItemButton;
     @FXML
     private VBox adminVBOX;
 
@@ -84,9 +89,6 @@ public class adminController implements Initializable {
 
     @FXML
     private TableView<Item> i_tableView;
-
-    @FXML
-    private ListView<Item> itemListView;
 
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     ObservableList<Item> items = FXCollections.observableArrayList();
@@ -153,9 +155,14 @@ public class adminController implements Initializable {
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Use this dialog to create a new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("addItemDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addItemDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
+//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
+//            dialog.getDialogPane().setContent(root);
 
         } catch (IOException e) {
             System.out.println("Couldn't load the dialog");
@@ -164,18 +171,27 @@ public class adminController implements Initializable {
         }
 
         // Add button
+        System.out.println("1");
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         Optional<ButtonType> result = dialog.showAndWait();
+        System.out.println("2");
         if(result.isPresent() && result.get() == ButtonType.OK) {
 
             // get the controller of Dialog to call the function processResults
             adminAddItemDialogController controller = fxmlLoader.getController();
             Item newItem = controller.processItem();
+            System.out.println("3");
+
+
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
-            itemListView.getSelectionModel().select(newItem);
+//            itemListView.getSelectionModel().select(newItem);
+
+
+            System.out.println(newItem);
+            System.out.println("4");
 
             System.out.println("Ok pressed");
         } else {
