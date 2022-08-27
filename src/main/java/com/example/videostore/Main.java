@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage logIn) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("admin.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("menu.fxml")));
         setUserAgentStylesheet(STYLESHEET_CASPIAN); // this is radius border more circle theme
         Scene scene = new Scene(root);
         logIn.setScene(scene);
@@ -31,6 +31,9 @@ public class Main extends Application {
         System.out.println(SingletonDatabase.getCustomers());
         System.out.println(Customer.generateId());
         System.out.println("--------------------------------SINGLETON TEST--------------------------------");
+
+
+
        /* Item item1 = new Movie.MovieBuilder().buildTitle("Alpha Dog").buildLoanType(1).buildCopies(3).buildRentalFee(1.99).buildGenres(1).buildYear("1992").build();
 
 

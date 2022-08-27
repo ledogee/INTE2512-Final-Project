@@ -75,7 +75,7 @@ public class Vip extends Customer {
                 '}';
     }
 
-    @Override
+  /*  @Override
     public boolean rentItem(Item item) {
         if(this.getRewardPoint() == 100) {
             System.out.println("You able to rent a free item!");
@@ -115,7 +115,7 @@ public class Vip extends Customer {
             System.out.println("You don't have enough money to rent");
             return false;
         }
-    }
+    }*/
 
     public static class VipBuilder {
         private String id;
