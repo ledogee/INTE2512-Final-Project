@@ -37,23 +37,26 @@ public abstract class Customer  {
                 '}';
     }
 
-    public boolean rentItem(Item item) {
-        if(this.balance >= item.getRentalFee()) {
+    public boolean rentItem(Item item, ObservableList<Item> observableList) {
+        if(this.balance >= item.getRentalFee() && item.getCopies() != 0) {
             double currentBalance = this.balance;
+            int currentCopies = item.getCopies();
+            item.setCopies(item.getCopies() - 1);
             System.out.println("Rent successfully!");
             this.balance = this.balance - item.getRentalFee();
             System.out.println("Your balance change from " + currentBalance + " to " + this.balance);
             this.listRentals.add(item.getId());
             System.out.println("Your rented items has add new one item!");
             System.out.println(this.getListRentals());
-
-
+            System.out.println("Item copies change from " + currentCopies+ " to " + item.getCopies());
             return true;
         } else {
             System.out.println("You don't have enough money to rent");
             return false;
         }
     }
+
+
     public String arraytostring (List<String> listRentals){
         return  String.join(",",listRentals);
     }
