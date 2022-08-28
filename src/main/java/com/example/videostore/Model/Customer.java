@@ -5,11 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 public abstract class Customer  {
-    enum AccountType {
-        Guest,
-        Regular,
-        Vip
-    }
     private static int idCount = 0;
     private String id;
     private String name;
