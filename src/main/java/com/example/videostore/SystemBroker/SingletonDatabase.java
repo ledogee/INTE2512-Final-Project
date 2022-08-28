@@ -4,8 +4,8 @@ import com.example.videostore.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -82,9 +82,13 @@ public class SingletonDatabase {
         BufferedReader br = Files.newBufferedReader(path);
         String input;
         try{
-            while((input = br.readLine()) != null){
-                String[] customerPieces = input.split(",");
-                String id =  customerPieces[0];
+            while((input = br.readLine()) != null) {
+                String[] customerPieces = input.split(",",-1);
+                System.out.println(input);
+                for (String i : customerPieces){
+                    System.out.println(i);
+                }
+                String id = customerPieces[0];
                 String name = customerPieces[1];
                 String address = customerPieces[2];
                 String phoneNumber = customerPieces[3];
@@ -92,19 +96,19 @@ public class SingletonDatabase {
                 String username = customerPieces[5];
                 String password = customerPieces[6];
                 Double balance = Double.parseDouble(customerPieces[7]);
-                List<String> list = getItemListID(customerPieces[8]);
-                switch (accountType){
+                List list = getItemListID(customerPieces[8]);
+                switch(accountType){
                     case "Guest":
-                        Guest guest = new Guest.GuestBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).build();
+                        Guest guest = new Guest.GuestBuilder(id, name, username, password, balance,list).buildAddress(customerPieces[2]).buildPhone(customerPieces[3]).build();
                         customers.add(guest);
                         break;
                     case "Regular":
-                        Regular regular = new Regular.RegularBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).build();
+                        Regular regular = new Regular.RegularBuilder(id, name, username, password, balance, list).buildAddress(address).buildPhone(phoneNumber).build();
                         customers.add(regular);
                         break;
-                    case "VIP":
+                    case "Vip":
                         int rewardPoint = Integer.parseInt(customerPieces[9]);
-                        Vip vip = new Vip.VipBuilder(id,name,username,password,balance,list).buildAddress(address).buildPhone(phoneNumber).buildRewardPoint(rewardPoint).build();
+                        Vip vip = new Vip.VipBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildRewardPoint(rewardPoint).build();
                         customers.add(vip);
                         break;
                 }
@@ -113,7 +117,41 @@ public class SingletonDatabase {
             throw new RuntimeException(e);
             }
         }
+    public static void saveCustomers() throws IOException {
+            FileOutputStream output = new FileOutputStream(customerFileName);
+            OutputStreamWriter outputSW = new OutputStreamWriter(output, StandardCharsets.UTF_8);
+        BufferedWriter bw = new BufferedWriter(outputSW);
+        for(Customer save:customers) {
+            bw.write(save.getId() + ',' + save.getName() + ',' + save.getAddress() + ',' + save.getPhone() + ',' + save.getAccountType() + ',' + save.getUsername() + ',' + save.getPassword() + ',' + String.valueOf(save.getBalance()) + ',');
+            if (save.getListRentals() != null) {
+                bw.write(save.saverentals(save.getListRentals()));
+            }
+            bw.write(',');
+            if (save.getAccountType().equals("Vip")) {
+                bw.write(String.valueOf(((Vip) save).getRewardPoint()));
+                bw.write(',');
+            }
+            bw.newLine();
+        }
+        bw.close();
     }
+
+
+    public static void saveitems() throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(itemFileName);
+        OutputStreamWriter outputSW = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+        BufferedWriter bw = new BufferedWriter(outputSW);
+        for(Item save:items){
+            bw.write(save.getId()+','+save.getTitle()+','+save.getRentalType()+','+save.getLoanType()+','+save.getCopies()+','+save.getRentalFee()+','+save.isRentalStatus()+','+save.getYear());
+            if(save.getRentalType().equals("Movie") || save.getRentalType().equals("DVD")){
+                bw.write(','+ save.getGenres());
+            }
+            bw.newLine();
+        }
+        bw.close();
+        }
+    }
+
 
 
 

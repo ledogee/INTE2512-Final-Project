@@ -152,6 +152,7 @@ public class Guest extends Customer {
         }
 
         public Guest build() {
+            this.id = String.valueOf(Guest.generateId());
             return new Guest(this);
         }
     }

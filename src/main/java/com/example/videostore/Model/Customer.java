@@ -4,13 +4,7 @@ import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
 
 import java.util.List;
-
 public abstract class Customer  {
-    enum AccountType {
-        Guest,
-        Regular,
-        Vip
-    }
     private static int idCount = 0;
     private String id;
     private String name;
@@ -21,6 +15,10 @@ public abstract class Customer  {
     private double balance;
     private String username;
     private String password;
+
+
+
+    private String combinedString;
 
     @Override
     public String toString() {
@@ -36,6 +34,7 @@ public abstract class Customer  {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 
     public boolean rentItem(Item item, ObservableList<Item> observableList) {
         if(this.balance >= item.getRentalFee() && item.getCopies() != 0) {
@@ -55,10 +54,15 @@ public abstract class Customer  {
             return false;
         }
     }
+    public String arraytostring (){
+        if(this.listRentals==null||this.listRentals.isEmpty()){
+            return "";
+        }
+        return  String.join(",",this.listRentals);
+    }
+    public String saverentals (List<String> listRentals){
+        return  String.join(" ",listRentals);
 
-
-    public String arraytostring (List<String> listRentals){
-        return  String.join(",",listRentals);
     }
 
     public Customer() {
@@ -158,6 +162,13 @@ public abstract class Customer  {
             return Integer.parseInt(substring);
         }
         return 0;
+    }
+    public String getCombinedString() {
+        return combinedString;
+    }
+
+    public void setCombinedString(String combinedString) {
+        this.combinedString = combinedString;
     }
 }
 
