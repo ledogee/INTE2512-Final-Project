@@ -171,26 +171,22 @@ public class adminController implements Initializable {
         }
 
         // Add button
-        System.out.println("1");
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         Optional<ButtonType> result = dialog.showAndWait();
-        System.out.println("2");
         if(result.isPresent() && result.get() == ButtonType.OK) {
 
             // get the controller of Dialog to call the function processResults
             adminAddItemDialogController controller = fxmlLoader.getController();
             Item newItem = controller.processItem();
-            System.out.println("3");
-
 
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
 //            itemListView.getSelectionModel().select(newItem);
 
-
             System.out.println(newItem);
+            items.add(newItem);
             System.out.println("4");
 
             System.out.println("Ok pressed");

@@ -48,7 +48,7 @@ public class SceneSwitcher {
     }
 
     public static void switchToMenu(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(SceneSwitcher.class.getResource("menu.fxml"));
+        root = FXMLLoader.load(Main.class.getResource("menu.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

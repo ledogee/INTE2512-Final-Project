@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage logIn) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("admin.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("customer.fxml")));
         setUserAgentStylesheet(STYLESHEET_CASPIAN); // this is radius border more circle theme
         Scene scene = new Scene(root);
         logIn.setScene(scene);
