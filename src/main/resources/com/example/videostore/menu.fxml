@@ -16,7 +16,7 @@
         <menus>
           <Menu mnemonicParsing="false">
                <graphic>
-                  <Button mnemonicParsing="false" prefWidth="137.0" text="Customer Information" fx:id="customerInfor"/>
+                  <Button fx:id="customerInfor" mnemonicParsing="false" prefWidth="137.0" text="Customer Information" />
                </graphic></Menu>
           <Menu mnemonicParsing="false">
                <graphic>
@@ -56,7 +56,10 @@
                         <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Log out" />
                      </graphic>
                   </Menu>
-                  <Menu mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false">
+                     <graphic>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Admin" onAction="#goToAdmin"/>
+                     </graphic></Menu>
                   <Menu mnemonicParsing="false" />
                </menus>
             </MenuBar>
