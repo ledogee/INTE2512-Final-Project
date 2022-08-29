@@ -131,7 +131,7 @@ public class adminController implements Initializable {
         customers = SingletonDatabase.getCustomers();
 
         Customer customer1 = new Vip.VipBuilder().buildName("Quang the Guy").buildAddress("Canada").buildBalance(123).buildPhone("014351").buildUsername("Derrick").buildPassword("CaoNiMa").build();
-        Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildBalance(100).build();
+        Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildPassword("CaoNiMa").buildBalance(100).build();
         customers.addAll(customer1,customer2);
 
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
@@ -142,8 +142,10 @@ public class adminController implements Initializable {
         c_password.setCellValueFactory(new PropertyValueFactory<Customer, String>("password"));
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
-        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("listRentals"));
-
+        c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("combinedString"));
+        for(Customer customer : customers){
+            customer.setCombinedString(customer.arraytostring());
+        }
         c_tableView.setItems(customers);
     }
 

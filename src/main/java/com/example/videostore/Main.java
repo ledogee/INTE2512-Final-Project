@@ -78,5 +78,21 @@ public class Main extends Application {
         System.out.println("Information of customer1: ");
         System.out.println(customer1);*/
         launch();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run(){
+                //save data here
+                try {
+                    SingletonDatabase.saveCustomers();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    SingletonDatabase.saveitems();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("Exiting");
+            }
+        });
     }
 }
