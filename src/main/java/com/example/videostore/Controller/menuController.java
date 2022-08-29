@@ -8,21 +8,22 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class menuController {
-
+public class menuController
+{
     @FXML
     private TableColumn<Item, Button> i_action;
 
@@ -43,12 +44,27 @@ public class menuController {
 
     @FXML
     private TableView<Item> i_tableView;
+
     @FXML
     private TableColumn<Item, String> i_title;
+
+    @FXML
+    private TextField searchbar;
     private List<Button> buttonRents;
 
+    public void goToLogin(ActionEvent event) throws IOException
+    {
+        SceneSwitcher.switchToLogin(event);
+    }
+    public void goToCustomer(ActionEvent event) throws IOException
+    {
+        SceneSwitcher.switchToCustomer(event);
+    }
+
+    //observable list to store data
     ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
-    public void initialize() {
+    public void initialize()
+    {
         itemObservableList = SingletonDatabase.getItems();
         i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
         i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
@@ -68,7 +84,8 @@ public class menuController {
 
         System.out.println(buttonRents);
 
-        for(Button btn : buttonRents) {
+        for(Button btn : buttonRents)
+        {
             btn.setOnAction((actionEvent) -> {
                 for(int i = 0; i < itemObservableList.size(); i++) {
                     if(itemObservableList.get(i).getButtonRent() == btn) {
@@ -83,9 +100,29 @@ public class menuController {
                 }
             });
         }
-    }
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Item> filteredList = new FilteredList<>(itemObservableList, b -> true);
 
-    public void goToAdmin(ActionEvent event) throws IOException {
-        SceneSwitcher.switchAdmin(event);
+        searchbar.textProperty().addListener((observable, oldValue, newValue )->
+        {
+            filteredList.setPredicate(item ->
+            {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String lowerCAseFilter = newValue.toLowerCase();
+                if(item.getTitle().toLowerCase().indexOf(lowerCAseFilter) != -1)
+                    return true;
+                else if (item.getId().toLowerCase().indexOf(lowerCAseFilter) != -1)
+                    return true;
+                else return false;
+            });
+        });
+
+        SortedList<Item> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
+
+        i_tableView.setItems(sortedList);
     }
 }
