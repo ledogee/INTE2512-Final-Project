@@ -9,3 +9,5 @@ C008,Hong Wang,20 Irwin Street,987654,Guest,wanghong98,CaoNiMa,100.0,I002-1988 I
 C009,Quang the Guy,Canada,014351,Vip,Derrick,CaoNiMa,123.0,,0,
 C010,Hong Wang,20 Irwin Street,987654,Guest,wanghong98,CaoNiMa,100.0,,
 C011,Quang the Guy,Canada,014351,Vip,Derrick,CaoNiMa,123.0,,0,
+C012,Quang the Guy,Canada,014351,Vip,Derrick,CaoNiMa,123.0,,0,
+C013,Hong Wang,20 Irwin Street,987654,Guest,wanghong98,CaoNiMa,100.0,,
