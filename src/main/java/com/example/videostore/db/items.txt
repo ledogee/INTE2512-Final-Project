@@ -1,6 +1,5 @@
-I001-2001,Medal of Honour,Game,1-week,3,3.99,false,2001,
-I002-1988,White Castle,Record,1-week,3,0.99,true,1988,Comedy,
-I003-1992,Alpha Dog,Record,1-week,3,1.99,false,1992,Action,
-I004-1999,Rat Race,DVD,1-week,3,1.99,true,1999,Horror,
-I005-2015,Halo,Game,2-day,2,4.99,true,2015,
-I006-2013,Halloween,DVD,2-day,1,0.99,true,2013,Horror,
+I001-2001,Medal of Honour,Game,1-week,0,3.99,false,2001
+I002-1999,Rat Race,DVD,1-week,3,1.99,false,1999,Horror
+I003-2015,Halo,Game,2-day,16,4.99,true,2015
+I004-2013,Halloween,DVD,2-day,20,0.99,false,2013,Horror
+I005-2010,Gear medal,Game,null,3,120.99,true,2010

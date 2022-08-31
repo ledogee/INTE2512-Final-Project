@@ -2,6 +2,7 @@ package com.example.videostore.Model;
 
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 public abstract class  Item {
 
@@ -29,9 +30,29 @@ public abstract class  Item {
     private boolean rentalStatus;
     private String year;
 
+    private Button buttonRent;
+
+    private int quantity = 1;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Item() {
         idCount++;
+        this.buttonRent = new Button("Rent");
+    }
+
+    public Button getButtonRent() {
+        return buttonRent;
+    }
+
+    public void setButtonRent(Button buttonRent) {
+        this.buttonRent = buttonRent;
     }
 
     public String getRentalType() {

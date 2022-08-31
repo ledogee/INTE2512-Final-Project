@@ -1,5 +1,9 @@
 package com.example.videostore.Model;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.util.List;
 
 public class Vip extends Customer {
@@ -76,6 +80,45 @@ public class Vip extends Customer {
     }
 
     @Override
+    public void rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+        for(int i = 0; i < itemObservableList.size(); i++) {
+            if (itemObservableList.get(i).getButtonRent() == btn) {
+                Item item = itemObservableList.get(i);
+
+
+                // Check item price with balance of the user
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                    item.setCopies(item.getCopies() - 1);
+                    if (item.getCopies() == 0) {
+                        btn.setDisable(true);
+                        item.setRentalStatus(false);
+                        itemObservableList.set(i, item);
+                    } else if (item.getCopies() > 0) {
+                        itemObservableList.set(i, item);
+                        // Condition for fee rent
+                        if(this.getRewardPoint() == 100) {
+                            this.setRewardPoint(0);
+                            rewardLabel.setText(this.getRewardPoint() + " point");
+                        } else {
+                            this.setBalance(this.getBalance() - item.getRentalFee());
+                            this.setRewardPoint(this.getRewardPoint() + 10);
+                            List<String> listItems = this.getListRentals();
+                            listItems.add(item.getId());
+                            this.setListRentals(listItems);
+                            System.out.println(this.getListRentals());
+
+                            customerObservableList.set(indexUser, this);
+                            String result = String.format("%.2f", this.getBalance());
+                            balanceLabel.setText(result + " $");
+                            rewardLabel.setText(this.getRewardPoint() + " point");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*  @Override
     public boolean rentItem(Item item) {
         if(this.getRewardPoint() == 100) {
             System.out.println("You able to rent a free item!");
@@ -115,7 +158,7 @@ public class Vip extends Customer {
             System.out.println("You don't have enough money to rent");
             return false;
         }
-    }
+    }*/
 
     public static class VipBuilder {
         private String id;
@@ -138,7 +181,9 @@ public class Vip extends Customer {
             this.username = username;
             this.password = password;
         }
-
+        public int getRewardPoint(){
+            return this.rewardPoint;
+        }
         public VipBuilder() {
 
         }
@@ -161,22 +206,6 @@ public class Vip extends Customer {
             this.phone = phone;
             return this;
         }
-
-        /*public Vip.VipBuilder buildAccountType(int num) {
-            Account.AccountType enumAccountType = null;
-            if(num == 0) {
-                enumAccountType = AccountType.Vip;
-            } else if(num == 1) {
-                enumAccountType = AccountType.Regular;
-            } else if(num == 2) {
-                enumAccountType = AccountType.Vip;
-            } else {
-                System.out.println("Enum out of bound");
-
-            }
-            this.accountType = String.valueOf(enumAccountType);
-            return this;
-        }*/
 
         public Vip.VipBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;

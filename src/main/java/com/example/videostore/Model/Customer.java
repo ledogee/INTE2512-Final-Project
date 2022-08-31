@@ -2,15 +2,11 @@ package com.example.videostore.Model;
 
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.util.List;
-
 public abstract class Customer  {
-    enum AccountType {
-        Guest,
-        Regular,
-        Vip
-    }
     private static int idCount = 0;
     private String id;
     private String name;
@@ -19,8 +15,12 @@ public abstract class Customer  {
     private String accountType;
     private List<String> listRentals;
     private double balance;
-    private String username;
+    private String thisname;
     private String password;
+
+
+
+    private String combinedString;
 
     @Override
     public String toString() {
@@ -32,30 +32,48 @@ public abstract class Customer  {
                 ", accountType='" + accountType + '\'' +
                 ", listRentals=" + listRentals +
                 ", balance=" + balance +
-                ", username='" + username + '\'' +
+                ", thisname='" + thisname + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
-    public boolean rentItem(Item item) {
-        if(this.balance >= item.getRentalFee()) {
-            double currentBalance = this.balance;
-            System.out.println("Rent successfully!");
-            this.balance = this.balance - item.getRentalFee();
-            System.out.println("Your balance change from " + currentBalance + " to " + this.balance);
-            this.listRentals.add(item.getId());
-            System.out.println("Your rented items has add new one item!");
-            System.out.println(this.getListRentals());
 
+    public void rentItem( ObservableList<Item> itemObservableList, ObservableList<Customer>  customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+        for(int i = 0; i < itemObservableList.size(); i++) {
+            if (itemObservableList.get(i).getButtonRent() == btn) {
+                Item item = itemObservableList.get(i);
 
-            return true;
-        } else {
-            System.out.println("You don't have enough money to rent");
-            return false;
+                // Check item price with balance of the user
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                    item.setCopies(item.getCopies() - 1);
+                    if (item.getCopies() == 0) {
+                        btn.setDisable(true);
+                        item.setRentalStatus(false);
+                        itemObservableList.set(i, item);
+                    } else if (item.getCopies() > 0) {
+                        itemObservableList.set(i, item);
+                        this.setBalance(this.getBalance() - item.getRentalFee());
+                        List<String> listItems = this.getListRentals();
+                        listItems.add(item.getId());
+                        this.setListRentals(listItems);
+
+                        customerObservableList.set(indexUser, this);
+                        String result = String.format("%.2f", this.getBalance());
+                        balanceLabel.setText(result + " $");
+                    }
+                }
+            }
         }
     }
-    public String arraytostring (List<String> listRentals){
-        return  String.join(",",listRentals);
+    public String arraytostring (){
+        if(this.listRentals==null||this.listRentals.isEmpty()){
+            return "";
+        }
+        return  String.join(",",this.listRentals);
+    }
+    public String saverentals (List<String> listRentals){
+        return  String.join(" ",listRentals);
+
     }
 
     public Customer() {
@@ -131,11 +149,11 @@ public abstract class Customer  {
     }
 
     public String getUsername() {
-        return username;
+        return thisname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String thisname) {
+        this.thisname = thisname;
     }
 
     public String getPassword() {
@@ -155,6 +173,13 @@ public abstract class Customer  {
             return Integer.parseInt(substring);
         }
         return 0;
+    }
+    public String getCombinedString() {
+        return combinedString;
+    }
+
+    public void setCombinedString(String combinedString) {
+        this.combinedString = combinedString;
     }
 }
 
