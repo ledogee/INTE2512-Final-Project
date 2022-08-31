@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -24,6 +25,12 @@ public class loginController {
 
     @FXML
     private PasswordField passwordInput;
+
+    @FXML
+    private Label incorrectUsernameLabel;
+
+    @FXML
+    private Label incorrectPasswordLabel;
 
     public void goToRegister(ActionEvent event) throws IOException
     {
@@ -45,8 +52,18 @@ public class loginController {
     {
         for(Customer customer : customerObservableList) {
             if(usernameInput.getText().equals(customer.getUsername()) && passwordInput.getText().equals(customer.getPassword())) {
+                incorrectUsernameLabel.setVisible(false);
+                incorrectPasswordLabel.setVisible(false);
                 menuController.user = customer;
                 SceneSwitcher.switchToMenu(event);
+            } else if (usernameInput.getText().equals(customer.getUsername()) && !(passwordInput.getText().equals(customer.getPassword()))) {
+                incorrectUsernameLabel.setVisible(false);
+                incorrectPasswordLabel.setVisible(true);
+                break;
+            } else {
+                incorrectUsernameLabel.setVisible(true);
+                incorrectPasswordLabel.setVisible(false);
+
             }
         }
        /* BufferedReader br = null;
