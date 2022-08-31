@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f155dd25-cce9-4bc1-b97a-a6fe83762e65" name="Changes" comment="+add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/addItemDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/addItemDialog.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,20 +130,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="+add" />
     <option name="LAST_COMMIT_MESSAGE" value="+add" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java</url>
-          <line>151</line>
-          <properties class="com.example.videostore.Controller.adminController" method="showNewItemDialog">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
