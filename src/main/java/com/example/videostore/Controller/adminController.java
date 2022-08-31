@@ -99,8 +99,6 @@ public class adminController implements Initializable {
         Item item3 = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();*/
 
         items = SingletonDatabase.getItems();
-        Item item = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
-        items.add(item);
         /*Item itemNew = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
         items.add(itemNew);*/
 
@@ -129,11 +127,6 @@ public class adminController implements Initializable {
             }
         }*/
         customers = SingletonDatabase.getCustomers();
-
-        Customer customer1 = new Vip.VipBuilder().buildName("Quang the Guy").buildAddress("Canada").buildBalance(123).buildPhone("014351").buildUsername("Derrick").buildPassword("CaoNiMa").build();
-        Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildPassword("CaoNiMa").buildBalance(100).build();
-        customers.addAll(customer1,customer2);
-
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
         c_id.setCellValueFactory(new PropertyValueFactory<Customer, String>("id"));
         c_address.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));

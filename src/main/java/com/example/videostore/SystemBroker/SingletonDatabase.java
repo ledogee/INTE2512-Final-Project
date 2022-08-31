@@ -95,7 +95,7 @@ public class SingletonDatabase {
                 String accountType = customerPieces[4];
                 String username = customerPieces[5];
                 String password = customerPieces[6];
-                Double balance = Double.parseDouble(customerPieces[7]);
+                double balance = Double.parseDouble(customerPieces[7]);
                 List list = getItemListID(customerPieces[8]);
                 switch(accountType){
                     case "Guest":

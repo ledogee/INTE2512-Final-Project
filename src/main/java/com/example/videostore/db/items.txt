@@ -3,4 +3,3 @@ I002-1999,Rat Race,DVD,1-week,3,1.99,true,1999,Horror
 I003-2015,Halo,Game,2-day,2,4.99,true,2015
 I004-2013,Halloween,DVD,2-day,1,0.99,true,2013,Horror
 I005-2010,Gear medal,Game,null,3,120.99,false,2010
-I006-2010,Gear medal,Game,null,3,120.99,false,2010
