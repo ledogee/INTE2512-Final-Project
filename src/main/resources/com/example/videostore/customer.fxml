@@ -38,21 +38,18 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="ID:" />
-                                        <Label text="Name:" GridPane.rowIndex="1" />
-                                        <Label text="Username:" GridPane.rowIndex="2" />
-                                        <Label text="Password:" GridPane.rowIndex="3" />
-                                        <Label text="Phone:" GridPane.rowIndex="4" />
-                                        <Label text="Address:" GridPane.rowIndex="5" />
-                                        <Label prefHeight="18.0" prefWidth="99.0" GridPane.columnIndex="1" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <Label text="Name:" />
+                                        <Label text="Username:" GridPane.rowIndex="1" />
+                                        <Label text="Password:" GridPane.rowIndex="2" />
+                                        <Label text="Phone:" GridPane.rowIndex="3" />
+                                        <Label text="Address:" GridPane.rowIndex="4" />
+                                        <Label fx:id="name" prefHeight="17.0" prefWidth="470.0" GridPane.columnIndex="1" />
+                                        <Label fx:id="username" prefHeight="17.0" prefWidth="489.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="password" prefHeight="17.0" prefWidth="480.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="phone" prefHeight="17.0" prefWidth="640.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="address" prefHeight="17.0" prefWidth="553.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -76,9 +73,10 @@
                                     <children>
                                         <Label text="Account Type:" />
                                         <Label text="Reward Points:" GridPane.rowIndex="1" />
-                                        <Label prefHeight="18.0" prefWidth="99.0" GridPane.columnIndex="1" />
+                                        <Label fx:id="accountType" prefHeight="18.0" prefWidth="251.0" GridPane.columnIndex="1" />
                                         <Label text="Balance:" GridPane.rowIndex="2" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="balance" prefHeight="17.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="rewardPoint" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -95,7 +93,7 @@
                                         <TableColumn fx:id="rentalType" prefWidth="123.0" text="Rental Type" />
                                         <TableColumn fx:id="loanType" prefWidth="128.0" text="Loan Type" />
                                         <TableColumn fx:id="numOfCopies" editable="false" prefWidth="121.0" text="Number of Copies" />
-                                        <TableColumn editable="false" prefWidth="99.0" />
+                                        <TableColumn editable="false" prefWidth="99.0" text="Action" />
                                     </columns>
                                 </TableView>
                             </children>

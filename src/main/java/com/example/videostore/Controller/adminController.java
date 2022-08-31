@@ -11,9 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
 import java.io.IOException;
+import java.io.ObjectInputFilter;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -92,6 +94,15 @@ public class adminController implements Initializable {
     ObservableList<Item> items = FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        c_listRental.setCellFactory(tc -> {
+            TableCell<Customer, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(c_listRental.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
 
       /*  Item item1 = null;
         item1 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
