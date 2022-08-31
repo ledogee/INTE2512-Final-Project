@@ -92,7 +92,7 @@
                                         <TableColumn fx:id="title" prefWidth="96.0" text="Title" />
                                         <TableColumn fx:id="rentalType" prefWidth="123.0" text="Rental Type" />
                                         <TableColumn fx:id="loanType" prefWidth="128.0" text="Loan Type" />
-                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="121.0" text="Number of Copies" />
+                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="121.0" text="Quantity" />
                                         <TableColumn editable="false" prefWidth="99.0" text="Action" />
                                     </columns>
                                 </TableView>

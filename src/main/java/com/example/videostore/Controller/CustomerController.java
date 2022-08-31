@@ -16,9 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CustomerController {
 
@@ -50,6 +49,7 @@ public class CustomerController {
     ObservableList<Item> itemsDatabase = FXCollections.observableArrayList();
 
 
+
     public void goToLogin(ActionEvent event) throws IOException {
         SceneSwitcher.switchToLogin(event);
     }
@@ -70,34 +70,30 @@ public class CustomerController {
 
         System.out.println(user.getName());
         itemsDatabase = SingletonDatabase.getItems();
+        Set<Item> itemSet = new HashSet<>();
+        List<Item> itemList = new ArrayList<>();
 
-        Map<String, Item> itemMap = new HashMap<>();
-
-        /*List<String> itemList = user.getListRentals();*/
-
-
-        /*for(String id : user.getListRentals()) {
+        for(String id : user.getListRentals()) {
             for(Item item : itemsDatabase) {
-                if(id.equals(item.getId()) ) {
-                    Item newItem = item;
-                    // add to the map key by id
-                    if(itemMap.containsKey(id)) {
-                        itemMap.get(id).setQuantity(itemMap.get(id).getQuantity() + 1);
-                    } else {
-                        itemMap.put(newItem.getId(), newItem);
-                    }
+                if(id.equals(item.getId())) {
+                    itemList.add(item);
                 }
             }
-        }*/
-        System.out.println(itemMap);
+        }
+
+        for(Item itemDup : itemList) {
+            itemDup.setQuantity(Collections.frequency(itemList, itemDup));
+            itemSet.add(itemDup);
+        }
+
+        ObservableList<Item> listRentals = FXCollections.observableArrayList(itemSet);
 
         title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
         rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
         loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        numOfCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
+        numOfCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
+        tableView.setItems(listRentals);
 
-
-        tableView.setItems(itemsDatabase);
 
         System.out.println(rentalType.getCellFactory());
         System.out.println(itemsDatabase);
