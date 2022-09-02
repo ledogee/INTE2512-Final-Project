@@ -18,6 +18,7 @@ public class Vip extends Customer {
         this.setUsername(builder.username);
         this.setPassword(builder.password);
         this.setRewardPoint(builder.rewardPoint);
+        this.setNumberOfReturn(builder.numOfReturn);
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("C" + "00" +  getIdCount());
@@ -80,11 +81,10 @@ public class Vip extends Customer {
     }
 
     @Override
-    public void rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+    public boolean rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
-
 
                 // Check item price with balance of the user
                 if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
@@ -93,12 +93,14 @@ public class Vip extends Customer {
                         btn.setDisable(true);
                         item.setRentalStatus(false);
                         itemObservableList.set(i, item);
+                        return false;
                     } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         // Condition for fee rent
                         if(this.getRewardPoint() == 100) {
                             this.setRewardPoint(0);
                             rewardLabel.setText(this.getRewardPoint() + " point");
+                            return true;
                         } else {
                             this.setBalance(this.getBalance() - item.getRentalFee());
                             this.setRewardPoint(this.getRewardPoint() + 10);
@@ -111,11 +113,13 @@ public class Vip extends Customer {
                             String result = String.format("%.2f", this.getBalance());
                             balanceLabel.setText(result + " $");
                             rewardLabel.setText(this.getRewardPoint() + " point");
+                            return true;
                         }
                     }
                 }
             }
         }
+        return false;
     }
 
     /*  @Override
@@ -173,6 +177,8 @@ public class Vip extends Customer {
 
         private int rewardPoint = 0;
 
+        private int numOfReturn = 0;
+
         public VipBuilder(String id, String name,String username, String password, double balance, List<String> listRentals ) {
             this.id = id;
             this.name = name;
@@ -188,6 +194,10 @@ public class Vip extends Customer {
 
         }
 
+        public Vip.VipBuilder buildNumReturn(int numOfReturn) {
+            this.numOfReturn = numOfReturn;
+            return this;
+        }
 
         public Vip.VipBuilder buildId(String id) {
             this.id = id;

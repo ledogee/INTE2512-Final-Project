@@ -16,6 +16,7 @@ public class Guest extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
+        this.setNumberOfReturn(builder.numOfReturn);
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("C" + "00" +  getIdCount());
@@ -54,11 +55,10 @@ public class Guest extends Customer {
     }
 
     @Override
-    public void rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+    public boolean  rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
-
                 // Check item price with balance of the user
                 if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && item.getLoanType().equals("1-week") && this.getListRentals().size() < 2) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
@@ -66,6 +66,7 @@ public class Guest extends Customer {
                         btn.setDisable(true);
                         item.setRentalStatus(false);
                         itemObservableList.set(i, item);
+                        return false;
                     } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
@@ -75,13 +76,14 @@ public class Guest extends Customer {
 
                         customerObservableList.set(indexUser, this);
 
-
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     @Override
@@ -110,6 +112,8 @@ public class Guest extends Customer {
         private String username;
         private String password;
 
+        private int numOfReturn = 0;
+
         public GuestBuilder() {
         }
 
@@ -134,6 +138,11 @@ public class Guest extends Customer {
         
         public Guest.GuestBuilder buildId(String id) {
             this.id = id;
+            return this;
+        }
+
+        public Guest.GuestBuilder buildNumReturn(int num) {
+            this.numOfReturn = num;
             return this;
         }
 

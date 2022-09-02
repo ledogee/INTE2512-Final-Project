@@ -2,31 +2,27 @@ package com.example.videostore.Controller;
 
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class menuController
 {
     public static Customer user;
+    public Label accountType;
+    public AnchorPane menuPane;
 
     @FXML
     private Label username;
@@ -95,6 +91,15 @@ public class menuController
     {
         itemDatabase = SingletonDatabase.getItems();
 
+        //Get accountType
+        if(user instanceof Vip) {
+            accountType.setText(user.getAccountType());
+        } else if(user instanceof Regular) {
+            accountType.setText(user.getAccountType());
+        } else if(user instanceof Guest) {
+            accountType.setText(user.getAccountType());
+        }
+
         // Filer the item status = true;
         /*itemDatabase.filtered(item -> item.isRentalStatus());*/
 
@@ -145,6 +150,8 @@ public class menuController
             for(int i = 0; i < itemDatabase.size(); i++) {
                 if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("2-day") && itemDatabase.get(i).getButtonRent() == btn) {
                     btn.setDisable(true);
+                } else if((user instanceof Vip || user instanceof  Regular) && itemDatabase.get(i).getButtonRent() == btn) {
+                    btn.setDisable(false);
                 }
 
                 if (itemDatabase.get(i).getButtonRent() == btn && (itemDatabase.get(i).getCopies() == 0 || !itemDatabase.get(i).isRentalStatus())) {
@@ -159,7 +166,17 @@ public class menuController
         for(Button btn : buttonRents)
         {
             btn.setOnAction((actionEvent) -> {
-                user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint);
+
+                System.out.println( "SIZE = " + user.getListRentals().size());
+               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+                   showDialog("successNotification.fxml");
+               } else {
+                   if(user instanceof Guest && user.getListRentals().size() == 2) {
+                       showDialog("guestNotification.fxml");
+                   } else {
+                       showDialog("failNotification.fxml");
+                   }
+               }
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
@@ -182,7 +199,38 @@ public class menuController
         SortedList<Item> sortedList = new SortedList<>(filteredList);
 
         sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
-
         i_tableView.setItems(sortedList);
     }
+
+    public void showDialog(String fileName) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(menuPane.getScene().getWindow());
+        dialog.setTitle("Notification");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/" + fileName));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
+//            dialog.getDialogPane().setContent(root);
+
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            dialog.onCloseRequestProperty();
+        }
+
+    }
+
+
 }
+

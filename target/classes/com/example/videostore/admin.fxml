@@ -56,7 +56,8 @@
             <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="81.33328247070312" text="Balance" />
             <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
             <TableColumn fx:id="c_password" prefWidth="103.3333740234375" text="Password" />
-            <TableColumn fx:id="c_listRental" prefWidth="297.33349609375" text="ListRental" />
+            <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="84.0" text="NumOfReturn" />
+            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="211.3333740234375" text="ListRental" />
          </columns>
       </TableView>
    </children>
