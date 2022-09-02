@@ -192,8 +192,8 @@ public class adminController implements Initializable {
 //            itemListView.getSelectionModel().select(newItem);
 
             System.out.println(newItem);
-            items.add(newItem);
-            System.out.println("4");
+//            items.add(newItem);
+            SingletonDatabase.getItems().add(newItem);
 
             System.out.println("Ok pressed");
         } else {

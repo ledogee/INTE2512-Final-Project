@@ -15,27 +15,28 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.loginController" >
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.loginController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button layoutX="224.0" layoutY="226.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="Login" fx:id="submitBtn" onAction="#checkInput">
+            <Button fx:id="submitBtn" layoutX="229.0" layoutY="254.0" mnemonicParsing="false" onAction="#checkInput" prefHeight="27.0" prefWidth="133.0" text="Login">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <GridPane gridLinesVisible="false" layoutX="115.0" layoutY="131.0">
+            <GridPane gridLinesVisible="false" layoutX="115.0" layoutY="131.0" prefHeight="94.0" prefWidth="370.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="0.0" prefWidth="113.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="257.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField GridPane.columnIndex="1" fx:id="usernameInput">
+                  <TextField fx:id="usernameInput" GridPane.columnIndex="1">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your username" />
                      </tooltip>
@@ -45,24 +46,26 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="151.0" text="Password" GridPane.rowIndex="1">
+                  <Label layoutX="10.0" layoutY="151.0" text="Password" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="passwordInput">
+                  <PasswordField fx:id="passwordInput" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your password" />
                      </tooltip>
                   </PasswordField>
+                  <Label fx:id="incorrectUsernameLabel" prefHeight="17.0" prefWidth="248.0" text="This username does not exist." textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="incorrectPasswordLabel" layoutX="123.0" layoutY="49.0" prefHeight="27.0" prefWidth="248.0" text="Incorrect password." textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button layoutX="336.0" layoutY="263.0" mnemonicParsing="false" onAction="#goToRegister" text="Sign Up">
+            <Button layoutX="341.0" layoutY="291.0" mnemonicParsing="false" onAction="#goToRegister" text="Sign Up">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label layoutX="185.0" layoutY="268.0" text="Don't have an account?">
+            <Label layoutX="190.0" layoutY="296.0" text="Don't have an account?">
                <font>
                   <Font size="14.0" />
                </font>
