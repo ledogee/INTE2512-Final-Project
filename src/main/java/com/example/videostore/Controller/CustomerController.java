@@ -94,7 +94,6 @@ public class CustomerController {
         numOfCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
         tableView.setItems(listRentals);
 
-
         System.out.println(rentalType.getCellFactory());
         System.out.println(itemsDatabase);
     }
