@@ -4,21 +4,21 @@ import com.example.videostore.Model.DVD;
 import com.example.videostore.Model.Game;
 import com.example.videostore.Model.Item;
 import com.example.videostore.Model.Movie;
+import com.example.videostore.SystemBroker.SingletonDatabase;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class adminAddItemDialogController implements Initializable {
     @FXML
-    private TextField Title;
+    private TextField title;
 
     @FXML
     private ComboBox comboBoxRentalType;
@@ -52,21 +52,26 @@ public class adminAddItemDialogController implements Initializable {
     boolean isNumOfCopiesValid = false;
     boolean isRentalFeeValid = false;
     boolean isYearValid = false;
+    boolean isFilled = true;
     public Item processItem(){
 
-        String title = Title.getText().trim();
-        Integer RentalType = comboBoxRentalType.getSelectionModel().getSelectedIndex();
+        String Title = title.getText().trim();
+        isTitleValid = checkTitleValidation(Title);
 
-        Integer LoanType = comboBoxLoanType.getSelectionModel().getSelectedIndex();
+        Integer RentalType = null;
+        RentalType = comboBoxRentalType.getSelectionModel().getSelectedIndex();
+
+        Integer LoanType = null;
+        LoanType = comboBoxLoanType.getSelectionModel().getSelectedIndex();
 
         Integer NumOfCopies = null;
-        if(isInteger(numOfCopies.getText())){
+        if(isInteger(numOfCopies.getText()) && Integer.parseInt(numOfCopies.getText().trim())>=0){
             NumOfCopies = Integer.parseInt(numOfCopies.getText().trim());
             isNumOfCopiesValid = true;
         }
 
         Double RentalFee = null;
-        if(isDouble(rentalFee.getText())){
+        if(isDouble(rentalFee.getText()) && Double.parseDouble(rentalFee.getText().trim())>=0){
             RentalFee = Double.parseDouble(rentalFee.getText().trim());
             isRentalFeeValid = true;
         }
@@ -77,20 +82,24 @@ public class adminAddItemDialogController implements Initializable {
             isYearValid = true;
         }
 
-        Boolean RentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex() == 1 ? false : true;
+        Boolean RentalStatus = null;
+        RentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex() == 1 ? false : true;
 
         Integer Genres = comboBoxGenres.getSelectionModel().getSelectedIndex();
+        if(RentalStatus==null || RentalType==null || LoanType==null){
+            isFilled = false;
+        }
 
         if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid){
-            Item newItem = new Game.GameBuilder().buildTitle(title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
+            Item newItem = new Game.GameBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
             return newItem;
         }
         else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid) {
-            Item newItem = new DVD.DVDBuilder().buildTitle(title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
+            Item newItem = new DVD.DVDBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
             return newItem;
         }
         else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid) {
-            Item newItem = new Movie.MovieBuilder().buildTitle(title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
+            Item newItem = new Movie.MovieBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
             return newItem;
         }
 
@@ -131,6 +140,9 @@ public class adminAddItemDialogController implements Initializable {
 
     void setLabel() {
         StringBuilder stringBuilder = new StringBuilder();
+        if(!isTitleValid){
+            stringBuilder.append("Invalid Title.(Title Already Exist or Empty Input)\n");
+        }
         if(!isNumOfCopiesValid){
             stringBuilder.append("Invalid Number of Copies.(Only integer value)\n");
         }
@@ -140,7 +152,21 @@ public class adminAddItemDialogController implements Initializable {
         if(!isYearValid){
             stringBuilder.append("Invalid Year value.(Only integer value)\n");
         }
+        if(isFilled){
+            stringBuilder.append("Please filled all the choices.\n");
+        }
         label.setText(String.valueOf(stringBuilder));
         label.setTextFill(Color.web("#FF0000"));
+    }
+
+    boolean checkTitleValidation(String string){
+
+        ObservableList<Item> temp = SingletonDatabase.getItems();
+        for(Item item: temp){
+            if(string.equals(item.getTitle()) || string.isEmpty()){
+                return false;
+            }
+        }
+        return true;
     }
 }

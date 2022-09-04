@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class adminController implements Initializable {
+public class adminController extends adminAddItemDialogController implements Initializable {
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -192,19 +192,19 @@ public class adminController implements Initializable {
 
             System.out.println(newItem);
 //            items.add(newItem);
-            while(newItem == null){ 
+            while(newItem == null && result.get() == ButtonType.OK){
                 controller.setLabel();
                 result = dialog.showAndWait();
                 newItem = controller.processItem();
+                if(newItem != null){
+                    SingletonDatabase.getItems().add(newItem);
+                }else {
+                    continue;
+                }
             }
-            SingletonDatabase.getItems().add(newItem);
+//            SingletonDatabase.getItems().add(newItem);
 
-//            if(newItem != null){
-//                SingletonDatabase.getItems().add(newItem);
-//            }else {
-//                controller.setLabel();
-//                result = dialog.showAndWait();
-//            }
+
 
             System.out.println("Ok pressed");
 
