@@ -167,9 +167,6 @@ public class adminController implements Initializable {
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
-//            dialog.getDialogPane().setContent(root);
-
         } catch (IOException e) {
             System.out.println("Couldn't load the dialog");
             e.printStackTrace();
@@ -179,13 +176,15 @@ public class adminController implements Initializable {
         // Add button
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddItemDialogController controller = fxmlLoader.getController();
+        controller.setNewLabel("Hello");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-
             // get the controller of Dialog to call the function processResults
-            adminAddItemDialogController controller = fxmlLoader.getController();
-            Item newItem = controller.processItem();
 
+//            Label label1 = new Label();
+//            label1.setText("Hello");
+            Item newItem = controller.processItem();
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
@@ -193,9 +192,22 @@ public class adminController implements Initializable {
 
             System.out.println(newItem);
 //            items.add(newItem);
+            while(newItem == null){ 
+                controller.setLabel();
+                result = dialog.showAndWait();
+                newItem = controller.processItem();
+            }
             SingletonDatabase.getItems().add(newItem);
 
+//            if(newItem != null){
+//                SingletonDatabase.getItems().add(newItem);
+//            }else {
+//                controller.setLabel();
+//                result = dialog.showAndWait();
+//            }
+
             System.out.println("Ok pressed");
+
         } else {
             System.out.println("Cancel pressed");
         }
