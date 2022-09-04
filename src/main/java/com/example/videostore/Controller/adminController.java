@@ -8,20 +8,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 
 import java.io.IOException;
+import java.io.ObjectInputFilter;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class adminController implements Initializable {
     @FXML
-    private Button signOutButton;
+    private Button returnToLoginButton;
+    @FXML
+    private Button addItemButton;
     @FXML
     private VBox adminVBOX;
 
@@ -56,6 +63,9 @@ public class adminController implements Initializable {
     private TableColumn<Customer, String> c_username;
 
     @FXML
+    private TableColumn<Customer, String> c_numOfReturn;
+
+    @FXML
     private TableColumn<Item, String> i_genres;
 
     @FXML
@@ -85,13 +95,19 @@ public class adminController implements Initializable {
     @FXML
     private TableView<Item> i_tableView;
 
-    @FXML
-    private ListView<Item> itemListView;
-
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     ObservableList<Item> items = FXCollections.observableArrayList();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        c_listRental.setCellFactory(tc -> {
+            TableCell<Customer, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(c_listRental.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
 
       /*  Item item1 = null;
         item1 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
@@ -99,8 +115,6 @@ public class adminController implements Initializable {
         Item item3 = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();*/
 
         items = SingletonDatabase.getItems();
-        Item item = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
-        items.add(item);
         /*Item itemNew = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
         items.add(itemNew);*/
 
@@ -112,6 +126,7 @@ public class adminController implements Initializable {
         i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
         i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+
 
 /*
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
@@ -129,11 +144,6 @@ public class adminController implements Initializable {
             }
         }*/
         customers = SingletonDatabase.getCustomers();
-
-        Customer customer1 = new Vip.VipBuilder().buildName("Quang the Guy").buildAddress("Canada").buildBalance(123).buildPhone("014351").buildUsername("Derrick").buildPassword("CaoNiMa").build();
-        Customer customer2 = new Guest.GuestBuilder().buildName("Hong Wang").buildAddress("20 Irwin Street").buildPhone("0424173255").buildUsername("wanghong98").buildPhone("987654").buildPassword("CaoNiMa").buildBalance(100).build();
-        customers.addAll(customer1,customer2);
-
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
         c_id.setCellValueFactory(new PropertyValueFactory<Customer, String>("id"));
         c_address.setCellValueFactory(new PropertyValueFactory<Customer, String>("address"));
@@ -143,6 +153,7 @@ public class adminController implements Initializable {
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
         c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("combinedString"));
+        c_numOfReturn.setCellValueFactory(new PropertyValueFactory<Customer, String>("numberOfReturn"));
         for(Customer customer : customers){
             customer.setCombinedString(customer.arraytostring());
         }
@@ -155,9 +166,14 @@ public class adminController implements Initializable {
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Use this dialog to create a new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("addItemDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addItemDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
+//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
+//            dialog.getDialogPane().setContent(root);
 
         } catch (IOException e) {
             System.out.println("Couldn't load the dialog");
@@ -174,10 +190,15 @@ public class adminController implements Initializable {
             // get the controller of Dialog to call the function processResults
             adminAddItemDialogController controller = fxmlLoader.getController();
             Item newItem = controller.processItem();
+
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
-            itemListView.getSelectionModel().select(newItem);
+//            itemListView.getSelectionModel().select(newItem);
+
+            System.out.println(newItem);
+            items.add(newItem);
+            System.out.println("4");
 
             System.out.println("Ok pressed");
         } else {

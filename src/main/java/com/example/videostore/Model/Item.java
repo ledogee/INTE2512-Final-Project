@@ -31,11 +31,26 @@ public abstract class  Item {
     private String year;
 
     private Button buttonRent;
+    private Button buttonReturn;
 
+    private int quantity = 1;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Item() {
         idCount++;
         this.buttonRent = new Button("Rent");
+        this.buttonReturn = new Button("Return");
+    }
+
+    public Button getButtonReturn() {
+        return buttonReturn;
     }
 
     public Button getButtonRent() {

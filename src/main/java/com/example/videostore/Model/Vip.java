@@ -1,5 +1,9 @@
 package com.example.videostore.Model;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
 import java.util.List;
 
 public class Vip extends Customer {
@@ -14,6 +18,7 @@ public class Vip extends Customer {
         this.setUsername(builder.username);
         this.setPassword(builder.password);
         this.setRewardPoint(builder.rewardPoint);
+        this.setNumberOfReturn(builder.numOfReturn);
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("C" + "00" +  getIdCount());
@@ -75,7 +80,49 @@ public class Vip extends Customer {
                 '}';
     }
 
-  /*  @Override
+    @Override
+    public boolean rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+        for(int i = 0; i < itemObservableList.size(); i++) {
+            if (itemObservableList.get(i).getButtonRent() == btn) {
+                Item item = itemObservableList.get(i);
+
+                // Check item price with balance of the user
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                    item.setCopies(item.getCopies() - 1);
+                    if (item.getCopies() == 0) {
+                        btn.setDisable(true);
+                        item.setRentalStatus(false);
+                        itemObservableList.set(i, item);
+                        return false;
+                    } else if (item.getCopies() > 0) {
+                        itemObservableList.set(i, item);
+                        // Condition for fee rent
+                        if(this.getRewardPoint() == 100) {
+                            this.setRewardPoint(0);
+                            rewardLabel.setText(this.getRewardPoint() + " point");
+                            return true;
+                        } else {
+                            this.setBalance(this.getBalance() - item.getRentalFee());
+                            this.setRewardPoint(this.getRewardPoint() + 10);
+                            List<String> listItems = this.getListRentals();
+                            listItems.add(item.getId());
+                            this.setListRentals(listItems);
+                            System.out.println(this.getListRentals());
+
+                            customerObservableList.set(indexUser, this);
+                            String result = String.format("%.2f", this.getBalance());
+                            balanceLabel.setText(result + " $");
+                            rewardLabel.setText(this.getRewardPoint() + " point");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /*  @Override
     public boolean rentItem(Item item) {
         if(this.getRewardPoint() == 100) {
             System.out.println("You able to rent a free item!");
@@ -130,6 +177,8 @@ public class Vip extends Customer {
 
         private int rewardPoint = 0;
 
+        private int numOfReturn = 0;
+
         public VipBuilder(String id, String name,String username, String password, double balance, List<String> listRentals ) {
             this.id = id;
             this.name = name;
@@ -145,6 +194,10 @@ public class Vip extends Customer {
 
         }
 
+        public Vip.VipBuilder buildNumReturn(int numOfReturn) {
+            this.numOfReturn = numOfReturn;
+            return this;
+        }
 
         public Vip.VipBuilder buildId(String id) {
             this.id = id;
@@ -163,22 +216,6 @@ public class Vip extends Customer {
             this.phone = phone;
             return this;
         }
-
-        /*public Vip.VipBuilder buildAccountType(int num) {
-            Account.AccountType enumAccountType = null;
-            if(num == 0) {
-                enumAccountType = AccountType.Vip;
-            } else if(num == 1) {
-                enumAccountType = AccountType.Regular;
-            } else if(num == 2) {
-                enumAccountType = AccountType.Vip;
-            } else {
-                System.out.println("Enum out of bound");
-
-            }
-            this.accountType = String.valueOf(enumAccountType);
-            return this;
-        }*/
 
         public Vip.VipBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
