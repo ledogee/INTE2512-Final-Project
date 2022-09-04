@@ -32,6 +32,7 @@ public class loginController {
     @FXML
     private Label incorrectPasswordLabel;
 
+
     public void goToRegister(ActionEvent event) throws IOException
     {
         SceneSwitcher.switchToRegister(event);
@@ -63,10 +64,10 @@ public class loginController {
             } else {
                 incorrectUsernameLabel.setVisible(true);
                 incorrectPasswordLabel.setVisible(false);
-
             }
         }
        /* BufferedReader br = null;
+
         try
         {
             br = new BufferedReader(new FileReader("src/main/java/com/example/videostore/db/customers.txt"));
