@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="d6b98ac4-3c2b-4820-8a52-394331b09290" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" afterDir="false" />
@@ -29,11 +30,15 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/customer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/customer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/menu.fxml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="adf0c8fc-393f-417d-b2e0-3c2748cdf704" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="ComposerSettings">
     <execution />
   </component>
@@ -45,14 +50,20 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> Stashed changes
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectId" id="2E6slmWapn0f10bhmF3XTJllrFl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+=======
+  <component name="ProjectId" id="2ELr9ZuKQ1YiCpSgDefasZq9SHA" />
+>>>>>>> Stashed changes
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -60,6 +71,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
+<<<<<<< Updated upstream
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/ACER/Desktop/INTE2512-Final-Project/src/main/resources/com/example/videostore",
@@ -72,6 +84,11 @@
       <recent name="C:\Users\ACER\Desktop\INTE2512-Final-Project\src\main\resources\com\example\videostore" />
     </key>
   </component>
+=======
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+>>>>>>> Stashed changes
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.videostore.Main" />
@@ -84,6 +101,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< Updated upstream
       <changelist id="d6b98ac4-3c2b-4820-8a52-394331b09290" name="Changes" comment="" />
       <created>1661927525762</created>
       <option name="number" value="Default" />
@@ -108,4 +126,14 @@
       </map>
     </option>
   </component>
+=======
+      <changelist id="adf0c8fc-393f-417d-b2e0-3c2748cdf704" name="Changes" comment="" />
+      <created>1662385556735</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662385556735</updated>
+    </task>
+    <servers />
+  </component>
+>>>>>>> Stashed changes
 </project>
