@@ -177,7 +177,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         adminAddItemDialogController controller = fxmlLoader.getController();
-        controller.setNewLabel("Hello");
+        controller.setNewLabel("");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
             // get the controller of Dialog to call the function processResults
@@ -192,15 +192,15 @@ public class adminController extends adminAddItemDialogController implements Ini
 
             System.out.println(newItem);
 //            items.add(newItem);
-            while(newItem == null && result.get() == ButtonType.OK){
+            while((newItem == null && result.get() == ButtonType.OK) ){
                 controller.setLabel();
                 result = dialog.showAndWait();
                 newItem = controller.processItem();
                 if(newItem != null){
                     SingletonDatabase.getItems().add(newItem);
-                }else {
-                    continue;
+                    break;
                 }
+
             }
 //            SingletonDatabase.getItems().add(newItem);
 

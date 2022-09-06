@@ -52,7 +52,9 @@ public class adminAddItemDialogController implements Initializable {
     boolean isNumOfCopiesValid = false;
     boolean isRentalFeeValid = false;
     boolean isYearValid = false;
-    boolean isFilled = true;
+    boolean isFilled = false;
+
+
     public Item processItem(){
 
         String Title = title.getText().trim();
@@ -81,26 +83,35 @@ public class adminAddItemDialogController implements Initializable {
             Year = year.getText().trim();
             isYearValid = true;
         }
-
-        Boolean RentalStatus = null;
-        RentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex() == 1 ? false : true;
-
         Integer Genres = comboBoxGenres.getSelectionModel().getSelectedIndex();
-        if(RentalStatus==null || RentalType==null || LoanType==null){
-            isFilled = false;
+
+        Integer tempRentalStatus = null;
+        tempRentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex();
+        boolean RentalStatus;
+        if(tempRentalStatus == 0){
+            RentalStatus = true;
+        }else{
+            RentalStatus = false;
         }
 
-        if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid){
-            Item newItem = new Game.GameBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
-            return newItem;
+        System.out.println("-----------");
+        System.out.println(RentalType + " " + isFilled);
+        System.out.println(LoanType + " " + isFilled);
+        System.out.println(tempRentalStatus + " " + isFilled);
+
+
+        if(tempRentalStatus >= 0 && RentalType >=0 && LoanType >= 0){
+            isFilled = true;
         }
-        else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid) {
-            Item newItem = new DVD.DVDBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
-            return newItem;
+
+        if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
+            return new Game.GameBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
         }
-        else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid) {
-            Item newItem = new Movie.MovieBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
-            return newItem;
+        else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+            return new DVD.DVDBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
+        }
+        else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+            return new Movie.MovieBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
         }
 
         return null;
@@ -152,7 +163,7 @@ public class adminAddItemDialogController implements Initializable {
         if(!isYearValid){
             stringBuilder.append("Invalid Year value.(Only integer value)\n");
         }
-        if(isFilled){
+        if(!isFilled){
             stringBuilder.append("Please filled all the choices.\n");
         }
         label.setText(String.valueOf(stringBuilder));
