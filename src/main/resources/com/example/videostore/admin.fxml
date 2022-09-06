@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <Pane prefHeight="53.0" prefWidth="781.0">
          <children>
@@ -18,8 +13,9 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="addItemButton" layoutX="659.0" layoutY="27.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
+            <Button fx:id="addItemButton" layoutX="659.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
             <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="-3.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
+            <Button layoutX="749.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteItemButton" text="Delete Item" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
@@ -42,7 +38,8 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="794.0" layoutY="17.0" mnemonicParsing="false" text="Add Account" />
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" text="Add Account" />
+            <Button layoutX="864.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteCustomerButton" text="Delete Account" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
@@ -56,7 +53,8 @@
             <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="81.33328247070312" text="Balance" />
             <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
             <TableColumn fx:id="c_password" prefWidth="103.3333740234375" text="Password" />
-            <TableColumn fx:id="c_listRental" prefWidth="297.33349609375" text="ListRental" />
+            <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="84.0" text="NumOfReturn" />
+            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="211.3333740234375" text="ListRental" />
          </columns>
       </TableView>
    </children>

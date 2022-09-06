@@ -18,7 +18,15 @@ public abstract class Customer  {
     private String thisname;
     private String password;
 
+    private int numberOfReturn = 0;
 
+    public int getNumberOfReturn() {
+        return numberOfReturn;
+    }
+
+    public void setNumberOfReturn(int numberOfReturn) {
+        this.numberOfReturn = numberOfReturn;
+    }
 
     private String combinedString;
 
@@ -38,7 +46,7 @@ public abstract class Customer  {
     }
 
 
-    public void rentItem( ObservableList<Item> itemObservableList, ObservableList<Customer>  customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+    public boolean rentItem( ObservableList<Item> itemObservableList, ObservableList<Customer>  customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
@@ -50,6 +58,7 @@ public abstract class Customer  {
                         btn.setDisable(true);
                         item.setRentalStatus(false);
                         itemObservableList.set(i, item);
+                        return false;
                     } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
@@ -60,10 +69,12 @@ public abstract class Customer  {
                         customerObservableList.set(indexUser, this);
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
     public String arraytostring (){
         if(this.listRentals==null||this.listRentals.isEmpty()){
@@ -78,6 +89,7 @@ public abstract class Customer  {
 
     public Customer() {
         idCount++;
+
     }
 
     public static int getIdCount() {

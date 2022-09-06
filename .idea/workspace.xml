@@ -19,6 +19,14 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -38,15 +46,10 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/RMIT/OOP/Blank JavaFX&quot;
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\RMIT\OOP\Video Store\INTE2512-Final-Project\target\classes\com\example\videostore" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\RMIT\OOP\Video Store\INTE2512-Final-Project\src\main\resources\com\example\videostore" />
-      <recent name="D:\RMIT\OOP\Video Store\INTE2512-Final-Project\src\main\java\com\example\videostore" />
-      <recent name="D:\RMIT\OOP\Video Store\INTE2512-Final-Project\src\main\java\com\example\videostore\Controller" />
+      <recent name="C:\Users\ACER\Desktop\INTE2512-Final-Project\src\main\resources\com\example\videostore" />
     </key>
   </component>
   <component name="RunManager">
@@ -67,6 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1661927525762</updated>
       <workItem from="1661927528343" duration="2220000" />
+      <workItem from="1662102420177" duration="1956000" />
     </task>
     <servers />
   </component>

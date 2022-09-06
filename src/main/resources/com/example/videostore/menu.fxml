@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="820.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
+<AnchorPane prefHeight="820.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController" fx:id="menuPane">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="748.0" prefWidth="985.0">
+      <VBox alignment="TOP_CENTER" prefHeight="820.0" prefWidth="1067.0">
          <children>
-            <MenuBar prefHeight="53.0" prefWidth="400.0">
+            <MenuBar prefHeight="43.0" prefWidth="1043.0">
               <menus>
                 <Menu mnemonicParsing="false">
                      <graphic>
@@ -35,9 +34,18 @@
                 </Menu>
                   <Menu mnemonicParsing="false">
                      <graphic>
-                        <Label fx:id="username" prefHeight="35.0" prefWidth="467.0" text="              WELCOME BACK $USERNAME" textAlignment="RIGHT" textFill="WHITE">
+                        <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="405.0" text="WELCOME BACK $USERNAME" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Menu>
+                  <Menu mnemonicParsing="false">
+                     <graphic>
+                        <Label fx:id="accountType" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="142.0" text="ACCOUNT TYPE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
                            </font>
                         </Label>
                      </graphic>

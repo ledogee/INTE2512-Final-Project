@@ -63,6 +63,9 @@ public class adminController extends adminAddItemDialogController implements Ini
     private TableColumn<Customer, String> c_username;
 
     @FXML
+    private TableColumn<Customer, String> c_numOfReturn;
+
+    @FXML
     private TableColumn<Item, String> i_genres;
 
     @FXML
@@ -95,7 +98,8 @@ public class adminController extends adminAddItemDialogController implements Ini
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     ObservableList<Item> items = FXCollections.observableArrayList();
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         c_listRental.setCellFactory(tc -> {
             TableCell<Customer, String> cell = new TableCell<>();
             Text text = new Text();
@@ -124,6 +128,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
 
+
 /*
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
 */
@@ -149,13 +154,20 @@ public class adminController extends adminAddItemDialogController implements Ini
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
         c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("combinedString"));
+        c_numOfReturn.setCellValueFactory(new PropertyValueFactory<Customer, String>("numberOfReturn"));
         for(Customer customer : customers){
             customer.setCombinedString(customer.arraytostring());
         }
         c_tableView.setItems(customers);
+
+        //Allows users select multiple rows at once
+        i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
     }
 
-    public void showNewItemDialog() {
+    public void showNewItemDialog()
+    {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         dialog.setTitle("Add New Item");
@@ -211,5 +223,29 @@ public class adminController extends adminAddItemDialogController implements Ini
         } else {
             System.out.println("Cancel pressed");
         }
+    }
+
+    public void deleteCustomerButton(ActionEvent event)
+    {
+        ObservableList<Customer> selectedRows,  allCustomer;
+        allCustomer = c_tableView.getItems();
+
+        //Allows to rows to be selected
+        selectedRows = c_tableView.getSelectionModel().getSelectedItems();
+
+        for(Customer customer: selectedRows)
+            allCustomer.remove(customer);
+    }
+
+    public void deleteItemButton(ActionEvent event)
+    {
+        ObservableList<Item> selectedRows,  allItems;
+        allItems = i_tableView.getItems();
+
+        //Allows to rows to be selected
+        selectedRows = i_tableView.getSelectionModel().getSelectedItems();
+
+        for(Item item: selectedRows)
+            allItems.remove(item);
     }
 }
