@@ -9,9 +9,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TextField?>
 <VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <Pane prefHeight="53.0" prefWidth="781.0">
+         <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" text="Search an item">
+            <graphic>
+               <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
+            </graphic>
+         </Button>
          <children>
             <Label layoutX="490.0" layoutY="12.0" text="Item List">
                <font>
@@ -19,7 +25,7 @@
                </font>
             </Label>
             <Button fx:id="addItemButton" layoutX="659.0" layoutY="27.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
-            <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="-3.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
+            <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
@@ -37,6 +43,11 @@
       </TableView>
       <Pane prefHeight="53.0" prefWidth="781.0">
          <children>
+            <Button layoutX="18.0" layoutY="11.0" mnemonicParsing="false" text="Search a customer">
+               <graphic>
+                  <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="200.0" />
+               </graphic>
+            </Button>
             <Label layoutX="488.0" layoutY="12.0" text="Customer List">
                <font>
                   <Font name="System Bold" size="20.0" />

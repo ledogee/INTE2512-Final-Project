@@ -4,6 +4,8 @@ import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class adminController implements Initializable {
+    @FXML
+    public TextField searchbarItem;
+    @FXML
+    public TextField searchbarCustomer;
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -143,6 +149,29 @@ public class adminController implements Initializable {
                 i_genres.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getGenres()));
             }
         }*/
+        FilteredList<Item> filteredList = new FilteredList<>(items, b -> true);
+
+        searchbarItem.textProperty().addListener((observable, oldValue, newValue )->
+        {
+            filteredList.setPredicate(item ->
+            {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String lowerCAseFilter = newValue.toLowerCase();
+                if(item.getTitle().toLowerCase().contains(lowerCAseFilter))
+                    return true;
+                else return item.getId().toLowerCase().contains(lowerCAseFilter);
+            });
+        });
+
+        SortedList<Item> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
+        i_tableView.setItems(sortedList);
+
+
+
         customers = SingletonDatabase.getCustomers();
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
         c_id.setCellValueFactory(new PropertyValueFactory<Customer, String>("id"));
@@ -158,7 +187,29 @@ public class adminController implements Initializable {
             customer.setCombinedString(customer.arraytostring());
         }
         c_tableView.setItems(customers);
+
+        FilteredList<Customer> filteredList2 = new FilteredList<>(customers, b -> true);
+
+        searchbarCustomer.textProperty().addListener((observable, oldValue, newValue )->
+        {
+            filteredList2.setPredicate(item ->
+            {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String lowerCAseFilter = newValue.toLowerCase();
+                if(item.getName().toLowerCase().contains(lowerCAseFilter))
+                    return true;
+                else return item.getId().toLowerCase().contains(lowerCAseFilter);
+            });
+        });
+
+        SortedList<Customer> sortedList2 = new SortedList<>(filteredList2);
+
+        sortedList2.comparatorProperty().bind(c_tableView.comparatorProperty());
+        c_tableView.setItems(sortedList2);
     }
+
 
     public void showNewItemDialog() {
         Dialog<ButtonType> dialog = new Dialog<>();
