@@ -76,6 +76,37 @@ public abstract class Customer  {
         }
         return false;
     }
+    public Vip Viptypecaster(){
+        return (Vip)this;
+    }
+    public boolean returnItem(ObservableList<Item> itemObservableList,ObservableList<Item> rented, Button btn){
+        for(int i = 0; i < rented.size();i++){
+            if(rented.get(i).getButtonReturn().equals(btn)){
+                Item item = rented.get(i);
+                rented.get(i).setQuantity(rented.get(i).getQuantity()-1);
+                System.out.println(rented.get(i).getQuantity());
+                if(rented.get(i).getQuantity() == 0){
+                    rented.remove(i);
+                }
+                System.out.println(item.getTitle());
+                for (int j = 0; j < itemObservableList.size();j++){
+                    if (item.getId().equals(itemObservableList.get(j).getId())) {
+                        item = itemObservableList.get(j);
+                    }
+                }
+                List<String> list = this.getListRentals();
+                item.setCopies(item.getCopies()+1);
+                list.remove(item.getId());
+                this.setListRentals(list);
+                if(this.getAccountType().equals("VIP")){
+                    this.Viptypecaster().setRewardPoint(this.Viptypecaster().getRewardPoint()+5);
+                }
+                itemObservableList.set(i,item);
+                return true;
+            }
+        }
+        return false;
+    }
     public String arraytostring (){
         if(this.listRentals==null||this.listRentals.isEmpty()){
             return "";

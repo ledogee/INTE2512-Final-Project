@@ -30,6 +30,7 @@ public class CustomerController {
     public Label address;
     public Label numOfReturn;
     private List<Button> buttonRents;
+    private List<Button> buttonReturns;
 
     public void loadPersonalInformation() {
         name.setText(user.getName());
@@ -131,9 +132,16 @@ public class CustomerController {
         for (Item item : tableView.getItems()) {
             buttonList.add(action.getCellObservableValue(item).getValue());
         }
-
-        this.buttonRents = buttonList;
-
+        this.buttonReturns = buttonList;
+        for(Button btn : buttonList)
+        {
+            btn.setOnAction((actionEvent) -> {
+                user.returnItem(itemsDatabase,listRentals,btn);
+                System.out.println(itemsDatabase);
+                tableView.setItems(listRentals);
+                tableView.refresh();
+            });
+        }
         System.out.println(rentalType.getCellFactory());
         System.out.println(itemsDatabase);
     }

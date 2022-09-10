@@ -168,15 +168,15 @@ public class menuController
             btn.setOnAction((actionEvent) -> {
 
                 System.out.println( "SIZE = " + user.getListRentals().size());
-               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
-                   showDialog("successNotification.fxml");
-               } else {
-                   if(user instanceof Guest && user.getListRentals().size() == 2) {
-                       showDialog("guestNotification.fxml");
-                   } else {
-                       showDialog("failNotification.fxml");
-                   }
-               }
+                if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+                    showDialog("successNotification.fxml");
+                } else {
+                    if(user instanceof Guest && user.getListRentals().size() == 2) {
+                        showDialog("guestNotification.fxml");
+                    } else {
+                        showDialog("failNotification.fxml");
+                    }
+                }
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
