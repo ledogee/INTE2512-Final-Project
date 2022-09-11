@@ -205,7 +205,7 @@ public class adminController extends adminAddItemDialogController implements Ini
             System.out.println(newItem);
 //            items.add(newItem);
             while((newItem == null && result.get() == ButtonType.OK) ){
-                controller.setLabel();
+                controller.setItemLabel();
                 result = dialog.showAndWait();
                 newItem = controller.processItem();
                 if(newItem != null){
@@ -250,12 +250,13 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
             Customer newAccount = controller.processAccount();
-            newAccount.toString();
+
             System.out.println(newAccount);
 
             while((newAccount == null && result.get() == ButtonType.OK) ){
-//                controller.setLabel();
+                controller.setAccountLabel();
                 result = dialog.showAndWait();
+
                 newAccount = controller.processAccount();
                 if(newAccount != null){
                     break;

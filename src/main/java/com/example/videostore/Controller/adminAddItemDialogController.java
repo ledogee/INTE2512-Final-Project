@@ -135,7 +135,7 @@ public class adminAddItemDialogController implements Initializable {
 
 
 
-    void setLabel() {
+    void setItemLabel() {
         StringBuilder stringBuilder = new StringBuilder();
         if(!isTitleValid){
             stringBuilder.append("Invalid Title.(Title Already Exist or Empty Input)\n");

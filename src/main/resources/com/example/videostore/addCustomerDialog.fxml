@@ -28,7 +28,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="31.20001831054688" minHeight="10.0" prefHeight="31.20001831054688" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="18.0" prefWidth="124.0" text="Name:" GridPane.rowIndex="1" />
@@ -41,16 +40,14 @@
                   <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="balance" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label layoutX="10.0" layoutY="197.0" prefHeight="18.0" prefWidth="124.0" text="ListRental" GridPane.rowIndex="8" />
                   <ComboBox fx:id="comboBoxRentalStatus" prefHeight="26.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ComboBox fx:id="comboBoxAccountType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
-                  <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label prefHeight="18.0" prefWidth="124.0" text="Username:" GridPane.rowIndex="5" />
                   <TextField fx:id="username" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label prefHeight="18.0" prefWidth="124.0" text="Password:" GridPane.rowIndex="6" />
                   <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <TextField fx:id="numOfReturn" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="listRental" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>
