@@ -1,9 +1,7 @@
 package com.example.videostore.Controller;
 
-import com.example.videostore.Model.Customer;
-import com.example.videostore.Model.Guest;
-import com.example.videostore.Model.Regular;
-import com.example.videostore.Model.Vip;
+import com.example.videostore.Model.*;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -15,8 +13,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.example.videostore.Controller.adminController.isDouble;
-import static com.example.videostore.Controller.adminController.isInteger;
+import static com.example.videostore.Controller.adminController.*;
 
 public class adminAddAccountDialogController implements Initializable {
 
@@ -53,7 +50,6 @@ public class adminAddAccountDialogController implements Initializable {
     boolean isBalanceValid = false;
     boolean isUsernameValid = false;
     boolean isPasswordValid = false;
-    boolean isNumOfReturnValid = false;
     public Customer processAccount(){
         isAccountTypeFilled = false;
         isNameValid = false;
@@ -62,7 +58,6 @@ public class adminAddAccountDialogController implements Initializable {
         isBalanceValid = false;
         isUsernameValid = false;
         isPasswordValid = false;
-        isNumOfReturnValid = false;
 
         Integer AccountType = null;
         AccountType = comboBoxAccountType.getSelectionModel().getSelectedIndex();
@@ -93,7 +88,7 @@ public class adminAddAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        if(!username.getText().isEmpty()){
+        if(checkUsernameAvailable(Username)){
             isUsernameValid = true;
         }
 
@@ -102,35 +97,21 @@ public class adminAddAccountDialogController implements Initializable {
             isPasswordValid = true;
         }
 
-        Integer NumOfReturn = null;
-        if(isInteger(numOfReturn.getText()) && Integer.parseInt(numOfReturn.getText().trim())>=0){
-            NumOfReturn = Integer.parseInt(numOfReturn.getText().trim());
-            isNumOfReturnValid = true;
-        }
-
-//        String ListRental = listRental.getText().trim();
-        List<String> ListRental = null;
-        //Remember to check true false and add it to checking when create object
-
-        System.out.println("------------------------------");
+        System.out.println("------------------------------"); //for testing
         System.out.println(AccountType + " " + isAccountTypeFilled);
         System.out.println(Address + " " + isAddressValid);
         System.out.println(Phone + " " +  isPhoneValid);
         System.out.println(Balance + " " + isBalanceValid);
 
-        if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid && isNumOfReturnValid){
-            return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(NumOfReturn).buildListRentals(ListRental).build();
-        } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid && isNumOfReturnValid) {
-            return new Regular.RegularBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(NumOfReturn).buildListRentals(ListRental).build();
-        } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid && isNumOfReturnValid) {
-            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(NumOfReturn).buildListRentals(ListRental).build();
+        if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
+            return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).build();
+        } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
+            return new Regular.RegularBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).build();
+        } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
+            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).build();
         }
         return null;
     }
-
-
-
-
 
 
     public boolean checkPhoneNumber(String string){
@@ -161,20 +142,18 @@ public class adminAddAccountDialogController implements Initializable {
             stringBuilder.append("Invalid address.(Please fill an address)\n");
         }
         if(!isPhoneValid){
-            stringBuilder.append("Invalid phone number.(Unrecognized phone number or Empty Input\n");
+            stringBuilder.append("Unrecognized phone number or Empty Input\n");
         }
         if(!isBalanceValid){
             stringBuilder.append(("Invalid balance.(Only numeric value)\n"));
         }
         if(!isUsernameValid){
-            stringBuilder.append("Invalid username.(Username Already Exist or Empty Input)\n");
+            stringBuilder.append("Username Already Exist or Empty Input\n");
         }
         if(!isPasswordValid){
-            stringBuilder.append("Invalid Password.(Please enter a password with at least 8 characters)\n");
+            stringBuilder.append("Password should be at least 8 characters\n");
         }
-        if(!isNumOfReturnValid){
-            stringBuilder.append("Invalid Number of Rental. (Only integer value)\n");
-        }
+
         addAccountLabel.setText(String.valueOf(stringBuilder));
         addAccountLabel.setTextFill(Color.web("#FF0000"));
     }
@@ -182,5 +161,15 @@ public class adminAddAccountDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
+    }
+
+    public boolean checkUsernameAvailable(String string){
+        ObservableList<Customer> temp = getCustomers();
+        for(Customer customer: temp){
+            if(string.equals(customer.getUsername()) || string.isEmpty()){
+                return false;
+            }
+        }
+        return true;
     }
 }

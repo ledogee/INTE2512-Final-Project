@@ -16,8 +16,7 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.videostore.Controller.adminController.isDouble;
-import static com.example.videostore.Controller.adminController.isInteger;
+import static com.example.videostore.Controller.adminController.*;
 
 public class adminAddItemDialogController implements Initializable {
     @FXML
@@ -158,7 +157,7 @@ public class adminAddItemDialogController implements Initializable {
 
     boolean checkTitleValidation(String string){
 
-        ObservableList<Item> temp = SingletonDatabase.getItems();
+        ObservableList<Item> temp = getItems();
         for(Item item: temp){
             if(string.equals(item.getTitle()) || string.isEmpty()){
                 return false;

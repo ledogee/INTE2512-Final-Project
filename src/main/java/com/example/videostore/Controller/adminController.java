@@ -95,8 +95,16 @@ public class adminController extends adminAddItemDialogController implements Ini
     @FXML
     private TableView<Item> i_tableView;
 
-    ObservableList<Customer> customers = FXCollections.observableArrayList();
-    ObservableList<Item> items = FXCollections.observableArrayList();
+    static ObservableList<Customer> customers = FXCollections.observableArrayList();
+    static ObservableList<Item> items = FXCollections.observableArrayList();
+
+    public static ObservableList<Item> getItems() {
+        return items;
+    }
+
+    public static ObservableList<Customer> getCustomers() {
+        return customers;
+    }
 
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -208,17 +216,21 @@ public class adminController extends adminAddItemDialogController implements Ini
                 controller.setItemLabel();
                 result = dialog.showAndWait();
                 newItem = controller.processItem();
-                if(newItem != null){
-
+                if(newItem != null && result.get() == ButtonType.OK){
                     break;
                 }
 
             }
-            SingletonDatabase.getItems().add(newItem);
+            if(newItem != null && result.get() == ButtonType.OK){
+                SingletonDatabase.getItems().add(newItem);
+            }
 
+            if(result.get() == ButtonType.OK){ //just for testing
+                System.out.println("Ok pressed");
+            }else {
+                System.out.println("Cancel pressed");
+            }
 
-
-            System.out.println("Ok pressed");
 
         } else {
             System.out.println("Cancel pressed");
@@ -258,13 +270,13 @@ public class adminController extends adminAddItemDialogController implements Ini
                 result = dialog.showAndWait();
 
                 newAccount = controller.processAccount();
-                if(newAccount != null){
+                if(newAccount != null && result.get() == ButtonType.OK){
                     break;
                 }
             }
-            SingletonDatabase.getCustomers().add(newAccount);
-
-
+            if(newAccount != null && result.get() == ButtonType.OK){
+                SingletonDatabase.getCustomers().add(newAccount);
+            }
 
             System.out.println("Ok pressed");
 
