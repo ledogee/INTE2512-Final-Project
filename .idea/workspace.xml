@@ -8,6 +8,12 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/notificationController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/notification.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
@@ -134,11 +140,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+>>>>>>> Khang
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -168,24 +178,53 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2E6slmWapn0f10bhmF3XTJllrFl" />
+=======
   <component name="ProjectId" id="2Ea7TFvStnR3kMyUfrB2NzBaxbB" />
+>>>>>>> Khang
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
+<<<<<<< HEAD
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Program Files/Java/javafx-sdk-18.0.2&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;
+  }
+}</component>
+=======
         &quot;keyToString&quot;: {
         &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
         &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
         &quot;last_opened_file_path&quot;: &quot;D:/RMIT/OOP/Video Store/INTE2512-Final-Project/src/main/resources/com/example/videostore&quot;
         }
         }</component>
+>>>>>>> Khang
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\RMIT\OOP\Video Store\INTE2512-Final-Project\src\main\resources\com\example\videostore" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.videostore.Main" />
+      <module name="INTE2512-Final-Project" />
+      <option name="PROGRAM_PARAMETERS" value="--module-path %PATH_TO_FX% --add-modules=javafx.controls,javafx.fxml  " />
+=======
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.videostore.Main" />
@@ -196,17 +235,36 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+>>>>>>> Khang
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+    <configuration name="com.example.videostore.Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.videostore.Main" />
+      <module name="INTE2512-Final-Project" />
+      <option name="VM_PARAMETERS" value="--module-path %&quot;C:\Program Files\Java\javafx-sdk-18.0.2&quot;% --add-modules=javafx.controls,javafx.fxml  " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.com.example.videostore.Main" />
+    </list>
+=======
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+>>>>>>> Khang
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\bluon\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f155dd25-cce9-4bc1-b97a-a6fe83762e65" name="Changes" comment="" />
@@ -228,6 +286,27 @@
       </map>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="INTE2512-Final-Project" type="b2602c69:ProjectViewProjectNode" />
+        <item name="INTE2512-Final-Project" type="462c0819:PsiDirectoryNode" />
+      </path>
+      <path>
+        <item name="INTE2512-Final-Project" type="b2602c69:ProjectViewProjectNode" />
+        <item name="INTE2512-Final-Project" type="462c0819:PsiDirectoryNode" />
+        <item name="src" type="462c0819:PsiDirectoryNode" />
+      </path>
+      <path>
+        <item name="INTE2512-Final-Project" type="b2602c69:ProjectViewProjectNode" />
+        <item name="INTE2512-Final-Project" type="462c0819:PsiDirectoryNode" />
+        <item name="src" type="462c0819:PsiDirectoryNode" />
+        <item name="main" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+=======
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -238,5 +317,6 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+>>>>>>> Khang
   </component>
 </project>
