@@ -148,7 +148,7 @@ public class menuController
         for(Button btn : buttonRents) {
             // check the copies == 0
             for(int i = 0; i < itemDatabase.size(); i++) {
-                if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("2-day") && itemDatabase.get(i).getButtonRent() == btn) {
+                if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("TwoDays") && itemDatabase.get(i).getButtonRent() == btn) {
                     btn.setDisable(true);
                 } else if((user instanceof Vip || user instanceof  Regular) && itemDatabase.get(i).getButtonRent() == btn) {
                     btn.setDisable(false);
