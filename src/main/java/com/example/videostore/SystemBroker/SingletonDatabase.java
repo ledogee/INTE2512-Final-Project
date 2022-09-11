@@ -166,7 +166,7 @@ public class SingletonDatabase {
                 }
                 System.out.println(customers.get(i).getAccountType());
                 return reg;
-            }else if(cus.getNumberOfReturn() > 8 && cus.getAccountType().equals("Regular")){
+            }else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")){
                 Vip vip = new Vip.VipBuilder(cus).build();
                 if(customers.get(i).getId().equals(vip.getId())){
                     customers.set(i,vip);

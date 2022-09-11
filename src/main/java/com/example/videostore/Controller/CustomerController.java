@@ -84,6 +84,7 @@ public class CustomerController {
     }
 
     public void goToMenu(ActionEvent event) throws IOException {
+        menuController.user = user;
         SceneSwitcher.switchToMenu(event);
     }
 
