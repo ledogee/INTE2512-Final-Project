@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
 import java.util.List;
 public abstract class Customer  {
     private static int idCount = 0;
@@ -62,7 +63,13 @@ public abstract class Customer  {
                     } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
-                        List<String> listItems = this.getListRentals();
+
+                        List<String> listItems;
+                        if(this.getListRentals() == null) {
+                            listItems = new ArrayList<>();
+                        } else {
+                            listItems = this.getListRentals();
+                        }
                         listItems.add(item.getId());
                         this.setListRentals(listItems);
                         customerObservableList.set(indexUser, this);
@@ -75,9 +82,7 @@ public abstract class Customer  {
         }
         return false;
     }
-    public Vip Viptypecaster(){
-        return (Vip)this;
-    }
+
     public boolean returnItem(ObservableList<Item> itemObservableList,ObservableList<Item> rented, Button btn){
         for(int i = 0; i < rented.size();i++){
             if(rented.get(i).getButtonReturn().equals(btn)){

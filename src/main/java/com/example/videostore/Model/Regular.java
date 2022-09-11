@@ -76,6 +76,10 @@ public class Regular extends Customer {
         private String password;
         private int numOfReturn = 0;
 
+        public RegularBuilder(){
+
+        }
+
         public RegularBuilder(String id, String name, String username, String password, Double balance, List<String> listRentals ){
             this.id = id;
             this.name = name;

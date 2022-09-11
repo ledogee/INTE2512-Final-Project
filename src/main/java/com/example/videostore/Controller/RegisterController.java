@@ -60,18 +60,17 @@ public class RegisterController {
             if (validUsername && validPhone) {
                 invalidUsernameLabel.setVisible(false);
                 invalidPhoneLabel.setVisible(false);
-                signUpButton.setOnAction((actionEvent) -> {
-                    Customer customer = new Guest.GuestBuilder().buildName(name.getText()).buildAddress(address.getText())
-                            .buildPhone(phone.getText()).buildUsername(username.getText()).buildPassword(password.getText()).build();
-                    System.out.println("Sign up successfully");
-                    System.out.println(customer.toString());
-                    customerList.add(customer);
-                    try {
-                        SceneSwitcher.switchToMenu(event);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
+                Customer customer = new Guest.GuestBuilder().buildName(name.getText()).buildAddress(address.getText())
+                        .buildPhone(phone.getText()).buildUsername(username.getText()).buildPassword(password.getText()).build();
+                System.out.println("Sign up successfully");
+                System.out.println(customer.toString());
+                customerList.add(customer);
+                try {
+                    menuController.user = customer;
+                    SceneSwitcher.switchToMenu(event);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else if (!validUsername && validPhone) {
                 invalidUsernameLabel.setVisible(true);
                 invalidPhoneLabel.setVisible(false);

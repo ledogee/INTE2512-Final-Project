@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <?import javafx.scene.control.TextField?>
 <VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
@@ -24,12 +25,15 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="addItemButton" layoutX="659.0" layoutY="27.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
-            <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
+            <Button fx:id="addItemButton" layoutX="670.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
+            <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="-3.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
+            <Button layoutX="749.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteItemButton" text="Delete Item" />
+            <Button layoutX="219.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayAllItems" text="All Items" />
+            <Button layoutX="295.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" text="Out of stock Items" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
-      <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0">
+      <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="670.0">
          <columns>
             <TableColumn fx:id="i_id" prefWidth="77.80001831054688" text="ID" />
             <TableColumn fx:id="i_title" prefWidth="132.40001678466797" text="Title" />
@@ -53,11 +57,12 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="794.0" layoutY="17.0" mnemonicParsing="false" text="Add Account" />
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog" text="Add Account" />
+            <Button layoutX="864.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteCustomerButton" text="Delete Account" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
-      <TableView fx:id="c_tableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="363.0" prefWidth="1072.0">
+      <TableView fx:id="c_tableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="1072.0">
          <columns>
             <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="c_accountType" prefWidth="75.0" text="Type" />

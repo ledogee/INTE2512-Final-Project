@@ -66,55 +66,7 @@ public class loginController {
                 incorrectPasswordLabel.setVisible(false);
             }
         }
-       /* BufferedReader br = null;
 
-        try
-        {
-            br = new BufferedReader(new FileReader("src/main/java/com/example/videostore/db/customers.txt"));
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        if(br != null)
-        {
-            String data;
-            while ((data = br.readLine()) != null)
-            {
-                String[] customerPieces = data.split(",");
-                if(usernameInput.getText().equals(customerPieces[5]) && passwordInput.getText().equals(customerPieces[6]))
-                {
-                    menuController menu = new menuController();
-                    String id = customerPieces[0];
-                    String name = customerPieces[1];
-                    String address = customerPieces[2];
-                    String phoneNumber = customerPieces[3];
-                    String accountType = customerPieces[4];
-                    String username = customerPieces[5];
-                    String password = customerPieces[6];
-                    double balance = Double.parseDouble(customerPieces[7]);
-                    List list = SingletonDatabase.getItemListID(customerPieces[8]);
-                    switch(accountType){
-                        case "Guest":
-                            Guest guest = new Guest.GuestBuilder(id, name, username, password, balance,list).buildAddress(customerPieces[2]).buildPhone(customerPieces[3]).build();
-                            menu.setUser(guest);
-                            break;
-                        case "Regular":
-                            Regular regular = new Regular.RegularBuilder(id, name, username, password, balance, list).buildAddress(address).buildPhone(phoneNumber).build();
-                            menu.setUser(regular);
-                            break;
-                        case "Vip":
-                            int rewardPoint = Integer.parseInt(customerPieces[9]);
-                            Vip vip = new Vip.VipBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildRewardPoint(rewardPoint).build();
-                            menu.setUser(vip);
-                            break;
-                    }
-
-
-
-                    SceneSwitcher.switchToMenu(event);
-                }
-            }
-        }*/
     }
     public void initialize()
     {
