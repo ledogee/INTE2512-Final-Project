@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static com.example.videostore.Controller.notificationController.popMenuNotification;
+
 public class menuController
 {
     public static Customer user;
@@ -174,24 +176,19 @@ public class menuController
         for(Button btn : buttonRents)
         {
             btn.setOnAction((actionEvent) -> {
-/*                System.out.println( "SIZE = " + user.getListRentals().size());*/
-/*               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
-                   showDialog("successNotification.fxml");
+                System.out.println( "SIZE = " + user.getListRentals().size());
+               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+                   popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                } else {
-                   if(user instanceof Guest && user.getListRentals() != null) {
-                       if(user.getListRentals().size() == 2) {
-                           showDialog("guestNotification.fxml");
-                       } else {
-                           showDialog("failNotification.fxml");
-                       }
+                   if(user instanceof Guest && user.getListRentals().size() == 2) {
+                       popMenuNotification(menuPane, "Failed to Rent\nGuest account cannot rent more than 2 items at the same time", "#FF0000");
                    } else {
-                       showDialog("failNotification.fxml");
+                       popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
-               }*/
+               }
 
                 boolean check = user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint);
-                System.out.println("Boolean value of user.rentItem" + check
-                );
+                System.out.println("Boolean value of user.rentItem" + check);
                 if(check) {
                     showDialog("successNotification.fxml");
                     if(user instanceof Guest && user.getListRentals() != null && user.getListRentals().size() == 2) {

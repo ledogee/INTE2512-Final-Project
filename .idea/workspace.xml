@@ -5,16 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f155dd25-cce9-4bc1-b97a-a6fe83762e65" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/INTE2512-Final-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/INTE2512-Final-Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/notificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/notification.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/failNotification.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/failNotification.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/failNotification.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/guestNotification.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/successNotification.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,12 +70,12 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="com.example.videostore.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.videostore.Main" />
       <module name="INTE2512-Final-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.videostore.*" />
+          <option name="PATTERN" value="com.example.videostore.Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,14 +85,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.com.example.videostore.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f155dd25-cce9-4bc1-b97a-a6fe83762e65" name="Changes" comment="" />
+      <changelist id="10abdde0-a14c-4c5f-a07c-0cec9c929d65" name="Changes" comment="" />
       <created>1662821852750</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -116,7 +116,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java</url>
-          <line>191</line>
+          <line>189</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
