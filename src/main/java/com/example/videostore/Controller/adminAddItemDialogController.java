@@ -16,13 +16,15 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.videostore.Controller.adminController.isDouble;
+import static com.example.videostore.Controller.adminController.isInteger;
+
 public class adminAddItemDialogController implements Initializable {
     @FXML
     private TextField title;
 
     @FXML
     private ComboBox comboBoxRentalType;
-
     @FXML
     private ComboBox comboBoxLoanType;
 
@@ -47,7 +49,7 @@ public class adminAddItemDialogController implements Initializable {
     public void setNewLabel(String string) {
         label.setText(string);
     }
-
+    //Update to handle
     boolean isTitleValid = false;
     boolean isNumOfCopiesValid = false;
     boolean isRentalFeeValid = false;
@@ -56,6 +58,11 @@ public class adminAddItemDialogController implements Initializable {
 
 
     public Item processItem(){
+        isTitleValid = false;
+        isNumOfCopiesValid = false;
+        isRentalFeeValid = false;
+        isYearValid = false;
+        isFilled = false;
 
         String Title = title.getText().trim();
         isTitleValid = checkTitleValidation(Title);
@@ -95,12 +102,13 @@ public class adminAddItemDialogController implements Initializable {
         }
 
         System.out.println("-----------");
-        System.out.println(RentalType + " " + isFilled);
-        System.out.println(LoanType + " " + isFilled);
+        System.out.println(NumOfCopies + " " + isNumOfCopiesValid);
+        System.out.println(RentalFee + " " + isRentalFeeValid);
         System.out.println(tempRentalStatus + " " + isFilled);
+        System.out.println(Genres + " " + isFilled);
 
 
-        if(tempRentalStatus >= 0 && RentalType >=0 && LoanType >= 0){
+        if(tempRentalStatus >= 0 && RentalType >=0 && LoanType >= 0 && ((Genres >= 0 && RentalType > 0)||(RentalType == 0))){
             isFilled = true;
         }
 
@@ -125,29 +133,7 @@ public class adminAddItemDialogController implements Initializable {
         comboBoxGenres.getItems().addAll( "Action", "Horror", "Drama", "Comedy");
     }
 
-    public static boolean isDouble(String stringFromTextField) {
-        if (stringFromTextField == null) { //Check if the text field is empty
-            return false;
-        }
-        try {
-            double d = Double.parseDouble(stringFromTextField); //Check if the value in the text field is a double
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
 
-    public static boolean isInteger(String stringFromTextField) {
-        if (stringFromTextField == null) { //Check if the text field is empty
-            return false;
-        }
-        try {
-            int d = Integer.parseInt(stringFromTextField); //Check if the value in the text field is an integer
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-        return true;
-    }
 
     void setLabel() {
         StringBuilder stringBuilder = new StringBuilder();

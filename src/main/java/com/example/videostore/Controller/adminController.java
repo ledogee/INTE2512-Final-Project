@@ -209,12 +209,59 @@ public class adminController extends adminAddItemDialogController implements Ini
                 result = dialog.showAndWait();
                 newItem = controller.processItem();
                 if(newItem != null){
-                    SingletonDatabase.getItems().add(newItem);
+
                     break;
                 }
 
             }
-//            SingletonDatabase.getItems().add(newItem);
+            SingletonDatabase.getItems().add(newItem);
+
+
+
+            System.out.println("Ok pressed");
+
+        } else {
+            System.out.println("Cancel pressed");
+        }
+    }
+
+    public void showAccountDialog(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.setTitle("Add New Customer Info");
+        dialog.setHeaderText("Use this dialog to create a new customer");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addCustomerDialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddAccountDialogController controller = fxmlLoader.getController();
+        controller.setAddAccountLabel("");
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Customer newAccount = controller.processAccount();
+            newAccount.toString();
+            System.out.println(newAccount);
+
+            while((newAccount == null && result.get() == ButtonType.OK) ){
+//                controller.setLabel();
+                result = dialog.showAndWait();
+                newAccount = controller.processAccount();
+                if(newAccount != null){
+                    break;
+                }
+            }
+            SingletonDatabase.getCustomers().add(newAccount);
 
 
 
@@ -247,5 +294,29 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         for(Item item: selectedRows)
             allItems.remove(item);
+    }
+
+    public static boolean isDouble(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(stringFromTextField); //Check if the value in the text field is a double
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isInteger(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(stringFromTextField); //Check if the value in the text field is an integer
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
