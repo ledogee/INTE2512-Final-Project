@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.videostore.Controller.notificationController.popMenuNotification;
+
 public class menuController
 {
     public static Customer user;
@@ -168,12 +170,12 @@ public class menuController
             btn.setOnAction((actionEvent) -> {
                 System.out.println( "SIZE = " + user.getListRentals().size());
                if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
-                   showDialog("successNotification.fxml");
+                   popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                } else {
                    if(user instanceof Guest && user.getListRentals().size() == 2) {
-                       showDialog("guestNotification.fxml");
+                       popMenuNotification(menuPane, "Failed to Rent\nGuest account cannot rent more than 2 items at the same time", "#FF0000");
                    } else {
-                       showDialog("failNotification.fxml");
+                       popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
                }
             });
