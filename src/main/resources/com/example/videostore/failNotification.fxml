@@ -6,11 +6,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="343.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane prefHeight="343.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="com.example.videostore.Controller.CustomerController">
    <content>
       <Pane prefHeight="0.0" prefWidth="367.0">
          <children>
-            <VBox alignment="CENTER" layoutY="18.0" prefHeight="307.0" prefWidth="432.0">
+            <VBox alignment="CENTER" layoutY="18.0" prefHeight="307.0" prefWidth="432.0" fx:id="a321">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="387.0" text="Fail to Rent an Item" textAlignment="CENTER" textFill="#d90d10">
                      <font>

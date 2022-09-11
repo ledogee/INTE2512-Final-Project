@@ -166,7 +166,6 @@ public class menuController
         for(Button btn : buttonRents)
         {
             btn.setOnAction((actionEvent) -> {
-
                 System.out.println( "SIZE = " + user.getListRentals().size());
                if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    showDialog("successNotification.fxml");
