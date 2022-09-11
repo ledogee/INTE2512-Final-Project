@@ -173,7 +173,21 @@ public class adminController extends adminAddItemDialogController implements Ini
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
+    
+    public void displayItemOutOfStock(ActionEvent event) {
+        ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
 
+        for(Item item: items) {
+            if(item.getCopies() == 0) {
+                itemsOutOfStock.add(item);
+            }
+        }
+        i_tableView.setItems(itemsOutOfStock);
+    }
+
+    public void displayAllItems(ActionEvent event) {
+        i_tableView.setItems(items);
+    }
     public void showNewItemDialog()
     {
         Dialog<ButtonType> dialog = new Dialog<>();
