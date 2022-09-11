@@ -153,12 +153,11 @@ public class menuController
                 } else if((user instanceof Vip || user instanceof  Regular) && itemDatabase.get(i).getButtonRent() == btn) {
                     btn.setDisable(false);
                 }
-
-                if (itemDatabase.get(i).getButtonRent() == btn && (itemDatabase.get(i).getCopies() == 0 || !itemDatabase.get(i).isRentalStatus())) {
+                if (itemDatabase.get(i).getButtonRent() == btn && itemDatabase.get(i).getCopies() == 0) {
                         System.out.println(i);
                         btn.setDisable(true);
                         itemDatabase.get(i).setRentalStatus(false);
-                }
+                }else{itemDatabase.get(i).setRentalStatus(true);}
             }
         }
 

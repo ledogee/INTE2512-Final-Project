@@ -114,7 +114,7 @@ public class SingletonDatabase {
                         customers.add(regular);
                         break;
                     case "Vip":
-                        int rewardPoint = Integer.parseInt(customerPieces[9]);
+                        int rewardPoint = Integer.parseInt(customerPieces[10]);
                         Vip vip = new Vip.VipBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildNumReturn(numOfReturn).buildRewardPoint(rewardPoint).build();
                         customers.add(vip);
                         break;
@@ -143,7 +143,6 @@ public class SingletonDatabase {
         bw.close();
     }
 
-
     public static void saveitems() throws IOException {
         FileOutputStream outputStream = new FileOutputStream(itemFileName);
         OutputStreamWriter outputSW = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
@@ -157,7 +156,29 @@ public class SingletonDatabase {
         }
         bw.close();
         }
+
+        public static Customer checkpromotion(Customer cus){
+        for(int i = 0; i < customers.size(); i++){
+            if(cus.getNumberOfReturn()>2 && cus.getAccountType().equals("Guest")){
+                Regular reg = new Regular.RegularBuilder(cus).build();
+                if(customers.get(i).getId().equals(reg.getId())){
+                    customers.set(i,reg);
+                }
+                System.out.println(customers.get(i).getAccountType());
+                return reg;
+            }else if(cus.getNumberOfReturn() > 8 && cus.getAccountType().equals("Regular")){
+                Vip vip = new Vip.VipBuilder(cus).build();
+                if(customers.get(i).getId().equals(vip.getId())){
+                    customers.set(i,vip);
+                }
+                System.out.println(customers.get(i).getAccountType());
+                return vip;
+            }
+        }
+
+        return cus;
     }
+}
 
 
 

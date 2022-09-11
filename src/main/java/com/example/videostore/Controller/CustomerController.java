@@ -137,7 +137,7 @@ public class CustomerController {
         {
             btn.setOnAction((actionEvent) -> {
                 user.returnItem(itemsDatabase,listRentals,btn);
-                System.out.println(itemsDatabase);
+                user = SingletonDatabase.checkpromotion(user);
                 tableView.setItems(listRentals);
                 tableView.refresh();
             });

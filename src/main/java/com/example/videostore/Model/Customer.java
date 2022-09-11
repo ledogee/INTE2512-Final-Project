@@ -65,7 +65,6 @@ public abstract class Customer  {
                         List<String> listItems = this.getListRentals();
                         listItems.add(item.getId());
                         this.setListRentals(listItems);
-
                         customerObservableList.set(indexUser, this);
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
@@ -92,17 +91,15 @@ public abstract class Customer  {
                 for (int j = 0; j < itemObservableList.size();j++){
                     if (item.getId().equals(itemObservableList.get(j).getId())) {
                         item = itemObservableList.get(j);
+                        List<String> list = this.getListRentals();
+                        item.setCopies(item.getCopies()+1);
+                        list.remove(item.getId());
+                        this.setListRentals(list);
+                        itemObservableList.set(j,item);
+                        this.setNumberOfReturn(this.getNumberOfReturn()+1);
+                        return true;
                     }
                 }
-                List<String> list = this.getListRentals();
-                item.setCopies(item.getCopies()+1);
-                list.remove(item.getId());
-                this.setListRentals(list);
-                if(this.getAccountType().equals("VIP")){
-                    this.Viptypecaster().setRewardPoint(this.Viptypecaster().getRewardPoint()+5);
-                }
-                itemObservableList.set(i,item);
-                return true;
             }
         }
         return false;
