@@ -7,13 +7,13 @@
     <list default="true" id="f155dd25-cce9-4bc1-b97a-a6fe83762e65" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddAccountDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddAccountDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/addCustomerDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/addCustomerDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/failNotification.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/failNotification.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +26,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -48,6 +49,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectId" id="2Ea7TFvStnR3kMyUfrB2NzBaxbB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -112,9 +114,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java</url>
+          <line>191</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

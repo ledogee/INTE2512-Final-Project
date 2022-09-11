@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane prefHeight="343.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="com.example.videostore.Controller.CustomerController">
+<DialogPane prefHeight="343.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <Pane prefHeight="0.0" prefWidth="367.0">
          <children>

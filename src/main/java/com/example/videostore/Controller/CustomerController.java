@@ -1,5 +1,6 @@
 package com.example.videostore.Controller;
 
+import com.example.videostore.Main;
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
@@ -84,15 +85,16 @@ public class CustomerController {
     }
 
     public void goToMenu(ActionEvent event) throws IOException {
+        menuController.user = user;
         SceneSwitcher.switchToMenu(event);
     }
 
     public void UpdateInfoButtonHandler(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("updateInfo.fxml"));
-        Scene scene = new Scene(root);
+        FXMLLoader fxmlLoader =  new FXMLLoader(Main.class.getResource("updateInfo.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 
     public void initialize() {

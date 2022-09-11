@@ -1,5 +1,6 @@
 package com.example.videostore.Controller;
 
+import com.example.videostore.Main;
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
@@ -9,18 +10,25 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class menuController
 {
     public static Customer user;
+    public static double topUp;
     public Label accountType;
     public AnchorPane menuPane;
 
@@ -166,16 +174,33 @@ public class menuController
         for(Button btn : buttonRents)
         {
             btn.setOnAction((actionEvent) -> {
-                System.out.println( "SIZE = " + user.getListRentals().size());
-               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+/*                System.out.println( "SIZE = " + user.getListRentals().size());*/
+/*               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    showDialog("successNotification.fxml");
                } else {
-                   if(user instanceof Guest && user.getListRentals().size() == 2) {
-                       showDialog("guestNotification.fxml");
+                   if(user instanceof Guest && user.getListRentals() != null) {
+                       if(user.getListRentals().size() == 2) {
+                           showDialog("guestNotification.fxml");
+                       } else {
+                           showDialog("failNotification.fxml");
+                       }
                    } else {
                        showDialog("failNotification.fxml");
                    }
-               }
+               }*/
+
+                boolean check = user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint);
+                System.out.println("Boolean value of user.rentItem" + check
+                );
+                if(check) {
+                    showDialog("successNotification.fxml");
+                    if(user instanceof Guest && user.getListRentals() != null && user.getListRentals().size() == 2) {
+                        showDialog("guestNotification.fxml"); // Cannot rent two items at Guest
+                    }
+                } else {
+                    showDialog("failNotification.fxml");
+                }
+
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
@@ -199,6 +224,19 @@ public class menuController
 
         sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
         i_tableView.setItems(sortedList);
+    }
+
+    public void recharge() throws IOException {
+
+        FXMLLoader fxmlLoader =  new FXMLLoader(Main.class.getResource("chargeInput.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+        String result = String.format("%.2f", user.getBalance());
+        balance.setText(result + " $");
+
     }
 
     public void showDialog(String fileName) {
@@ -229,7 +267,6 @@ public class menuController
         }
 
     }
-
 
 }
 
