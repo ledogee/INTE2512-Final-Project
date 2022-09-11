@@ -1,5 +1,6 @@
 package com.example.videostore.Controller;
 
+import com.example.videostore.Main;
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
@@ -14,6 +15,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -83,15 +87,16 @@ public class CustomerController {
     }
 
     public void goToMenu(ActionEvent event) throws IOException {
+        menuController.user = user;
         SceneSwitcher.switchToMenu(event);
     }
 
     public void UpdateInfoButtonHandler(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("updateInfo.fxml"));
-        Scene scene = new Scene(root);
+        FXMLLoader fxmlLoader =  new FXMLLoader(Main.class.getResource("updateInfo.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 
     public void initialize() {
@@ -105,37 +110,40 @@ public class CustomerController {
         loadYourAccount();
 
 
-        for(String id : user.getListRentals()) {
-            for(Item item : itemsDatabase) {
-                if(id.equals(item.getId())) {
-                    itemList.add(item);
+        if(user.getListRentals() != null) {
+            for(String id : user.getListRentals()) {
+                for(Item item : itemsDatabase) {
+                    if(id.equals(item.getId())) {
+                        itemList.add(item);
+                    }
                 }
             }
+
+            for(Item itemDup : itemList) {
+                itemDup.setQuantity(Collections.frequency(itemList, itemDup));
+                itemSet.add(itemDup);
+            }
+            ObservableList<Item> listRentals = FXCollections.observableArrayList(itemSet);
+
+            title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
+            rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
+            loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
+            numOfCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
+            action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonReturn"));
+            tableView.setItems(listRentals);
+
+            TableColumn<Item, Button> column = action ; // column you want
+            List<Button> buttonList = new ArrayList<>();
+            for (Item item : tableView.getItems()) {
+                buttonList.add(action.getCellObservableValue(item).getValue());
+            }
+
+            this.buttonRents = buttonList;
+
+            System.out.println(rentalType.getCellFactory());
+            System.out.println(itemsDatabase);
         }
 
-        for(Item itemDup : itemList) {
-            itemDup.setQuantity(Collections.frequency(itemList, itemDup));
-            itemSet.add(itemDup);
-        }
-        ObservableList<Item> listRentals = FXCollections.observableArrayList(itemSet);
-
-        title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        numOfCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
-        action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonReturn"));
-        tableView.setItems(listRentals);
-
-        TableColumn<Item, Button> column = action ; // column you want
-        List<Button> buttonList = new ArrayList<>();
-        for (Item item : tableView.getItems()) {
-            buttonList.add(action.getCellObservableValue(item).getValue());
-        }
-
-        this.buttonRents = buttonList;
-
-        System.out.println(rentalType.getCellFactory());
-        System.out.println(itemsDatabase);
     }
 
 }

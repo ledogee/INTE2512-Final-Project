@@ -21,30 +21,32 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="30.400000000000006" minHeight="10.0" prefHeight="29.59998168945313" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="31.20001831054688" minHeight="10.0" prefHeight="31.20001831054688" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Title:" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Type:" GridPane.rowIndex="1" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Loan Type:" GridPane.rowIndex="2" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Num of Copies:" GridPane.rowIndex="3" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Fee:" GridPane.rowIndex="4" />
-                  <Label layoutX="10.0" layoutY="136.0" prefHeight="18.0" prefWidth="124.0" text="Rental Status:" GridPane.rowIndex="5" />
-                  <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Year:" GridPane.rowIndex="6" />
-                  <TextField fx:id="Title" GridPane.columnIndex="1" />
-                  <TextField fx:id="numOfCopies" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="rentalFee" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="year" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Title:" GridPane.rowIndex="1" />
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Type:" />
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Loan Type:" GridPane.rowIndex="5" />
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Num of Copies:" GridPane.rowIndex="2" />
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Fee:" GridPane.rowIndex="3" />
+                  <Label layoutX="10.0" layoutY="136.0" prefHeight="18.0" prefWidth="124.0" text="Rental Status:" GridPane.rowIndex="6" />
+                  <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Year:" GridPane.rowIndex="4" />
+                  <TextField fx:id="title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="numOfCopies" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="rentalFee" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="year" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label layoutX="10.0" layoutY="197.0" prefHeight="18.0" prefWidth="124.0" text="Genres" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="comboBoxGenres" prefHeight="26.0" prefWidth="262.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="comboBoxRentalStatus" prefHeight="26.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="comboBoxLoanType" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ComboBox fx:id="comboBoxRentalType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="comboBoxGenres" prefHeight="26.0" prefWidth="269.0" promptText="Required for DVD and Movie" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ComboBox fx:id="comboBoxRentalStatus" prefHeight="26.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="comboBoxLoanType" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="comboBoxRentalType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
+                  <Label fx:id="label" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>

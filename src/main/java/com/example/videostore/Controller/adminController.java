@@ -8,23 +8,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
 import java.io.IOException;
-import java.io.ObjectInputFilter;
 import java.net.URL;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class adminController implements Initializable {
+import static com.example.videostore.Controller.notificationController.popAdminNotification;
+
+public class adminController extends adminAddItemDialogController implements Initializable {
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -95,8 +92,16 @@ public class adminController implements Initializable {
     @FXML
     private TableView<Item> i_tableView;
 
-    ObservableList<Customer> customers = FXCollections.observableArrayList();
-    ObservableList<Item> items = FXCollections.observableArrayList();
+    static ObservableList<Customer> customers = FXCollections.observableArrayList();
+    static ObservableList<Item> items = FXCollections.observableArrayList();
+
+    public static ObservableList<Item> getItems() {
+        return items;
+    }
+
+    public static ObservableList<Customer> getCustomers() {
+        return customers;
+    }
 
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -165,7 +170,21 @@ public class adminController implements Initializable {
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
     }
+    
+    public void displayItemOutOfStock(ActionEvent event) {
+        ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
 
+        for(Item item: items) {
+            if(item.getCopies() == 0) {
+                itemsOutOfStock.add(item);
+            }
+        }
+        i_tableView.setItems(itemsOutOfStock);
+    }
+
+    public void displayAllItems(ActionEvent event) {
+        i_tableView.setItems(items);
+    }
     public void showNewItemDialog()
     {
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -179,9 +198,6 @@ public class adminController implements Initializable {
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
-//            dialog.getDialogPane().setContent(root);
-
         } catch (IOException e) {
             System.out.println("Couldn't load the dialog");
             e.printStackTrace();
@@ -191,23 +207,92 @@ public class adminController implements Initializable {
         // Add button
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddItemDialogController controller = fxmlLoader.getController();
+        controller.setNewLabel("");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-
             // get the controller of Dialog to call the function processResults
-            adminAddItemDialogController controller = fxmlLoader.getController();
-            Item newItem = controller.processItem();
 
+//            Label label1 = new Label();
+//            label1.setText("Hello");
+            Item newItem = controller.processItem();
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
 //            itemListView.getSelectionModel().select(newItem);
 
             System.out.println(newItem);
-            items.add(newItem);
-            System.out.println("4");
+//            items.add(newItem);
+            while((newItem == null && result.get() == ButtonType.OK) ){
+                controller.setItemLabel();
+                result = dialog.showAndWait();
+                newItem = controller.processItem();
+                if(newItem != null && result.get() == ButtonType.OK){
+                    break;
+                }
+
+            }
+            if(newItem != null && result.get() == ButtonType.OK){
+                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+                SingletonDatabase.getItems().add(newItem);
+            }
+
+            if(result.get() == ButtonType.OK){ //just for testing
+                System.out.println("Ok pressed");
+            }else {
+                System.out.println("Cancel pressed");
+            }
+
+
+        } else {
+            System.out.println("Cancel pressed");
+        }
+    }
+
+    public void showAccountDialog(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.setTitle("Add New Customer Info");
+        dialog.setHeaderText("Use this dialog to create a new customer");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addCustomerDialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddAccountDialogController controller = fxmlLoader.getController();
+        controller.setAddAccountLabel("");
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Customer newAccount = controller.processAccount();
+
+            System.out.println(newAccount);
+
+            while((newAccount == null && result.get() == ButtonType.OK) ){
+                controller.setAccountLabel();
+                result = dialog.showAndWait();
+
+                newAccount = controller.processAccount();
+                if(newAccount != null && result.get() == ButtonType.OK){
+                    break;
+                }
+            }
+            if(newAccount != null && result.get() == ButtonType.OK){
+                SingletonDatabase.getCustomers().add(newAccount);
+                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+            }
 
             System.out.println("Ok pressed");
+
         } else {
             System.out.println("Cancel pressed");
         }
@@ -235,5 +320,29 @@ public class adminController implements Initializable {
 
         for(Item item: selectedRows)
             allItems.remove(item);
+    }
+
+    public static boolean isDouble(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(stringFromTextField); //Check if the value in the text field is a double
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isInteger(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(stringFromTextField); //Check if the value in the text field is an integer
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
