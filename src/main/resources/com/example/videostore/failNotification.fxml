@@ -10,7 +10,7 @@
    <content>
       <Pane prefHeight="0.0" prefWidth="367.0">
          <children>
-            <VBox alignment="CENTER" layoutY="18.0" prefHeight="307.0" prefWidth="432.0">
+            <VBox alignment="CENTER" layoutY="18.0" prefHeight="307.0" prefWidth="432.0" fx:id="a321">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="63.0" prefWidth="387.0" text="Fail to Rent an Item" textAlignment="CENTER" textFill="#d90d10">
                      <font>

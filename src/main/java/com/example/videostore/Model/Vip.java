@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vip extends Customer {
@@ -104,7 +105,12 @@ public class Vip extends Customer {
                         } else {
                             this.setBalance(this.getBalance() - item.getRentalFee());
                             this.setRewardPoint(this.getRewardPoint() + 10);
-                            List<String> listItems = this.getListRentals();
+                            List<String> listItems;
+                            if(this.getListRentals() == null) {
+                                listItems = new ArrayList<>();
+                            } else {
+                                listItems = this.getListRentals();
+                            }
                             listItems.add(item.getId());
                             this.setListRentals(listItems);
                             System.out.println(this.getListRentals());
