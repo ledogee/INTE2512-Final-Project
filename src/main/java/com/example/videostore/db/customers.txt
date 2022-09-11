@@ -4,3 +4,4 @@ C003,Linh Nguyen,12 Brunswick Street,0424173255,Guest,linhtb,linhlinh,298.01,I00
 C004,Antony Zinc,114 Fraser Avenue,0424512345,Guest,abookworm,booklover,69.5,I003-2015,0,
 C005,John Cain,45 Sydney Road,0424325123,Regular,johnthebaby,123456,12.5,I004-2013,0,
 C006,Hello,I love you Valley,942454,Guest,Led,fsgdfgfdg,12343.0,,254353,
+C007,Khang Nguyen,312/21,0831893281,Guest,khang1,123,0.0,,0,
