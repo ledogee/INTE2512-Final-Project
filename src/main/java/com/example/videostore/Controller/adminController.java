@@ -8,8 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -18,12 +20,15 @@ import java.io.IOException;
 import java.io.ObjectInputFilter;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class adminController implements Initializable {
+public class adminController extends adminAddItemDialogController implements Initializable {
     @FXML
-    private Button signOutButton;
+    private Button returnToLoginButton;
+    @FXML
+    private Button addItemButton;
     @FXML
     private VBox adminVBOX;
 
@@ -58,6 +63,9 @@ public class adminController implements Initializable {
     private TableColumn<Customer, String> c_username;
 
     @FXML
+    private TableColumn<Customer, String> c_numOfReturn;
+
+    @FXML
     private TableColumn<Item, String> i_genres;
 
     @FXML
@@ -87,13 +95,11 @@ public class adminController implements Initializable {
     @FXML
     private TableView<Item> i_tableView;
 
-    @FXML
-    private ListView<Item> itemListView;
-
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     ObservableList<Item> items = FXCollections.observableArrayList();
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         c_listRental.setCellFactory(tc -> {
             TableCell<Customer, String> cell = new TableCell<>();
             Text text = new Text();
@@ -122,6 +128,7 @@ public class adminController implements Initializable {
         i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
 
+
 /*
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
 */
@@ -147,22 +154,31 @@ public class adminController implements Initializable {
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
         c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("combinedString"));
+        c_numOfReturn.setCellValueFactory(new PropertyValueFactory<Customer, String>("numberOfReturn"));
         for(Customer customer : customers){
             customer.setCombinedString(customer.arraytostring());
         }
         c_tableView.setItems(customers);
+
+        //Allows users select multiple rows at once
+        i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
     }
 
-    public void showNewItemDialog() {
+    public void showNewItemDialog()
+    {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Use this dialog to create a new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("addItemDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addItemDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
-
         } catch (IOException e) {
             System.out.println("Couldn't load the dialog");
             e.printStackTrace();
@@ -172,20 +188,136 @@ public class adminController implements Initializable {
         // Add button
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddItemDialogController controller = fxmlLoader.getController();
+        controller.setNewLabel("");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-
             // get the controller of Dialog to call the function processResults
-            adminAddItemDialogController controller = fxmlLoader.getController();
+
+//            Label label1 = new Label();
+//            label1.setText("Hello");
             Item newItem = controller.processItem();
 /*
             todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
 */
-            itemListView.getSelectionModel().select(newItem);
+//            itemListView.getSelectionModel().select(newItem);
+
+            System.out.println(newItem);
+//            items.add(newItem);
+            while((newItem == null && result.get() == ButtonType.OK) ){
+                controller.setItemLabel();
+                result = dialog.showAndWait();
+                newItem = controller.processItem();
+                if(newItem != null){
+
+                    break;
+                }
+
+            }
+            SingletonDatabase.getItems().add(newItem);
+
+
 
             System.out.println("Ok pressed");
+
         } else {
             System.out.println("Cancel pressed");
         }
+    }
+
+    public void showAccountDialog(){
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.setTitle("Add New Customer Info");
+        dialog.setHeaderText("Use this dialog to create a new customer");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addCustomerDialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        adminAddAccountDialogController controller = fxmlLoader.getController();
+        controller.setAddAccountLabel("");
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Customer newAccount = controller.processAccount();
+
+            System.out.println(newAccount);
+
+            while((newAccount == null && result.get() == ButtonType.OK) ){
+                controller.setAccountLabel();
+                result = dialog.showAndWait();
+
+                newAccount = controller.processAccount();
+                if(newAccount != null){
+                    break;
+                }
+            }
+            SingletonDatabase.getCustomers().add(newAccount);
+
+
+
+            System.out.println("Ok pressed");
+
+        } else {
+            System.out.println("Cancel pressed");
+        }
+    }
+
+    public void deleteCustomerButton(ActionEvent event)
+    {
+        ObservableList<Customer> selectedRows,  allCustomer;
+        allCustomer = c_tableView.getItems();
+
+        //Allows to rows to be selected
+        selectedRows = c_tableView.getSelectionModel().getSelectedItems();
+
+        for(Customer customer: selectedRows)
+            allCustomer.remove(customer);
+    }
+
+    public void deleteItemButton(ActionEvent event)
+    {
+        ObservableList<Item> selectedRows,  allItems;
+        allItems = i_tableView.getItems();
+
+        //Allows to rows to be selected
+        selectedRows = i_tableView.getSelectionModel().getSelectedItems();
+
+        for(Item item: selectedRows)
+            allItems.remove(item);
+    }
+
+    public static boolean isDouble(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(stringFromTextField); //Check if the value in the text field is a double
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isInteger(String stringFromTextField) {
+        if (stringFromTextField == null) { //Check if the text field is empty
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(stringFromTextField); //Check if the value in the text field is an integer
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

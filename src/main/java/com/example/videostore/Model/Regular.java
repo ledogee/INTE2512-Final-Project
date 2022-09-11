@@ -12,6 +12,7 @@ public class Regular extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
+        this.setNumberOfReturn(builder.numOfReturn);
         if(this.getId() == null) {
             if(getIdCount() < 10) {
                 this.setId("C" + "00" +  getIdCount());
@@ -73,6 +74,11 @@ public class Regular extends Customer {
         private double balance;
         private String username;
         private String password;
+        private int numOfReturn = 0;
+
+        public RegularBuilder(){
+
+        }
 
         public RegularBuilder(String id, String name, String username, String password, Double balance, List<String> listRentals ){
             this.id = id;
@@ -88,6 +94,10 @@ public class Regular extends Customer {
             return this;
         }
 
+        public Regular.RegularBuilder buildNumReturn(int numOfReturn) {
+            this.numOfReturn = numOfReturn;
+            return this;
+        }
 
         public Regular.RegularBuilder buildName(String name) {
             this.name = name;
