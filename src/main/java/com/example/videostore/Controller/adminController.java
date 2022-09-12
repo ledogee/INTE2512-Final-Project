@@ -131,13 +131,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         items.add(itemNew);*/
 
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
-        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
-        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+        menuController.loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_status, i_genres);
 
 
 /*
