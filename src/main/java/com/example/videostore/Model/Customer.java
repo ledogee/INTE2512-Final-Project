@@ -53,7 +53,7 @@ public abstract class Customer  {
                 Item item = itemObservableList.get(i);
 
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);

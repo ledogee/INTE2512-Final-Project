@@ -154,15 +154,10 @@ public class menuController
             rewardPoint.setText("0 point");
         }
 
-        if(!(user instanceof Guest)) {
-            loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_rentalStatus, i_genres);
-            i_action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonRent"));
-            i_tableView.setItems(itemsFilter);
-        } else {
-            loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_rentalStatus, i_genres);
-            i_action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonRent"));
-            i_tableView.setItems(itemsGuestFilter);
-        }
+        loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_rentalStatus, i_genres);
+        i_action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonRent"));
+        i_tableView.setItems(itemsFilter);
+
 
 
         TableColumn<Item, Button> column = i_action ; // column you want
