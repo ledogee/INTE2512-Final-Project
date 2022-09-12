@@ -199,7 +199,16 @@ public class Vip extends Customer {
         public VipBuilder() {
 
         }
-
+        public VipBuilder(Customer cus){
+            this.id = cus.getId();
+            this.name = cus.getName();
+            this.address = cus.getAddress();
+            this.phone = cus.getPhone();
+            this.listRentals = cus.getListRentals();
+            this.balance = cus.getBalance();
+            this.username = cus.getUsername();
+            this.password = cus.getPassword();
+        }
         public Vip.VipBuilder buildNumReturn(int numOfReturn) {
             this.numOfReturn = numOfReturn;
             return this;

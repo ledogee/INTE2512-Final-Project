@@ -1,5 +1,6 @@
 package com.example.videostore.Model;
 
+import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -122,7 +123,16 @@ public class Guest extends Customer {
 
         public GuestBuilder() {
         }
-
+        public GuestBuilder(Customer cus){
+            this.id = cus.getId();
+            this.name = cus.getName();
+            this.address = cus.getAddress();
+            this.phone = cus.getPhone();
+            this.listRentals = cus.getListRentals();
+            this.balance = cus.getBalance();
+            this.username = cus.getUsername();
+            this.password = cus.getPassword();
+        }
         public GuestBuilder(String id, String name, String address, String phone, List<String> listRentals, float balance, String username, String password) {
             this.id = id;
             this.name = name;

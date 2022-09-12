@@ -34,6 +34,7 @@ public class CustomerController {
     public Label address;
     public Label numOfReturn;
     private List<Button> buttonRents;
+    private List<Button> buttonReturns;
 
     public void loadPersonalInformation() {
         name.setText(user.getName());
@@ -110,16 +111,17 @@ public class CustomerController {
         loadYourAccount();
 
 
-        if(user.getListRentals() != null) {
-            for(String id : user.getListRentals()) {
-                for(Item item : itemsDatabase) {
-                    if(id.equals(item.getId())) {
+        if (user.getListRentals() != null) {
+            for (String id : user.getListRentals()) {
+                for (Item item : itemsDatabase) {
+                    if (id.equals(item.getId())) {
                         itemList.add(item);
                     }
                 }
             }
 
-            for(Item itemDup : itemList) {
+
+            for (Item itemDup : itemList) {
                 itemDup.setQuantity(Collections.frequency(itemList, itemDup));
                 itemSet.add(itemDup);
             }
@@ -132,18 +134,23 @@ public class CustomerController {
             action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonReturn"));
             tableView.setItems(listRentals);
 
-            TableColumn<Item, Button> column = action ; // column you want
+            TableColumn<Item, Button> column = action; // column you want
             List<Button> buttonList = new ArrayList<>();
             for (Item item : tableView.getItems()) {
                 buttonList.add(action.getCellObservableValue(item).getValue());
             }
-
-            this.buttonRents = buttonList;
-
+            this.buttonReturns = buttonList;
+            for (Button btn : buttonList) {
+                btn.setOnAction((actionEvent) -> {
+                    user.returnItem(itemsDatabase, listRentals, btn);
+                    user = SingletonDatabase.checkpromotion(user);
+                    tableView.setItems(listRentals);
+                    tableView.refresh();
+                });
+            }
             System.out.println(rentalType.getCellFactory());
             System.out.println(itemsDatabase);
+
         }
-
     }
-
 }

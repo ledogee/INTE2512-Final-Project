@@ -60,8 +60,10 @@ public class RegisterController {
             if (validUsername && validPhone) {
                 invalidUsernameLabel.setVisible(false);
                 invalidPhoneLabel.setVisible(false);
+                List<String> listId = new ArrayList<>();
+                listId.add("");
                 Customer customer = new Guest.GuestBuilder().buildName(name.getText()).buildAddress(address.getText())
-                        .buildPhone(phone.getText()).buildUsername(username.getText()).buildPassword(password.getText()).build();
+                        .buildPhone(phone.getText()).buildUsername(username.getText()).buildPassword(password.getText()).buildListRentals(listId).build();
                 System.out.println("Sign up successfully");
                 System.out.println(customer.toString());
                 customerList.add(customer);
