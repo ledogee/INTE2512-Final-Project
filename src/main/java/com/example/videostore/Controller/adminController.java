@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -344,6 +346,9 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
             if(newAccount != null && result.get() == ButtonType.OK){
+                List<String> listId = new ArrayList<>();
+                listId.add("");
+                newAccount.setListRentals(listId);
                 SingletonDatabase.getCustomers().add(newAccount);
                 popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
             }

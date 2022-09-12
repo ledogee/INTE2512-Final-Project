@@ -41,7 +41,7 @@ public class Guest extends Customer {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && this.getListRentals().size() < 2) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && this.getListRentals().size() <= 2) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);

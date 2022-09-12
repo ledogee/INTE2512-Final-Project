@@ -159,7 +159,8 @@ public class SingletonDatabase {
 
         public static Customer checkpromotion(Customer cus){
         for(int i = 0; i < customers.size(); i++){
-            if(cus.getNumberOfReturn()>2 && cus.getAccountType().equals("Guest")){
+            if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
+                cus.setAccountType("Regular");
                 Regular reg = new Regular.RegularBuilder(cus).build();
                 if(customers.get(i).getId().equals(reg.getId())){
                     customers.set(i,reg);
@@ -167,6 +168,7 @@ public class SingletonDatabase {
                 System.out.println(customers.get(i).getAccountType());
                 return reg;
             }else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")){
+                cus.setAccountType("Vip");
                 Vip vip = new Vip.VipBuilder(cus).build();
                 if(customers.get(i).getId().equals(vip.getId())){
                     customers.set(i,vip);

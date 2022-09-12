@@ -196,7 +196,7 @@ public class menuController
                if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                } else {
-                   if(user instanceof Guest && user.getListRentals().size() == 2) {
+                   if(user instanceof Guest && user.getListRentals().size() <= 3) {
                        popMenuNotification(menuPane, "Failed to Rent\nGuest account cannot rent more than 2 items at the same time", "#FF0000");
                    } else {
                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
