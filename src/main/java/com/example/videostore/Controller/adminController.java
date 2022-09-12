@@ -4,6 +4,8 @@ import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,10 @@ import java.util.ResourceBundle;
 import static com.example.videostore.Controller.notificationController.popAdminNotification;
 
 public class adminController extends adminAddItemDialogController implements Initializable {
+    @FXML
+    public TextField searchbarItem;
+    @FXML
+    public TextField searchbarCustomer;
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -125,13 +131,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         items.add(itemNew);*/
 
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
-        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
-        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+        menuController.loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_status, i_genres);
 
 
 /*
@@ -149,6 +149,29 @@ public class adminController extends adminAddItemDialogController implements Ini
                 i_genres.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getGenres()));
             }
         }*/
+        FilteredList<Item> filteredList = new FilteredList<>(items, b -> true);
+
+        searchbarItem.textProperty().addListener((observable, oldValue, newValue )->
+        {
+            filteredList.setPredicate(item ->
+            {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String lowerCAseFilter = newValue.toLowerCase();
+                if(item.getTitle().toLowerCase().contains(lowerCAseFilter))
+                    return true;
+                else return item.getId().toLowerCase().contains(lowerCAseFilter);
+            });
+        });
+
+        SortedList<Item> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
+        i_tableView.setItems(sortedList);
+
+
+
         customers = SingletonDatabase.getCustomers();
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
         c_id.setCellValueFactory(new PropertyValueFactory<Customer, String>("id"));
@@ -164,6 +187,27 @@ public class adminController extends adminAddItemDialogController implements Ini
             customer.setCombinedString(customer.arraytostring());
         }
         c_tableView.setItems(customers);
+
+        FilteredList<Customer> filteredList2 = new FilteredList<>(customers, b -> true);
+
+        searchbarCustomer.textProperty().addListener((observable, oldValue, newValue )->
+        {
+            filteredList2.setPredicate(item ->
+            {
+                if(newValue == null || newValue.isEmpty())
+                    return true;
+
+                String lowerCAseFilter = newValue.toLowerCase();
+                if(item.getName().toLowerCase().contains(lowerCAseFilter))
+                    return true;
+                else return item.getId().toLowerCase().contains(lowerCAseFilter);
+            });
+        });
+
+        SortedList<Customer> sortedList2 = new SortedList<>(filteredList2);
+
+        sortedList2.comparatorProperty().bind(c_tableView.comparatorProperty());
+        c_tableView.setItems(sortedList2);
 
         //Allows users select multiple rows at once
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

@@ -97,18 +97,38 @@ public class menuController
     //observable list to store data
     ObservableList<Item> itemDatabase = FXCollections.observableArrayList();
     ObservableList<Customer> customerObservableList = FXCollections.observableArrayList();
+
+    public ObservableList<Item> filterItem( ObservableList<Item> itemDatabase, Customer user) {
+        ObservableList<Item> itemsFilter = FXCollections.observableArrayList();
+        if(!(user instanceof Guest)) {
+            if(user instanceof Vip) {
+                accountType.setText("VIP");
+            } else {
+                accountType.setText("REGULAR");
+            }
+            for(Item item : itemDatabase) {
+                if(item.isRentalStatus()) {
+                    System.out.println("Item rental status: " + item.isRentalStatus());
+                    itemsFilter.add(item);
+                }
+            }
+        } else {
+            accountType.setText("GUEST");
+            for(Item item : itemDatabase) {
+                if(item.isRentalStatus() && item.getLoanType().equals("OneWeek")) {
+                    itemsFilter.add(item);
+                }
+            }
+        }
+        return itemsFilter;
+    }
+
     public void initialize()
     {
         itemDatabase = SingletonDatabase.getItems();
-
-        //Get accountType
-        if(user instanceof Vip) {
-            accountType.setText(user.getAccountType());
-        } else if(user instanceof Regular) {
-            accountType.setText(user.getAccountType());
-        } else if(user instanceof Guest) {
-            accountType.setText(user.getAccountType());
-        }
+        ObservableList<Item> itemsFilter = FXCollections.observableArrayList();
+        ObservableList<Item> itemsGuestFilter = FXCollections.observableArrayList();
+        itemsFilter = filterItem(itemDatabase, user);
 
         // Filer the item status = true;
         /*itemDatabase.filtered(item -> item.isRentalStatus());*/
@@ -134,17 +154,11 @@ public class menuController
             rewardPoint.setText("0 point");
         }
 
-
-
-        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
-        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_rentalStatus.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+        loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_rentalStatus, i_genres);
         i_action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonRent"));
-        i_tableView.setItems(itemDatabase);
+        i_tableView.setItems(itemsFilter);
+
+
 
         TableColumn<Item, Button> column = i_action ; // column you want
         List<Button> buttonList = new ArrayList<>();
@@ -155,7 +169,7 @@ public class menuController
 
         System.out.println(buttonRents);
 
-        for(Button btn : buttonRents) {
+        /*for(Button btn : buttonRents) {
             // check the copies == 0
             for(int i = 0; i < itemDatabase.size(); i++) {
                 if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("TwoDays") && itemDatabase.get(i).getButtonRent() == btn) {
@@ -163,21 +177,23 @@ public class menuController
                 } else if((user instanceof Vip || user instanceof  Regular) && itemDatabase.get(i).getButtonRent() == btn) {
                     btn.setDisable(false);
                 }
-
-                if (itemDatabase.get(i).getButtonRent() == btn && (itemDatabase.get(i).getCopies() == 0 || !itemDatabase.get(i).isRentalStatus())) {
+                if (itemDatabase.get(i).getButtonRent() == btn && itemDatabase.get(i).getCopies() == 0){
                         System.out.println(i);
                         btn.setDisable(true);
                         itemDatabase.get(i).setRentalStatus(false);
+                }else if (itemDatabase.get(i).getCopies()!=0){
+                    btn.setDisable(false);
                 }
             }
-        }
+        }*/
 
 
         for(Button btn : buttonRents)
         {
+            ObservableList<Item> finalItemsFilter = itemsFilter;
             btn.setOnAction((actionEvent) -> {
                 System.out.println( "SIZE = " + user.getListRentals().size());
-               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+               if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                } else {
                    if(user instanceof Guest && user.getListRentals().size() == 2) {
@@ -186,22 +202,10 @@ public class menuController
                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
                }
-
-                boolean check = user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint);
-                System.out.println("Boolean value of user.rentItem" + check);
-                if(check) {
-                    showDialog("successNotification.fxml");
-                    if(user instanceof Guest && user.getListRentals() != null && user.getListRentals().size() == 2) {
-                        showDialog("guestNotification.fxml"); // Cannot rent two items at Guest
-                    }
-                } else {
-                    showDialog("failNotification.fxml");
-                }
-
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Item> filteredList = new FilteredList<>(itemDatabase, b -> true);
+        FilteredList<Item> filteredList = new FilteredList<>(itemsFilter, b -> true);
 
         searchbar.textProperty().addListener((observable, oldValue, newValue )->
         {
@@ -221,6 +225,16 @@ public class menuController
 
         sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
         i_tableView.setItems(sortedList);
+    }
+
+    static void loadTable(TableColumn<Item, String> i_title, TableColumn<Item, String> i_rentalType, TableColumn<Item, String> i_loanType, TableColumn<Item, Integer> i_numCopies, TableColumn<Item, Double> i_rentalFee, TableColumn<Item, Boolean> i_rentalStatus, TableColumn<Item, String> i_genres) {
+        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
+        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
+        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
+        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
+        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
+        i_rentalStatus.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
+        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
     }
 
     public void recharge() throws IOException {

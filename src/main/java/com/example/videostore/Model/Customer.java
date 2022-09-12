@@ -53,7 +53,7 @@ public abstract class Customer  {
                 Item item = itemObservableList.get(i);
 
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);
@@ -72,11 +72,36 @@ public abstract class Customer  {
                         }
                         listItems.add(item.getId());
                         this.setListRentals(listItems);
-
-
                         customerObservableList.set(indexUser, this);
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean returnItem(ObservableList<Item> itemObservableList,ObservableList<Item> rented, Button btn){
+        for(int i = 0; i < rented.size();i++){
+            if(rented.get(i).getButtonReturn().equals(btn)){
+                Item item = rented.get(i);
+                rented.get(i).setQuantity(rented.get(i).getQuantity()-1);
+                System.out.println(rented.get(i).getQuantity());
+                if(rented.get(i).getQuantity() == 0){
+                    rented.remove(i);
+                }
+                System.out.println(item.getTitle());
+                for (int j = 0; j < itemObservableList.size();j++){
+                    if (item.getId().equals(itemObservableList.get(j).getId())) {
+                        item = itemObservableList.get(j);
+                        List<String> list = this.getListRentals();
+                        item.setCopies(item.getCopies()+1);
+                        list.remove(item.getId());
+                        this.setListRentals(list);
+                        itemObservableList.set(j,item);
+                        this.setNumberOfReturn(this.getNumberOfReturn()+1);
                         return true;
                     }
                 }

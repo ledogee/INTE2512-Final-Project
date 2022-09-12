@@ -32,6 +32,7 @@ public class loginController {
     @FXML
     private Label incorrectPasswordLabel;
 
+
     public void goToRegister(ActionEvent event) throws IOException
     {
         SceneSwitcher.switchToRegister(event);
@@ -63,9 +64,9 @@ public class loginController {
             } else {
                 incorrectUsernameLabel.setVisible(true);
                 incorrectPasswordLabel.setVisible(false);
-
             }
         }
+
     }
     public void initialize()
     {
