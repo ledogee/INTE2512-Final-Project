@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Guest extends Customer {
-    public Guest(GuestBuilder builder) {
+    public Guest(Guest.GuestBuilder builder) {
         this.setName(builder.name);
         this.setAddress(builder.address);
         this.setPhone(builder.phone);
@@ -18,18 +18,9 @@ public class Guest extends Customer {
         this.setBalance(builder.balance);
         this.setUsername(builder.username);
         this.setPassword(builder.password);
+        this.setId(builder.id);
         this.setNumberOfReturn(builder.numOfReturn);
         if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("C" + "00" +  getIdCount());
-            } else if(getIdCount() < 100) {
-                this.setId("C" + "0" +  getIdCount());
-            } else if(getIdCount() <= 999) {
-                this.setId("C" +  getIdCount());
-            } else {
-                System.out.println("ID Overflow");
-            }
-        } else {
             int id = generateId();
             id++;
             if(id < 10) {
@@ -38,18 +29,6 @@ public class Guest extends Customer {
                 this.setId("C" + "0" +  id);
             } else if(getIdCount() <= 999) {
                 this.setId("C" +  id);
-            } else {
-                System.out.println("ID Overflow");
-            }
-        }
-
-        if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("C" + "00" +  getIdCount());
-            } else if(getIdCount() < 100) {
-                this.setId("C" + "0" +  getIdCount());
-            } else if(getIdCount() <= 999) {
-                this.setId("C" +  getIdCount());
             } else {
                 System.out.println("ID Overflow");
             }
@@ -212,7 +191,9 @@ public class Guest extends Customer {
         }
 
         public Guest build() {
+/*
             this.id = String.valueOf(Guest.generateId());
+*/
             return new Guest(this);
         }
     }

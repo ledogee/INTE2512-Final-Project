@@ -28,6 +28,8 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarItem;
     @FXML
     public TextField searchbarCustomer;
+    public Button deleteCustomer;
+    public Button deleteItem;
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -108,6 +110,7 @@ public class adminController extends adminAddItemDialogController implements Ini
     public static ObservableList<Customer> getCustomers() {
         return customers;
     }
+
 
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -212,6 +215,16 @@ public class adminController extends adminAddItemDialogController implements Ini
         //Allows users select multiple rows at once
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        deleteItem.setOnAction(e -> {
+            int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+            items.remove(selectedIndex);
+        });
+
+        deleteCustomer.setOnAction(e -> {
+            int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+            customers.remove(selectedIndex);
+        });
 
     }
     
@@ -342,29 +355,6 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void deleteCustomerButton(ActionEvent event)
-    {
-        ObservableList<Customer> selectedRows,  allCustomer;
-        allCustomer = c_tableView.getItems();
-
-        //Allows to rows to be selected
-        selectedRows = c_tableView.getSelectionModel().getSelectedItems();
-
-        for(Customer customer: selectedRows)
-            allCustomer.remove(customer);
-    }
-
-    public void deleteItemButton(ActionEvent event)
-    {
-        ObservableList<Item> selectedRows,  allItems;
-        allItems = i_tableView.getItems();
-
-        //Allows to rows to be selected
-        selectedRows = i_tableView.getSelectionModel().getSelectedItems();
-
-        for(Item item: selectedRows)
-            allItems.remove(item);
-    }
 
     public static boolean isDouble(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty
@@ -390,3 +380,4 @@ public class adminController extends adminAddItemDialogController implements Ini
         return true;
     }
 }
+
