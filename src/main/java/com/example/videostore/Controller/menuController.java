@@ -100,6 +100,13 @@ public class menuController
     public void initialize()
     {
         itemDatabase = SingletonDatabase.getItems();
+        ObservableList<Item> itemsFilter = FXCollections.observableArrayList();
+        for(Item item : itemDatabase) {
+            if(item.isRentalStatus()) {
+                System.out.println("Item rental status: " + item.isRentalStatus());
+                itemsFilter.add(item);
+            }
+        }
 
         //Get accountType
         if(user instanceof Vip) {
@@ -108,6 +115,9 @@ public class menuController
             accountType.setText(user.getAccountType());
         } else if(user instanceof Guest) {
             accountType.setText(user.getAccountType());
+            /*for(Item item : itemsFilter) {
+                if(item.getRentalType().equals(""))
+            }*/
         }
 
         // Filer the item status = true;
@@ -134,8 +144,6 @@ public class menuController
             rewardPoint.setText("0 point");
         }
 
-
-
         i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
         i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
         i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
@@ -144,7 +152,7 @@ public class menuController
         i_rentalStatus.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
         i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
         i_action.setCellValueFactory(new PropertyValueFactory<Item, Button>("buttonRent"));
-        i_tableView.setItems(itemDatabase);
+        i_tableView.setItems(itemsFilter);
 
         TableColumn<Item, Button> column = i_action ; // column you want
         List<Button> buttonList = new ArrayList<>();
@@ -155,7 +163,7 @@ public class menuController
 
         System.out.println(buttonRents);
 
-        for(Button btn : buttonRents) {
+        /*for(Button btn : buttonRents) {
             // check the copies == 0
             for(int i = 0; i < itemDatabase.size(); i++) {
                 if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("TwoDays") && itemDatabase.get(i).getButtonRent() == btn) {
@@ -171,14 +179,14 @@ public class menuController
                     btn.setDisable(false);
                 }
             }
-        }
+        }*/
 
 
         for(Button btn : buttonRents)
         {
             btn.setOnAction((actionEvent) -> {
                 System.out.println( "SIZE = " + user.getListRentals().size());
-               if(user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+               if(user.rentItem(itemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                } else {
                    if(user instanceof Guest && user.getListRentals().size() == 2) {
@@ -187,22 +195,10 @@ public class menuController
                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
                }
-
-                boolean check = user.rentItem(itemDatabase, customerObservableList, btn, balance, indexUser, rewardPoint);
-                System.out.println("Boolean value of user.rentItem" + check);
-                if(check) {
-                    showDialog("successNotification.fxml");
-                    if(user instanceof Guest && user.getListRentals() != null && user.getListRentals().size() == 2) {
-                        showDialog("guestNotification.fxml"); // Cannot rent two items at Guest
-                    }
-                } else {
-                    showDialog("failNotification.fxml");
-                }
-
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Item> filteredList = new FilteredList<>(itemDatabase, b -> true);
+        FilteredList<Item> filteredList = new FilteredList<>(itemsFilter, b -> true);
 
         searchbar.textProperty().addListener((observable, oldValue, newValue )->
         {
