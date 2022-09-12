@@ -88,16 +88,7 @@ public class Regular extends Customer {
             this.username = username;
             this.password = password;
         }
-        public RegularBuilder(Customer cus){
-            this.id = cus.getId();
-            this.name = cus.getName();
-            this.address = cus.getAddress();
-            this.phone = cus.getPhone();
-            this.listRentals = cus.getListRentals();
-            this.balance = cus.getBalance();
-            this.username = cus.getUsername();
-            this.password = cus.getPassword();
-        }
+
         public Regular.RegularBuilder buildId(String name) {
             this.name = name;
             return this;

@@ -88,7 +88,7 @@ public class Vip extends Customer {
                 Item item = itemObservableList.get(i);
 
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);
@@ -199,16 +199,7 @@ public class Vip extends Customer {
         public VipBuilder() {
 
         }
-        public VipBuilder(Customer cus){
-            this.id = cus.getId();
-            this.name = cus.getName();
-            this.address = cus.getAddress();
-            this.phone = cus.getPhone();
-            this.listRentals = cus.getListRentals();
-            this.balance = cus.getBalance();
-            this.username = cus.getUsername();
-            this.password = cus.getPassword();
-        }
+
         public Vip.VipBuilder buildNumReturn(int numOfReturn) {
             this.numOfReturn = numOfReturn;
             return this;

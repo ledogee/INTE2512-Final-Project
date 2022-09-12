@@ -1,6 +1,5 @@
 package com.example.videostore.Model;
 
-import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -62,7 +61,7 @@ public class Guest extends Customer {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && this.getListRentals().size() < 2) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && item.getLoanType().equals("1-week") && this.getListRentals().size() < 2) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);
@@ -123,16 +122,7 @@ public class Guest extends Customer {
 
         public GuestBuilder() {
         }
-        public GuestBuilder(Customer cus){
-            this.id = cus.getId();
-            this.name = cus.getName();
-            this.address = cus.getAddress();
-            this.phone = cus.getPhone();
-            this.listRentals = cus.getListRentals();
-            this.balance = cus.getBalance();
-            this.username = cus.getUsername();
-            this.password = cus.getPassword();
-        }
+
         public GuestBuilder(String id, String name, String address, String phone, List<String> listRentals, float balance, String username, String password) {
             this.id = id;
             this.name = name;
