@@ -51,6 +51,7 @@ public class loginController {
 
     private void login(ActionEvent event) throws IOException
     {
+        customerObservableList = SingletonDatabase.getCustomers();
         for(Customer customer : customerObservableList) {
             if(usernameInput.getText().equals(customer.getUsername()) && passwordInput.getText().equals(customer.getPassword())) {
                 incorrectUsernameLabel.setVisible(false);
