@@ -27,8 +27,8 @@
             </Label>
             <Button fx:id="addItemButton" layoutX="670.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
             <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="-3.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
-            <Button layoutX="749.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteItemButton" text="Delete Item" />
-            <Button layoutX="219.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayAllItems" text="All Items" />
+            <Button layoutX="749.0" layoutY="17.0" mnemonicParsing="false" fx:id="deleteItem" text="Delete Item" />
+            <Button layoutX="219.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayAllItems"  text="All Items" />
             <Button layoutX="295.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" text="Out of stock Items" />
          </children>
       </Pane>
@@ -57,8 +57,8 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog" text="Add Account" />
-            <Button layoutX="864.0" layoutY="17.0" mnemonicParsing="false" onAction="#deleteCustomerButton" text="Delete Account" />
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog"  text="Add Account" />
+            <Button layoutX="864.0" layoutY="17.0" mnemonicParsing="false" fx:id="deleteCustomer" text="Delete Account" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />

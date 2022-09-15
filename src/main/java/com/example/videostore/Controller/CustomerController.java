@@ -82,9 +82,9 @@ public class CustomerController {
     @FXML
     private TableView<Item> tableView;
     ObservableList<Item> itemsDatabase = FXCollections.observableArrayList();
+    ObservableList<Customer> customersDatabase = FXCollections.observableArrayList();
 
-    public void goToLogin(ActionEvent event) throws IOException {
-        SceneSwitcher.switchToLogin(event);
+    public void goToLogin(ActionEvent event) throws IOException {SceneSwitcher.switchToLogin(event);
     }
 
     public void goToMenu(ActionEvent event) throws IOException {
@@ -104,6 +104,7 @@ public class CustomerController {
 
         System.out.println(user.getName());
         itemsDatabase = SingletonDatabase.getItems();
+        customersDatabase = SingletonDatabase.getCustomers();
         Set<Item> itemSet = new HashSet<>();
         List<Item> itemList = new ArrayList<>();
 
@@ -143,7 +144,7 @@ public class CustomerController {
             for (Button btn : buttonList) {
                 btn.setOnAction((actionEvent) -> {
                     user.returnItem(itemsDatabase, listRentals, btn);
-                    user = SingletonDatabase.checkpromotion(user);
+                    user = checkpromotion(user, customersDatabase);
                     tableView.setItems(listRentals);
                     tableView.refresh();
                 });
@@ -152,5 +153,33 @@ public class CustomerController {
             System.out.println(itemsDatabase);
 
         }
+    }
+    public Customer checkpromotion(Customer cus, ObservableList<Customer> customersDatabase){
+        if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
+            cus.setAccountType("Regular");
+            Regular reg = new Regular.RegularBuilder(cus).build();
+
+            // Update the db
+            for(int i = 0; i < customersDatabase.size(); i++) {
+                if(customersDatabase.get(i).getId().equals(reg.getId())) {
+                    customersDatabase.set(i, reg);
+                    System.out.println(customersDatabase.get(i).getAccountType());
+                }
+            }
+            return reg;
+        } else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")) {
+            cus.setAccountType("VIP");
+            Vip vip = new Vip.VipBuilder(cus).build();
+
+            // Update the db
+            for(int i = 0; i < customersDatabase.size(); i++) {
+                if(customersDatabase.get(i).getId().equals(vip.getId())) {
+                    customersDatabase.set(i, vip);
+                    System.out.println(customersDatabase.get(i).getAccountType());
+                }
+            }
+            return vip;
+        }
+        return cus;
     }
 }

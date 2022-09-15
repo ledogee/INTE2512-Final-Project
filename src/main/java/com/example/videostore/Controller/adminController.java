@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -28,6 +30,8 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarItem;
     @FXML
     public TextField searchbarCustomer;
+    public Button deleteCustomer;
+    public Button deleteItem;
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -109,6 +113,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         return customers;
     }
 
+
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         c_listRental.setCellFactory(tc -> {
@@ -131,13 +136,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         items.add(itemNew);*/
 
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
-        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
-        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+        menuController.loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_status, i_genres);
 
 
 /*
@@ -218,6 +217,16 @@ public class adminController extends adminAddItemDialogController implements Ini
         //Allows users select multiple rows at once
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        deleteItem.setOnAction(e -> {
+            int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+            items.remove(selectedIndex);
+        });
+
+        deleteCustomer.setOnAction(e -> {
+            int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+            customers.remove(selectedIndex);
+        });
 
     }
     
@@ -337,6 +346,9 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
             if(newAccount != null && result.get() == ButtonType.OK){
+                List<String> listId = new ArrayList<>();
+                listId.add("");
+                newAccount.setListRentals(listId);
                 SingletonDatabase.getCustomers().add(newAccount);
                 popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
             }
@@ -348,29 +360,6 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void deleteCustomerButton(ActionEvent event)
-    {
-        ObservableList<Customer> selectedRows,  allCustomer;
-        allCustomer = c_tableView.getItems();
-
-        //Allows to rows to be selected
-        selectedRows = c_tableView.getSelectionModel().getSelectedItems();
-
-        for(Customer customer: selectedRows)
-            allCustomer.remove(customer);
-    }
-
-    public void deleteItemButton(ActionEvent event)
-    {
-        ObservableList<Item> selectedRows,  allItems;
-        allItems = i_tableView.getItems();
-
-        //Allows to rows to be selected
-        selectedRows = i_tableView.getSelectionModel().getSelectedItems();
-
-        for(Item item: selectedRows)
-            allItems.remove(item);
-    }
 
     public static boolean isDouble(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty
@@ -396,3 +385,4 @@ public class adminController extends adminAddItemDialogController implements Ini
         return true;
     }
 }
+

@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5eeda629-40a2-4fef-8e4b-7a0db3468cf7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/loginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/SystemBroker/SingletonDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/SystemBroker/SingletonDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" afterDir="false" />
     </list>
@@ -22,6 +23,13 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,12 +45,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "extract.method.default.visibility": "private",
+    "nodejs_package_manager_path": "npm"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ACER\Desktop\INTE2512-Final-Project\src\main\java\com\example\videostore\Model" />
