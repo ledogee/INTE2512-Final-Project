@@ -1,3 +1,2 @@
-I002-1999,Rat Race,DVD,OneWeek,27,1.99,true,1999,Horror
-I005-2010,Gear medal,Game,null,3,120.99,true,2010
+I002-1999,Rat Race,DVD,OneWeek,26,1.99,true,1999,Horror
 I008-1999,newGame,Game,TwoDays,31,1.3,true,1999
