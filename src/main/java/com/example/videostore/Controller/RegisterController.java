@@ -35,12 +35,14 @@ public class RegisterController {
     private Label invalidPhoneLabel;
     @FXML
     private Label invalidUsernameLabel;
+    @FXML
+    private Label isFilledLabel;
 
     public void goToLogin(ActionEvent event) throws IOException {
         SceneSwitcher.switchToLogin(event);
     }
 
-    ObservableList<Customer> customerList = FXCollections.observableArrayList();
+    static ObservableList<Customer> customerList = FXCollections.observableArrayList();
     public void signUp(ActionEvent event) throws IOException {
         customerList = SingletonDatabase.getCustomers();
 
@@ -48,6 +50,7 @@ public class RegisterController {
         boolean validPhone = false;
 
         if (name.getText() != "" && address.getText() != "" && phone.getText() != "" && username.getText() != "" && password.getText() != "") {
+            isFilledLabel.setVisible(false);
             for (Customer cus : customerList) {
                 if (username.getText().equals(cus.getUsername())) {
                     validUsername = false;
@@ -83,6 +86,21 @@ public class RegisterController {
                 invalidUsernameLabel.setVisible(true);
                 invalidPhoneLabel.setVisible(true);
             }
+        } else {
+            if (validUsername && validPhone) {
+                invalidUsernameLabel.setVisible(false);
+                invalidPhoneLabel.setVisible(false);
+            } else if (!validUsername && validPhone) {
+                invalidUsernameLabel.setVisible(true);
+                invalidPhoneLabel.setVisible(false);
+            } else if (!validPhone && validUsername) {
+                invalidPhoneLabel.setVisible(true);
+                invalidUsernameLabel.setVisible(false);
+            } else {
+                invalidUsernameLabel.setVisible(true);
+                invalidPhoneLabel.setVisible(true);
+            }
+            isFilledLabel.setVisible(true);
         }
     }
     public static boolean isNumber(String string)

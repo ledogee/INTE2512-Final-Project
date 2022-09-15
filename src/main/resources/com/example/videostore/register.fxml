@@ -33,7 +33,7 @@
                   </Line>
                </children>
             </VBox>
-            <Button layoutX="347.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToLogin" text="Login">
+            <Button layoutX="353.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToLogin" text="Login">
                <font>
                   <Font size="13.0" />
                </font>
@@ -105,16 +105,17 @@
                   <Label fx:id="invalidUsernameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="370.0" text="This username's already been used." textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
-            <Button fx:id="signUpButton" layoutX="255.0" layoutY="318.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up">
+            <Button fx:id="signUpButton" layoutX="263.0" layoutY="337.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Label layoutX="174.0" layoutY="363.0" text="Already have an account?">
+            <Label layoutX="180.0" layoutY="370.0" text="Already have an account?">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="isFilledLabel" contentDisplay="CENTER" layoutX="262.0" layoutY="308.0" text="Please fill in all information" textAlignment="CENTER" textFill="#e80505" visible="false" />
          </children>
       </AnchorPane>
    </children>
