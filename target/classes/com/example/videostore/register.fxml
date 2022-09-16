@@ -101,11 +101,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="174.0" layoutY="363.0" text="Already have an account?">
+            <Label layoutX="180.0" layoutY="370.0" text="Already have an account?">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="isFilledLabel" contentDisplay="CENTER" layoutX="262.0" layoutY="308.0" text="Please fill in all information" textAlignment="CENTER" textFill="#e80505" visible="false" />
          </children>
       </AnchorPane>
    </children>
