@@ -110,7 +110,17 @@ public class adminUpdateAccountDialogController implements Initializable {
 
         List<String> listId = new ArrayList<>();
         if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
-            return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+            cus.setAccountType("Guest");
+            cus.setName(Name);
+            cus.setAddress(Address);
+            cus.setPhone(Phone);
+            cus.setBalance(Balance);
+            cus.setUsername(Username);
+            cus.setPassword(Password);
+            Guest guest = new Guest.GuestBuilder(cus).build();
+            //Update database
+            customersDatabase.set(selectedIndex, guest);
+            return guest;
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
             cus.setAccountType("Regular");
             cus.setName(Name);
@@ -122,16 +132,24 @@ public class adminUpdateAccountDialogController implements Initializable {
             Regular reg = new Regular.RegularBuilder(cus).build();
             //Update database
             customersDatabase.set(selectedIndex, reg);
-            for(int i = 0; i < customersDatabase.size(); i++) {
-                if(customersDatabase.get(i).getId().equals(reg.getId())) {
-                    customersDatabase.set(i, reg);
-                    System.out.println(customersDatabase.get(i).getAccountType());
-                }
-            }
             return reg;
 
         } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+            System.out.println(cus);
+            cus.setAccountType("Vip");
+            cus.setName(Name);
+            cus.setAddress(Address);
+            cus.setPhone(Phone);
+            cus.setBalance(Balance);
+            cus.setUsername(Username);
+            cus.setPassword(Password);
+            System.out.println(cus);
+            Vip vip = new Vip.VipBuilder(cus).build();
+
+            // Update the db
+            customersDatabase.set(selectedIndex, vip);
+            System.out.println(vip);
+            return vip;
         }
         return null;
     }
