@@ -29,6 +29,7 @@
             <Button fx:id="deleteItem" layoutX="939.0" layoutY="14.0" mnemonicParsing="false" text="Delete Item" />
             <Button layoutX="647.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayAllItems" text="All Items" />
             <Button layoutX="730.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" text="Out of stock Items" />
+            <Button fx:id="updateItemButton" layoutX="1024.0" layoutY="14.0" mnemonicParsing="false" onAction="#showUpdateItemDialog" text="Update" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
@@ -56,7 +57,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog" text="Add Account" />
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewAccountDialog" text="Add Account" />
             <Button fx:id="deleteCustomer" layoutX="864.0" layoutY="17.0" mnemonicParsing="false" text="Delete Account" />
          </children>
       </Pane>
