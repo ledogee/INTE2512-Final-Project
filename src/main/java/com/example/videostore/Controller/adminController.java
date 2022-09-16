@@ -220,12 +220,14 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         deleteItem.setOnAction(e -> {
             int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-            items.remove(selectedIndex);
+            if(selectedIndex != -1)
+                items.remove(selectedIndex);
         });
 
         deleteCustomer.setOnAction(e -> {
             int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-            customers.remove(selectedIndex);
+            if(selectedIndex != -1)
+                customers.remove(selectedIndex);
         });
 
     }
@@ -346,9 +348,6 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
             if(newAccount != null && result.get() == ButtonType.OK){
-                List<String> listId = new ArrayList<>();
-                listId.add("");
-                newAccount.setListRentals(listId);
                 SingletonDatabase.getCustomers().add(newAccount);
                 popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
             }
