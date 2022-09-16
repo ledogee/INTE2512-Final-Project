@@ -315,30 +315,32 @@ public class adminController extends adminAddItemDialogController implements Ini
     public void showUpdateItemDialog()
     {
         int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(adminVBOX.getScene().getWindow());
-        dialog.setTitle("Update Item");
-        dialog.setHeaderText("Use this dialog to update an item");
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
+        if(selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.setTitle("Update Item");
+            dialog.setHeaderText("Use this dialog to update an item");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
 //        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
 //        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
-        try {
-            dialog.getDialogPane().setContent(fxmlLoader.load());
-        } catch (IOException e) {
-            System.out.println("Couldn't load the dialog");
-            e.printStackTrace();
-            return;
-        }
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
 
-        // Add button
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-        adminUpdateItemDialogController controller = fxmlLoader.getController();
-        controller.setItemValue(selectedIndex);
-        controller.setNewLabel("");
-        Optional<ButtonType> result = dialog.showAndWait();
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateItemDialogController controller = fxmlLoader.getController();
+            controller.setItemValue(selectedIndex);
+            controller.setNewLabel("");
+            Optional<ButtonType> result = dialog.showAndWait();
+        }
 //        if(result.isPresent() && result.get() == ButtonType.OK) {
 //            // get the controller of Dialog to call the function processResults
 //
