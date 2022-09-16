@@ -451,7 +451,9 @@ public class adminController extends adminAddItemDialogController implements Ini
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Customer newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
-                newAccount.setCombinedString(newAccount.arraytostring());
+                if(newAccount != null){
+                    newAccount.setCombinedString(newAccount.arraytostring());
+                }
                 System.out.println(newAccount);
 
                 while ((newAccount == null && result.get() == ButtonType.OK)) {
@@ -459,13 +461,13 @@ public class adminController extends adminAddItemDialogController implements Ini
                     result = dialog.showAndWait();
 
                     newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                    if(newAccount != null){
+                        newAccount.setCombinedString(newAccount.arraytostring());
+                    }
                     if (newAccount != null && result.get() == ButtonType.OK) {
+                        popAdminNotification(adminVBOX, "Successfully update Account", "#008000");
                         break;
                     }
-                }
-                if (newAccount != null && result.get() == ButtonType.OK) {
-
-                    popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
                 }
 
                 System.out.println("Ok pressed");
