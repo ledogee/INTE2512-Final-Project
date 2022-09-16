@@ -72,7 +72,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog" style="-fx-background-color: #CCB7E5;" text="Add Account">
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewAccountDialog" style="-fx-background-color: #CCB7E5;" text="Add Account">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
