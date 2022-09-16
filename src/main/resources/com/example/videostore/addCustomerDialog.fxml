@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DialogPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<DialogPane prefHeight="321.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminAddAccountDialogController">
+<DialogPane prefHeight="321.0" prefWidth="430.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminAddAccountDialogController">
    <content>
-      <Pane prefHeight="20.0" prefWidth="467.0">
+      <Pane prefHeight="319.0" prefWidth="430.0">
          <children>
-            <GridPane layoutX="22.0" layoutY="33.0" prefHeight="246.0" prefWidth="369.0">
+            <GridPane layoutX="31.0" layoutY="14.0" prefHeight="306.0" prefWidth="369.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.1999877929687" minWidth="10.0" prefWidth="105.59998779296876" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="505.5999877929688" minWidth="0.0" prefWidth="264.00001220703126" />
@@ -29,20 +24,41 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Name:" GridPane.rowIndex="1" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Account Type:" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Address:" GridPane.rowIndex="2" />
-                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Phone:" GridPane.rowIndex="3" />
-                  <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Balance:" GridPane.rowIndex="4" />
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Name:" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Account Type:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Address:" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Phone:" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Balance:" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                   <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="balance" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="comboBoxAccountType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
                   <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" GridPane.rowIndex="5" />
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                   <TextField fx:id="username" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Password:" GridPane.rowIndex="6" />
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Password:" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                   <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
