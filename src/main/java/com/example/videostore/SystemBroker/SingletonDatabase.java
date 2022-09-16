@@ -27,6 +27,11 @@ public class SingletonDatabase {
         return items;
     }
     public static ObservableList<Customer> getCustomers() {return customers;}
+
+    public static void setCustomers(ObservableList<Customer> customers) {
+        SingletonDatabase.customers = customers;
+    }
+
     public static void loadItems() throws IOException{
         items= FXCollections.observableArrayList();
         Path path = Paths.get(itemFileName);
@@ -155,29 +160,34 @@ public class SingletonDatabase {
             bw.newLine();
         }
         bw.close();
-        }
+    }
 
-        public static Customer checkpromotion(Customer cus){
+
+    /*public static Customer checkpromotion(Customer cus){
         for(int i = 0; i < customers.size(); i++){
-            if(cus.getNumberOfReturn()>2 && cus.getAccountType().equals("Guest")){
+            if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
+                cus.setAccountType("Regular");
                 Regular reg = new Regular.RegularBuilder(cus).build();
                 if(customers.get(i).getId().equals(reg.getId())){
-                    customers.set(i,reg);
+                    getCustomers().set(i, reg);
+                    *//*customers.set(i,reg);*//*
                 }
+                *//*setCustomers(customers);*//*
                 System.out.println(customers.get(i).getAccountType());
                 return reg;
             }else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")){
+                cus.setAccountType("VIP");
                 Vip vip = new Vip.VipBuilder(cus).build();
                 if(customers.get(i).getId().equals(vip.getId())){
-                    customers.set(i,vip);
+                    getCustomers().set(i, vip);
                 }
+                setCustomers(customers);
                 System.out.println(customers.get(i).getAccountType());
                 return vip;
             }
         }
-
         return cus;
-    }
+    }*/
 }
 
 

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<DialogPane prefHeight="321.0" prefWidth="430.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminAddAccountDialogController">
+<DialogPane prefHeight="321.0" prefWidth="430.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminUpdateAccountDialogController">
    <content>
       <Pane prefHeight="319.0" prefWidth="430.0">
          <children>

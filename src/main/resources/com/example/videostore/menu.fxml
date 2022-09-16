@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="menuPane" prefHeight="820.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
+<AnchorPane fx:id="menuPane" prefHeight="820.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="820.0" prefWidth="1067.0">
+      <VBox alignment="TOP_CENTER" prefHeight="820.0" prefWidth="1067.0" style="-fx-background-color: #E0FFFF;">
          <children>
             <MenuBar prefHeight="43.0" prefWidth="1043.0">
               <menus>
                 <Menu mnemonicParsing="false">
                      <graphic>
-                        <Button fx:id="customerInfor" mnemonicParsing="false" onAction="#goToCustomer" prefWidth="137.0" text="Customer Information" />
+                        <Button fx:id="customerInfor" mnemonicParsing="false" onAction="#goToCustomer" prefWidth="137.0" style="-fx-background-color: #CCB7E5;" text="Customer Information" />
                      </graphic>
                   </Menu>
                 <Menu mnemonicParsing="false">
@@ -54,14 +46,17 @@
             </MenuBar>
             <Pane prefHeight="64.0" prefWidth="737.0">
                <children>
-                  <Button layoutX="34.0" layoutY="11.0" mnemonicParsing="false" text="Search an item">
+                  <Button layoutX="34.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: #90EE91;" text="Search an item">
                      <graphic>
                         <TextField fx:id="searchbar" prefHeight="25.0" prefWidth="229.0" />
                      </graphic>
-                  </Button>
-                  <Label layoutX="463.0" layoutY="10.0" prefHeight="35.0" prefWidth="93.0" text="Balance:">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="457.0" layoutY="10.0" prefHeight="35.0" prefWidth="99.0" text="Balance:">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="balance" layoutX="556.0" layoutY="14.0" prefHeight="27.0" prefWidth="93.0" text="MONEY">
@@ -69,9 +64,9 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="657.0" layoutY="10.0" prefHeight="35.0" prefWidth="93.0" text="Reward: ">
+                  <Label layoutX="651.0" layoutY="10.0" prefHeight="35.0" prefWidth="99.0" text="Reward: ">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="rewardPoint" layoutX="764.0" layoutY="14.0" prefHeight="27.0" prefWidth="146.0" text="POINT">
@@ -79,12 +74,15 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Button layoutX="884.0" layoutY="12.0" mnemonicParsing="false" onAction="#recharge" prefHeight="33.0" prefWidth="99.0" text="CASH TOPUP" />
+                  <Button layoutX="884.0" layoutY="12.0" mnemonicParsing="false" onAction="#recharge" prefHeight="33.0" prefWidth="99.0" style="-fx-background-color: #FFEB00;" text="CASH TOPUP">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
                </children>
             </Pane>
             <VBox alignment="BOTTOM_CENTER" prefHeight="517.0" prefWidth="767.0">
                <children>
-                  <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="933.0">
+                  <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="933.0" style="-fx-background-color: #F5F0BF;">
                      <columns>
                         <TableColumn fx:id="i_title" prefWidth="132.40001678466797" text="Title" />
                         <TableColumn fx:id="i_rentalType" prefWidth="142.0" text="Rental Type" />

@@ -18,6 +18,8 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -28,10 +30,14 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarItem;
     @FXML
     public TextField searchbarCustomer;
+    public Button deleteCustomer;
+    public Button deleteItem;
     @FXML
     private Button returnToLoginButton;
     @FXML
     private Button addItemButton;
+    @FXML
+    private Button updateItemButton;
     @FXML
     private VBox adminVBOX;
 
@@ -109,6 +115,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         return customers;
     }
 
+
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         c_listRental.setCellFactory(tc -> {
@@ -131,13 +138,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         items.add(itemNew);*/
 
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
-        i_title.setCellValueFactory(new PropertyValueFactory<Item, String>("title"));
-        i_rentalType.setCellValueFactory(new PropertyValueFactory<Item, String>("rentalType"));
-        i_loanType.setCellValueFactory(new PropertyValueFactory<Item, String>("loanType"));
-        i_numCopies.setCellValueFactory(new PropertyValueFactory<Item, Integer>("copies"));
-        i_rentalFee.setCellValueFactory(new PropertyValueFactory<Item, Double>("rentalFee"));
-        i_status.setCellValueFactory(new PropertyValueFactory<Item, Boolean>("rentalStatus"));
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
+        menuController.loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_status, i_genres);
 
 
 /*
@@ -219,8 +220,20 @@ public class adminController extends adminAddItemDialogController implements Ini
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        deleteItem.setOnAction(e -> {
+            int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+            if(selectedIndex != -1)
+                items.remove(selectedIndex);
+        });
+
+        deleteCustomer.setOnAction(e -> {
+            int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+            if(selectedIndex != -1)
+                customers.remove(selectedIndex);
+        });
+
     }
-    
+
     public void displayItemOutOfStock(ActionEvent event) {
         ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
 
@@ -299,7 +312,68 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void showAccountDialog(){
+    public void showUpdateItemDialog()
+    {
+        int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.setTitle("Update Item");
+            dialog.setHeaderText("Use this dialog to update an item");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateItemDialogController controller = fxmlLoader.getController();
+            controller.setItemValue(selectedIndex);
+            controller.setNewLabel("");
+            Optional<ButtonType> result = dialog.showAndWait();
+        }
+//        if(result.isPresent() && result.get() == ButtonType.OK) {
+//            // get the controller of Dialog to call the function processResults
+//
+//            Item newItem = controller.processUpdateItem();
+//
+//            System.out.println(newItem);
+//            while((newItem == null && result.get() == ButtonType.OK) ){
+//                controller.setItemLabel();
+//                result = dialog.showAndWait();
+//                newItem = controller.processUpdateItem();
+//                if(newItem != null && result.get() == ButtonType.OK){
+//                    break;
+//                }
+//
+//            }
+//            if(newItem != null && result.get() == ButtonType.OK){
+//                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+//                SingletonDatabase.getItems().add(newItem);
+//            }
+//
+//            if(result.get() == ButtonType.OK){ //just for testing
+//                System.out.println("Ok pressed");
+//            }else {
+//                System.out.println("Cancel pressed");
+//            }
+//
+//
+//        } else {
+//            System.out.println("Cancel pressed");
+//        }
+    }
+
+    public void showNewAccountDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         dialog.setTitle("Add New Customer Info");
@@ -348,28 +422,58 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void deleteCustomerButton(ActionEvent event)
-    {
-        ObservableList<Customer> selectedRows,  allCustomer;
-        allCustomer = c_tableView.getItems();
+    public void showUpdateAccountDialog() {
+        int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.setTitle("Update Account");
+            dialog.setHeaderText("Use this dialog to update an account");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
-        //Allows to rows to be selected
-        selectedRows = c_tableView.getSelectionModel().getSelectedItems();
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
 
-        for(Customer customer: selectedRows)
-            allCustomer.remove(customer);
-    }
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateAccountDialogController controller = fxmlLoader.getController();
+            controller.setCustomerValue(selectedIndex);
+            Optional<ButtonType> result = dialog.showAndWait();
 
-    public void deleteItemButton(ActionEvent event)
-    {
-        ObservableList<Item> selectedRows,  allItems;
-        allItems = i_tableView.getItems();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Customer newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                newAccount.setCombinedString(newAccount.arraytostring());
+                System.out.println(newAccount);
 
-        //Allows to rows to be selected
-        selectedRows = i_tableView.getSelectionModel().getSelectedItems();
+                while ((newAccount == null && result.get() == ButtonType.OK)) {
+                    controller.setAccountLabel();
+                    result = dialog.showAndWait();
 
-        for(Item item: selectedRows)
-            allItems.remove(item);
+                    newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                    if (newAccount != null && result.get() == ButtonType.OK) {
+                        break;
+                    }
+                }
+                if (newAccount != null && result.get() == ButtonType.OK) {
+
+                    popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+                }
+
+                System.out.println("Ok pressed");
+
+            } else {
+                System.out.println("Cancel pressed");
+            }
+        }
     }
 
     public static boolean isDouble(String stringFromTextField) {
@@ -396,3 +500,4 @@ public class adminController extends adminAddItemDialogController implements Ini
         return true;
     }
 }
+

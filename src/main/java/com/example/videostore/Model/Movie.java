@@ -19,24 +19,14 @@ public class Movie extends Item{
         this.setId(builder.id);
         this.setYear(builder.year);
         if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
-            } else if(getIdCount() < 100) {
-                this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
-            } else if(getIdCount() <= 999) {
-                this.setId("I" +  getIdCount() + "-" + this.getYear());
-            } else {
-                System.out.println("ID Overflow");
-            }
-        } else {
             int id = generateId();
             id++;
-            if(id < 10) {
-                this.setId("I" + "00" +  id + "-" + this.getYear());
-            } else if(getIdCount() < 100) {
-                this.setId("I" + "0" +  id + "-" + this.getYear());
-            } else if(getIdCount() <= 999) {
-                this.setId("I" +  id + "-" + this.getYear());
+            if (id < 10) {
+                this.setId("I" + "00" + id + "-" + this.getYear());
+            } else if (getIdCount() < 100) {
+                this.setId("I" + "0" + id + "-" + this.getYear());
+            } else if (getIdCount() <= 999) {
+                this.setId("I" + id + "-" + this.getYear());
             } else {
                 System.out.println("ID Overflow");
             }

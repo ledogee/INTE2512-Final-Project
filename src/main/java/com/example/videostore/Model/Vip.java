@@ -20,17 +20,8 @@ public class Vip extends Customer {
         this.setPassword(builder.password);
         this.setRewardPoint(builder.rewardPoint);
         this.setNumberOfReturn(builder.numOfReturn);
+        this.setId(builder.id);
         if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("C" + "00" +  getIdCount());
-            } else if(getIdCount() < 100) {
-                this.setId("C" + "0" +  getIdCount());
-            } else if(getIdCount() <= 999) {
-                this.setId("C" +  getIdCount());
-            } else {
-                System.out.println("ID Overflow");
-            }
-        } else {
             int id = generateId();
             id++;
             if(id < 10) {
@@ -39,17 +30,6 @@ public class Vip extends Customer {
                 this.setId("C" + "0" +  id);
             } else if(getIdCount() <= 999) {
                 this.setId("C" +  id);
-            } else {
-                System.out.println("ID Overflow");
-            }
-        }
-        if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("C" + "00" +  getIdCount());
-            } else if(getIdCount() < 100) {
-                this.setId("C" + "0" +  getIdCount());
-            } else if(getIdCount() <= 999) {
-                this.setId("C" +  getIdCount());
             } else {
                 System.out.println("ID Overflow");
             }
@@ -88,7 +68,7 @@ public class Vip extends Customer {
                 Item item = itemObservableList.get(i);
 
                 // Check item price with balance of the user
-                if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus()) { // Enough balance to rent
+                if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
                     item.setCopies(item.getCopies() - 1);
                     if (item.getCopies() == 0) {
                         btn.setDisable(true);
