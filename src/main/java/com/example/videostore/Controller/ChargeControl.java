@@ -9,9 +9,8 @@ public class ChargeControl {
     public static double balance = 0;
     public Label validation;
 
-    public void TopUp(ActionEvent evt) {
+    public void TopUp(ActionEvent event) {
         String getInput = balanceInput.getText();
-
 
     }
 
@@ -20,13 +19,21 @@ public class ChargeControl {
         try {
             balance = Double.parseDouble(balanceInput.getText());
             menuController.user.setBalance(  menuController.user.getBalance() + balance);
-            if(balance < 0) {
-                validation.setText("In Valid Input");
+            if(balance < 0)
+            {
+                validation.setText("Insufficient Balance");
+                validation.setStyle("-fx-text-fill: red");
                 balance = 0;
                 menuController.topUp = 0;
             }
+            else
+            {
+                validation.setText("Transaction Successfully");
+                validation.setStyle("-fx-text-fill: green");
+            }
         } catch (Exception e) {
             validation.setText("In Valid Input");
+            validation.setStyle("-fx-text-fill: red");
             balance = 0;
             menuController.topUp = 0;
         }

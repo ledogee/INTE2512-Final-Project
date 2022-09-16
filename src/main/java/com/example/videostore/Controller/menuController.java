@@ -71,6 +71,7 @@ public class menuController
 
     @FXML
     private TextField searchbar;
+
     private List<Button> buttonRents;
 
     public void goToLogin(ActionEvent event) throws IOException

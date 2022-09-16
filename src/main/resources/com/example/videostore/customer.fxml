@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" prefWidth="202.0" text="Customer Details" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+        <Label layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="252.0" text="Customer Details" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
             <font>
                 <Font name="System Bold" size="27.0" />
             </font>
         </Label>
-        <Button layoutX="456.0" layoutY="15.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" text="Update Information" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
-        <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToLogin" text="Sign Out" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
+        <Button layoutX="456.0" layoutY="15.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #CCB7E5;" text="Update Information" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+        <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A63A7A;" text="Sign Out" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
         <TabPane layoutY="50.0" prefHeight="300.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <tabs>
                 <Tab text="Personal Information">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #E0FFFF;">
                             <children>
-                                <GridPane layoutX="15.0" layoutY="14.0" prefHeight="157.0" prefWidth="570.0">
+                                <GridPane layoutX="1.0" prefHeight="272.0" prefWidth="600.0" style="-fx-background-color: #F5F0BF;">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="132.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="468.0" />
@@ -40,16 +38,31 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="Name:" />
-                                        <Label text="Username:" GridPane.rowIndex="1" />
-                                        <Label text="Password:" GridPane.rowIndex="2" />
-                                        <Label text="Phone:" GridPane.rowIndex="3" />
-                                        <Label text="Address:" GridPane.rowIndex="4" />
-                                        <Label fx:id="name" prefHeight="17.0" prefWidth="470.0" GridPane.columnIndex="1" />
-                                        <Label fx:id="username" prefHeight="17.0" prefWidth="489.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Label fx:id="password" prefHeight="17.0" prefWidth="480.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <Label fx:id="phone" prefHeight="17.0" prefWidth="640.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <Label fx:id="address" prefHeight="17.0" prefWidth="553.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <Label alignment="CENTER" text="Name:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" text="Username:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label text="Password:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label text="Phone:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label text="Address:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label fx:id="name" prefHeight="45.0" prefWidth="468.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+                                        <Label fx:id="username" prefHeight="45.0" prefWidth="468.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="password" prefHeight="45.0" prefWidth="468.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="phone" prefHeight="45.0" prefWidth="640.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="address" prefHeight="45.0" prefWidth="468.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -60,26 +73,38 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <GridPane layoutX="20.0" layoutY="22.0" prefHeight="135.0" prefWidth="331.0">
+                                <GridPane layoutY="-1.0" prefHeight="273.0" prefWidth="600.0" style="-fx-background-color: #F5F0BF;">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="148.99995930989581" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="181.66670735677087" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="163.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="437.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
                               <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="Account Type:" />
-                                        <Label text="Reward Points:" GridPane.rowIndex="1" />
-                                        <Label fx:id="accountType" prefHeight="18.0" prefWidth="251.0" GridPane.columnIndex="1" />
-                                        <Label text="Balance:" GridPane.rowIndex="2" />
-                                        <Label fx:id="balance" prefHeight="17.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="rewardPoint" prefHeight="18.0" prefWidth="225.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Number of return Items" GridPane.rowIndex="3" />
-                              <Label fx:id="numOfReturn" prefHeight="17.0" prefWidth="212.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label text="Account Type:">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label text="Reward Points:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label fx:id="accountType" prefHeight="65.0" prefWidth="472.0" style="-fx-background-color: white;" GridPane.columnIndex="1" />
+                                        <Label text="Balance:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                                        <Label fx:id="balance" prefHeight="45.0" prefWidth="502.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="rewardPoint" prefHeight="65.0" prefWidth="450.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Number of return Items" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                              <Label fx:id="numOfReturn" prefHeight="45.0" prefWidth="453.0" style="-fx-background-color: white;" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     </children>
                                 </GridPane>
                             </children>
@@ -90,7 +115,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="600.0">
                             <children>
-                                <TableView fx:id="tableView" layoutX="15.0" layoutY="-2.0" prefHeight="266.0" prefWidth="568.0">
+                                <TableView fx:id="tableView" layoutX="1.0" layoutY="-2.0" prefHeight="266.0" prefWidth="600.0" style="-fx-background-color: #F5F0BF;">
                                     <columns>
                                         <TableColumn fx:id="title" prefWidth="96.0" text="Title" />
                                         <TableColumn fx:id="rentalType" prefWidth="123.0" text="Rental Type" />
@@ -105,6 +130,9 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="366.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMenu" text="Item's Menu" />
+        <Button layoutX="347.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #A63A7A;" text="Item's Menu" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
     </children>
 </AnchorPane>

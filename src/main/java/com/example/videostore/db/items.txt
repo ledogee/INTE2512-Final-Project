@@ -1,2 +1,2 @@
-I002-1999,Rat Race,DVD,OneWeek,26,1.99,true,1999,Horror
-I008-1999,newGame,Game,TwoDays,31,1.3,true,1999
+I002-1999,Rat Race,DVD,OneWeek,18,1.99,true,1999,Horror
+I008-1999,newGame,Game,TwoDays,29,1.3,true,1999
