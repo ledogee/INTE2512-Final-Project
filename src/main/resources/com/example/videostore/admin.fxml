@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<?import javafx.scene.control.TextField?>
-<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <Pane prefHeight="53.0" prefWidth="781.0">
-         <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" text="Search an item">
-            <graphic>
-               <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
-            </graphic>
-         </Button>
          <children>
+            <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: #90EE91;" text="Search an item">
+               <graphic>
+                  <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
             <Label layoutX="490.0" layoutY="12.0" text="Item List">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="addItemButton" layoutX="670.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewItemDialog" text="Add Item" />
-            <Button fx:id="returnToLoginButton" layoutX="14.0" layoutY="-3.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" text="Return to Login" />
-            <Button layoutX="749.0" layoutY="17.0" mnemonicParsing="false" fx:id="deleteItem" text="Delete Item" />
-            <Button layoutX="219.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayAllItems"  text="All Items" />
-            <Button layoutX="295.0" layoutY="17.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" text="Out of stock Items" />
+            <Button fx:id="addItemButton" layoutX="858.0" layoutY="14.0" mnemonicParsing="false" onAction="#showNewItemDialog" style="-fx-background-color: #CCB7E5;" text="Add Item">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="returnToLoginButton" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #CCB7E5;" text="Return to Login">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="deleteItem" layoutX="939.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #CCB7E5;" text="Delete Item">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="647.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayAllItems" style="-fx-background-color: #A63A7A;" text="All Items" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="730.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" style="-fx-background-color: #A63A7A;" text="Out of stock Items" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="updateItemButton" layoutX="1024.0" layoutY="14.0" mnemonicParsing="false" onAction="#showUpdateItemDialog" text="Update" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
-      <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="670.0">
+      <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="670.0" style="-fx-background-color: #F5F0BF;">
          <columns>
             <TableColumn fx:id="i_id" prefWidth="77.80001831054688" text="ID" />
             <TableColumn fx:id="i_title" prefWidth="132.40001678466797" text="Title" />
@@ -47,22 +59,31 @@
       </TableView>
       <Pane prefHeight="53.0" prefWidth="781.0">
          <children>
-            <Button layoutX="18.0" layoutY="11.0" mnemonicParsing="false" text="Search a customer">
+            <Button layoutX="18.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: #90EE91;" text="Search a customer">
                <graphic>
                   <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="200.0" />
                </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Button>
             <Label layoutX="488.0" layoutY="12.0" text="Customer List">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog"  text="Add Account" />
-            <Button layoutX="864.0" layoutY="17.0" mnemonicParsing="false" fx:id="deleteCustomer" text="Delete Account" />
+            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showAccountDialog" style="-fx-background-color: #CCB7E5;" text="Add Account">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="deleteCustomer" layoutX="864.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #CCB7E5;" text="Delete Account">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
       <HBox alignment="CENTER" />
-      <TableView fx:id="c_tableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="1072.0">
+      <TableView fx:id="c_tableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="1072.0" style="-fx-background-color: #F5F0BF;">
          <columns>
             <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="c_accountType" prefWidth="75.0" text="Type" />

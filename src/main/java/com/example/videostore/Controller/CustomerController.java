@@ -159,7 +159,7 @@ public class CustomerController {
     public Customer checkpromotion(Customer cus, ObservableList<Customer> customersDatabase){
         if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
             cus.setAccountType("Regular");
-            Regular reg = new Regular.RegularBuilder(cus).build();
+            Regular reg = new Regular.RegularBuilder(cus).build(); // all alltribute of the cus paste to reg ( accounttype = regular as a string)
 
             // Update the db
             for(int i = 0; i < customersDatabase.size(); i++) {

@@ -14,12 +14,16 @@ import java.util.Objects;
 
 public class Main extends Application {
     @Override
-    public void start(Stage logIn) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("register.fxml")));
+    public void start(Stage stage) throws IOException {
+        Parent root1 = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("login.fxml")));
+        //Main Stage
         setUserAgentStylesheet(STYLESHEET_CASPIAN); // this is radius border more circle theme
-        Scene scene = new Scene(root);
-        logIn.setScene(scene);
-        logIn.show();
+        Scene scene = new Scene(root1);
+        stage.setTitle("Media Mart");
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
     public static void main(String[] args) throws IOException {

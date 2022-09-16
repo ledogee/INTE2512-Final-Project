@@ -37,6 +37,8 @@ public class adminController extends adminAddItemDialogController implements Ini
     @FXML
     private Button addItemButton;
     @FXML
+    private Button updateItemButton;
+    @FXML
     private VBox adminVBOX;
 
     @FXML
@@ -220,12 +222,14 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         deleteItem.setOnAction(e -> {
             int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-            items.remove(selectedIndex);
+            if(selectedIndex != -1)
+                items.remove(selectedIndex);
         });
 
         deleteCustomer.setOnAction(e -> {
             int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-            customers.remove(selectedIndex);
+            if(selectedIndex != -1)
+                customers.remove(selectedIndex);
         });
 
     }
@@ -308,7 +312,68 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void showAccountDialog(){
+    public void showUpdateItemDialog()
+    {
+        int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.setTitle("Update Item");
+            dialog.setHeaderText("Use this dialog to update an item");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateItemDialogController controller = fxmlLoader.getController();
+            controller.setItemValue(selectedIndex);
+            controller.setNewLabel("");
+            Optional<ButtonType> result = dialog.showAndWait();
+        }
+//        if(result.isPresent() && result.get() == ButtonType.OK) {
+//            // get the controller of Dialog to call the function processResults
+//
+//            Item newItem = controller.processUpdateItem();
+//
+//            System.out.println(newItem);
+//            while((newItem == null && result.get() == ButtonType.OK) ){
+//                controller.setItemLabel();
+//                result = dialog.showAndWait();
+//                newItem = controller.processUpdateItem();
+//                if(newItem != null && result.get() == ButtonType.OK){
+//                    break;
+//                }
+//
+//            }
+//            if(newItem != null && result.get() == ButtonType.OK){
+//                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+//                SingletonDatabase.getItems().add(newItem);
+//            }
+//
+//            if(result.get() == ButtonType.OK){ //just for testing
+//                System.out.println("Ok pressed");
+//            }else {
+//                System.out.println("Cancel pressed");
+//            }
+//
+//
+//        } else {
+//            System.out.println("Cancel pressed");
+//        }
+    }
+
+    public void showNewAccountDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         dialog.setTitle("Add New Customer Info");
@@ -346,9 +411,6 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
             if(newAccount != null && result.get() == ButtonType.OK){
-                List<String> listId = new ArrayList<>();
-                listId.add("");
-                newAccount.setListRentals(listId);
                 SingletonDatabase.getCustomers().add(newAccount);
                 popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
             }

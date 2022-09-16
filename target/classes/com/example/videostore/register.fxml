@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.RegisterController">
+<StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.RegisterController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E0FFFF;">
          <children>
             <VBox alignment="CENTER" prefHeight="73.0" prefWidth="600.0">
                <children>
@@ -33,9 +24,9 @@
                   </Line>
                </children>
             </VBox>
-            <Button layoutX="353.0" layoutY="366.0" mnemonicParsing="false" onAction="#goToLogin" text="Login">
+            <Button layoutX="347.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A63A7A;" text="Login" textFill="WHITE">
                <font>
-                  <Font size="13.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
             <GridPane gridLinesVisible="false" layoutX="105.0" layoutY="76.0" prefHeight="223.0" prefWidth="386.0">
@@ -105,9 +96,9 @@
                   <Label fx:id="invalidUsernameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="370.0" text="This username's already been used." textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
-            <Button fx:id="signUpButton" layoutX="263.0" layoutY="337.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up">
+            <Button fx:id="signUpButton" layoutX="255.0" layoutY="318.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: #CCB7E5;" text="Sign Up">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
             <Label layoutX="180.0" layoutY="370.0" text="Already have an account?">

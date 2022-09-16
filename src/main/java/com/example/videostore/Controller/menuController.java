@@ -71,6 +71,7 @@ public class menuController
 
     @FXML
     private TextField searchbar;
+
     private List<Button> buttonRents;
 
     public void goToLogin(ActionEvent event) throws IOException
@@ -193,15 +194,15 @@ public class menuController
             ObservableList<Item> finalItemsFilter = itemsFilter;
             btn.setOnAction((actionEvent) -> {
                 System.out.println( "SIZE = " + user.getListRentals().size());
-               if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
+                if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
-               } else {
+                } else {
                    if(user instanceof Guest && user.getListRentals().size() <= 3) {
-                       popMenuNotification(menuPane, "Failed to Rent\nGuest account cannot rent more than 2 items at the same time", "#FF0000");
+                       popMenuNotification(menuPane, "Guest account cannot rent more than 2 items at the same time", "#FF0000");
                    } else {
                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
-               }
+                }
             });
         }
         // Wrap the ObservableList in a FilteredList (initially display all data).
