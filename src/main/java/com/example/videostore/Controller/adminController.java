@@ -233,7 +233,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         });
 
     }
-    
+
     public void displayItemOutOfStock(ActionEvent event) {
         ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
 
@@ -422,6 +422,59 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
+    public void showUpdateAccountDialog() {
+        int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.setTitle("Update Account");
+            dialog.setHeaderText("Use this dialog to update an account");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateAccountDialogController controller = fxmlLoader.getController();
+            controller.setCustomerValue(selectedIndex);
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Customer newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                newAccount.setCombinedString(newAccount.arraytostring());
+                System.out.println(newAccount);
+
+                while ((newAccount == null && result.get() == ButtonType.OK)) {
+                    controller.setAccountLabel();
+                    result = dialog.showAndWait();
+
+                    newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                    if (newAccount != null && result.get() == ButtonType.OK) {
+                        break;
+                    }
+                }
+                if (newAccount != null && result.get() == ButtonType.OK) {
+
+                    popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+                }
+
+                System.out.println("Ok pressed");
+
+            } else {
+                System.out.println("Cancel pressed");
+            }
+        }
+    }
 
     public static boolean isDouble(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty
