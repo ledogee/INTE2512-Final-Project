@@ -52,9 +52,7 @@ public class Guest extends Customer {
                         }
                         listItems.add(item.getId());
                         this.setListRentals(listItems);
-
                         customerObservableList.set(indexUser, this);
-
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
                         item.setCopies(item.getCopies() - 1);
