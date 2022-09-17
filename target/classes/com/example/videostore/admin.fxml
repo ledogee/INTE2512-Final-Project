@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<AnchorPane fx:id="adminPane" prefHeight="865.0" prefWidth="1509.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
-      <Pane prefHeight="53.0" prefWidth="781.0">
+      <AnchorPane layoutX="20.0" layoutY="57.0" prefHeight="350.0" prefWidth="339.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
-            <Button layoutX="220.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: #90EE91;" text="Search an item">
+            <Button layoutX="48.0" layoutY="75.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Search an item" textFill="#2c3639">
                <graphic>
                   <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
                </graphic>
@@ -16,86 +23,105 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="490.0" layoutY="12.0" text="Item List">
+            <Button layoutX="48.0" layoutY="127.0" mnemonicParsing="false" onAction="#displayAllItems" prefHeight="33.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="All Items" textFill="#2c3639">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="47.0" layoutY="175.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Out of stock Items" textFill="#2c3639">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="addItemButton" layoutX="47.0" layoutY="220.0" mnemonicParsing="false" onAction="#showNewItemDialog" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Add Item" textFill="#2c3639">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteItem" layoutX="46.0" layoutY="264.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Delete Item" textFill="#2c3639">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="updateItemButton" layoutX="47.0" layoutY="305.0" mnemonicParsing="false" onAction="#showUpdateItemDialog" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label alignment="CENTER" layoutY="13.0" prefHeight="47.0" prefWidth="339.0" text="Item Management" textFill="#eeccb2">
+               <font>
+                  <Font name="System Bold" size="29.0" />
                </font>
             </Label>
-            <Button fx:id="addItemButton" layoutX="858.0" layoutY="14.0" mnemonicParsing="false" onAction="#showNewItemDialog" style="-fx-background-color: #CCB7E5;" text="Add Item">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="returnToLoginButton" layoutX="8.0" layoutY="13.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="106.0" style="-fx-background-color: #CCB7E5;" text="Return to Login">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="deleteItem" layoutX="939.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #CCB7E5;" text="Delete Item">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button layoutX="647.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayAllItems" style="-fx-background-color: #A63A7A;" text="All Items" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button layoutX="730.0" layoutY="14.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" style="-fx-background-color: #A63A7A;" text="Out of stock Items" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="updateItemButton" layoutX="1024.0" layoutY="14.0" mnemonicParsing="false" onAction="#showUpdateItemDialog" text="Update" />
          </children>
-      </Pane>
-      <HBox alignment="CENTER" />
-      <TableView fx:id="i_tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="670.0" style="-fx-background-color: #F5F0BF;">
+      </AnchorPane>
+      <HBox alignment="CENTER" layoutY="115.0" />
+      <TableView fx:id="i_tableView" layoutX="373.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
          <columns>
-            <TableColumn fx:id="i_id" prefWidth="77.80001831054688" text="ID" />
-            <TableColumn fx:id="i_title" prefWidth="132.40001678466797" text="Title" />
-            <TableColumn fx:id="i_rentalType" prefWidth="79.39999389648438" text="Rental Type" />
-            <TableColumn fx:id="i_loanType" prefWidth="71.80001831054688" text="Loan Type" />
-            <TableColumn fx:id="i_numCopies" prefWidth="82.79998779296875" text="Num Copies" />
-            <TableColumn fx:id="i_rentalFee" prefWidth="74.0" text="Rental Fee" />
-            <TableColumn fx:id="i_status" prefWidth="79.79998779296875" text="Status" />
-            <TableColumn fx:id="i_genres" prefWidth="68.39996337890625" text="Genres" />
+            <TableColumn fx:id="i_id" prefWidth="92.0" text="ID" />
+            <TableColumn fx:id="i_title" prefWidth="118.0" text="Title" />
+            <TableColumn fx:id="i_rentalType" prefWidth="107.0" text="Rental Type" />
+            <TableColumn fx:id="i_loanType" prefWidth="152.0" text="Loan Type" />
+            <TableColumn fx:id="i_numCopies" prefWidth="127.0" text="Num Copies" />
+            <TableColumn fx:id="i_rentalFee" prefWidth="148.0" text="Rental Fee" />
+            <TableColumn fx:id="i_status" prefWidth="176.0" text="Status" />
+            <TableColumn fx:id="i_genres" prefWidth="185.0" text="Genres" />
          </columns>
       </TableView>
-      <Pane prefHeight="53.0" prefWidth="781.0">
+      <HBox alignment="CENTER" layoutY="468.0" />
+      <TableView fx:id="c_tableView" layoutX="373.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="401.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
+         <columns>
+            <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="c_accountType" prefWidth="77.0" text="Type" />
+            <TableColumn fx:id="c_name" prefWidth="85.0" text="Name" />
+            <TableColumn fx:id="c_address" prefWidth="121.33331298828125" text="Address" />
+            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="99.0" text="Phone" />
+            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="119.0" text="Balance" />
+            <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
+            <TableColumn fx:id="c_password" prefWidth="97.0" text="Password" />
+            <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="96.0" text="NumOfReturn" />
+            <TableColumn fx:id="c_rewardPoint" minWidth="0.0" prefWidth="88.0" text="RewardPoint" />
+            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="151.0" text="ListRental" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="18.0" layoutY="417.0" prefHeight="401.0" prefWidth="339.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
-            <Button layoutX="18.0" layoutY="11.0" mnemonicParsing="false" style="-fx-background-color: #90EE91;" text="Search a customer">
+            <Label alignment="CENTER" layoutY="13.0" prefHeight="47.0" prefWidth="339.0" text="Customer Management" textFill="#eeccb2">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+            </Label>
+            <Button layoutX="44.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Search a customer" textFill="#2c3639">
                <graphic>
-                  <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="200.0" />
+                  <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="120.0" />
                </graphic>
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="488.0" layoutY="12.0" text="Customer List">
+            <Button layoutX="44.0" layoutY="124.0" mnemonicParsing="false" onAction="#showNewAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Add Account" textFill="#2c3639">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Button layoutX="764.0" layoutY="17.0" mnemonicParsing="false" onAction="#showNewAccountDialog" style="-fx-background-color: #CCB7E5;" text="Add Account">
+            </Button>
+            <Button fx:id="deleteCustomer" layoutX="44.0" layoutY="168.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Delete Account" textFill="#2c3639">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="deleteCustomer" layoutX="864.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #CCB7E5;" text="Delete Account">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+            </Button>
+            <Button layoutX="44.0" layoutY="214.0" mnemonicParsing="false" onAction="#showUpdateAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639" />
          </children>
-      </Pane>
-      <HBox alignment="CENTER" />
-      <TableView fx:id="c_tableView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="1072.0" style="-fx-background-color: #F5F0BF;">
-         <columns>
-            <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="c_accountType" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="c_name" prefWidth="86.1999740600586" text="Name" />
-            <TableColumn fx:id="c_address" prefWidth="121.33331298828125" text="Address" />
-            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="135.33334350585938" text="Phone" />
-            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="81.33328247070312" text="Balance" />
-            <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
-            <TableColumn fx:id="c_password" prefWidth="103.3333740234375" text="Password" />
-            <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="84.0" text="NumOfReturn" />
-            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="211.3333740234375" text="ListRental" />
-         </columns>
-      </TableView>
+      </AnchorPane>
+      <MenuBar layoutY="-1.0" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1510.0">
+        <menus>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button accessibleRole="PARENT" mnemonicParsing="false" onAction="#goToLogin" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: transparent;" text="Log Out" />
+               </graphic></Menu>
+          <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" onAction="#goToRegister" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="Sign Up" />
+               </graphic></Menu>
+        </menus>
+      </MenuBar>
    </children>
-</VBox>
+</AnchorPane>

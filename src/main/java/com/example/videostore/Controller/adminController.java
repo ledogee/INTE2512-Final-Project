@@ -12,14 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -32,6 +31,7 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarCustomer;
     public Button deleteCustomer;
     public Button deleteItem;
+
     @FXML
     private Button returnToLoginButton;
     @FXML
@@ -39,11 +39,14 @@ public class adminController extends adminAddItemDialogController implements Ini
     @FXML
     private Button updateItemButton;
     @FXML
-    private VBox adminVBOX;
+    private AnchorPane adminPane;
 
-    @FXML
+
     public void goToLogin(ActionEvent event) throws IOException {
         SceneSwitcher.switchToLogin(event);
+    }
+    public void goToRegister(ActionEvent event) throws IOException {
+        SceneSwitcher.switchToRegister(event);
     }
     @FXML
     private TableColumn<Customer, String> c_accountType;
@@ -67,6 +70,9 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     @FXML
     private TableColumn<Customer, String> c_phone;
+
+    @FXML
+    private TableColumn<Customer, Integer> c_rewardPoint;
 
     @FXML
     private TableColumn<Customer, String> c_username;
@@ -187,6 +193,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         c_name.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         c_password.setCellValueFactory(new PropertyValueFactory<Customer, String>("password"));
         c_phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
+        c_rewardPoint.setCellValueFactory(new PropertyValueFactory<>("rewardPoint"));
         c_username.setCellValueFactory(new PropertyValueFactory<Customer, String>("username"));
         c_listRental.setCellValueFactory(new PropertyValueFactory<Customer, String>("combinedString"));
         c_numOfReturn.setCellValueFactory(new PropertyValueFactory<Customer, String>("numberOfReturn"));
@@ -233,7 +240,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         });
 
     }
-    
+
     public void displayItemOutOfStock(ActionEvent event) {
         ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
 
@@ -251,7 +258,7 @@ public class adminController extends adminAddItemDialogController implements Ini
     public void showNewItemDialog()
     {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.initOwner(adminPane.getScene().getWindow());
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Use this dialog to create a new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -274,18 +281,9 @@ public class adminController extends adminAddItemDialogController implements Ini
         controller.setNewLabel("");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            // get the controller of Dialog to call the function processResults
-
-//            Label label1 = new Label();
-//            label1.setText("Hello");
             Item newItem = controller.processItem();
-/*
-            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
-*/
-//            itemListView.getSelectionModel().select(newItem);
 
             System.out.println(newItem);
-//            items.add(newItem);
             while((newItem == null && result.get() == ButtonType.OK) ){
                 controller.setItemLabel();
                 result = dialog.showAndWait();
@@ -295,8 +293,8 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
 
             }
-            if(newItem != null && result.get() == ButtonType.OK){
-                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+            if(result.get() == ButtonType.OK){
+                popAdminNotification(adminPane, "Successfully add new Item", "#008000");
                 SingletonDatabase.getItems().add(newItem);
             }
 
@@ -305,7 +303,6 @@ public class adminController extends adminAddItemDialogController implements Ini
             }else {
                 System.out.println("Cancel pressed");
             }
-
 
         } else {
             System.out.println("Cancel pressed");
@@ -317,13 +314,11 @@ public class adminController extends adminAddItemDialogController implements Ini
         int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
         if(selectedIndex != -1) {
             Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.initOwner(adminVBOX.getScene().getWindow());
+            dialog.initOwner(adminPane.getScene().getWindow());
             dialog.setTitle("Update Item");
             dialog.setHeaderText("Use this dialog to update an item");
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
-//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
-//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -356,8 +351,8 @@ public class adminController extends adminAddItemDialogController implements Ini
 //                }
 //
 //            }
-//            if(newItem != null && result.get() == ButtonType.OK){
-//                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+//            if(result.get() == ButtonType.OK){
+//                popAdminNotification(adminPane, "Successfully update Item", "#008000");
 //                SingletonDatabase.getItems().add(newItem);
 //            }
 //
@@ -375,9 +370,9 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void showNewAccountDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.initOwner(adminVBOX.getScene().getWindow());
+        dialog.initOwner(adminPane.getScene().getWindow());
         dialog.setTitle("Add New Customer Info");
-        dialog.setHeaderText("Use this dialog to create a new customer");
+        dialog.setHeaderText("Use this dialog to add a new customer");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addCustomerDialog.fxml"));
 
@@ -412,7 +407,7 @@ public class adminController extends adminAddItemDialogController implements Ini
             }
             if(newAccount != null && result.get() == ButtonType.OK){
                 SingletonDatabase.getCustomers().add(newAccount);
-                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+                popAdminNotification(adminPane, "Successfully add new Account", "#008000");
             }
 
             System.out.println("Ok pressed");
@@ -422,6 +417,63 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
+    public void showUpdateAccountDialog() {
+        int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminPane.getScene().getWindow());
+            dialog.setTitle("Update Account");
+            dialog.setHeaderText("Use this dialog to update an account");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            adminUpdateAccountDialogController controller = fxmlLoader.getController();
+            controller.setCustomerValue(selectedIndex);
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Customer newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                if(newAccount != null){
+                    newAccount.setCombinedString(newAccount.arraytostring());
+                }
+                System.out.println(newAccount);
+
+                while ((newAccount == null && result.get() == ButtonType.OK)) {
+                    controller.setAccountLabel();
+                    result = dialog.showAndWait();
+
+                    newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                    if(newAccount != null){
+                        newAccount.setCombinedString(newAccount.arraytostring());
+                    }
+                    if (newAccount != null && result.get() == ButtonType.OK) {
+                        break;
+                    }
+                }
+                if (result.get() == ButtonType.OK) { //Display notification
+                    popAdminNotification(adminPane, "Successfully update Account", "#008000");
+                }
+
+                System.out.println("Ok pressed");
+
+            } else {
+                System.out.println("Cancel pressed");
+            }
+        }
+    }
 
     public static boolean isDouble(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty

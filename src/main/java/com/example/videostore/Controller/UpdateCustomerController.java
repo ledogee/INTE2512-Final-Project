@@ -46,6 +46,7 @@ public class UpdateCustomerController implements Initializable {
     private Label isFilledLabel;
 
     public void loadPersonalInformation() {
+
         name.setText(user.getName());
         username.setText(user.getUsername());
         password.setText(user.getPassword());

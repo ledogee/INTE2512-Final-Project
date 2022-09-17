@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vip extends Customer {
-    private int rewardPoint = 0;
+/*    private int rewardPoint = 0;*/
     public Vip(Vip.VipBuilder builder) {
         this.setName(builder.name);
         this.setAddress(builder.address);
@@ -37,13 +37,7 @@ public class Vip extends Customer {
 
     }
 
-    public int getRewardPoint() {
-        return rewardPoint;
-    }
 
-    public void setRewardPoint(int rewardPoint) {
-        this.rewardPoint = rewardPoint;
-    }
 
     @Override
     public String toString() {

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class SceneSwitcher {
         stage.setScene(scene);
         stage.show();
     }
+
 
     public static void switchToRegister(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Main.class.getResource("register.fxml"));
