@@ -20,7 +20,7 @@
          </children>
       </HBox>
       <Label fx:id="validation" alignment="CENTER" prefHeight="18.0" prefWidth="425.0" textAlignment="CENTER" />
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#topUpBalance" style="-fx-background-color: #000000;" text="TOP UP" textFill="#f8f8f8">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#topUpBalance" style="-fx-background-color: #000000;" text="TOP UP" textFill="#f8f8f8" fx:id="topUpBtn">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

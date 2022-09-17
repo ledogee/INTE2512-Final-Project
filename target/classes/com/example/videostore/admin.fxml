@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <Pane prefHeight="53.0" prefWidth="781.0">
          <children>
@@ -80,6 +86,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
+            <Button layoutX="976.0" layoutY="17.0" mnemonicParsing="false" onAction="#showUpdateAccountDialog" text="Update" />
          </children>
       </Pane>
       <HBox alignment="CENTER" />
@@ -89,12 +96,13 @@
             <TableColumn fx:id="c_accountType" prefWidth="75.0" text="Type" />
             <TableColumn fx:id="c_name" prefWidth="86.1999740600586" text="Name" />
             <TableColumn fx:id="c_address" prefWidth="121.33331298828125" text="Address" />
-            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="135.33334350585938" text="Phone" />
-            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="81.33328247070312" text="Balance" />
+            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="99.0" text="Phone" />
+            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="119.0" text="Balance" />
             <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
             <TableColumn fx:id="c_password" prefWidth="103.3333740234375" text="Password" />
             <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="84.0" text="NumOfReturn" />
-            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="211.3333740234375" text="ListRental" />
+            <TableColumn fx:id="c_rewardPoint" minWidth="0.0" prefWidth="84.0" text="RewardPoint" />
+            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="126.0" text="ListRental" />
          </columns>
       </TableView>
    </children>

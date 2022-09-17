@@ -1,6 +1,9 @@
 package com.example.videostore.Controller;
 
-import com.example.videostore.Model.*;
+import com.example.videostore.Model.Customer;
+import com.example.videostore.Model.Guest;
+import com.example.videostore.Model.Regular;
+import com.example.videostore.Model.Vip;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +19,7 @@ import java.util.ResourceBundle;
 
 import static com.example.videostore.Controller.adminController.*;
 
-public class adminAddAccountDialogController implements Initializable {
+public class adminUpdateAccountDialogController implements Initializable {
 
     @FXML
     private ComboBox comboBoxAccountType;
@@ -51,7 +54,8 @@ public class adminAddAccountDialogController implements Initializable {
     boolean isBalanceValid = false;
     boolean isUsernameValid = false;
     boolean isPasswordValid = false;
-    public Customer processAccount(){
+
+    public Customer processUpdateAccount(Customer cus, ObservableList<Customer> customersDatabase, int selectedIndex){
         isAccountTypeFilled = false;
         isNameValid = false;
         isAddressValid = false;
@@ -89,7 +93,7 @@ public class adminAddAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        if(checkUsernameAvailable(Username)){
+        if(checkNewUsernameAvailable(Username)){
             isUsernameValid = true;
         }
 
@@ -106,11 +110,42 @@ public class adminAddAccountDialogController implements Initializable {
 
         List<String> listId = new ArrayList<>();
         if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
-            return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+
+            cus.setName(Name);
+            cus.setAddress(Address);
+            cus.setPhone(Phone);
+            cus.setBalance(Balance);
+            cus.setUsername(Username);
+            cus.setPassword(Password);
+            Guest guest = new Guest.GuestBuilder(cus).build();
+            //Update database
+            customersDatabase.set(selectedIndex, guest);
+            return guest;
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            return new Regular.RegularBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+            cus.setName(Name);
+            cus.setAddress(Address);
+            cus.setPhone(Phone);
+            cus.setBalance(Balance);
+            cus.setUsername(Username);
+            cus.setPassword(Password);
+            Regular reg = new Regular.RegularBuilder(cus).build();
+            //Update database
+            customersDatabase.set(selectedIndex, reg);
+            return reg;
+
         } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+            cus.setName(Name);
+            cus.setAddress(Address);
+            cus.setPhone(Phone);
+            cus.setBalance(Balance);
+            cus.setUsername(Username);
+            cus.setPassword(Password);
+            Vip vip = new Vip.VipBuilder(cus).build();
+
+            // Update the db
+            customersDatabase.set(selectedIndex, vip);
+            System.out.println(vip);
+            return vip;
         }
         return null;
     }
@@ -153,7 +188,7 @@ public class adminAddAccountDialogController implements Initializable {
             stringBuilder.append("Username Already Exist or Empty Input\n");
         }
         if(!isPasswordValid){
-            stringBuilder.append("Please fill in a password\n");
+            stringBuilder.append("Please enter a password\n");
         }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));
@@ -165,13 +200,21 @@ public class adminAddAccountDialogController implements Initializable {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
     }
 
-    public boolean checkUsernameAvailable(String string){
-        ObservableList<Customer> temp = getCustomers();
-        for(Customer customer: temp){
-            if(string.equals(customer.getUsername()) || string.isEmpty()){
-                return false;
-            }
+    public boolean checkNewUsernameAvailable(String string){
+        if(string.isEmpty()){
+            return false;
         }
         return true;
     }
+
+    public void setCustomerValue(int i) {
+        comboBoxAccountType.setValue(customers.get(i).getAccountType());
+        name.setText(customers.get(i).getName());
+        address.setText(customers.get(i).getAddress());
+        phone.setText(customers.get(i).getPhone());
+        balance.setText(String.valueOf(customers.get(i).getBalance()));
+        username.setText(customers.get(i).getUsername());
+        password.setText(customers.get(i).getPassword());
+    }
+
 }
