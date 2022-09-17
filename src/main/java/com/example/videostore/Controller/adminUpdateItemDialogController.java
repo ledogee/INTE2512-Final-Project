@@ -53,8 +53,18 @@ public class adminUpdateItemDialogController implements Initializable {
         numOfCopies.setText(String.valueOf(items.get(i).getCopies()));
         rentalFee.setText(String.valueOf(items.get(i).getRentalFee()));
         year.setText(items.get(i).getYear());
-        comboBoxLoanType.setValue(items.get(i).getLoanType());
-        comboBoxRentalStatus.setValue(items.get(i).isRentalStatus());
+        comboBoxLoanType.setValue((items.get(i).getLoanType().equals("TwoDays"))? "TwoDays" : "OneWeek");
+        comboBoxRentalStatus.setValue((items.get(i).isRentalStatus())?"Available":"Unavailable");
+        switch(items.get(i).getRentalType()){
+            case "DVD":
+                comboBoxGenres.setValue((((DVD)(items).get(i)).getGenres()));
+                break;
+            case "Movie":
+                comboBoxGenres.setValue((((Movie)(items).get(i)).getGenres()));
+                break;
+        }
+
+
     }
     public void setNewLabel(String string) {
         label.setText(string);
@@ -84,9 +94,9 @@ public class adminUpdateItemDialogController implements Initializable {
         tempLoanType = comboBoxLoanType.getSelectionModel().getSelectedIndex();
         String LoanType;
         if(tempLoanType == 0){
-            LoanType = "1-week";
+            LoanType = "TwoDays";
         }else{
-            LoanType = "2-day";
+            LoanType = "OneWeek";
         }
         Integer NumOfCopies = null;
         if(isInteger(numOfCopies.getText()) && Integer.parseInt(numOfCopies.getText().trim())>=0){
@@ -170,7 +180,7 @@ public class adminUpdateItemDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxRentalType.getItems().addAll("Game", "DVD", "Movie");
-        comboBoxLoanType.getItems().addAll("2-day", "1-week");
+        comboBoxLoanType.getItems().addAll("TwoDays", "OneWeek");
         comboBoxRentalStatus.getItems().addAll("Available", "Unavailable");
         comboBoxGenres.getItems().addAll("Action", "Horror", "Drama", "Comedy");
         comboBoxRentalType.valueProperty().addListener(new ChangeListener<String>() {
