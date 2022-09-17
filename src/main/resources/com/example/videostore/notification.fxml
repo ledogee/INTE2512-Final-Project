@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+
+<DialogPane fx:id="colorPane"  prefHeight="100.0" prefWidth="683.0" style="-fx-background-color: #DCD7C9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.notificationController">
+   <content>
+      <Label fx:id="labelNotification" alignment="CENTER" prefHeight="43.0" prefWidth="600.0" text="HelloWorld" textAlignment="CENTER" />
+   </content>
+</DialogPane>

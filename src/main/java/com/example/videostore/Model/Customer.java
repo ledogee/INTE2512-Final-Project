@@ -2,7 +2,10 @@ package com.example.videostore.Model;
 
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
+import java.util.ArrayList;
 import java.util.List;
 public abstract class Customer  {
     private static int idCount = 0;
@@ -13,10 +16,20 @@ public abstract class Customer  {
     private String accountType;
     private List<String> listRentals;
     private double balance;
-    private String username;
+    private String thisname;
     private String password;
 
+    private int numberOfReturn = 0;
 
+    private int rewardPoint = 0;
+
+    public int getNumberOfReturn() {
+        return numberOfReturn;
+    }
+
+    public void setNumberOfReturn(int numberOfReturn) {
+        this.numberOfReturn = numberOfReturn;
+    }
 
     private String combinedString;
 
@@ -30,29 +43,70 @@ public abstract class Customer  {
                 ", accountType='" + accountType + '\'' +
                 ", listRentals=" + listRentals +
                 ", balance=" + balance +
-                ", username='" + username + '\'' +
+                ", thisname='" + thisname + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
 
-    public boolean rentItem(Item item, ObservableList<Item> observableList) {
-        if(this.balance >= item.getRentalFee() && item.getCopies() != 0) {
-            double currentBalance = this.balance;
-            int currentCopies = item.getCopies();
-            item.setCopies(item.getCopies() - 1);
-            System.out.println("Rent successfully!");
-            this.balance = this.balance - item.getRentalFee();
-            System.out.println("Your balance change from " + currentBalance + " to " + this.balance);
-            this.listRentals.add(item.getId());
-            System.out.println("Your rented items has add new one item!");
-            System.out.println(this.getListRentals());
-            System.out.println("Item copies change from " + currentCopies+ " to " + item.getCopies());
-            return true;
-        } else {
-            System.out.println("You don't have enough money to rent");
-            return false;
+    public boolean rentItem( ObservableList<Item> itemObservableList, ObservableList<Customer>  customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
+        for(int i = 0; i < itemObservableList.size(); i++) {
+            if (itemObservableList.get(i).getButtonRent() == btn) {
+                Item item = itemObservableList.get(i);
+                // Check item price with balance of the user
+                if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
+                        itemObservableList.set(i, item);
+                        this.setBalance(this.getBalance() - item.getRentalFee());
+
+                        List<String> listItems;
+                        if(this.getListRentals() == null) {
+                            listItems = new ArrayList<>();
+                        } else {
+                            listItems = this.getListRentals();
+                        }
+                        listItems.add(item.getId());
+                        this.setListRentals(listItems);
+                        customerObservableList.set(indexUser, this);
+                        String result = String.format("%.2f", this.getBalance());
+                        balanceLabel.setText(result + " $");
+                        item.setCopies(item.getCopies() - 1);
+                        if (item.getCopies() == 0) {
+                            btn.setDisable(true);
+                            item.setRentalStatus(false);
+                            itemObservableList.set(i, item);
+                        }
+                        return true;
+                }
+            }
         }
+        return false;
+    }
+
+    public boolean returnItem(ObservableList<Item> itemObservableList,ObservableList<Item> rented, Button btn){
+        for(int i = 0; i < rented.size();i++){
+            if(rented.get(i).getButtonReturn().equals(btn)){
+                Item item = rented.get(i);
+                rented.get(i).setQuantity(rented.get(i).getQuantity()-1);
+                System.out.println(rented.get(i).getQuantity());
+                if(rented.get(i).getQuantity() == 0){
+                    rented.remove(i);
+                }
+                System.out.println(item.getTitle());
+                for (int j = 0; j < itemObservableList.size();j++){
+                    if (item.getId().equals(itemObservableList.get(j).getId())) {
+                        item = itemObservableList.get(j);
+                        List<String> list = this.getListRentals();
+                        item.setCopies(item.getCopies()+1);
+                        list.remove(item.getId());
+                        this.setListRentals(list);
+                        itemObservableList.set(j,item);
+                        this.setNumberOfReturn(this.getNumberOfReturn()+1);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     public String arraytostring (){
         if(this.listRentals==null||this.listRentals.isEmpty()){
@@ -67,6 +121,15 @@ public abstract class Customer  {
 
     public Customer() {
         idCount++;
+
+    }
+
+    public int getRewardPoint() {
+        return rewardPoint;
+    }
+
+    public void setRewardPoint(int rewardPoint) {
+        this.rewardPoint = rewardPoint;
     }
 
     public static int getIdCount() {
@@ -138,11 +201,11 @@ public abstract class Customer  {
     }
 
     public String getUsername() {
-        return username;
+        return thisname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String thisname) {
+        this.thisname = thisname;
     }
 
     public String getPassword() {

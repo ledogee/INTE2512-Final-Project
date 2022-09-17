@@ -27,6 +27,11 @@ public class SingletonDatabase {
         return items;
     }
     public static ObservableList<Customer> getCustomers() {return customers;}
+
+    public static void setCustomers(ObservableList<Customer> customers) {
+        SingletonDatabase.customers = customers;
+    }
+
     public static void loadItems() throws IOException{
         items= FXCollections.observableArrayList();
         Path path = Paths.get(itemFileName);
@@ -72,9 +77,15 @@ public class SingletonDatabase {
         }
     }
     public static List<String> getItemListID(String str) {
-        String[] listStr=  str.split(" ");
-        List<String> listIdItems = new ArrayList<String>(List.of(listStr));
-        return listIdItems;
+        List<String> listIdItems = new ArrayList<>();
+        if(str.isEmpty()) {
+            return listIdItems;
+        } else {
+            String[] listStr=  str.split(" ");
+            listIdItems = new ArrayList<String>(List.of(listStr));
+            return listIdItems;
+        }
+
     }
     public static void loadCustomers() throws IOException {
         customers = FXCollections.observableArrayList();
@@ -95,20 +106,21 @@ public class SingletonDatabase {
                 String accountType = customerPieces[4];
                 String username = customerPieces[5];
                 String password = customerPieces[6];
-                Double balance = Double.parseDouble(customerPieces[7]);
+                double balance = Double.parseDouble(customerPieces[7]);
                 List list = getItemListID(customerPieces[8]);
+                int numOfReturn = Integer.parseInt(customerPieces[9]);
                 switch(accountType){
                     case "Guest":
-                        Guest guest = new Guest.GuestBuilder(id, name, username, password, balance,list).buildAddress(customerPieces[2]).buildPhone(customerPieces[3]).build();
+                        Guest guest = new Guest.GuestBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildNumReturn(numOfReturn).build();
                         customers.add(guest);
                         break;
                     case "Regular":
-                        Regular regular = new Regular.RegularBuilder(id, name, username, password, balance, list).buildAddress(address).buildPhone(phoneNumber).build();
+                        Regular regular = new Regular.RegularBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildNumReturn(numOfReturn).build();
                         customers.add(regular);
                         break;
                     case "Vip":
-                        int rewardPoint = Integer.parseInt(customerPieces[9]);
-                        Vip vip = new Vip.VipBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildRewardPoint(rewardPoint).build();
+                        int rewardPoint = Integer.parseInt(customerPieces[10]);
+                        Vip vip = new Vip.VipBuilder(id, name, username, password, balance,list).buildAddress(address).buildPhone(phoneNumber).buildNumReturn(numOfReturn).buildRewardPoint(rewardPoint).build();
                         customers.add(vip);
                         break;
                 }
@@ -126,7 +138,7 @@ public class SingletonDatabase {
             if (save.getListRentals() != null) {
                 bw.write(save.saverentals(save.getListRentals()));
             }
-            bw.write(',');
+            bw.write(',' + String.valueOf(save.getNumberOfReturn()) + ',');
             if (save.getAccountType().equals("Vip")) {
                 bw.write(String.valueOf(((Vip) save).getRewardPoint()));
                 bw.write(',');
@@ -135,7 +147,6 @@ public class SingletonDatabase {
         }
         bw.close();
     }
-
 
     public static void saveitems() throws IOException {
         FileOutputStream outputStream = new FileOutputStream(itemFileName);
@@ -149,8 +160,35 @@ public class SingletonDatabase {
             bw.newLine();
         }
         bw.close();
-        }
     }
+
+
+    /*public static Customer checkpromotion(Customer cus){
+        for(int i = 0; i < customers.size(); i++){
+            if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
+                cus.setAccountType("Regular");
+                Regular reg = new Regular.RegularBuilder(cus).build();
+                if(customers.get(i).getId().equals(reg.getId())){
+                    getCustomers().set(i, reg);
+                    *//*customers.set(i,reg);*//*
+                }
+                *//*setCustomers(customers);*//*
+                System.out.println(customers.get(i).getAccountType());
+                return reg;
+            }else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")){
+                cus.setAccountType("VIP");
+                Vip vip = new Vip.VipBuilder(cus).build();
+                if(customers.get(i).getId().equals(vip.getId())){
+                    getCustomers().set(i, vip);
+                }
+                setCustomers(customers);
+                System.out.println(customers.get(i).getAccountType());
+                return vip;
+            }
+        }
+        return cus;
+    }*/
+}
 
 
 

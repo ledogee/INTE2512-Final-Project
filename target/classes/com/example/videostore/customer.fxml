@@ -10,27 +10,34 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" prefWidth="202.0" text="Customer Details" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+        <Label layoutX="28.0" layoutY="24.0" text="Customer Details" textFill="#dcd7c9">
             <font>
-                <Font name="System Bold" size="27.0" />
+                <Font name="Times New Roman Bold" size="60.0" />
             </font>
         </Label>
-        <Button layoutX="456.0" layoutY="15.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" text="Update Information" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0" />
-        <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#goToLogin" text="Sign Out" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" />
-        <TabPane layoutY="50.0" prefHeight="300.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+        <Button layoutX="734.0" layoutY="74.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #C5D8A4;" text="Update Information" textFill="#3f4e4f" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="74.0">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font></Button>
+        <Button layoutX="26.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Sign Out" textFill="#3f4e4f">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font></Button>
+        <TabPane layoutX="23.0" layoutY="130.0" prefHeight="482.0" prefWidth="943.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="150.0" tabMaxWidth="150.0">
             <tabs>
                 <Tab text="Personal Information">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="1000.0" style="-fx-background-color: #DCD7C9;">
                             <children>
-                                <GridPane layoutX="15.0" layoutY="14.0" prefHeight="157.0" prefWidth="570.0">
+                                <GridPane layoutX="60.0" layoutY="39.0" prefHeight="340.0" prefWidth="799.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="132.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="468.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="172.01370239257812" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="625.0248260498047" minWidth="10.0" prefWidth="597.9862976074219" />
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -38,21 +45,48 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="ID:" />
-                                        <Label text="Name:" GridPane.rowIndex="1" />
-                                        <Label text="Username:" GridPane.rowIndex="2" />
-                                        <Label text="Password:" GridPane.rowIndex="3" />
-                                        <Label text="Phone:" GridPane.rowIndex="4" />
-                                        <Label text="Address:" GridPane.rowIndex="5" />
-                                        <Label prefHeight="18.0" prefWidth="99.0" GridPane.columnIndex="1" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <Label alignment="CENTER" text="Name:" textFill="#5e6f64">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" text="Username:" textFill="#5e6f64" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label text="Password:" textFill="#5e6f64" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label text="Phone:" textFill="#5e6f64" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label text="Address:" textFill="#5e6f64" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="name" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="username" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="password" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="phone" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="address" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
                                     </children>
                                 </GridPane>
                             </children>
@@ -61,24 +95,52 @@
                 </Tab>
                 <Tab text="Your Account">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #DCD7C9;">
                             <children>
-                                <GridPane layoutX="20.0" layoutY="22.0" prefHeight="94.0" prefWidth="331.0">
+                                <GridPane layoutX="60.0" layoutY="39.0" prefHeight="301.0" prefWidth="600.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="95.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="205.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.05780029296875" minWidth="10.0" prefWidth="299.68365478515625" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="300.81634521484375" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="72.56463623046875" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="95.43536376953125" minHeight="10.0" prefHeight="73.3775634765625" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="89.26754760742188" minHeight="10.0" prefHeight="74.20977783203125" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="73.29022216796875" minHeight="10.0" prefHeight="73.29022216796875" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Label text="Account Type:" />
-                                        <Label text="Reward Points:" GridPane.rowIndex="1" />
-                                        <Label prefHeight="18.0" prefWidth="99.0" GridPane.columnIndex="1" />
-                                        <Label text="Balance:" GridPane.rowIndex="2" />
-                                        <Label GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label text="Account Type:" textFill="#5e6f64">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label text="Reward Points:" textFill="#5e6f64" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="accountType" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label text="Balance:" textFill="#5e6f64" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                                        <Label fx:id="balance" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                              <Label fx:id="rewardPoint" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                              <Label text="Number of return items:" textFill="#5e6f64" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
+                              <Label fx:id="numOfReturn" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Times New Roman Bold" size="24.0" />
+                                 </font></Label>
                                     </children>
                                 </GridPane>
                             </children>
@@ -87,15 +149,15 @@
                 </Tab>
                 <Tab onSelectionChanged="#initialize" text="Your Items">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="600.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="943.0" style="-fx-background-color: #5e6f64;">
                             <children>
-                                <TableView fx:id="tableView" layoutX="15.0" layoutY="-2.0" prefHeight="266.0" prefWidth="568.0">
+                                <TableView fx:id="tableView" layoutX="15.0" layoutY="14.0" prefHeight="411.0" prefWidth="916.0" style="-fx-background-color: DCD7C9;">
                                     <columns>
-                                        <TableColumn fx:id="title" prefWidth="96.0" text="Title" />
-                                        <TableColumn fx:id="rentalType" prefWidth="123.0" text="Rental Type" />
-                                        <TableColumn fx:id="loanType" prefWidth="128.0" text="Loan Type" />
-                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="121.0" text="Number of Copies" />
-                                        <TableColumn editable="false" prefWidth="99.0" />
+                                        <TableColumn fx:id="title" editable="false" prefWidth="229.4353256225586" text="Title" />
+                                        <TableColumn fx:id="rentalType" editable="false" minWidth="1.3266448974609375" prefWidth="179.56118774414062" text="Rental Type" />
+                                        <TableColumn fx:id="loanType" editable="false" prefWidth="178.79019165039062" text="Loan Type" />
+                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="146.3741455078125" text="Quantity" />
+                                        <TableColumn fx:id="action" editable="false" prefWidth="182.1258544921875" text="Action" />
                                     </columns>
                                 </TableView>
                             </children>
@@ -104,6 +166,10 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="366.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMenu" text="Item's Menu" />
+        <Button layoutX="185.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #C5D8A4;" text="Item's Menu" textFill="#3f4e4f">
+         <font>
+            <Font name="Times New Roman" size="24.0" />
+         </font></Button>
+      <Line endX="-46.195465087890625" endY="19.215316772460938" layoutX="537.0" layoutY="80.0" startX="-519.36962890625" startY="19.215316772460938" stroke="#dcd7c9" strokeWidth="3.0" />
     </children>
 </AnchorPane>

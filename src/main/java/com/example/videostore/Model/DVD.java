@@ -19,24 +19,14 @@ public class DVD extends Item {
         this.setId(builder.id);
         this.setYear(builder.year);
         if(this.getId() == null) {
-            if(getIdCount() < 10) {
-                this.setId("I" + "00" +  getIdCount() + "-" + this.getYear());
-            } else if(getIdCount() < 100) {
-                this.setId("I" + "0" +  getIdCount() + "-" + this.getYear());
-            } else if(getIdCount() <= 999) {
-                this.setId("I" +  getIdCount() + "-" + this.getYear());
-            } else {
-                System.out.println("ID Overflow");
-            }
-        } else {
             int id = generateId();
             id++;
-            if(id < 10) {
-                this.setId("I" + "00" +  id + "-" + this.getYear());
-            } else if(getIdCount() < 100) {
-                this.setId("I" + "0" +  id + "-" + this.getYear());
-            } else if(getIdCount() <= 999) {
-                this.setId("I" +  id + "-" + this.getYear());
+            if (id < 10) {
+                this.setId("I" + "00" + id + "-" + this.getYear());
+            } else if (getIdCount() < 100) {
+                this.setId("I" + "0" + id + "-" + this.getYear());
+            } else if (getIdCount() <= 999) {
+                this.setId("I" + id + "-" + this.getYear());
             } else {
                 System.out.println("ID Overflow");
             }
@@ -90,6 +80,15 @@ public class DVD extends Item {
 
         }
 
+        public DVDBuilder(Item item){
+            this.id = item.getId();
+            this.title = item.getTitle();
+            this.loanType = item.getLoanType();
+            this.copies = item.getCopies();
+            this.rentalFee = item.getRentalFee();
+            this.year = item.getYear();
+            this.rentalStatus = item.isRentalStatus();
+        }
         public DVDBuilder(String id, String title, int copies, String loanType, double rentalFee, boolean rentalStatus, String year, String genres) {
             this.id = id;
             this.title = title;

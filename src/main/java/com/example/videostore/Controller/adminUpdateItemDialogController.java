@@ -4,10 +4,10 @@ import com.example.videostore.Model.DVD;
 import com.example.videostore.Model.Game;
 import com.example.videostore.Model.Item;
 import com.example.videostore.Model.Movie;
-import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 import static com.example.videostore.Controller.adminController.*;
 
-public class adminAddItemDialogController implements Initializable {
+public class adminUpdateItemDialogController implements Initializable {
     @FXML
     private TextField title;
 
@@ -47,6 +47,25 @@ public class adminAddItemDialogController implements Initializable {
     @FXML
     private Label label;
 
+    public void setItemValue(int i){
+        comboBoxRentalType.setValue(items.get(i).getRentalType());
+        title.setText(items.get(i).getTitle());
+        numOfCopies.setText(String.valueOf(items.get(i).getCopies()));
+        rentalFee.setText(String.valueOf(items.get(i).getRentalFee()));
+        year.setText(items.get(i).getYear());
+        comboBoxLoanType.setValue((items.get(i).getLoanType().equals("TwoDays"))? "TwoDays" : "OneWeek");
+        comboBoxRentalStatus.setValue((items.get(i).isRentalStatus())?"Available":"Unavailable");
+        switch(items.get(i).getRentalType()){
+            case "DVD":
+                comboBoxGenres.setValue((((DVD)(items).get(i)).getGenres()));
+                break;
+            case "Movie":
+                comboBoxGenres.setValue((((Movie)(items).get(i)).getGenres()));
+                break;
+        }
+
+
+    }
     public void setNewLabel(String string) {
         label.setText(string);
     }
@@ -58,7 +77,7 @@ public class adminAddItemDialogController implements Initializable {
     boolean isFilled = false;
 
 
-    public Item processItem(){
+    public Item processUpdateItem(Item item, ObservableList<Item> itemsDatabase, int selectedIndex){
         isTitleValid = false;
         isNumOfCopiesValid = false;
         isRentalFeeValid = false;
@@ -66,14 +85,19 @@ public class adminAddItemDialogController implements Initializable {
         isFilled = false;
 
         String Title = title.getText().trim();
-        isTitleValid = checkTitleValidation(Title);
+        isTitleValid = checkTitleValidation(Title,selectedIndex);
 
         Integer RentalType = null;
         RentalType = comboBoxRentalType.getSelectionModel().getSelectedIndex();
 
-        Integer LoanType = null;
-        LoanType = comboBoxLoanType.getSelectionModel().getSelectedIndex();
-
+        Integer tempLoanType = null;
+        tempLoanType = comboBoxLoanType.getSelectionModel().getSelectedIndex();
+        String LoanType;
+        if(tempLoanType == 0){
+            LoanType = "TwoDays";
+        }else{
+            LoanType = "OneWeek";
+        }
         Integer NumOfCopies = null;
         if(isInteger(numOfCopies.getText()) && Integer.parseInt(numOfCopies.getText().trim())>=0){
             NumOfCopies = Integer.parseInt(numOfCopies.getText().trim());
@@ -97,9 +121,9 @@ public class adminAddItemDialogController implements Initializable {
         tempRentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex();
         boolean RentalStatus;
         if(tempRentalStatus == 0){
-            RentalStatus = true;
-        }else{
             RentalStatus = false;
+        }else{
+            RentalStatus = true;
         }
 
         System.out.println("-----------");
@@ -109,18 +133,45 @@ public class adminAddItemDialogController implements Initializable {
         System.out.println(Genres + " " + isFilled);
 
 
-        if(tempRentalStatus >= 0 && RentalType >=0 && LoanType >= 0 && ((Genres >= 0 && RentalType > 0)||(RentalType == 0))){
+        if(tempRentalStatus >= 0 && RentalType >=0 && tempLoanType >= 0 && ((Genres >= 0 && RentalType > 0)||(RentalType == 0))){
             isFilled = true;
         }
-
+        System.out.println(isFilled);
         if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
-            return new Game.GameBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
+            item.setTitle(Title);
+            item.setCopies(NumOfCopies);
+            item.setRentalStatus(RentalStatus);
+            item.setRentalFee(RentalFee);
+            item.setLoanType(LoanType);
+            item.setRentalFee(RentalFee);
+            item.setYear(Year);
+            Game game = new Game.GameBuilder(item).build();
+            itemsDatabase.set(selectedIndex,game);
+            return game;
         }
         else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
-            return new DVD.DVDBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
+            item.setTitle(Title);
+            item.setCopies(NumOfCopies);
+            item.setRentalStatus(RentalStatus);
+            item.setRentalFee(RentalFee);
+            item.setLoanType(LoanType);
+            item.setRentalFee(RentalFee);
+            item.setYear(Year);
+            DVD dvd = new DVD.DVDBuilder(item).buildGenres(Genres).build();
+            itemsDatabase.set(selectedIndex,dvd);
+            return dvd;
         }
         else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
-            return new Movie.MovieBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
+            item.setTitle(Title);
+            item.setCopies(NumOfCopies);
+            item.setRentalStatus(RentalStatus);
+            item.setRentalFee(RentalFee);
+            item.setLoanType(LoanType);
+            item.setRentalFee(RentalFee);
+            item.setYear(Year);
+            Movie movie = new Movie.MovieBuilder(item).buildGenres(Genres).build();
+            itemsDatabase.set(selectedIndex,movie);
+            return movie;
         }
 
         return null;
@@ -129,9 +180,9 @@ public class adminAddItemDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxRentalType.getItems().addAll("Game", "DVD", "Movie");
-        comboBoxLoanType.getItems().addAll("2-day", "1-week");
-        comboBoxRentalStatus.getItems().addAll("Available", "Unavailable");
-        comboBoxGenres.getItems().addAll( "Action", "Horror", "Drama", "Comedy");
+        comboBoxLoanType.getItems().addAll("TwoDays", "OneWeek");
+        comboBoxRentalStatus.getItems().addAll("Unavailable", "Available");
+        comboBoxGenres.getItems().addAll("Action", "Horror", "Drama", "Comedy");
         comboBoxRentalType.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue ov, String t, String t1) {
@@ -142,9 +193,29 @@ public class adminAddItemDialogController implements Initializable {
                 }
             }
         });
+
+        numOfCopies.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            try {
+                if(Integer.parseInt(newvalue) == 0) {
+                    comboBoxRentalStatus.getItems().remove("Available");
+                } else if((Integer.parseInt(newvalue) >= 0 || Integer.parseInt(newvalue) != 0)) {
+                    comboBoxRentalStatus.getItems().remove("Available");
+                    comboBoxRentalStatus.getItems().add("Available");
+                }
+            } catch (Exception e) {
+
+            }
+
+        } );
+
     }
-
-
+    private void comboAction(ActionEvent event) {
+        if (comboBoxRentalType.getSelectionModel().getSelectedIndex() == 0) {
+            comboBoxGenres.setDisable(true);
+        } else {
+            comboBoxGenres.setDisable(false);
+        }
+    }
 
     void setItemLabel() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -167,11 +238,11 @@ public class adminAddItemDialogController implements Initializable {
         label.setTextFill(Color.web("#FF0000"));
     }
 
-    boolean checkTitleValidation(String string){
+    boolean checkTitleValidation(String string,int selectedIndex){
 
         ObservableList<Item> temp = getItems();
-        for(Item item: temp){
-            if(string.equals(item.getTitle()) || string.isEmpty()){
+        for(int i = 0; i < temp.size(); i++){
+            if((string.equals(temp.get(i).getTitle())&& i != selectedIndex )|| string.isEmpty()){
                 return false;
             }
         }

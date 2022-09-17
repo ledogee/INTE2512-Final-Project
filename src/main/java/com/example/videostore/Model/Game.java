@@ -16,28 +16,19 @@ public class Game extends Item{
         this.setYear(builder.year);
 
         if(this.getId() == null) {
-            if (getIdCount() < 10) {
-                this.setId("I" + "00" + getIdCount() + "-" + this.getYear());
-            } else if (getIdCount() < 100) {
-                this.setId("I" + "0" + getIdCount() + "-" + this.getYear());
-            } else if (getIdCount() <= 999) {
-                this.setId("I" + getIdCount() + "-" + this.getYear());
-            } else {
-                System.out.println("ID Overflow");
-            }
-        } else {
             int id = generateId();
             id++;
-            if(id < 10) {
-                this.setId("I" + "00" +  id + "-" + this.getYear());
-            } else if(getIdCount() < 100) {
-                this.setId("I" + "0" +  id + "-" + this.getYear());
-            } else if(getIdCount() <= 999) {
-                this.setId("I" +  id + "-" + this.getYear());
+            if (id < 10) {
+                this.setId("I" + "00" + id + "-" + this.getYear());
+            } else if (getIdCount() < 100) {
+                this.setId("I" + "0" + id + "-" + this.getYear());
+            } else if (getIdCount() <= 999) {
+                this.setId("I" + id + "-" + this.getYear());
             } else {
                 System.out.println("ID Overflow");
             }
         }
+
     }
     @Override
     public String toString() {
@@ -85,7 +76,15 @@ public class Game extends Item{
 
         public GameBuilder() {
         }
-
+        public GameBuilder(Item item){
+            this.id = item.getId();
+            this.title = item.getTitle();
+            this.loanType = item.getLoanType();
+            this.copies = item.getCopies();
+            this.rentalFee = item.getRentalFee();
+            this.year = item.getYear();
+            this.rentalStatus = item.isRentalStatus();
+        }
         public GameBuilder(String id, String title, String loanType, int copies, double rentalFee){
             this.id = id;
             this.title = title;
