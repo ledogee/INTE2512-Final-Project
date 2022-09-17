@@ -36,7 +36,7 @@
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Account Type:" textFill="#dcd7c9">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="16.0" name="System Bold" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Address:" textFill="#dcd7c9" GridPane.rowIndex="2">
                      <font>
@@ -44,7 +44,7 @@
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Phone:" textFill="#dcd7c9" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Font" size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Balance:" textFill="#dcd7c9" GridPane.rowIndex="4">
                      <font>
@@ -56,7 +56,7 @@
                      </font></TextField>
                   <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="16.0" name="System Bold" />
                      </font></TextField>
                   <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
