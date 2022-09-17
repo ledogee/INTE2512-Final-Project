@@ -1,38 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.RegisterController">
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.RegisterController">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E0FFFF;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;">
          <children>
-            <VBox alignment="CENTER" prefHeight="73.0" prefWidth="600.0">
+            <VBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="168.0" prefWidth="1000.0">
                <children>
-                  <Label text="Sign Up and start buying">
+                  <Label text="Sign Up and Start Buying" textFill="#dcd7c9">
                      <font>
-                        <Font name="Calibri Bold" size="27.0" />
+                        <Font name="Times New Roman Bold" size="50.0" />
                      </font>
                   </Label>
-                  <Line endX="284.29290771484375" endY="0.7928932309150696" startX="-100.0">
+                  <Line endX="284.29290771484375" endY="0.7928932309150696" startX="-285.9960632324219" startY="0.7865170836448669" stroke="#dcd7c9" strokeWidth="3.0">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Line>
                </children>
             </VBox>
-            <Button layoutX="347.0" layoutY="359.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A63A7A;" text="Login" textFill="WHITE">
+            <Button layoutX="586.0" layoutY="626.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A27B5C;" text="Login" textFill="#2c3639">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Times New Roman" size="22.0" />
                </font>
             </Button>
-            <GridPane gridLinesVisible="false" layoutX="105.0" layoutY="76.0" prefHeight="223.0" prefWidth="386.0">
+            <GridPane gridLinesVisible="false" layoutX="194.0" layoutY="159.0" prefHeight="316.0" prefWidth="595.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="0.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="10.0" prefWidth="286.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.73135375976562" minWidth="0.0" prefWidth="124.39154052734375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.60845947265625" minWidth="10.0" prefWidth="470.60845947265625" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
@@ -46,67 +55,95 @@
                   <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="Name:">
+                  <Label text="Name:" textFill="#dcd7c9">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="address" prefHeight="56.0" prefWidth="257.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="address" prefHeight="35.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter  your address" />
-                     </tooltip></TextField>
-                  <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     </tooltip>
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="phone" prefHeight="35.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your phone in digit" />
-                     </tooltip></TextField>
-                  <TextField fx:id="username" prefWidth="257.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     </tooltip>
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="username" prefHeight="35.0" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your username" />
-                     </tooltip></TextField>
-                  <Label layoutX="10.0" layoutY="24.0" text="Address:" GridPane.rowIndex="2">
+                     </tooltip>
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="10.0" layoutY="24.0" text="Address:" textFill="#dcd7c9" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="68.0" text="Phone:" GridPane.rowIndex="4">
+                  <Label layoutX="10.0" layoutY="68.0" text="Phone:" textFill="#dcd7c9" GridPane.rowIndex="4">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="110.0" text="Username:" GridPane.rowIndex="6">
+                  <Label layoutX="10.0" layoutY="110.0" text="Username:" textFill="#dcd7c9" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="151.0" text="Password:" GridPane.rowIndex="8">
+                  <Label layoutX="10.0" layoutY="151.0" text="Password:" textFill="#dcd7c9" GridPane.rowIndex="8">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <PasswordField fx:id="password" prefHeight="35.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your password" />
-                     </tooltip></PasswordField>
-                  <TextField fx:id="name" layoutX="123.0" layoutY="64.0" GridPane.columnIndex="1">
+                     </tooltip>
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="name" layoutX="123.0" layoutY="64.0" prefHeight="35.0" prefWidth="250.0" GridPane.columnIndex="1">
                      <tooltip>
                         <Tooltip showDelay="0.02s" text="Please enter your name" />
                      </tooltip>
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
                   </TextField>
-                  <Label fx:id="invalidPhoneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="307.0" text="Invalid phone number (must contains DIGITS ONLY)." textAlignment="CENTER" textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="invalidUsernameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="370.0" text="This username's already been used." textFill="#e80505" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Label fx:id="invalidPhoneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="475.0" text="Invalid phone number (must contains DIGITS ONLY)." textAlignment="CENTER" textFill="#daac89" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                     </font></Label>
+                  <Label fx:id="invalidUsernameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="370.0" text="This username's already been used." textFill="#daac89" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Times New Roman Bold" size="20.0" />
+                     </font></Label>
                </children>
             </GridPane>
-            <Button fx:id="signUpButton" layoutX="255.0" layoutY="318.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: #CCB7E5;" text="Sign Up">
+            <Button fx:id="signUpButton" layoutX="476.0" layoutY="546.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: #A27B5C;" text="Sign Up" textFill="#2c3639">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="Times New Roman" size="22.0" />
                </font>
             </Button>
-            <Label layoutX="180.0" layoutY="370.0" text="Already have an account?">
+            <Label layoutX="306.0" layoutY="633.0" text="Already have an account?" textFill="#dcd7c9">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Times New Roman" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="isFilledLabel" contentDisplay="CENTER" layoutX="262.0" layoutY="308.0" text="Please fill in all information" textAlignment="CENTER" textFill="#e80505" visible="false" />
+            <Label fx:id="isFilledLabel" contentDisplay="CENTER" layoutX="392.0" layoutY="494.0" text="Please fill in all information." textAlignment="CENTER" textFill="#daac89" visible="false">
+               <font>
+                  <Font name="Times New Roman Bold" size="22.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

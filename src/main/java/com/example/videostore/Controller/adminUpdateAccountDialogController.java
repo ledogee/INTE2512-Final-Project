@@ -52,17 +52,17 @@ public class adminUpdateAccountDialogController implements Initializable {
     boolean isAddressValid = false;
     boolean isPhoneValid = false;
     boolean isBalanceValid = false;
-    boolean isUsernameValid = false;
+    boolean isUsernameValid = true;
     boolean isPasswordValid = false;
 
-    public Customer processUpdateAccount(Customer cus, ObservableList<Customer> customersDatabase, int selectedIndex){
+    public Customer processUpdateAccount(Customer cus, ObservableList<Customer> customersDatabase){
         isAccountTypeFilled = false;
         isNameValid = false;
         isAddressValid = false;
         isPhoneValid = false;
         isBalanceValid = false;
-        isUsernameValid = false;
         isPasswordValid = false;
+        isUsernameValid = true;
 
         Integer AccountType = null;
         AccountType = comboBoxAccountType.getSelectionModel().getSelectedIndex();
@@ -93,9 +93,14 @@ public class adminUpdateAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        if(checkNewUsernameAvailable(Username, selectedIndex)){
-            isUsernameValid = true;
+        for(Customer it : customersDatabase) {
+            if (it.getUsername().equals(Username)) {
+                isUsernameValid = false;
+                break;
+            }
         }
+
+
 
         String Password = password.getText().trim();
         if(!password.getText().isEmpty()){
@@ -111,8 +116,13 @@ public class adminUpdateAccountDialogController implements Initializable {
             cus.setUsername(Username);
             cus.setPassword(Password);
             Guest guest = new Guest.GuestBuilder(cus).build();
+
             //Update database
-            customersDatabase.set(selectedIndex, guest);
+            for(int i = 0; i < customersDatabase.size(); i++) {
+                if(customersDatabase.get(i).getId().equals(guest.getId())) {
+                    customersDatabase.set(i, guest);
+                }
+            }
             return guest;
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
             cus.setName(Name);
@@ -123,7 +133,11 @@ public class adminUpdateAccountDialogController implements Initializable {
             cus.setPassword(Password);
             Regular reg = new Regular.RegularBuilder(cus).build();
             //Update database
-            customersDatabase.set(selectedIndex, reg);
+            for(int i = 0; i < customersDatabase.size(); i++) {
+                if(customersDatabase.get(i).getId().equals(reg.getId())) {
+                    customersDatabase.set(i, reg);
+                }
+            }
             return reg;
 
         } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
@@ -136,7 +150,11 @@ public class adminUpdateAccountDialogController implements Initializable {
             Vip vip = new Vip.VipBuilder(cus).build();
 
             // Update the db
-            customersDatabase.set(selectedIndex, vip);
+            for(int i = 0; i < customersDatabase.size(); i++) {
+                if(customersDatabase.get(i).getId().equals(vip.getId())) {
+                    customersDatabase.set(i, vip);
+                }
+            }
             System.out.println(vip);
             return vip;
         }
@@ -211,14 +229,14 @@ public class adminUpdateAccountDialogController implements Initializable {
         return true;
     }
 
-    public void setCustomerValue(int i) {
-        comboBoxAccountType.setValue(customers.get(i).getAccountType());
-        name.setText(customers.get(i).getName());
-        address.setText(customers.get(i).getAddress());
-        phone.setText(customers.get(i).getPhone());
-        balance.setText(String.valueOf(customers.get(i).getBalance()));
-        username.setText(customers.get(i).getUsername());
-        password.setText(customers.get(i).getPassword());
+    public void setCustomerValue(Customer customer) {
+        comboBoxAccountType.setValue(customer.getAccountType());
+        name.setText(customer.getName());
+        address.setText(customer.getAddress());
+        phone.setText(customer.getPhone());
+        balance.setText(String.valueOf(customer.getBalance()));
+        username.setText(customer.getUsername());
+        password.setText(customer.getPassword());
     }
 
 }

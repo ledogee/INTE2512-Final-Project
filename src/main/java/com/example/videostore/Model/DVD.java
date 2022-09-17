@@ -80,6 +80,15 @@ public class DVD extends Item {
 
         }
 
+        public DVDBuilder(Item item){
+            this.id = item.getId();
+            this.title = item.getTitle();
+            this.loanType = item.getLoanType();
+            this.copies = item.getCopies();
+            this.rentalFee = item.getRentalFee();
+            this.year = item.getYear();
+            this.rentalStatus = item.isRentalStatus();
+        }
         public DVDBuilder(String id, String title, int copies, String loanType, double rentalFee, boolean rentalStatus, String year, String genres) {
             this.id = id;
             this.title = title;
