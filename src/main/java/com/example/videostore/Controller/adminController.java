@@ -306,10 +306,9 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void showUpdateItemDialog()
-    {
+    public void showUpdateItemDialog() {
         int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-        if(selectedIndex != -1) {
+        if (selectedIndex != -1) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
             dialog.setTitle("Update Item");
@@ -325,13 +324,36 @@ public class adminController extends adminAddItemDialogController implements Ini
                 return;
             }
 
-            // Add button
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateItemDialogController controller = fxmlLoader.getController();
             controller.setItemValue(selectedIndex);
-            controller.setNewLabel("");
+            Window window = dialog.getDialogPane().getScene().getWindow();
             Optional<ButtonType> result = dialog.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Item newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
+
+                System.out.println(newItem);
+
+                while ((newItem == null && result.get() == ButtonType.OK)) {
+                    controller.setItemLabel();
+                    result = dialog.showAndWait();
+                    newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
+                    if ((newItem != null && result.get() == ButtonType.OK)) {
+                        break;
+                    }
+                    window.setOnCloseRequest(event -> window.hide());
+                }
+                if (result.get() == ButtonType.OK) { //Display notification
+                    popAdminNotification(adminVBOX, "Successfully update Item", "#008000");
+                }
+
+                System.out.println("Ok pressed");
+
+            } else {
+                System.out.println("Cancel pressed");
+            }
         }
 //        if(result.isPresent() && result.get() == ButtonType.OK) {
 //            // get the controller of Dialog to call the function processResults
@@ -364,7 +386,6 @@ public class adminController extends adminAddItemDialogController implements Ini
 //            System.out.println("Cancel pressed");
 //        }
     }
-
     public void showNewAccountDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminPane.getScene().getWindow());
