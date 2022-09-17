@@ -93,11 +93,8 @@ public class adminUpdateAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        for(Customer it : customersDatabase) {
-            if (it.getUsername().equals(Username)) {
-                isUsernameValid = false;
-                break;
-            }
+        if(!username.getText().isEmpty()){
+            isAddressValid = checkNewUsernameAvailable(Username, customers, cus);
         }
 
 
@@ -211,8 +208,18 @@ public class adminUpdateAccountDialogController implements Initializable {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
     }
 
-    public boolean checkNewUsernameAvailable(String string, int index){
-        if(string.equals(customers.get(index).getUsername())){
+    public void setCustomerValue(Customer customer) {
+        comboBoxAccountType.setValue(customer.getAccountType());
+        name.setText(customer.getName());
+        address.setText(customer.getAddress());
+        phone.setText(customer.getPhone());
+        balance.setText(String.valueOf(customer.getBalance()));
+        username.setText(customer.getUsername());
+        password.setText(customer.getPassword());
+    }
+
+    public boolean checkNewUsernameAvailable(String string, ObservableList<Customer> customersDatabase, Customer selectCus){
+        if(selectCus.getUsername().equals(string)){
             return true;
         }
         int count = 0;
@@ -228,15 +235,4 @@ public class adminUpdateAccountDialogController implements Initializable {
         }
         return true;
     }
-
-    public void setCustomerValue(Customer customer) {
-        comboBoxAccountType.setValue(customer.getAccountType());
-        name.setText(customer.getName());
-        address.setText(customer.getAddress());
-        phone.setText(customer.getPhone());
-        balance.setText(String.valueOf(customer.getBalance()));
-        username.setText(customer.getUsername());
-        password.setText(customer.getPassword());
-    }
-
 }

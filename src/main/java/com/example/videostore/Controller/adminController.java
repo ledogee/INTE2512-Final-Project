@@ -308,6 +308,7 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void showUpdateItemDialog() {
         int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
+
         if (selectedIndex != -1) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
