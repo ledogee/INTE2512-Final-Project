@@ -21,6 +21,7 @@ public class Main extends Application {
         Scene scene = new Scene(root1);
         stage.setTitle("Media Mart");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
 

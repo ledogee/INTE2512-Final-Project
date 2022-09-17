@@ -76,7 +76,15 @@ public class Game extends Item{
 
         public GameBuilder() {
         }
-
+        public GameBuilder(Item item){
+            this.id = item.getId();
+            this.title = item.getTitle();
+            this.loanType = item.getLoanType();
+            this.copies = item.getCopies();
+            this.rentalFee = item.getRentalFee();
+            this.year = item.getYear();
+            this.rentalStatus = item.isRentalStatus();
+        }
         public GameBuilder(String id, String title, String loanType, int copies, double rentalFee){
             this.id = id;
             this.title = title;
