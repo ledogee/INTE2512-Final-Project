@@ -31,7 +31,7 @@
          <font>
             <Font name="Times New Roman" size="18.0" />
          </font></Label>
-      <Button alignment="CENTER" mnemonicParsing="false" onAction="#topUpBalance" style="-fx-background-color: #A27B5C;" text="TOP UP" textFill="#f8f8f8">
+      <Button alignment="CENTER" mnemonicParsing="false" onAction="#topUpBalance" style="-fx-background-color: #C5D8A4;" text="TOP UP" textFill="#3f4e4f">
          <font>
             <Font name="Times New Roman Bold" size="20.0" />
          </font>
