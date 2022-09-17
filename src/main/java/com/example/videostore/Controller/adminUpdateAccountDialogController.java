@@ -93,7 +93,7 @@ public class adminUpdateAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        if(checkNewUsernameAvailable(Username)){
+        if(checkNewUsernameAvailable(Username, selectedIndex)){
             isUsernameValid = true;
         }
 
@@ -102,13 +102,6 @@ public class adminUpdateAccountDialogController implements Initializable {
             isPasswordValid = true;
         }
 
-        System.out.println("------------------------------"); //for testing
-        System.out.println(AccountType + " " + isAccountTypeFilled);
-        System.out.println(Address + " " + isAddressValid);
-        System.out.println(Phone + " " +  isPhoneValid);
-        System.out.println(Balance + " " + isBalanceValid);
-
-        List<String> listId = new ArrayList<>();
         if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
 
             cus.setName(Name);
@@ -200,8 +193,19 @@ public class adminUpdateAccountDialogController implements Initializable {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
     }
 
-    public boolean checkNewUsernameAvailable(String string){
-        if(string.isEmpty()){
+    public boolean checkNewUsernameAvailable(String string, int index){
+        if(string.equals(customers.get(index).getUsername())){
+            return true;
+        }
+        int count = 0;
+        System.out.println("count == " + count);
+        for(Customer customer: customers){
+            if(string.equals(customer.getUsername())){
+                count++;
+            }
+        }
+        System.out.println("count == " + count);
+        if(count >=1 || string.isEmpty()){
             return false;
         }
         return true;

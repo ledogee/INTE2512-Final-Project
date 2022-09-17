@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Window;
 
 
 import java.io.IOException;
@@ -442,6 +443,7 @@ public class adminController extends adminAddItemDialogController implements Ini
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateAccountDialogController controller = fxmlLoader.getController();
             controller.setCustomerValue(selectedIndex);
+            Window window = dialog.getDialogPane().getScene().getWindow();
             Optional<ButtonType> result = dialog.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -456,12 +458,11 @@ public class adminController extends adminAddItemDialogController implements Ini
                     result = dialog.showAndWait();
 
                     newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
-                    if(newAccount != null){
+                    if ((newAccount != null && result.get() == ButtonType.OK)) {
                         newAccount.setCombinedString(newAccount.arraytostring());
-                    }
-                    if (newAccount != null && result.get() == ButtonType.OK) {
                         break;
                     }
+                    window.setOnCloseRequest(event -> window.hide());
                 }
                 if (result.get() == ButtonType.OK) { //Display notification
                     popAdminNotification(adminPane, "Successfully update Account", "#008000");
