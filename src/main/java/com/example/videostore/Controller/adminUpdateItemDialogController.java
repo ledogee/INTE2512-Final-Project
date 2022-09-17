@@ -121,9 +121,9 @@ public class adminUpdateItemDialogController implements Initializable {
         tempRentalStatus = comboBoxRentalStatus.getSelectionModel().getSelectedIndex();
         boolean RentalStatus;
         if(tempRentalStatus == 0){
-            RentalStatus = true;
-        }else{
             RentalStatus = false;
+        }else{
+            RentalStatus = true;
         }
 
         System.out.println("-----------");
@@ -181,7 +181,7 @@ public class adminUpdateItemDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxRentalType.getItems().addAll("Game", "DVD", "Movie");
         comboBoxLoanType.getItems().addAll("TwoDays", "OneWeek");
-        comboBoxRentalStatus.getItems().addAll("Available", "Unavailable");
+        comboBoxRentalStatus.getItems().addAll("Unavailable", "Available");
         comboBoxGenres.getItems().addAll("Action", "Horror", "Drama", "Comedy");
         comboBoxRentalType.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -193,7 +193,22 @@ public class adminUpdateItemDialogController implements Initializable {
                 }
             }
         });
-        }
+
+        numOfCopies.textProperty().addListener((observable, oldvalue, newvalue) -> {
+            try {
+                if(Integer.parseInt(newvalue) == 0) {
+                    comboBoxRentalStatus.getItems().remove("Available");
+                } else if((Integer.parseInt(newvalue) >= 0 || Integer.parseInt(newvalue) != 0)) {
+                    comboBoxRentalStatus.getItems().remove("Available");
+                    comboBoxRentalStatus.getItems().add("Available");
+                }
+            } catch (Exception e) {
+
+            }
+
+        } );
+
+    }
     private void comboAction(ActionEvent event) {
         if (comboBoxRentalType.getSelectionModel().getSelectedIndex() == 0) {
             comboBoxGenres.setDisable(true);

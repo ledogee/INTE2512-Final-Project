@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
 
 <DialogPane prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #3F4E4F #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminUpdateAccountDialogController">
    <content>
-      <Pane prefHeight="319.0" prefWidth="430.0" style="-fx-background-color: #3F4E4F #3F4E4F;">
+      <Pane prefHeight="20.0" prefWidth="474.0" style="-fx-background-color: #3F4E4F #3F4E4F;">
          <children>
             <GridPane layoutX="31.0" layoutY="14.0" prefHeight="349.0" prefWidth="384.0">
               <columnConstraints>
@@ -69,7 +70,7 @@
                      </font></TextField>
                   <ComboBox fx:id="comboBoxAccountType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
                   <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" GridPane.rowIndex="5">
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" textFill="#dcd7c9" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Label>
@@ -81,13 +82,22 @@
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Label>
-                  <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Reward Point:" GridPane.rowIndex="7">
+                  <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font size="16.0" />
+                     </font></TextField>
+                  <Label prefHeight="46.0" prefWidth="113.0" text="Reward Point:" textFill="#dcd7c9" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="rewardPoint" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="rewardPoint" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></TextField>
                </children>
             </GridPane>
          </children>

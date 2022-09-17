@@ -364,7 +364,6 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
         } catch (NullPointerException e) {
-            System.out.println("Exception");
             popMenuNotification(adminPane, "Please select row", "#FF0000");
         }
 
@@ -506,6 +505,8 @@ public class adminController extends adminAddItemDialogController implements Ini
             } else {
                 System.out.println("Cancel pressed");
             }
+        } else {
+            popMenuNotification(adminPane, "Please select row", "#FF0000");
         }
     }
 
