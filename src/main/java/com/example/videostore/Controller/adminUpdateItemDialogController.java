@@ -4,6 +4,8 @@ import com.example.videostore.Model.DVD;
 import com.example.videostore.Model.Game;
 import com.example.videostore.Model.Item;
 import com.example.videostore.Model.Movie;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -170,10 +172,25 @@ public class adminUpdateItemDialogController implements Initializable {
         comboBoxRentalType.getItems().addAll("Game", "DVD", "Movie");
         comboBoxLoanType.getItems().addAll("2-day", "1-week");
         comboBoxRentalStatus.getItems().addAll("Available", "Unavailable");
-        comboBoxGenres.getItems().addAll( "Action", "Horror", "Drama", "Comedy");
+        comboBoxGenres.getItems().addAll("Action", "Horror", "Drama", "Comedy");
+        comboBoxRentalType.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                if (t1.equals("Game")){
+                    comboBoxGenres.setDisable(true);
+                }else{
+                    comboBoxGenres.setDisable(false);
+                }
+            }
+        });
+        }
+    private void comboAction(ActionEvent event) {
+        if (comboBoxRentalType.getSelectionModel().getSelectedIndex() == 0) {
+            comboBoxGenres.setDisable(true);
+        } else {
+            comboBoxGenres.setDisable(false);
+        }
     }
-
-
 
     void setItemLabel() {
         StringBuilder stringBuilder = new StringBuilder();
