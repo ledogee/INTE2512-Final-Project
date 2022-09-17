@@ -37,7 +37,7 @@
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Account Type:" textFill="#dcd7c9">
                      <font>
-                        <Font size="16.0" name="System Bold" />
+                        <Font name="System Bold" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Address:" textFill="#dcd7c9" GridPane.rowIndex="2">
                      <font>
@@ -57,7 +57,7 @@
                      </font></TextField>
                   <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="16.0" name="System Bold" />
+                        <Font name="System Bold" size="16.0" />
                      </font></TextField>
                   <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
@@ -69,7 +69,7 @@
                      </font></TextField>
                   <ComboBox fx:id="comboBoxAccountType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
                   <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" GridPane.rowIndex="5">
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Username:" textFill="#dcd7c9" GridPane.rowIndex="5">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Label>
@@ -81,13 +81,19 @@
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font></Label>
-                  <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label prefHeight="18.0" prefWidth="124.0" text="Reward Point:" GridPane.rowIndex="7">
+                  <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="16.0" />
+                     </font></TextField>
+                  <Label prefHeight="18.0" prefWidth="124.0" text="Reward Point:" textFill="#dcd7c9" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="rewardPoint" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="rewardPoint" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="16.0" />
+                     </font></TextField>
                </children>
             </GridPane>
          </children>
