@@ -5,6 +5,8 @@ import com.example.videostore.Model.Game;
 import com.example.videostore.Model.Item;
 import com.example.videostore.Model.Movie;
 import com.example.videostore.SystemBroker.SingletonDatabase;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -130,6 +132,16 @@ public class adminAddItemDialogController implements Initializable {
         comboBoxLoanType.getItems().addAll("2-day", "1-week");
         comboBoxRentalStatus.getItems().addAll("Available", "Unavailable");
         comboBoxGenres.getItems().addAll( "Action", "Horror", "Drama", "Comedy");
+        comboBoxRentalType.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                if (t1.equals("Game")){
+                    comboBoxGenres.setDisable(true);
+                }else{
+                    comboBoxGenres.setDisable(false);
+                }
+            }
+        });
     }
 
 
