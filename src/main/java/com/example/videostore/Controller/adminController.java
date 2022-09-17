@@ -307,8 +307,14 @@ public class adminController extends adminAddItemDialogController implements Ini
     }
 
     public void showUpdateItemDialog() {
-        int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
+        Item selectedItem = i_tableView.getSelectionModel().getSelectedItem();
+        int itemIndex = 0;
+        for(int i = 0; i < items.size(); i++){
+            if (selectedItem.getId().equals(items.get(i).getId())){
+                itemIndex = i;
+            }
+        }
+        if (selectedItem != null) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
             dialog.setTitle("Update Item");
@@ -327,19 +333,19 @@ public class adminController extends adminAddItemDialogController implements Ini
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateItemDialogController controller = fxmlLoader.getController();
-            controller.setItemValue(selectedIndex);
+            controller.setItemValue(itemIndex);
             Window window = dialog.getDialogPane().getScene().getWindow();
             Optional<ButtonType> result = dialog.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                Item newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
+                Item newItem = controller.processUpdateItem(selectedItem, items, itemIndex);
 
                 System.out.println(newItem);
 
                 while ((newItem == null && result.get() == ButtonType.OK)) {
                     controller.setItemLabel();
                     result = dialog.showAndWait();
-                    newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
+                    newItem = controller.processUpdateItem(selectedItem, items, itemIndex);
                     if ((newItem != null && result.get() == ButtonType.OK)) {
                         break;
                     }
@@ -437,9 +443,7 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void showUpdateAccountDialog() {
         int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-
         Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
-
         /*Item selectedItem = c_tableView.getSelectionModel().getSelectedItem()*/
 
         if (selectedIndex != -1) {
