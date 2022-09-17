@@ -21,6 +21,8 @@ public abstract class Customer  {
 
     private int numberOfReturn = 0;
 
+    private int rewardPoint = 0;
+
     public int getNumberOfReturn() {
         return numberOfReturn;
     }
@@ -123,6 +125,14 @@ public abstract class Customer  {
     public Customer() {
         idCount++;
 
+    }
+
+    public int getRewardPoint() {
+        return rewardPoint;
+    }
+
+    public void setRewardPoint(int rewardPoint) {
+        this.rewardPoint = rewardPoint;
     }
 
     public static int getIdCount() {

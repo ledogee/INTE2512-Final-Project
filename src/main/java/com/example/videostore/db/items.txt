@@ -1,5 +1,5 @@
-I001-2001,Medal of Honour,Game,1-week,20,3.99,false,2001
-I002-1999,Rat Race,DVD,1-week,27,1.99,true,1999,Horror
-I003-2015,Halo,Game,2-day,18,4.99,true,2015
-I004-2013,Halloween,DVD,2-day,1,0.99,false,2013,Horror
-I005-2010,Gear medal,Game,null,3,120.99,true,2010
+I001-2001,Medal of Honour,Game,OneWeek,20,3.99,false,2001
+I002-1999,Rat Race,DVD,OneWeek,26,1.99,true,1999,Horror
+I003-2015,Halo,Game,TwoDays,18,4.99,true,2015
+I004-2013,Halloween,DVD,TwoDays,1,0.99,false,2013,Horror
+I005-2010,Gear medal,Game,OneWeek,3,120.99,true,2010

@@ -76,7 +76,6 @@ public class menuController
 
     public void goToLogin(ActionEvent event) throws IOException
     {
-
         SceneSwitcher.switchToLogin(event);
     }
     public void goToCustomer(ActionEvent event) throws IOException
@@ -148,7 +147,7 @@ public class menuController
 
         username.setText("WELCOME BACK " + user.getUsername());
         String result = String.format("%.2f", user.getBalance());
-        balance.setText(result + " $");
+        balance.setText("$ " + result);
         if(user instanceof Vip) {
             rewardPoint.setText( ((Vip) user).getRewardPoint() + " point");
         } else {
@@ -197,8 +196,8 @@ public class menuController
                 if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                 } else {
-                   if(user instanceof Guest && user.getListRentals().size() <= 3) {
-                       popMenuNotification(menuPane, "Failed to Rent\nGuest account cannot rent more than 2 items at the same time", "#FF0000");
+                   if(user instanceof Guest && user.getListRentals().size() % 2 == 0 && user.getListRentals().size() != 0) {
+                       popMenuNotification(menuPane, "Guest account cannot rent more than 2 items at the same time", "#FF0000");
                    } else {
                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
                    }
@@ -239,7 +238,6 @@ public class menuController
     }
 
     public void recharge() throws IOException {
-
         FXMLLoader fxmlLoader =  new FXMLLoader(Main.class.getResource("chargeInput.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -247,7 +245,7 @@ public class menuController
         stage.showAndWait();
 
         String result = String.format("%.2f", user.getBalance());
-        balance.setText(result + " $");
+        balance.setText("$ " + result);
 
     }
 

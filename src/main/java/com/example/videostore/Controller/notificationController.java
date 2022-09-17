@@ -8,8 +8,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
@@ -28,12 +26,12 @@ public class notificationController {
     public void setLabelNotification(String string, String color) {
         labelNotification.setText(string);
         labelNotification.setTextFill(Color.web(color));
-        labelNotification.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 24));
+        labelNotification.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.ITALIC, 24));
         labelNotification.setAlignment(Pos.CENTER);
 
     }
 
-    public static void popAdminNotification(VBox adminVBOX, String string, String color){
+    public static void popAdminNotification(AnchorPane adminVBOX, String string, String color){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         FXMLLoader fxmlLoader = new FXMLLoader();
