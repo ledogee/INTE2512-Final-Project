@@ -229,15 +229,11 @@ public class adminController extends adminAddItemDialogController implements Ini
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         deleteItem.setOnAction(e -> {
-            int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-            if(selectedIndex != -1)
-                items.remove(selectedIndex);
+            items.remove(i_tableView.getSelectionModel().getSelectedItem());
         });
 
         deleteCustomer.setOnAction(e -> {
-            int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-            if(selectedIndex != -1)
-                customers.remove(selectedIndex);
+            customers.remove(c_tableView.getSelectionModel().getSelectedItem());
         });
 
     }
@@ -420,6 +416,11 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void showUpdateAccountDialog() {
         int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+
+        Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
+
+        /*Item selectedItem = c_tableView.getSelectionModel().getSelectedItem()*/
+
         if (selectedIndex != -1) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
@@ -442,12 +443,12 @@ public class adminController extends adminAddItemDialogController implements Ini
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateAccountDialogController controller = fxmlLoader.getController();
-            controller.setCustomerValue(selectedIndex);
+            controller.setCustomerValue(selectedCus);
             Window window = dialog.getDialogPane().getScene().getWindow();
             Optional<ButtonType> result = dialog.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                Customer newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                Customer newAccount = controller.processUpdateAccount(selectedCus, customers);
                 if(newAccount != null){
                     newAccount.setCombinedString(newAccount.arraytostring());
                 }
@@ -457,7 +458,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                     controller.setAccountLabel();
                     result = dialog.showAndWait();
 
-                    newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
+                    newAccount = controller.processUpdateAccount(selectedCus, customers);
                     if ((newAccount != null && result.get() == ButtonType.OK)) {
                         newAccount.setCombinedString(newAccount.arraytostring());
                         break;

@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5eeda629-40a2-4fef-8e4b-7a0db3468cf7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/INTE2512-Final-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/INTE2512-Final-Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/notificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/notificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/admin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminUpdateAccountDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminUpdateAccountDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +80,7 @@
       <workItem from="1663150325851" duration="1617000" />
       <workItem from="1663216584845" duration="1549000" />
       <workItem from="1663316209328" duration="4381000" />
-      <workItem from="1663404053542" duration="5205000" />
+      <workItem from="1663404053542" duration="8940000" />
     </task>
     <servers />
   </component>

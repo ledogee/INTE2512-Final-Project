@@ -108,7 +108,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="44.0" layoutY="214.0" mnemonicParsing="false" onAction="#showUpdateAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639" />
+            <Button layoutX="44.0" layoutY="214.0" mnemonicParsing="false" onAction="#showUpdateAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <MenuBar layoutY="-1.0" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1510.0">
