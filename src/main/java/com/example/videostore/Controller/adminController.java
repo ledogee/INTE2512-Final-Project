@@ -346,7 +346,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                     window.setOnCloseRequest(event -> window.hide());
                 }
                 if (result.get() == ButtonType.OK) { //Display notification
-                    popAdminNotification(adminVBOX, "Successfully update Item", "#008000");
+                    popAdminNotification(adminPane, "Successfully update Item", "#008000");
                 }
 
                 System.out.println("Ok pressed");
