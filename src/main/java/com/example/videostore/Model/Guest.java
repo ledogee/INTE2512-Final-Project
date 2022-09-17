@@ -42,13 +42,6 @@ public class Guest extends Customer {
                 Item item = itemObservableList.get(i);
                 // Check item price with balance of the user
                 if (item.getRentalFee() <= this.getBalance() && item.isRentalStatus() && this.getListRentals().size() < 2) { // Enough balance to rent
-                    item.setCopies(item.getCopies() - 1);
-                    if (item.getCopies() == 0) {
-                        btn.setDisable(true);
-                        item.setRentalStatus(false);
-                        itemObservableList.set(i, item);
-                        return false;
-                    } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
                         List<String> listItems;
@@ -64,8 +57,13 @@ public class Guest extends Customer {
 
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
+                        item.setCopies(item.getCopies() - 1);
+                        if (item.getCopies() == 0) {
+                            btn.setDisable(true);
+                            item.setRentalStatus(false);
+                            itemObservableList.set(i, item);
+                        }
                         return true;
-                    }
                 }
             }
         }

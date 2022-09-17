@@ -63,18 +63,17 @@ public class Vip extends Customer {
 
                 // Check item price with balance of the user
                 if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
-                    item.setCopies(item.getCopies() - 1);
-                    if (item.getCopies() == 0) {
-                        btn.setDisable(true);
-                        item.setRentalStatus(false);
-                        itemObservableList.set(i, item);
-                        return false;
-                    } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         // Condition for fee rent
                         if(this.getRewardPoint() == 100) {
                             this.setRewardPoint(0);
                             rewardLabel.setText(this.getRewardPoint() + " point");
+                            item.setCopies(item.getCopies() - 1);
+                            if (item.getCopies() == 0) {
+                                btn.setDisable(true);
+                                item.setRentalStatus(false);
+                                itemObservableList.set(i, item);
+                            }
                             return true;
                         } else {
                             this.setBalance(this.getBalance() - item.getRentalFee());
@@ -93,8 +92,13 @@ public class Vip extends Customer {
                             String result = String.format("%.2f", this.getBalance());
                             balanceLabel.setText(result + " $");
                             rewardLabel.setText(this.getRewardPoint() + " point");
-                            return true;
-                        }
+                            item.setCopies(item.getCopies() - 1);
+                            if (item.getCopies() == 0) {
+                                btn.setDisable(true);
+                                item.setRentalStatus(false);
+                                itemObservableList.set(i, item);
+                            }
+                                return true;
                     }
                 }
             }
