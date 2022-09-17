@@ -1,6 +1,8 @@
 package com.example.videostore.Controller;
 
 import com.example.videostore.Model.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +40,8 @@ public class adminAddAccountDialogController implements Initializable {
     @FXML
     private TextField listRental;
     @FXML
+    private TextField rewardPoint;
+    @FXML
     private Label addAccountLabel;
 
     public void setAddAccountLabel(String string) {
@@ -51,6 +55,7 @@ public class adminAddAccountDialogController implements Initializable {
     boolean isBalanceValid = false;
     boolean isUsernameValid = false;
     boolean isPasswordValid = false;
+    boolean isRewardPointValid = false;
     public Customer processAccount(){
         isAccountTypeFilled = false;
         isNameValid = false;
@@ -59,6 +64,7 @@ public class adminAddAccountDialogController implements Initializable {
         isBalanceValid = false;
         isUsernameValid = false;
         isPasswordValid = false;
+        isRewardPointValid = false;
 
         Integer AccountType = null;
         AccountType = comboBoxAccountType.getSelectionModel().getSelectedIndex();
@@ -98,6 +104,12 @@ public class adminAddAccountDialogController implements Initializable {
             isPasswordValid = true;
         }
 
+        Integer RewardPoint = null;
+        if(isInteger(rewardPoint.getText()) && Integer.parseInt(rewardPoint.getText().trim())>= 0 && Integer.parseInt(rewardPoint.getText().trim()) <= 100){
+            RewardPoint = Integer.parseInt(rewardPoint.getText().trim());
+            isRewardPointValid = true;
+        }
+
         System.out.println("------------------------------"); //for testing
         System.out.println(AccountType + " " + isAccountTypeFilled);
         System.out.println(Address + " " + isAddressValid);
@@ -109,8 +121,8 @@ public class adminAddAccountDialogController implements Initializable {
             return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
             return new Regular.RegularBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
-        } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
+        } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid && isRewardPointValid) {
+            return new Vip.VipBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).buildRewardPoint(RewardPoint).build();
         }
         return null;
     }
@@ -155,6 +167,9 @@ public class adminAddAccountDialogController implements Initializable {
         if(!isPasswordValid){
             stringBuilder.append("Please fill in a password\n");
         }
+        if(!isRewardPointValid){
+            stringBuilder.append("Invalid reward point.(Only numeric value 0-100)\n");
+        }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));
         addAccountLabel.setTextFill(Color.web("#FF0000"));
@@ -163,6 +178,16 @@ public class adminAddAccountDialogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
+        comboBoxAccountType.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                if (!t1.equals("Vip")){
+                    rewardPoint.setDisable(true);
+                }else{
+                    rewardPoint.setDisable(false);
+                }
+            }
+        });
     }
 
     public boolean checkUsernameAvailable(String string){
