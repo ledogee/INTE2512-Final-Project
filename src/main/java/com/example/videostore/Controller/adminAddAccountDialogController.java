@@ -94,7 +94,7 @@ public class adminAddAccountDialogController implements Initializable {
         }
 
         String Password = password.getText().trim();
-        if(!password.getText().isEmpty() && password.getText().length() >= 8){
+        if(!password.getText().isEmpty()){
             isPasswordValid = true;
         }
 
@@ -144,7 +144,7 @@ public class adminAddAccountDialogController implements Initializable {
             stringBuilder.append("Invalid address.(Please fill an address)\n");
         }
         if(!isPhoneValid){
-            stringBuilder.append("Unrecognized phone number or Empty Input\n");
+            stringBuilder.append("Invalid phone number or Empty Input\n");
         }
         if(!isBalanceValid){
             stringBuilder.append(("Invalid balance.(Only numeric value)\n"));
@@ -153,7 +153,7 @@ public class adminAddAccountDialogController implements Initializable {
             stringBuilder.append("Username Already Exist or Empty Input\n");
         }
         if(!isPasswordValid){
-            stringBuilder.append("Password should be at least 8 characters\n");
+            stringBuilder.append("Please fill in a password\n");
         }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));

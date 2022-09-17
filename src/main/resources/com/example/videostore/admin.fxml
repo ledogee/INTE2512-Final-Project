@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="879.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<VBox fx:id="adminVBOX" alignment="CENTER" prefHeight="800.0" prefWidth="1105.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <Pane prefHeight="53.0" prefWidth="781.0">
          <children>

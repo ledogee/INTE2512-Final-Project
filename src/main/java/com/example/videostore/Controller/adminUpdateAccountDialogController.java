@@ -93,24 +93,17 @@ public class adminUpdateAccountDialogController implements Initializable {
         }
 
         String Username = username.getText().trim();
-        if(checkNewUsernameAvailable(Username)){
+        if(checkNewUsernameAvailable(Username, selectedIndex)){
             isUsernameValid = true;
         }
 
         String Password = password.getText().trim();
-        if(!password.getText().isEmpty() && password.getText().length() >= 8){
+        if(!password.getText().isEmpty()){
             isPasswordValid = true;
         }
 
-        System.out.println("------------------------------"); //for testing
-        System.out.println(AccountType + " " + isAccountTypeFilled);
-        System.out.println(Address + " " + isAddressValid);
-        System.out.println(Phone + " " +  isPhoneValid);
-        System.out.println(Balance + " " + isBalanceValid);
-
-        List<String> listId = new ArrayList<>();
         if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
-            cus.setAccountType("Guest");
+
             cus.setName(Name);
             cus.setAddress(Address);
             cus.setPhone(Phone);
@@ -122,7 +115,6 @@ public class adminUpdateAccountDialogController implements Initializable {
             customersDatabase.set(selectedIndex, guest);
             return guest;
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            cus.setAccountType("Regular");
             cus.setName(Name);
             cus.setAddress(Address);
             cus.setPhone(Phone);
@@ -135,15 +127,12 @@ public class adminUpdateAccountDialogController implements Initializable {
             return reg;
 
         } else if (AccountType == 2 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
-            System.out.println(cus);
-            cus.setAccountType("Vip");
             cus.setName(Name);
             cus.setAddress(Address);
             cus.setPhone(Phone);
             cus.setBalance(Balance);
             cus.setUsername(Username);
             cus.setPassword(Password);
-            System.out.println(cus);
             Vip vip = new Vip.VipBuilder(cus).build();
 
             // Update the db
@@ -183,7 +172,7 @@ public class adminUpdateAccountDialogController implements Initializable {
             stringBuilder.append("Invalid address.(Please fill an address)\n");
         }
         if(!isPhoneValid){
-            stringBuilder.append("Unrecognized phone number or Empty Input\n");
+            stringBuilder.append("Invalid phone number or Empty Input\n");
         }
         if(!isBalanceValid){
             stringBuilder.append(("Invalid balance.(Only numeric value)\n"));
@@ -192,7 +181,7 @@ public class adminUpdateAccountDialogController implements Initializable {
             stringBuilder.append("Username Already Exist or Empty Input\n");
         }
         if(!isPasswordValid){
-            stringBuilder.append("Password should be at least 8 characters\n");
+            stringBuilder.append("Please enter a password\n");
         }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));
@@ -204,8 +193,19 @@ public class adminUpdateAccountDialogController implements Initializable {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
     }
 
-    public boolean checkNewUsernameAvailable(String string){
-        if(string.isEmpty()){
+    public boolean checkNewUsernameAvailable(String string, int index){
+        if(string.equals(customers.get(index).getUsername())){
+            return true;
+        }
+        int count = 0;
+        System.out.println("count == " + count);
+        for(Customer customer: customers){
+            if(string.equals(customer.getUsername())){
+                count++;
+            }
+        }
+        System.out.println("count == " + count);
+        if(count >=1 || string.isEmpty()){
             return false;
         }
         return true;
@@ -221,32 +221,4 @@ public class adminUpdateAccountDialogController implements Initializable {
         password.setText(customers.get(i).getPassword());
     }
 
-//    public Customer updateAccount(Customer cus, ObservableList<Customer> customersDatabase){
-//        if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
-//            cus.setAccountType("Regular");
-//            Regular reg = new Regular.RegularBuilder(cus).build(); // all alltribute of the cus paste to reg ( accounttype = regular as a string)
-//
-//            // Update the db
-//            for(int i = 0; i < customersDatabase.size(); i++) {
-//                if(customersDatabase.get(i).getId().equals(reg.getId())) {
-//                    customersDatabase.set(i, reg);
-//                    System.out.println(customersDatabase.get(i).getAccountType());
-//                }
-//            }
-//            return reg;
-//        } else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")) {
-//            cus.setAccountType("VIP");
-//            Vip vip = new Vip.VipBuilder(cus).build();
-//
-//            // Update the db
-//            for(int i = 0; i < customersDatabase.size(); i++) {
-//                if(customersDatabase.get(i).getId().equals(vip.getId())) {
-//                    customersDatabase.set(i, vip);
-//                    System.out.println(customersDatabase.get(i).getAccountType());
-//                }
-//            }
-//            return vip;
-//        }
-//        return null;
-//    }
 }

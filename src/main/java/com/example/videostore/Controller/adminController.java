@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Window;
 
 
 import java.io.IOException;
@@ -274,18 +275,9 @@ public class adminController extends adminAddItemDialogController implements Ini
         controller.setNewLabel("");
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            // get the controller of Dialog to call the function processResults
-
-//            Label label1 = new Label();
-//            label1.setText("Hello");
             Item newItem = controller.processItem();
-/*
-            todoListView.getItems().setAll(TodoData.getInstance().getTodoItems()); // update to the main screen
-*/
-//            itemListView.getSelectionModel().select(newItem);
 
             System.out.println(newItem);
-//            items.add(newItem);
             while((newItem == null && result.get() == ButtonType.OK) ){
                 controller.setItemLabel();
                 result = dialog.showAndWait();
@@ -295,8 +287,8 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
 
             }
-            if(newItem != null && result.get() == ButtonType.OK){
-                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+            if(result.get() == ButtonType.OK){
+                popAdminNotification(adminVBOX, "Successfully add new Item", "#008000");
                 SingletonDatabase.getItems().add(newItem);
             }
 
@@ -305,7 +297,6 @@ public class adminController extends adminAddItemDialogController implements Ini
             }else {
                 System.out.println("Cancel pressed");
             }
-
 
         } else {
             System.out.println("Cancel pressed");
@@ -322,8 +313,6 @@ public class adminController extends adminAddItemDialogController implements Ini
             dialog.setHeaderText("Use this dialog to update an item");
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
-//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
-//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -356,8 +345,8 @@ public class adminController extends adminAddItemDialogController implements Ini
 //                }
 //
 //            }
-//            if(newItem != null && result.get() == ButtonType.OK){
-//                popAdminNotification(adminVBOX, "Successfully add new Account", "#008000");
+//            if(result.get() == ButtonType.OK){
+//                popAdminNotification(adminVBOX, "Successfully update Item", "#008000");
 //                SingletonDatabase.getItems().add(newItem);
 //            }
 //
@@ -377,7 +366,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
         dialog.setTitle("Add New Customer Info");
-        dialog.setHeaderText("Use this dialog to create a new customer");
+        dialog.setHeaderText("Use this dialog to add a new customer");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addCustomerDialog.fxml"));
 
@@ -447,6 +436,7 @@ public class adminController extends adminAddItemDialogController implements Ini
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateAccountDialogController controller = fxmlLoader.getController();
             controller.setCustomerValue(selectedIndex);
+            Window window = dialog.getDialogPane().getScene().getWindow();
             Optional<ButtonType> result = dialog.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -461,13 +451,14 @@ public class adminController extends adminAddItemDialogController implements Ini
                     result = dialog.showAndWait();
 
                     newAccount = controller.processUpdateAccount(customers.get(selectedIndex), customers, selectedIndex);
-                    if(newAccount != null){
+                    if ((newAccount != null && result.get() == ButtonType.OK)) {
                         newAccount.setCombinedString(newAccount.arraytostring());
-                    }
-                    if (newAccount != null && result.get() == ButtonType.OK) {
-                        popAdminNotification(adminVBOX, "Successfully update Account", "#008000");
                         break;
                     }
+                    window.setOnCloseRequest(event -> window.hide());
+                }
+                if (result.get() == ButtonType.OK) { //Display notification
+                    popAdminNotification(adminVBOX, "Successfully update Account", "#008000");
                 }
 
                 System.out.println("Ok pressed");
