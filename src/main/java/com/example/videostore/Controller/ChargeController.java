@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ChargeControl {
+public class ChargeController {
     public TextField balanceInput;
     public static double balance = 0;
     public Label validation;
@@ -37,7 +37,7 @@ public class ChargeControl {
 
             }
         } catch (Exception e) {
-            validation.setText("In Valid Input");
+            validation.setText("Invalid Input");
             validation.setStyle("-fx-text-fill: red");
             balanceInput.setText("");
             balance = 0;

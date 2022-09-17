@@ -76,7 +76,6 @@ public class menuController
 
     public void goToLogin(ActionEvent event) throws IOException
     {
-
         SceneSwitcher.switchToLogin(event);
     }
     public void goToCustomer(ActionEvent event) throws IOException
@@ -148,7 +147,7 @@ public class menuController
 
         username.setText("WELCOME BACK " + user.getUsername());
         String result = String.format("%.2f", user.getBalance());
-        balance.setText(result + " $");
+        balance.setText("$ " + result);
         if(user instanceof Vip) {
             rewardPoint.setText( ((Vip) user).getRewardPoint() + " point");
         } else {
@@ -246,7 +245,7 @@ public class menuController
         stage.showAndWait();
 
         String result = String.format("%.2f", user.getBalance());
-        balance.setText(result + " $");
+        balance.setText("$ " + result);
 
     }
 
