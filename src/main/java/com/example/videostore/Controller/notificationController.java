@@ -45,6 +45,7 @@ public class notificationController {
             return;
         }
         // Add button
+
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         notificationController controller = fxmlLoader.getController();
         controller.setLabelNotification(string, color);
