@@ -17,11 +17,11 @@
             <Font name="Times New Roman Bold Italic" size="40.0" />
          </font>
         </Label>
-        <Button fx:id="cancelButton" layoutX="490.0" layoutY="436.0" mnemonicParsing="false" onAction="#cancelUpdateInfo" style="-fx-background-color: A27B5C;" text="Cancel" textFill="#dcd7c9">
+        <Button fx:id="cancelButton" layoutX="490.0" layoutY="436.0" mnemonicParsing="false" onAction="#cancelUpdateInfo" style="-fx-background-color: #C5D8A4;" text="Cancel" textFill="#3f4e4f">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font></Button>
-        <Button fx:id="saveButton" layoutX="602.0" layoutY="436.0" mnemonicParsing="false" onAction="#updateInfo" style="-fx-background-color: #A27B5C;" text="Save" textFill="#dcd7c9">
+        <Button fx:id="saveButton" layoutX="602.0" layoutY="436.0" mnemonicParsing="false" onAction="#updateInfo" style="-fx-background-color: #C5D8A4;" text="Save" textFill="#3f4e4f">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font></Button>
