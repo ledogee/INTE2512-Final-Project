@@ -52,7 +52,7 @@ public class CustomerController {
         accountType.setText(user.getAccountType());
 
         String result = String.format("%.2f", user.getBalance());
-        balance.setText(result + "$");
+        balance.setText("$" + result);
 
 
         if(user instanceof Vip) {
