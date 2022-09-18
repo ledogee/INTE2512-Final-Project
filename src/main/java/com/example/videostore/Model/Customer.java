@@ -53,16 +53,8 @@ public abstract class Customer  {
         for(int i = 0; i < itemObservableList.size(); i++) {
             if (itemObservableList.get(i).getButtonRent() == btn) {
                 Item item = itemObservableList.get(i);
-
                 // Check item price with balance of the user
                 if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
-                    item.setCopies(item.getCopies() - 1);
-                    if (item.getCopies() == 0) {
-                        btn.setDisable(true);
-                        item.setRentalStatus(false);
-                        itemObservableList.set(i, item);
-                        return false;
-                    } else if (item.getCopies() > 0) {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
 
@@ -77,8 +69,13 @@ public abstract class Customer  {
                         customerObservableList.set(indexUser, this);
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
+                        item.setCopies(item.getCopies() - 1);
+                        if (item.getCopies() == 0) {
+                            btn.setDisable(true);
+                            item.setRentalStatus(false);
+                            itemObservableList.set(i, item);
+                        }
                         return true;
-                    }
                 }
             }
         }

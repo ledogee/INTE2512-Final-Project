@@ -22,12 +22,12 @@
             <Font name="Times New Roman" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="360.0" layoutY="556.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A27B5C;" text="Log In" textFill="#2c3639">
+      <Button layoutX="360.0" layoutY="556.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Log In" textFill="#2c3639">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="546.0" layoutY="554.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: #A27B5C;" text="Register" textFill="#2c3639">
+      <Button layoutX="546.0" layoutY="554.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: #C5D8A4;" text="Register" textFill="#2c3639">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>

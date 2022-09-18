@@ -13,18 +13,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #5E6F64;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
     <children>
         <Label layoutX="28.0" layoutY="24.0" text="Customer Details" textFill="#dcd7c9">
             <font>
                 <Font name="Times New Roman Bold" size="60.0" />
             </font>
         </Label>
-        <Button layoutX="734.0" layoutY="74.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #BA7967;" text="Update Information" textFill="#3f4e4f" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="74.0">
+        <Button layoutX="734.0" layoutY="74.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #C5D8A4;" text="Update Information" textFill="#3f4e4f" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="74.0">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font></Button>
-        <Button layoutX="26.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #A27B5C;" text="Sign Out" textFill="WHITE">
+        <Button layoutX="26.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Sign Out" textFill="#3f4e4f">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font></Button>
@@ -149,7 +149,7 @@
                 </Tab>
                 <Tab onSelectionChanged="#initialize" text="Your Items">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="943.0" style="-fx-background-color: #c6beaa;">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="943.0" style="-fx-background-color: #5e6f64;">
                             <children>
                                 <TableView fx:id="tableView" layoutX="15.0" layoutY="14.0" prefHeight="411.0" prefWidth="916.0" style="-fx-background-color: DCD7C9;">
                                     <columns>
@@ -166,7 +166,7 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="185.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #A27B5C;" text="Item's Menu" textFill="WHITE">
+        <Button layoutX="185.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #C5D8A4;" text="Item's Menu" textFill="#3f4e4f">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font></Button>
