@@ -15,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -34,7 +33,6 @@ public class CustomerController {
     public Label phone;
     public Label address;
     public Label numOfReturn;
-    public AnchorPane menuPane;
     private List<Button> buttonRents;
     private List<Button> buttonReturns;
 
@@ -77,7 +75,7 @@ public class CustomerController {
 
     @FXML
     private TableColumn<Item, String> title;
-    
+
     @FXML
     private TableColumn<Item, Button> action;
 
@@ -170,7 +168,6 @@ public class CustomerController {
                     System.out.println(customersDatabase.get(i).getAccountType());
                 }
             }
-            notificationController.popMenuNotification(menuPane ,"Promote to REGULAR!","#008000");
             return reg;
         } else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")) {
             cus.setAccountType("VIP");
@@ -183,7 +180,6 @@ public class CustomerController {
                     System.out.println(customersDatabase.get(i).getAccountType());
                 }
             }
-            notificationController.popMenuNotification(menuPane ,"Promote to VIP!","#008000");
             return vip;
         }
         return cus;
