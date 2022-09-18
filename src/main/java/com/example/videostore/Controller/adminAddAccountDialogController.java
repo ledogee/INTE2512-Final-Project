@@ -143,7 +143,7 @@ public class adminAddAccountDialogController implements Initializable {
         }
         return isCorrect;
     }
-
+    //set label new error label to the dialog pane ì the user enter incorrectly
     public void setAccountLabel(){
         StringBuilder stringBuilder = new StringBuilder();
         if(!isAccountTypeFilled){
