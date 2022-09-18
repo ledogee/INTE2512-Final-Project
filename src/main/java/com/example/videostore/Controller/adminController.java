@@ -1,5 +1,6 @@
 package com.example.videostore.Controller;
 
+import com.example.videostore.Main;
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
@@ -10,11 +11,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 
@@ -34,6 +38,7 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarCustomer;
     public Button deleteCustomer;
     public Button deleteItem;
+    public Button newStockbtn;
 
     @FXML
     private Button returnToLoginButton;
@@ -265,6 +270,9 @@ public class adminController extends adminAddItemDialogController implements Ini
         filterItem.setPredicate(null); // show all db again
         i_tableView.setItems(filterItem);
     }
+
+
+
     public void showNewItemDialog()
     {
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -459,16 +467,65 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
+    public void showNewStockDiag() throws IOException {
+        Item selectedItem = i_tableView.getSelectionModel().getSelectedItem();
+        if(selectedItem != null) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminPane.getScene().getWindow());
+            dialog.setTitle("Add New Stock");
+            dialog.setHeaderText("Use this dialog to add new stock arrives");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/newStock.fxml"));
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            newStockController controller = fxmlLoader.getController();
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+
+                try {
+                    int newStock = Integer.parseInt(controller.stockInput.getText());
+                    selectedItem.setCopies(selectedItem.getCopies() + newStock);
+
+                    for(int i = 0; i < items.size(); i++) {
+                        if(items.get(i).getId().equals(selectedItem.getId())) {
+                            items.set(i, selectedItem);
+                        }
+                    }
+
+                    System.out.println("Ok pressed");
+                    popMenuNotification(adminPane, "New Stock arrived! ", "#008000");
+                } catch (Exception e) {
+                    controller.valid.setText("Invalid Input");
+                }
+            } else {
+                System.out.println("Cancel pressed");
+            }
+        } else {
+            popMenuNotification(adminPane, "Please select row", "#FF0000");
+        }
+    }
+
     public void showUpdateAccountDialog() {
         int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
         Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
-        /*Item selectedItem = c_tableView.getSelectionModel().getSelectedItem()*/
+
 
         if (selectedIndex != -1) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
             dialog.setTitle("Update Account");
-            dialog.setHeaderText("Use this dialog to update an account");
+            dialog.setHeaderText("Use this dialog to add new stock");
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
 //        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
@@ -545,5 +602,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
         return true;
     }
+
+
 }
 

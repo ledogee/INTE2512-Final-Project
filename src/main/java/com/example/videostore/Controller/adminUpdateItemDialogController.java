@@ -203,18 +203,8 @@ public class adminUpdateItemDialogController implements Initializable {
                     comboBoxRentalStatus.getItems().add("Available");
                 }
             } catch (Exception e) {
-
             }
-
         } );
-
-    }
-    private void comboAction(ActionEvent event) {
-        if (comboBoxRentalType.getSelectionModel().getSelectedIndex() == 0) {
-            comboBoxGenres.setDisable(true);
-        } else {
-            comboBoxGenres.setDisable(false);
-        }
     }
 
     void setItemLabel() {
@@ -235,7 +225,7 @@ public class adminUpdateItemDialogController implements Initializable {
             stringBuilder.append("Please filled all the choices.\n");
         }
         label.setText(String.valueOf(stringBuilder));
-        label.setTextFill(Color.web("#FF0000"));
+        label.setTextFill(Color.web("#daac89"));
     }
 
     boolean checkTitleValidation(String string,int selectedIndex){

@@ -21,69 +21,72 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="67.5" minHeight="10.0" prefHeight="41.5" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="54.5" minHeight="10.0" prefHeight="39.5" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="67.5" minHeight="10.0" prefHeight="39.5" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="54.5" minHeight="10.0" prefHeight="42.5" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="59.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="18.0" prefWidth="124.0" text="Title:" textFill="#dcd7c9" GridPane.rowIndex="1">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Type:" textFill="#dcd7c9">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Loan Type:" textFill="#dcd7c9" GridPane.rowIndex="5">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Num of Copies:" textFill="#dcd7c9" GridPane.rowIndex="2">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Rental Fee:" textFill="#dcd7c9" GridPane.rowIndex="3">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="136.0" prefHeight="18.0" prefWidth="124.0" text="Rental Status:" textFill="#dcd7c9" GridPane.rowIndex="6">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Year:" textFill="#dcd7c9" GridPane.rowIndex="4">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <TextField fx:id="title" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <TextField fx:id="numOfCopies" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <TextField fx:id="rentalFee" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <TextField fx:id="year" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <Label layoutX="10.0" layoutY="197.0" prefHeight="18.0" prefWidth="124.0" text="Genres:" textFill="#dcd7c9" GridPane.rowIndex="7">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <ComboBox fx:id="comboBoxGenres" prefHeight="26.0" prefWidth="288.0" promptText="Required for DVD and Movie" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ComboBox fx:id="comboBoxRentalStatus" prefHeight="26.0" prefWidth="293.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="comboBoxLoanType" prefHeight="26.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="comboBoxRentalType" prefHeight="26.0" prefWidth="286.0" GridPane.columnIndex="1" />
-                  <Label fx:id="label" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="label" alignment="CENTER" prefHeight="18.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="Tahoma" size="13.0" />
+                     </font></Label>
                </children>
             </GridPane>
          </children>

@@ -8,54 +8,80 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="adminPane" prefHeight="850.0" prefWidth="1500.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<AnchorPane fx:id="adminPane" prefHeight="881.0" prefWidth="1510.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
-      <AnchorPane layoutX="20.0" layoutY="57.0" prefHeight="350.0" prefWidth="339.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
+      <AnchorPane layoutX="20.0" layoutY="57.0" prefHeight="380.0" prefWidth="349.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
-            <Button layoutX="48.0" layoutY="75.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Search an item" textFill="#2c3639">
-               <graphic>
-                  <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
-               </graphic>
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="48.0" layoutY="127.0" mnemonicParsing="false" onAction="#displayAllItems" prefHeight="33.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="All Items" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="47.0" layoutY="175.0" mnemonicParsing="false" onAction="#displayItemOutOfStock" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Out of stock Items" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="addItemButton" layoutX="47.0" layoutY="220.0" mnemonicParsing="false" onAction="#showNewItemDialog" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Add Item" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="deleteItem" layoutX="46.0" layoutY="264.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Delete Item" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="updateItemButton" layoutX="47.0" layoutY="305.0" mnemonicParsing="false" onAction="#showUpdateItemDialog" prefHeight="30.0" prefWidth="247.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font></Button>
-            <Label alignment="CENTER" layoutY="13.0" prefHeight="47.0" prefWidth="339.0" text="Item Management" textFill="#eeccb2">
-               <font>
-                  <Font name="Times New Roman Bold" size="30.0" />
-               </font>
-            </Label>
+            <GridPane alignment="CENTER" layoutX="5.0" prefHeight="371.0" prefWidth="339.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="33.0" prefWidth="324.0" style="-fx-background-color: #C5D8A4;" text="Search an item" textFill="#2c3639" GridPane.rowIndex="1">
+                     <graphic>
+                        <TextField fx:id="searchbarItem" prefHeight="25.0" prefWidth="120.0" />
+                     </graphic>
+                     <font>
+                        <Font name="Tahoma Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#displayAllItems" prefHeight="33.0" prefWidth="324.0" style="-fx-background-color: #C5D8A4;" text="All Items" textFill="#2c3639" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#displayItemOutOfStock" prefHeight="30.0" prefWidth="324.0" style="-fx-background-color: #C5D8A4;" text="Out of stock Items" textFill="#2c3639" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="addItemButton" mnemonicParsing="false" onAction="#showNewItemDialog" prefHeight="30.0" prefWidth="325.0" style="-fx-background-color: #C5D8A4;" text="Add Item" textFill="#2c3639" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteItem" mnemonicParsing="false" prefHeight="30.0" prefWidth="320.0" style="-fx-background-color: #C5D8A4;" text="Delete Item" textFill="#2c3639" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="updateItemButton" mnemonicParsing="false" onAction="#showUpdateItemDialog" prefHeight="30.0" prefWidth="321.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="339.0" text="Item Management" textFill="#eeccb2">
+                     <font>
+                        <Font name="Tahoma Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="newStockbtn" mnemonicParsing="false" onAction="#showNewStockDiag" prefHeight="30.0" prefWidth="323.0" style="-fx-background-color: #C5D8A4;" text="Add New Stock" textFill="#2c3639" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" layoutY="115.0" />
-      <TableView fx:id="i_tableView" layoutX="373.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="i_tableView" layoutX="380.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
          <columns>
             <TableColumn fx:id="i_id" prefWidth="92.0" text="ID" />
             <TableColumn fx:id="i_title" prefWidth="118.0" text="Title" />
@@ -68,7 +94,7 @@
          </columns>
       </TableView>
       <HBox alignment="CENTER" layoutY="468.0" />
-      <TableView fx:id="c_tableView" layoutX="373.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="401.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="c_tableView" layoutX="380.0" layoutY="450.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="401.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
          <columns>
             <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="c_accountType" prefWidth="77.0" text="Type" />
@@ -83,53 +109,62 @@
             <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="151.0" text="ListRental" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="18.0" layoutY="417.0" prefHeight="401.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
+      <AnchorPane layoutX="24.0" layoutY="450.0" prefHeight="401.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
-            <Label alignment="CENTER" layoutY="13.0" prefHeight="47.0" prefWidth="339.0" text="Customer Management" textFill="#eeccb2">
-               <font>
-                  <Font name="Times New Roman Bold" size="30.0" />
-               </font>
-            </Label>
-            <Button layoutX="44.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Search a customer" textFill="#2c3639">
-               <graphic>
-                  <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="120.0" />
-               </graphic>
-               <font>
-                  <Font name="Times New Roman Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button layoutX="44.0" layoutY="124.0" mnemonicParsing="false" onAction="#showNewAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Add Account" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="deleteCustomer" layoutX="44.0" layoutY="168.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Delete Account" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button layoutX="44.0" layoutY="214.0" mnemonicParsing="false" onAction="#showUpdateAccountDialog" prefHeight="30.0" prefWidth="252.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639">
-               <font>
-                  <Font name="Times New Roman Bold" size="14.0" />
-               </font></Button>
+            <GridPane layoutY="13.0" prefHeight="231.0" prefWidth="339.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="339.0" text="Customer Management" textFill="#eeccb2">
+                     <font>
+                        <Font name="Tahoma Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="33.0" prefWidth="327.0" style="-fx-background-color: #C5D8A4;" text="Search a customer" textFill="#2c3639" GridPane.rowIndex="1">
+                     <graphic>
+                        <TextField fx:id="searchbarCustomer" prefHeight="25.0" prefWidth="149.0" />
+                     </graphic>
+                     <font>
+                        <Font name="Tahoma Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showNewAccountDialog" prefHeight="30.0" prefWidth="326.0" style="-fx-background-color: #C5D8A4;" text="Add Account" textFill="#2c3639" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteCustomer" mnemonicParsing="false" prefHeight="33.0" prefWidth="328.0" style="-fx-background-color: #C5D8A4;" text="Delete Account" textFill="#2c3639" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#showUpdateAccountDialog" prefHeight="30.0" prefWidth="333.0" style="-fx-background-color: #C5D8A4;" text="Update" textFill="#2c3639" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Tahoma Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </children>
       </AnchorPane>
-      <MenuBar layoutY="-1.0" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1510.0">
+      <MenuBar layoutY="-1.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1510.0" style="-fx-background-color: #dee0e1;">
         <menus>
           <Menu mnemonicParsing="false">
                <graphic>
-                  <Button accessibleRole="PARENT" mnemonicParsing="false" onAction="#goToLogin" prefWidth="88.0" style="-fx-background-color: transparent;" text="Log Out" textFill="#c5d8a4">
+                  <Button accessibleRole="PARENT" mnemonicParsing="false" onAction="#goToLogin" prefWidth="88.0" style="-fx-background-color: transparent;" text="Log Out" textFill="#2c3639">
                      <font>
-                        <Font name="Times New Roman Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Button>
                </graphic></Menu>
-          <Menu mnemonicParsing="false">
-               <graphic>
-                  <Button mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: transparent;" text="Sign Up" textFill="#c5d8a4">
-                     <font>
-                        <Font name="Times New Roman Bold" size="16.0" />
-                     </font></Button>
-               </graphic></Menu>
+          <Menu mnemonicParsing="false" />
         </menus>
       </MenuBar>
    </children>
