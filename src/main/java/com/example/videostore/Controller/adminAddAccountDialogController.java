@@ -172,7 +172,7 @@ public class adminAddAccountDialogController implements Initializable {
         }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));
-        addAccountLabel.setTextFill(Color.web("#FF0000"));
+        addAccountLabel.setTextFill(Color.web("#daac89"));
     }
 
     @Override

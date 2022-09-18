@@ -87,19 +87,6 @@ public class RegisterController {
                 invalidPhoneLabel.setVisible(true);
             }
         } else {
-//            if (validUsername && validPhone) {
-//                invalidUsernameLabel.setVisible(false);
-//                invalidPhoneLabel.setVisible(false);
-//            } else if (!validUsername && validPhone) {
-//                invalidUsernameLabel.setVisible(true);
-//                invalidPhoneLabel.setVisible(false);
-//            } else if (!validPhone && validUsername) {
-//                invalidPhoneLabel.setVisible(true);
-//                invalidUsernameLabel.setVisible(false);
-//            } else if (!validPhone && !validUsername) {
-//                invalidUsernameLabel.setVisible(true);
-//                invalidPhoneLabel.setVisible(true);
-//            }
             if (validPhone) {
                 invalidPhoneLabel.setVisible(false);
             } else if (!validPhone && invalidPhoneLabel.getText() != "") {
@@ -108,6 +95,7 @@ public class RegisterController {
             if (validUsername) {
                 invalidUsernameLabel.setVisible(false);
             }
+
             isFilledLabel.setVisible(true);
         }
     }

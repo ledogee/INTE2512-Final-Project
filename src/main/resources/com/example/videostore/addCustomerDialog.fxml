@@ -20,79 +20,79 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="505.5999877929688" minWidth="0.0" prefWidth="264.00001220703126" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="54.5" minHeight="10.0" prefHeight="42.5" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="54.5" minHeight="10.0" prefHeight="40.5" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label prefHeight="18.0" prefWidth="124.0" text="Name:" textFill="#dcd7c9" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Account Type:" textFill="#dcd7c9">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Address:" textFill="#dcd7c9" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="16.0" prefHeight="18.0" prefWidth="124.0" text="Phone:" textFill="#dcd7c9" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <Label layoutX="10.0" layoutY="166.0" prefHeight="18.0" prefWidth="124.0" text="Balance:" textFill="#dcd7c9" GridPane.rowIndex="4">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
-                  <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="name" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
-                  <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="address" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
-                  <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="phone" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <TextField fx:id="balance" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <ComboBox fx:id="comboBoxAccountType" prefHeight="26.0" prefWidth="272.0" GridPane.columnIndex="1" />
                   <Label fx:id="addAccountLabel" alignment="CENTER" prefHeight="18.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label prefHeight="18.0" prefWidth="124.0" text="Username:" textFill="#dcd7c9" GridPane.rowIndex="5">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <TextField fx:id="username" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <Label prefHeight="18.0" prefWidth="124.0" text="Password:" textFill="#dcd7c9" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></Label>
                   <TextField fx:id="password" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                   <Label prefHeight="18.0" prefWidth="124.0" text="Reward Point:" textFill="#dcd7c9" GridPane.rowIndex="7">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font>
                   </Label>
                   <TextField fx:id="rewardPoint" prefHeight="26.0" prefWidth="401.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font></TextField>
                </children>
             </GridPane>

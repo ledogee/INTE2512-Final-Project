@@ -225,7 +225,7 @@ public class adminUpdateItemDialogController implements Initializable {
             stringBuilder.append("Please filled all the choices.\n");
         }
         label.setText(String.valueOf(stringBuilder));
-        label.setTextFill(Color.web("#FF0000"));
+        label.setTextFill(Color.web("#daac89"));
     }
 
     boolean checkTitleValidation(String string,int selectedIndex){

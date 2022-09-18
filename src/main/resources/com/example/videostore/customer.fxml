@@ -17,16 +17,16 @@
     <children>
         <Label layoutX="28.0" layoutY="24.0" text="Customer Details" textFill="#dcd7c9">
             <font>
-                <Font name="Times New Roman Bold" size="60.0" />
+                <Font name="Tahoma Bold" size="50.0" />
             </font>
         </Label>
         <Button layoutX="734.0" layoutY="74.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #C5D8A4;" text="Update Information" textFill="#3f4e4f" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="74.0">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Tahoma" size="20.0" />
          </font></Button>
         <Button layoutX="26.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Sign Out" textFill="#3f4e4f">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Tahoma" size="20.0" />
          </font></Button>
         <TabPane layoutX="23.0" layoutY="130.0" prefHeight="482.0" prefWidth="943.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="150.0" tabMaxWidth="150.0">
             <tabs>
@@ -49,43 +49,43 @@
                                     <children>
                                         <Label alignment="CENTER" text="Name:" textFill="#5e6f64">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label alignment="CENTER" contentDisplay="CENTER" text="Username:" textFill="#5e6f64" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label text="Password:" textFill="#5e6f64" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label text="Phone:" textFill="#5e6f64" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label text="Address:" textFill="#5e6f64" GridPane.rowIndex="4">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="name" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="username" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="password" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="phone" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="address" prefHeight="45.0" prefWidth="620.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                     </children>
                                 </GridPane>
@@ -99,8 +99,8 @@
                             <children>
                                 <GridPane layoutX="60.0" layoutY="39.0" prefHeight="301.0" prefWidth="600.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.05780029296875" minWidth="10.0" prefWidth="299.68365478515625" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="300.81634521484375" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.05780029296875" minWidth="10.0" prefWidth="304.6985168457031" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="295.3014831542969" />
                                     </columnConstraints>
                                     <rowConstraints>
                                         <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="72.56463623046875" vgrow="SOMETIMES" />
@@ -111,35 +111,35 @@
                                     <children>
                                         <Label text="Account Type:" textFill="#5e6f64">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label text="Reward Points:" textFill="#5e6f64" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="accountType" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label text="Balance:" textFill="#5e6f64" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                         <Label fx:id="balance" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                               <Label fx:id="rewardPoint" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                               <Label text="Number of return items:" textFill="#5e6f64" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                               <Label fx:id="numOfReturn" prefHeight="45.0" prefWidth="300.0" textFill="#3f4e4f" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Times New Roman Bold" size="24.0" />
+                                    <Font name="Tahoma Bold" size="24.0" />
                                  </font></Label>
                                     </children>
                                 </GridPane>
@@ -166,10 +166,10 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="185.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #C5D8A4;" text="Item's Menu" textFill="#3f4e4f">
+        <Button layoutX="159.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #C5D8A4;" text="Go to Item's Menu" textFill="#3f4e4f">
          <font>
-            <Font name="Times New Roman" size="24.0" />
+            <Font name="Tahoma" size="20.0" />
          </font></Button>
-      <Line endX="-46.195465087890625" endY="19.215316772460938" layoutX="537.0" layoutY="80.0" startX="-519.36962890625" startY="19.215316772460938" stroke="#dcd7c9" strokeWidth="3.0" />
+      <Line endX="-72.5" endY="19.215316772460938" layoutX="537.0" layoutY="80.0" startX="-519.36962890625" startY="19.215316772460938" stroke="#dcd7c9" strokeWidth="3.0" />
     </children>
 </AnchorPane>

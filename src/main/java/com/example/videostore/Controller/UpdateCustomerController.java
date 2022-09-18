@@ -108,19 +108,15 @@ public class UpdateCustomerController implements Initializable {
                 invalidPhoneLabel.setVisible(true);
             }
         }  else {
-            if (validUsername && validPhone) {
-                invalidUsernameLabel.setVisible(false);
+            if (validPhone) {
                 invalidPhoneLabel.setVisible(false);
-            } else if (!validUsername && validPhone) {
-                invalidUsernameLabel.setVisible(true);
+            } else if (!validPhone && invalidPhoneLabel.getText() != "") {
                 invalidPhoneLabel.setVisible(false);
-            } else if (!validPhone && validUsername) {
-                invalidPhoneLabel.setVisible(true);
-                invalidUsernameLabel.setVisible(false);
-            } else {
-                invalidUsernameLabel.setVisible(true);
-                invalidPhoneLabel.setVisible(true);
             }
+            if (validUsername) {
+                invalidUsernameLabel.setVisible(false);
+            }
+
             isFilledLabel.setVisible(true);
         }
 
