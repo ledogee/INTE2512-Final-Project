@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #FBF2CF; -fx-border-radius: 7px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.newStockController">
+    <content>
+        <Pane prefHeight="12.0" prefWidth="450.0" style="-fx-background-color: #D2D79F;">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="97.0" layoutY="159.0" prefHeight="48.0" prefWidth="93.0" text="Add Stock: " textFill="#403b34">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="stockInput" layoutX="190.0" layoutY="166.0" prefHeight="35.0" prefWidth="66.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="259.0" layoutY="171.0" text="copies">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="valid" alignment="CENTER" layoutX="128.0" layoutY="216.0" prefHeight="34.0" prefWidth="167.0" textFill="#f50e0e">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+        </Pane>
+    </content>
+</DialogPane>

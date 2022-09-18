@@ -28,6 +28,7 @@ public class notificationController {
         labelNotification.setTextFill(Color.web(color));
         labelNotification.setFont(Font.font("Tahoma", FontWeight.BOLD, FontPosture.ITALIC, 24));
         labelNotification.setAlignment(Pos.CENTER);
+        labelNotification.setWrapText(true);
 
     }
 
