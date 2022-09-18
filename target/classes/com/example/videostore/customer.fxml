@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,26 +15,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="menuPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
+<AnchorPane prefHeight="800.0" prefWidth="1450.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
     <children>
-        <Label layoutX="28.0" layoutY="24.0" text="Customer Details" textFill="#dcd7c9">
+        <Label layoutX="47.0" layoutY="60.0" text="Customer Details" textFill="#dcd7c9">
             <font>
                 <Font name="Tahoma Bold" size="50.0" />
             </font>
         </Label>
-        <Button layoutX="734.0" layoutY="74.0" mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: #C5D8A4;" text="Update Information" textFill="#3f4e4f" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="74.0">
-         <font>
-            <Font name="Tahoma" size="20.0" />
-         </font></Button>
-        <Button layoutX="26.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Sign Out" textFill="#3f4e4f">
-         <font>
-            <Font name="Tahoma" size="20.0" />
-         </font></Button>
-        <TabPane layoutX="23.0" layoutY="130.0" prefHeight="482.0" prefWidth="943.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="150.0" tabMaxWidth="150.0">
+        <TabPane layoutX="23.0" layoutY="169.0" prefHeight="588.0" prefWidth="1395.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="150.0" tabMaxWidth="150.0">
             <tabs>
                 <Tab text="Personal Information">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="1000.0" style="-fx-background-color: #DCD7C9;">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="1393.0" style="-fx-background-color: #DCD7C9;">
                             <children>
                                 <GridPane layoutX="60.0" layoutY="39.0" prefHeight="340.0" prefWidth="799.0">
                                     <columnConstraints>
@@ -151,13 +145,13 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="943.0" style="-fx-background-color: #5e6f64;">
                             <children>
-                                <TableView fx:id="tableView" layoutX="15.0" layoutY="14.0" prefHeight="411.0" prefWidth="916.0" style="-fx-background-color: DCD7C9;">
+                                <TableView fx:id="tableView" layoutX="39.0" layoutY="14.0" prefHeight="510.0" prefWidth="1302.0" style="-fx-background-color: DCD7C9;">
                                     <columns>
-                                        <TableColumn fx:id="title" editable="false" prefWidth="229.4353256225586" text="Title" />
-                                        <TableColumn fx:id="rentalType" editable="false" minWidth="1.3266448974609375" prefWidth="179.56118774414062" text="Rental Type" />
-                                        <TableColumn fx:id="loanType" editable="false" prefWidth="178.79019165039062" text="Loan Type" />
-                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="146.3741455078125" text="Quantity" />
-                                        <TableColumn fx:id="action" editable="false" prefWidth="182.1258544921875" text="Action" />
+                                        <TableColumn fx:id="title" editable="false" prefWidth="396.9944648742676" text="Title" />
+                                        <TableColumn fx:id="rentalType" editable="false" minWidth="0.0" prefWidth="257.0054626464844" text="Rental Type" />
+                                        <TableColumn fx:id="loanType" editable="false" minWidth="0.0" prefWidth="243.49444580078125" text="Loan Type" />
+                                        <TableColumn fx:id="numOfCopies" editable="false" prefWidth="215.22454833984375" text="Quantity" />
+                                        <TableColumn fx:id="action" editable="false" prefWidth="189.651611328125" text="Action" />
                                     </columns>
                                 </TableView>
                             </children>
@@ -166,10 +160,37 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <Button layoutX="159.0" layoutY="641.0" mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: #C5D8A4;" text="Go to Item's Menu" textFill="#3f4e4f">
-         <font>
-            <Font name="Tahoma" size="20.0" />
-         </font></Button>
-      <Line endX="-72.5" endY="19.215316772460938" layoutX="537.0" layoutY="80.0" startX="-519.36962890625" startY="19.215316772460938" stroke="#dcd7c9" strokeWidth="3.0" />
+      <Line endX="-72.5" endY="19.215316772460938" layoutX="556.0" layoutY="116.0" startX="-519.36962890625" startY="19.215316772460938" stroke="#dcd7c9" strokeWidth="3.0" />
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="28.0" prefWidth="1450.0" style="-fx-background-color: white;">
+        <menus>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                    <Button mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: transparent;" text="Log Out" textFill="#3f4e4f">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                    <Button mnemonicParsing="false" onAction="#goToMenu" style="-fx-background-color: transparent;" text="Go to Item's Menu" textFill="#3f4e4f">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                    <Button mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: asparent;" text="Update Information" textFill="#3f4e4f">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </Menu>
+        </menus>
+      </MenuBar>
     </children>
 </AnchorPane>
