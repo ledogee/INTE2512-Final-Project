@@ -50,23 +50,27 @@ public class adminAddItemDialogController implements Initializable {
     public void setNewLabel(String string) {
         label.setText(string);
     }
-    //Update to handle
+    //Set boolean for validation
     boolean isTitleValid = false;
     boolean isNumOfCopiesValid = false;
     boolean isRentalFeeValid = false;
     boolean isYearValid = false;
     boolean isFilled = false;
 
-
+    //function used to create a new item
     public Item processItem(){
+        //reset boolean to false
         isTitleValid = false;
         isNumOfCopiesValid = false;
         isRentalFeeValid = false;
         isYearValid = false;
         isFilled = false;
 
+        //switch the boolean to true if the input suit the requirement
         String Title = title.getText().trim();
-        isTitleValid = checkTitleValidation(Title);
+        if(!Title.isEmpty()){
+            isTitleValid = true;
+        }
 
         Integer RentalType = null;
         RentalType = comboBoxRentalType.getSelectionModel().getSelectedIndex();
@@ -102,30 +106,26 @@ public class adminAddItemDialogController implements Initializable {
             RentalStatus = false;
         }
 
-        System.out.println("-----------");
-        System.out.println(NumOfCopies + " " + isNumOfCopiesValid);
-        System.out.println(RentalFee + " " + isRentalFeeValid);
-        System.out.println(tempRentalStatus + " " + isFilled);
-        System.out.println(Genres + " " + isFilled);
-
-
+        //Check if the combo box value is selected
         if(tempRentalStatus >= 0 && RentalType >=0 && LoanType >= 0 && ((Genres >= 0 && RentalType > 0)||(RentalType == 0))){
             isFilled = true;
         }
 
-        if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
+        //create new item based on the input value
+        if(RentalType == 0 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
             return new Game.GameBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).build();
         }
-        else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+        else if (RentalType == 1 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
             return new DVD.DVDBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
         }
-        else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+        else if (RentalType == 2 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
             return new Movie.MovieBuilder().buildTitle(Title).buildLoanType(LoanType).buildCopies(NumOfCopies).buildRentalFee(RentalFee).buildRentalStatus(RentalStatus).buildYear(Year).buildGenres(Genres).build();
         }
-
+        //if the input value is incorrect or insufficient, return null
         return null;
     }
 
+    //This helps initialize and set the value choice for combo box and lock the setting for genres if the item is Game
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxRentalType.getItems().addAll("Game", "DVD", "Movie");
@@ -145,36 +145,26 @@ public class adminAddItemDialogController implements Initializable {
     }
 
 
-
+    //Set text to the label to display error to the admin
     void setItemLabel() {
         StringBuilder stringBuilder = new StringBuilder();
         if(!isTitleValid){
-            stringBuilder.append("Invalid Title.(Title Already Exist or Empty Input)\n");
+            stringBuilder.append("Please input a title\n");
         }
-        if(!isNumOfCopiesValid){
+        else if(!isNumOfCopiesValid){
             stringBuilder.append("Invalid Number of Copies.(Only integer value)\n");
         }
-        if(!isRentalFeeValid){
+        else if(!isRentalFeeValid){
             stringBuilder.append("Invalid Rental Fee.(Only numeric value)\n");
         }
-        if(!isYearValid){
+        else if(!isYearValid){
             stringBuilder.append("Invalid Year value.(Only integer value)\n");
         }
-        if(!isFilled){
+        else if(!isFilled){
             stringBuilder.append("Please filled all the choices.\n");
         }
         label.setText(String.valueOf(stringBuilder));
         label.setTextFill(Color.web("#daac89"));
     }
 
-    boolean checkTitleValidation(String string){
-
-        ObservableList<Item> temp = getItems();
-        for(Item item: temp){
-            if(string.equals(item.getTitle()) || string.isEmpty()){
-                return false;
-            }
-        }
-        return true;
-    }
 }

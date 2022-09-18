@@ -85,7 +85,7 @@ public class adminUpdateItemDialogController implements Initializable {
         isFilled = false;
 
         String Title = title.getText().trim();
-        isTitleValid = checkTitleValidation(Title,selectedIndex);
+        isTitleValid = checkTitleValidation(Title);
 
         Integer RentalType = null;
         RentalType = comboBoxRentalType.getSelectionModel().getSelectedIndex();
@@ -137,7 +137,7 @@ public class adminUpdateItemDialogController implements Initializable {
             isFilled = true;
         }
         System.out.println(isFilled);
-        if(RentalType == 0 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
+        if(RentalType == 0 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled){
             item.setTitle(Title);
             item.setCopies(NumOfCopies);
             item.setRentalStatus(RentalStatus);
@@ -149,7 +149,7 @@ public class adminUpdateItemDialogController implements Initializable {
             itemsDatabase.set(selectedIndex,game);
             return game;
         }
-        else if (RentalType == 1 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+        else if (RentalType == 1 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
             item.setTitle(Title);
             item.setCopies(NumOfCopies);
             item.setRentalStatus(RentalStatus);
@@ -161,7 +161,7 @@ public class adminUpdateItemDialogController implements Initializable {
             itemsDatabase.set(selectedIndex,dvd);
             return dvd;
         }
-        else if (RentalType == 2 && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
+        else if (RentalType == 2 && isTitleValid && isNumOfCopiesValid && isRentalFeeValid && isYearValid && isFilled) {
             item.setTitle(Title);
             item.setCopies(NumOfCopies);
             item.setRentalStatus(RentalStatus);
@@ -228,11 +228,11 @@ public class adminUpdateItemDialogController implements Initializable {
         label.setTextFill(Color.web("#daac89"));
     }
 
-    boolean checkTitleValidation(String string,int selectedIndex){
+    boolean checkTitleValidation(String string){
 
         ObservableList<Item> temp = getItems();
         for(int i = 0; i < temp.size(); i++){
-            if((string.equals(temp.get(i).getTitle())&& i != selectedIndex )|| string.isEmpty()){
+            if((string.isEmpty())){
                 return false;
             }
         }

@@ -47,7 +47,7 @@ public class adminAddAccountDialogController implements Initializable {
     public void setAddAccountLabel(String string) {
         addAccountLabel.setText(string);
     }
-
+    //Set boolean for validation
     boolean isAccountTypeFilled = false;
     boolean isNameValid = false;
     boolean isAddressValid = false;
@@ -56,7 +56,10 @@ public class adminAddAccountDialogController implements Initializable {
     boolean isUsernameValid = false;
     boolean isPasswordValid = false;
     boolean isRewardPointValid = false;
+
+    //function used to create a new account
     public Customer processAccount(){
+        //reset boolean to false
         isAccountTypeFilled = false;
         isNameValid = false;
         isAddressValid = false;
@@ -66,6 +69,7 @@ public class adminAddAccountDialogController implements Initializable {
         isPasswordValid = false;
         isRewardPointValid = false;
 
+        //validate input from admin and switch the boolean to true if the input meets the requirement
         Integer AccountType = null;
         AccountType = comboBoxAccountType.getSelectionModel().getSelectedIndex();
         if(AccountType >= 0){
@@ -110,13 +114,9 @@ public class adminAddAccountDialogController implements Initializable {
             isRewardPointValid = true;
         }
 
-        System.out.println("------------------------------"); //for testing
-        System.out.println(AccountType + " " + isAccountTypeFilled);
-        System.out.println(Address + " " + isAddressValid);
-        System.out.println(Phone + " " +  isPhoneValid);
-        System.out.println(Balance + " " + isBalanceValid);
-
         List<String> listId = new ArrayList<>();
+
+        //create new account from the input
         if(AccountType == 0 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid){
             return new Guest.GuestBuilder().buildName(Name).buildAddress(Address).buildPhone(Phone).buildBalance(Balance).buildUsername(Username).buildPassword(Password).buildNumReturn(0).buildListRentals(listId).build();
         } else if (AccountType == 1 && isAccountTypeFilled && isNameValid && isAddressValid && isPhoneValid && isBalanceValid && isUsernameValid && isPasswordValid) {
@@ -127,7 +127,7 @@ public class adminAddAccountDialogController implements Initializable {
         return null;
     }
 
-
+    //validate input phone number
     public boolean checkPhoneNumber(String string){
         boolean isCorrect = true;
         if(string.isEmpty()){
@@ -143,38 +143,38 @@ public class adminAddAccountDialogController implements Initializable {
         }
         return isCorrect;
     }
-
+    //set label new error label to the dialog pane ì the user enter incorrectly
     public void setAccountLabel(){
         StringBuilder stringBuilder = new StringBuilder();
         if(!isAccountTypeFilled){
             stringBuilder.append("Please select an Account Type\n");
         }
-        if(!isNameValid){
+        else if(!isNameValid){
             stringBuilder.append("Invalid name.(Please fill a name)\n");
         }
-        if(!isAddressValid){
+        else if(!isAddressValid){
             stringBuilder.append("Invalid address.(Please fill an address)\n");
         }
-        if(!isPhoneValid){
+        else if(!isPhoneValid){
             stringBuilder.append("Invalid phone number or Empty Input\n");
         }
-        if(!isBalanceValid){
+        else if(!isBalanceValid){
             stringBuilder.append(("Invalid balance.(Only numeric value)\n"));
         }
-        if(!isUsernameValid){
+        else if(!isUsernameValid){
             stringBuilder.append("Username Already Exist or Empty Input\n");
         }
-        if(!isPasswordValid){
+        else if(!isPasswordValid){
             stringBuilder.append("Please fill in a password\n");
         }
-        if(!isRewardPointValid){
+        else if(!isRewardPointValid){
             stringBuilder.append("Invalid reward point.(Only numeric value 0-100)\n");
         }
 
         addAccountLabel.setText(String.valueOf(stringBuilder));
         addAccountLabel.setTextFill(Color.web("#daac89"));
     }
-
+    //This helps initialize and set the value choice for combo box and lock the setting for reward point if the new account is Vip
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBoxAccountType.getItems().addAll("Guest", "Regular", "Vip");
@@ -190,6 +190,7 @@ public class adminAddAccountDialogController implements Initializable {
         });
     }
 
+    //Check if the username overlapped or empty
     public boolean checkUsernameAvailable(String string){
         ObservableList<Customer> temp = getCustomers();
         for(Customer customer: temp){

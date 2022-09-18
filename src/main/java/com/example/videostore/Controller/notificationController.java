@@ -22,7 +22,7 @@ public class notificationController {
 
     @FXML
     private static DialogPane colorPane;
-
+    //Modify the text and the color for the pane based on the input parameter
     public void setLabelNotification(String string, String color) {
         labelNotification.setText(string);
         labelNotification.setTextFill(Color.web(color));
@@ -32,6 +32,7 @@ public class notificationController {
 
     }
 
+    //Create pop up dialog pane for notification in admin
     public static void popAdminNotification(AnchorPane adminVBOX, String string, String color){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminVBOX.getScene().getWindow());
@@ -59,6 +60,7 @@ public class notificationController {
         }
     }
 
+    //Create pop up dialog pane for notification in menu
     public static void popMenuNotification(AnchorPane anchorPane, String string, String color){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(anchorPane.getScene().getWindow());
@@ -80,9 +82,7 @@ public class notificationController {
 
         if(result.isPresent() && result.get() == ButtonType.OK)
         {
-
             System.out.println("Ok pressed");
-
         }
 
     }
