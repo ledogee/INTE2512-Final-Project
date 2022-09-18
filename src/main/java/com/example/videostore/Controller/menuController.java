@@ -29,61 +29,73 @@ import static com.example.videostore.Controller.notificationController.popMenuNo
 
 public class menuController
 {
-    // get data of one customer from other scene
     public static Customer user;
     public static double topUp;
     public Label accountType;
     public AnchorPane menuPane;
+
+
+
     @FXML
     private Label balance;
+
     @FXML
     private Label rewardPoint;
     @FXML
     private TableColumn<Item, Button> i_action;
+
     @FXML
     private TableColumn<Item, String> i_genres;
+
     @FXML
     private TableColumn<Item, String> i_loanType;
+
     @FXML
     private TableColumn<Item, Integer> i_numCopies;
+
     @FXML
     private TableColumn<Item, Double> i_rentalFee;
+
     @FXML
     private TableColumn<Item, Boolean> i_rentalStatus;
+
     @FXML
     private TableColumn<Item, String> i_rentalType;
+
     @FXML
     private TableView<Item> i_tableView;
+
     @FXML
     private TableColumn<Item, String> i_title;
+
     @FXML
     private TextField searchbar;
+
     private List<Button> buttonRents;
-    private int indexUser;
 
-    //observable list to store data
-    ObservableList<Item> itemDatabase = FXCollections.observableArrayList();
-    ObservableList<Customer> customerObservableList = FXCollections.observableArrayList();
-
-    // Button go to Login
     public void goToLogin(ActionEvent event) throws IOException
     {
         SceneSwitcher.switchToLogin(event);
     }
-
-    // Button go to Customer
     public void goToCustomer(ActionEvent event) throws IOException
     {
         CustomerController.user = user;
         SceneSwitcher.switchToCustomer(event);
     }
+
     public Customer getUser() {
         return user;
     }
+
     public void setUser(Customer user) {
         this.user = user;
     }
 
+    private int indexUser;
+
+    //observable list to store data
+    ObservableList<Item> itemDatabase = FXCollections.observableArrayList();
+    ObservableList<Customer> customerObservableList = FXCollections.observableArrayList();
 
     public ObservableList<Item> filterItem( ObservableList<Item> itemDatabase, Customer user) {
         ObservableList<Item> itemsFilter = FXCollections.observableArrayList();
@@ -117,6 +129,10 @@ public class menuController
         ObservableList<Item> itemsGuestFilter = FXCollections.observableArrayList();
         itemsFilter = filterItem(itemDatabase, user);
 
+        // Filer the item status = true;
+        /*itemDatabase.filtered(item -> item.isRentalStatus());*/
+
+
         customerObservableList = SingletonDatabase.getCustomers();
         System.out.println(this.getUser());
 
@@ -127,6 +143,7 @@ public class menuController
                 break;
             }
         }
+
 
         String result = String.format("%.2f", user.getBalance());
         balance.setText("$ " + result);
@@ -141,6 +158,7 @@ public class menuController
         i_tableView.setItems(itemsFilter);
 
 
+
         TableColumn<Item, Button> column = i_action ; // column you want
         List<Button> buttonList = new ArrayList<>();
         for (Item item : i_tableView.getItems()) {
@@ -150,19 +168,38 @@ public class menuController
 
         System.out.println(buttonRents);
 
+        /*for(Button btn : buttonRents) {
+            // check the copies == 0
+            for(int i = 0; i < itemDatabase.size(); i++) {
+                if (user instanceof Guest && itemDatabase.get(i).getLoanType().equals("TwoDays") && itemDatabase.get(i).getButtonRent() == btn) {
+                    btn.setDisable(true);
+                } else if((user instanceof Vip || user instanceof  Regular) && itemDatabase.get(i).getButtonRent() == btn) {
+                    btn.setDisable(false);
+                }
+                if (itemDatabase.get(i).getButtonRent() == btn && itemDatabase.get(i).getCopies() == 0){
+                        System.out.println(i);
+                        btn.setDisable(true);
+                        itemDatabase.get(i).setRentalStatus(false);
+                }else if (itemDatabase.get(i).getCopies()!=0){
+                    btn.setDisable(false);
+                }
+            }
+        }*/
+
+
         for(Button btn : buttonRents)
         {
             ObservableList<Item> finalItemsFilter = itemsFilter;
             btn.setOnAction((actionEvent) -> {
                 System.out.println( "SIZE = " + user.getListRentals().size());
                 if(user.rentItem(finalItemsFilter, customerObservableList, btn, balance, indexUser, rewardPoint)) {
-                   popMenuNotification(menuPane, "Succesfully Rent", "#008000");
+                    popMenuNotification(menuPane, "Succesfully Rent", "#008000");
                 } else {
-                   if(user instanceof Guest && user.getListRentals().size() % 2 == 0 && user.getListRentals().size() != 0) {
-                       popMenuNotification(menuPane, "Guest account cannot rent more than 2 items at the same time", "#FF0000");
-                   } else {
-                       popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
-                   }
+                    if(user instanceof Guest && user.getListRentals().size() % 2 == 0 && user.getListRentals().size() != 0) {
+                        popMenuNotification(menuPane, "Guest account cannot rent more than 2 items at the same time", "#FF0000");
+                    } else {
+                        popMenuNotification(menuPane, "Failed to Rent", "#FF0000");
+                    }
                 }
             });
         }
@@ -208,6 +245,35 @@ public class menuController
 
         String result = String.format("%.2f", user.getBalance());
         balance.setText("$ " + result);
+
+    }
+
+    public void showDialog(String fileName) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(menuPane.getScene().getWindow());
+        dialog.setTitle("Notification");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/" + fileName));
+//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+//            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addItemDialog.fxml")));
+//            dialog.getDialogPane().setContent(root);
+
+        } catch (IOException e) {
+            System.out.println("Couldn't load the dialog");
+            e.printStackTrace();
+            return;
+        }
+
+        // Add button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            dialog.onCloseRequestProperty();
+        }
 
     }
 
