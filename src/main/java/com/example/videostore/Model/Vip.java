@@ -66,10 +66,19 @@ public class Vip extends Customer {
                 if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
                         itemObservableList.set(i, item);
                         // Condition for fee rent
-                        if(this.getRewardPoint() == 100) {
+                        if(this.getRewardPoint() >= 100) {
                             this.setRewardPoint(0);
                             rewardLabel.setText(this.getRewardPoint() + " point");
                             item.setCopies(item.getCopies() - 1);
+                            List<String> listItems;
+                            if(this.getListRentals() == null) {
+                                listItems = new ArrayList<>();
+                            } else {
+                                listItems = this.getListRentals();
+                            }
+                            listItems.add(item.getId());
+                            this.setListRentals(listItems);
+
                             if (item.getCopies() == 0) {
                                 btn.setDisable(true);
                                 item.setRentalStatus(false);

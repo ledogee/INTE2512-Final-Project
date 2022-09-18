@@ -45,7 +45,7 @@ public class SingletonDatabase {
                 boolean rentalStatus = Boolean.parseBoolean(itemPieces[6]);
                 String year = itemPieces[7];
                 String genres = null;
-                if(rentType.equals("DVD") || rentType.equals("Record")) {
+                if(rentType.equals("DVD") || rentType.equals("Movie")) {
                     genres = itemPieces[8];
                 }
 

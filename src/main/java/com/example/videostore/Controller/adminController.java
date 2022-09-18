@@ -240,20 +240,21 @@ public class adminController extends adminAddItemDialogController implements Ini
             if(c_tableView.getSelectionModel().getSelectedItem() == null) {
                 popMenuNotification(adminPane, "Please select a row", "#FF0000");
             } else {
-            for(Item item : items){
-                int count = 0;
-                ArrayList<String> myList = new ArrayList<>(Arrays.asList(c_tableView.getSelectionModel().getSelectedItem().getCombinedString().split(",")));
-                System.out.println(myList);
-                for(String temp: myList){
-                    if(temp.equals(item.getId())){
-                        count++;
+                for (Item item : items) {
+                    int count = 0;
+                    ArrayList<String> myList = new ArrayList<>(Arrays.asList(c_tableView.getSelectionModel().getSelectedItem().getCombinedString().split(",")));
+                    System.out.println(myList);
+                    for (String temp : myList) {
+                        if (temp.equals(item.getId())) {
+                            count++;
+                        }
                     }
+                    item.setCopies(item.getCopies() + count);
                 }
-                item.setCopies(item.getCopies()+count);
-            }
-            customers.remove(c_tableView.getSelectionModel().getSelectedItem());
-            i_tableView.refresh();
+                customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+                i_tableView.refresh();
                 popMenuNotification(adminPane, "Remove Account Successfully!", "#008000");
+            }
         });
     }
 
