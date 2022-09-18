@@ -212,6 +212,7 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         //Delete the selected item
         deleteItem.setOnAction(e -> {
+            //When the item is deleted, those items in the customer's rent list are also deleted
             for(Customer customer : customers){
                   ArrayList<String> myList = new ArrayList<String>(Arrays.asList(customer.getCombinedString().split(",")));
                   removeAll(myList, i_tableView.getSelectionModel().getSelectedItem().getId());
@@ -225,7 +226,20 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         //Delete the selected customer
         deleteCustomer.setOnAction(e -> {
+            //When an account is deleted, the num of copies of that item is added back
+            for(Item item : items){
+                int count = 0;
+                ArrayList<String> myList = new ArrayList<>(Arrays.asList(c_tableView.getSelectionModel().getSelectedItem().getCombinedString().split(",")));
+                System.out.println(myList);
+                for(String temp: myList){
+                    if(temp.equals(item.getId())){
+                        count++;
+                    }
+                }
+                item.setCopies(item.getCopies()+count);
+            }
             customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+            i_tableView.refresh();
         });
 
     }
