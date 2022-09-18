@@ -222,16 +222,17 @@ public class adminController extends adminAddItemDialogController implements Ini
             if(i_tableView.getSelectionModel().getSelectedItem() == null) {
                 popMenuNotification(adminPane, "Please select a row", "#FF0000");
             } else {
-                for(Customer customer : customers){
-                  ArrayList<String> myList = new ArrayList<String>(Arrays.asList(customer.getCombinedString().split(",")));
-                  removeAll(myList, i_tableView.getSelectionModel().getSelectedItem().getId());
-                  String str = arrayToString(myList);
-                  customer.setListRentals(myList);
-                  customer.setCombinedString(str);
+                for (Customer customer : customers) {
+                    ArrayList<String> myList = new ArrayList<String>(Arrays.asList(customer.getCombinedString().split(",")));
+                    removeAll(myList, i_tableView.getSelectionModel().getSelectedItem().getId());
+                    String str = arrayToString(myList);
+                    customer.setListRentals(myList);
+                    customer.setCombinedString(str);
                 }
                 items.remove(i_tableView.getSelectionModel().getSelectedItem());
                 popMenuNotification(adminPane, "Remove Item Successfully!", "#008000");
                 c_tableView.refresh();
+            }
         });
 
         //Delete the selected customer
@@ -268,13 +269,6 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         filterItem.setPredicate(isOutOfStock);
         i_tableView.setItems(filterItem);
-
-/*        for(Item item: items) {
-            if(item.getCopies() == 0) {
-                itemsOutOfStock.add(item);
-            }
-        }
-        i_tableView.setItems(itemsOutOfStock);*/
     }
 
     //Display all item in the table

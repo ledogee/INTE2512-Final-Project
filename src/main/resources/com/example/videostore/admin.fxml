@@ -98,10 +98,10 @@
          <columns>
             <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="c_accountType" prefWidth="77.0" text="Type" />
-            <TableColumn fx:id="c_name" prefWidth="85.0" text="Name" />
-            <TableColumn fx:id="c_address" prefWidth="121.33331298828125" text="Address" />
-            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="99.0" text="Phone" />
-            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="119.0" text="Balance" />
+            <TableColumn fx:id="c_name" prefWidth="122.0" text="Name" />
+            <TableColumn fx:id="c_address" prefWidth="122.0" text="Address" />
+            <TableColumn fx:id="c_phone" minWidth="1.333282470703125" prefWidth="102.0" text="Phone" />
+            <TableColumn fx:id="c_balance" minWidth="1.3333740234375" prefWidth="79.0" text="Balance" />
             <TableColumn fx:id="c_username" prefWidth="95.33331298828125" text="Username" />
             <TableColumn fx:id="c_password" prefWidth="97.0" text="Password" />
             <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="96.0" text="NumOfReturn" />

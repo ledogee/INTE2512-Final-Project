@@ -9,37 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eeda629-40a2-4fef-8e4b-7a0db3468cf7" name="Changes" comment="">
+    <list default="true" id="41913498-98b7-4c84-960f-b3b70c7a03bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminAddItemDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/adminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Controller/menuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/DVD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/DVD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Regular.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Regular.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/SceneSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/Model/Vip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/SystemBroker/SingletonDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/SystemBroker/SingletonDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/customers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/videostore/db/items.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/admin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/customer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/customer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/videostore/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/videostore/welcome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Guest$GuestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Guest$GuestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Guest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Guest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Regular$RegularBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Regular$RegularBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Vip$VipBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Vip$VipBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Vip.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/Model/Vip.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/admin.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/customer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/customer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/menu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/videostore/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/videostore/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

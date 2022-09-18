@@ -60,7 +60,7 @@ public class SingletonDatabase {
                         DVD dvd = new DVD.DVDBuilder(id,title,numberOfCopies,loanType, rentalFee, rentalStatus, year, genres).build();
                         items.add(dvd);
                         break;
-                    case "Record":
+                    case "Movie":
                         Movie movie = new Movie.MovieBuilder(id,title,numberOfCopies,loanType, rentalFee, rentalStatus, year, genres).build();
                         items.add(movie);
                         break;
