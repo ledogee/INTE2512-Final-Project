@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="adminPane" prefHeight="881.0" prefWidth="1510.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
+<AnchorPane fx:id="adminPane" prefHeight="800.0" prefWidth="1450.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.adminController">
    <children>
       <AnchorPane layoutX="20.0" layoutY="57.0" prefHeight="380.0" prefWidth="349.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
@@ -81,20 +81,20 @@
          </children>
       </AnchorPane>
       <HBox alignment="CENTER" layoutY="115.0" />
-      <TableView fx:id="i_tableView" layoutX="380.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="i_tableView" layoutX="380.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="1051.0" style="-fx-background-color: #DCD7C9;">
          <columns>
             <TableColumn fx:id="i_id" prefWidth="92.0" text="ID" />
-            <TableColumn fx:id="i_title" prefWidth="118.0" text="Title" />
-            <TableColumn fx:id="i_rentalType" prefWidth="107.0" text="Rental Type" />
-            <TableColumn fx:id="i_loanType" prefWidth="152.0" text="Loan Type" />
-            <TableColumn fx:id="i_numCopies" prefWidth="127.0" text="Num Copies" />
-            <TableColumn fx:id="i_rentalFee" prefWidth="148.0" text="Rental Fee" />
-            <TableColumn fx:id="i_status" prefWidth="176.0" text="Status" />
-            <TableColumn fx:id="i_genres" prefWidth="185.0" text="Genres" />
+            <TableColumn fx:id="i_title" prefWidth="177.73590087890625" text="Title" />
+            <TableColumn fx:id="i_rentalType" prefWidth="137.26409912109375" text="Rental Type" />
+            <TableColumn fx:id="i_loanType" prefWidth="137.89593505859375" text="Loan Type" />
+            <TableColumn fx:id="i_numCopies" prefWidth="125.5440673828125" text="Num Copies" />
+            <TableColumn fx:id="i_rentalFee" prefWidth="122.0321044921875" text="Rental Fee" />
+            <TableColumn fx:id="i_status" prefWidth="104.280029296875" text="Status" />
+            <TableColumn fx:id="i_genres" prefWidth="155.152099609375" text="Genres" />
          </columns>
       </TableView>
       <HBox alignment="CENTER" layoutY="468.0" />
-      <TableView fx:id="c_tableView" layoutX="380.0" layoutY="450.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="401.0" prefWidth="1106.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="c_tableView" layoutX="380.0" layoutY="450.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="401.0" prefWidth="1051.0" style="-fx-background-color: #DCD7C9;">
          <columns>
             <TableColumn fx:id="c_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="c_accountType" prefWidth="77.0" text="Type" />
@@ -106,10 +106,10 @@
             <TableColumn fx:id="c_password" prefWidth="97.0" text="Password" />
             <TableColumn fx:id="c_numOfReturn" minWidth="0.0" prefWidth="96.0" text="NumOfReturn" />
             <TableColumn fx:id="c_rewardPoint" minWidth="0.0" prefWidth="88.0" text="RewardPoint" />
-            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="151.0" text="ListRental" />
+            <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="97.0" text="ListRental" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="24.0" layoutY="450.0" prefHeight="401.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
+      <AnchorPane layoutX="24.0" layoutY="450.0" prefHeight="368.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
             <GridPane layoutY="13.0" prefHeight="231.0" prefWidth="339.0">
                <columnConstraints>
@@ -155,7 +155,7 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <MenuBar layoutY="-1.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1510.0" style="-fx-background-color: #dee0e1;">
+      <MenuBar layoutY="-1.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="25.0" prefWidth="1450.0" style="-fx-background-color: #dee0e1;">
         <menus>
           <Menu mnemonicParsing="false">
                <graphic>

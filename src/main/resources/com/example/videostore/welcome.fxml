@@ -5,29 +5,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.welcomeController">
+<AnchorPane minHeight="700.0" minWidth="1000.0" prefHeight="800.0" prefWidth="1450.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.welcomeController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="182.0" prefHeight="142.0" prefWidth="887.0" text="Welcome to Media Mart !" textFill="#dcd7c9">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="282.0" layoutY="198.0" prefHeight="142.0" prefWidth="887.0" text="Welcome to Media Mart !" textFill="#dcd7c9">
          <font>
             <Font name="Times New Roman Bold Italic" size="80.0" />
          </font>
       </Label>
-      <Label layoutX="668.0" layoutY="306.0" text="by Java is Fun team" textFill="#bcb6a7">
+      <Label layoutX="898.0" layoutY="322.0" text="by Java is Fun team" textFill="#bcb6a7">
          <font>
             <Font name="Times New Roman Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="143.0" layoutY="463.0" text="Looks like you are new here. Log in or register to get started!" textFill="#dcd7c9">
+      <Label layoutX="345.0" layoutY="506.0" text="Looks like you are new here. Log in or register to get started!" textFill="#dcd7c9">
          <font>
             <Font name="Times New Roman" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="360.0" layoutY="556.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Log In" textFill="#2c3639">
+      <Button layoutX="562.0" layoutY="599.0" mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: #C5D8A4;" text="Log In" textFill="#2c3639">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
       </Button>
-      <Button layoutX="539.0" layoutY="556.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: #C5D8A4;" text="Register" textFill="#2c3639">
+      <Button layoutX="741.0" layoutY="599.0" mnemonicParsing="false" onAction="#goToRegister" style="-fx-background-color: #C5D8A4;" text="Register" textFill="#2c3639">
          <font>
             <Font name="Times New Roman" size="24.0" />
          </font>
