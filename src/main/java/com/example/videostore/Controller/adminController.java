@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import static com.example.videostore.Controller.notificationController.popAdminNotification;
 import static com.example.videostore.Controller.notificationController.popMenuNotification;
@@ -168,6 +169,7 @@ public class adminController extends adminAddItemDialogController implements Ini
 
         searchbarItem.textProperty().addListener((observable, oldValue, newValue )->
         {
+            System.out.println(filteredList);
             filteredList.setPredicate(item ->
             {
                 if(newValue == null || newValue.isEmpty())
@@ -178,12 +180,13 @@ public class adminController extends adminAddItemDialogController implements Ini
                     return true;
                 else return item.getId().toLowerCase().contains(lowerCAseFilter);
             });
+            SortedList<Item> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
+            i_tableView.setItems(sortedList);
         });
 
-        SortedList<Item> sortedList = new SortedList<>(filteredList);
 
-        sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
-        i_tableView.setItems(sortedList);
+
 
 
 
@@ -241,17 +244,26 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void displayItemOutOfStock(ActionEvent event) {
         ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
+        FilteredList<Item> filterItem = new FilteredList<>(items);
 
-        for(Item item: items) {
+
+        Predicate<Item> isOutOfStock = i -> i.getCopies() == 0;
+
+        filterItem.setPredicate(isOutOfStock);
+        i_tableView.setItems(filterItem);
+
+/*        for(Item item: items) {
             if(item.getCopies() == 0) {
                 itemsOutOfStock.add(item);
             }
         }
-        i_tableView.setItems(itemsOutOfStock);
+        i_tableView.setItems(itemsOutOfStock);*/
     }
 
     public void displayAllItems(ActionEvent event) {
-        i_tableView.setItems(items);
+        FilteredList<Item> filterItem = new FilteredList<>(items);
+        filterItem.setPredicate(null); // show all db again
+        i_tableView.setItems(filterItem);
     }
     public void showNewItemDialog()
     {
