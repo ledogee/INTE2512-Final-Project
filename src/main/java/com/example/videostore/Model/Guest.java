@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Guest extends Customer {
+
+    // Builder pattern for Constructor
     public Guest(Guest.GuestBuilder builder) {
         this.setName(builder.name);
         this.setAddress(builder.address);
@@ -20,6 +22,8 @@ public class Guest extends Customer {
         this.setPassword(builder.password);
         this.setId(builder.id);
         this.setNumberOfReturn(builder.numOfReturn);
+
+        // Generate ID
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -35,6 +39,7 @@ public class Guest extends Customer {
         }
     }
 
+    // Overriding rent Feature
     @Override
     public boolean  rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
@@ -83,6 +88,7 @@ public class Guest extends Customer {
                 '}';
     }
 
+    // Builder pattern for Constructor
     public static class GuestBuilder {
         private String id;
         private String name;
@@ -126,12 +132,6 @@ public class Guest extends Customer {
             this.balance = balance;
             this.listRentals = listRentals;
         }
-        
-        public Guest.GuestBuilder buildId(String id) {
-            this.id = id;
-            return this;
-        }
-
         public Guest.GuestBuilder buildNumReturn(int num) {
             this.numOfReturn = num;
             return this;
@@ -149,22 +149,6 @@ public class Guest extends Customer {
             this.phone = phone;
             return this;
         }
-
-        /*public Guest.GuestBuilder buildAccountType(int num) {
-            Account.AccountType enumAccountType = null;
-            if(num == 0) {
-                enumAccountType = AccountType.Guest;
-            } else if(num == 1) {
-                enumAccountType = AccountType.Regular;
-            } else if(num == 2) {
-                enumAccountType = AccountType.Vip;
-            } else {
-                System.out.println("Enum out of bound");
-
-            }
-            this.accountType = String.valueOf(enumAccountType);
-            return this;
-        }*/
 
         public Guest.GuestBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;
@@ -187,9 +171,6 @@ public class Guest extends Customer {
         }
 
         public Guest build() {
-/*
-            this.id = String.valueOf(Guest.generateId());
-*/
             return new Guest(this);
         }
     }

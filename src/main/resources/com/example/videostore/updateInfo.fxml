@@ -12,18 +12,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #5E6F64;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.UpdateCustomerController">
     <children>
-        <Label layoutX="87.0" layoutY="28.0" text="Please Update Your Information" textFill="#dcd7c9">
+        <Label layoutX="74.0" layoutY="28.0" text="Please Update Your Information" textFill="#dcd7c9">
          <font>
-            <Font name="Times New Roman Bold Italic" size="40.0" />
+            <Font name="Tahoma Bold" size="35.0" />
          </font>
         </Label>
-        <Button fx:id="cancelButton" layoutX="490.0" layoutY="436.0" mnemonicParsing="false" onAction="#cancelUpdateInfo" style="-fx-background-color: #C5D8A4;" text="Cancel" textFill="#3f4e4f">
+        <Button fx:id="cancelButton" layoutX="504.0" layoutY="442.0" mnemonicParsing="false" onAction="#cancelUpdateInfo" style="-fx-background-color: #C5D8A4;" text="Cancel" textFill="#3f4e4f">
          <font>
-            <Font name="Times New Roman" size="22.0" />
+            <Font name="Tahoma" size="20.0" />
          </font></Button>
-        <Button fx:id="saveButton" layoutX="602.0" layoutY="436.0" mnemonicParsing="false" onAction="#updateInfo" style="-fx-background-color: #C5D8A4;" text="Save" textFill="#3f4e4f">
+        <Button fx:id="saveButton" layoutX="605.0" layoutY="442.0" mnemonicParsing="false" onAction="#updateInfo" style="-fx-background-color: #C5D8A4;" text="Save" textFill="#3f4e4f">
          <font>
-            <Font name="Times New Roman" size="22.0" />
+            <Font name="Tahoma" size="20.0" />
          </font></Button>
       <GridPane gridLinesVisible="false" layoutX="74.0" layoutY="106.0" prefHeight="288.0" prefWidth="564.0">
          <columnConstraints>
@@ -44,62 +44,62 @@
          <children>
             <Label text="Name:" textFill="#dcd7c9">
                <font>
-                  <Font name="Times New Roman Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Label>
             <Label layoutX="10.0" layoutY="24.0" text="Username:" textFill="#dcd7c9" GridPane.rowIndex="2">
                <font>
-                  <Font name="Times New Roman Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Label>
             <Label layoutX="10.0" layoutY="68.0" text="Password:" textFill="#dcd7c9" GridPane.rowIndex="4">
                <font>
-                  <Font name="Times New Roman Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Label>
             <Label layoutX="10.0" layoutY="110.0" text="Phone:" textFill="#dcd7c9" GridPane.rowIndex="6">
                <font>
-                  <Font name="Times New Roman Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Label>
             <Label layoutX="10.0" layoutY="151.0" text="Address:" textFill="#dcd7c9" GridPane.rowIndex="8">
                <font>
-                  <Font name="Times New Roman Bold" size="24.0" />
+                  <Font name="Tahoma Bold" size="22.0" />
                </font>
             </Label>
             <TextField fx:id="name" layoutX="123.0" layoutY="64.0" prefHeight="35.0" GridPane.columnIndex="1">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font></TextField>
             <TextField fx:id="username" prefHeight="35.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font></TextField>
             <TextField fx:id="password" prefHeight="35.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font></TextField>
-            <TextField fx:id="phone" prefHeight="35.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="phone" prefHeight="35.0" prefWidth="429.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font></TextField>
             <TextField fx:id="address" prefHeight="35.0" prefWidth="406.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
-                  <Font name="Times New Roman" size="18.0" />
+                  <Font name="Tahoma" size="18.0" />
                </font></TextField>
-            <Label fx:id="invalidPhoneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="435.0" text="Invalid phone number (must contains DIGITS ONLY)." textAlignment="CENTER" textFill="#daac89" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="invalidPhoneLabel" contentDisplay="CENTER" prefHeight="23.0" prefWidth="435.0" text="Invalid phone number (must contains DIGITS ONLY)." textAlignment="CENTER" textFill="#daac89" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
+                  <Font name="Tahoma" size="16.0" />
                </font></Label>
             <Label fx:id="invalidUsernameLabel" contentDisplay="CENTER" prefHeight="18.0" prefWidth="432.0" text="This username's already been used." textFill="#daac89" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font name="Times New Roman Bold" size="18.0" />
+                  <Font name="Tahoma" size="16.0" />
                </font></Label>
          </children>
       </GridPane>
       <Label fx:id="isFilledLabel" contentDisplay="CENTER" layoutX="235.0" layoutY="406.0" text="Please fill in all information." textAlignment="CENTER" textFill="#daac89" visible="false">
          <font>
-            <Font name="Times New Roman Bold" size="20.0" />
+            <Font name="Tahoma" size="18.0" />
          </font></Label>
       <Line endX="348.0" endY="7.0" layoutX="295.0" layoutY="76.0" startX="-226.0" startY="7.0" stroke="#dcd7c9" strokeWidth="3.0" />
     </children>

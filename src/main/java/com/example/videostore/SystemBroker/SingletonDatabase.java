@@ -15,23 +15,19 @@ import java.util.List;
 public class SingletonDatabase {
     private static SingletonDatabase instance = new SingletonDatabase();
     private static String itemFileName = "src/main/java/com/example/videostore/db/items.txt";
-
     private static String customerFileName = "src/main/java/com/example/videostore/db/customers.txt";
     private static ObservableList<Customer> customers;
     private static ObservableList<Item> items;
-
     public static SingletonDatabase getInstance(){return instance;}
-
-
     public static ObservableList<Item> getItems() {
         return items;
     }
     public static ObservableList<Customer> getCustomers() {return customers;}
-
     public static void setCustomers(ObservableList<Customer> customers) {
         SingletonDatabase.customers = customers;
     }
 
+    // READ THE DATA OF ITEMS
     public static void loadItems() throws IOException{
         items= FXCollections.observableArrayList();
         Path path = Paths.get(itemFileName);
@@ -49,7 +45,7 @@ public class SingletonDatabase {
                 boolean rentalStatus = Boolean.parseBoolean(itemPieces[6]);
                 String year = itemPieces[7];
                 String genres = null;
-                if(rentType.equals("DVD") || rentType.equals("Record")) {
+                if(rentType.equals("DVD") || rentType.equals("Movie")) {
                     genres = itemPieces[8];
                 }
 
@@ -64,7 +60,7 @@ public class SingletonDatabase {
                         DVD dvd = new DVD.DVDBuilder(id,title,numberOfCopies,loanType, rentalFee, rentalStatus, year, genres).build();
                         items.add(dvd);
                         break;
-                    case "Record":
+                    case "Movie":
                         Movie movie = new Movie.MovieBuilder(id,title,numberOfCopies,loanType, rentalFee, rentalStatus, year, genres).build();
                         items.add(movie);
                         break;
@@ -87,6 +83,8 @@ public class SingletonDatabase {
         }
 
     }
+
+    // READ THE DATA OF CUSTOMER
     public static void loadCustomers() throws IOException {
         customers = FXCollections.observableArrayList();
         Path path = Paths.get(customerFileName);
@@ -127,8 +125,10 @@ public class SingletonDatabase {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-            }
         }
+    }
+
+    // WRITE THE DATA OF CUSTOMER
     public static void saveCustomers() throws IOException {
             FileOutputStream output = new FileOutputStream(customerFileName);
             OutputStreamWriter outputSW = new OutputStreamWriter(output, StandardCharsets.UTF_8);
@@ -148,6 +148,7 @@ public class SingletonDatabase {
         bw.close();
     }
 
+    // WRITE THE DATA OF ITEMS
     public static void saveitems() throws IOException {
         FileOutputStream outputStream = new FileOutputStream(itemFileName);
         OutputStreamWriter outputSW = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
@@ -161,33 +162,6 @@ public class SingletonDatabase {
         }
         bw.close();
     }
-
-
-    /*public static Customer checkpromotion(Customer cus){
-        for(int i = 0; i < customers.size(); i++){
-            if(cus.getNumberOfReturn()> 3 && cus.getAccountType().equals("Guest")){
-                cus.setAccountType("Regular");
-                Regular reg = new Regular.RegularBuilder(cus).build();
-                if(customers.get(i).getId().equals(reg.getId())){
-                    getCustomers().set(i, reg);
-                    *//*customers.set(i,reg);*//*
-                }
-                *//*setCustomers(customers);*//*
-                System.out.println(customers.get(i).getAccountType());
-                return reg;
-            }else if(cus.getNumberOfReturn() > 5 && cus.getAccountType().equals("Regular")){
-                cus.setAccountType("VIP");
-                Vip vip = new Vip.VipBuilder(cus).build();
-                if(customers.get(i).getId().equals(vip.getId())){
-                    getCustomers().set(i, vip);
-                }
-                setCustomers(customers);
-                System.out.println(customers.get(i).getAccountType());
-                return vip;
-            }
-        }
-        return cus;
-    }*/
 }
 
 

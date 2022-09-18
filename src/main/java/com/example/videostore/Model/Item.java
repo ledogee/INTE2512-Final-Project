@@ -9,6 +9,7 @@ public abstract class  Item {
 
     public abstract String getGenres();
 
+    // Enum for quickly choose the string we want
     enum Genres {
         Action,
         Horror,
@@ -44,6 +45,7 @@ public abstract class  Item {
         this.quantity = quantity;
     }
 
+    // increase count of the Item ID when item is created
     public Item() {
         idCount++;
         this.buttonRent = new Button("Rent");
@@ -56,10 +58,6 @@ public abstract class  Item {
 
     public Button getButtonRent() {
         return buttonRent;
-    }
-
-    public void setButtonRent(Button buttonRent) {
-        this.buttonRent = buttonRent;
     }
 
     public String getRentalType() {
@@ -135,6 +133,7 @@ public abstract class  Item {
         this.year = year;
     }
 
+    // Generate ID automatically
     public static int generateId() {
         ObservableList<Item> listItems = SingletonDatabase.getItems();
         System.out.println(listItems.size());
@@ -144,9 +143,6 @@ public abstract class  Item {
             System.out.println(substring);
             return Integer.parseInt(substring);
         }
-     /*   Item lastItem = listItems.get(listItems.size() - 1);
-        String substring = lastItem.getId().substring(1, 3);
-        return Integer.parseInt(substring);*/
         return 0;
 
     }

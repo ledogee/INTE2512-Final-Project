@@ -10,83 +10,87 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="menuPane" prefHeight="938.0" prefWidth="1520.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
+<AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="1562.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
    <children>
-      <MenuBar layoutY="-2.0" onMouseClicked="#goToLogin" prefHeight="36.0" prefWidth="1520.0">
+      <MenuBar layoutX="-15.0" layoutY="-3.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="35.0" prefWidth="1577.0" style="-fx-background-color: #dee0e1;">
          <menus>
             <Menu mnemonicParsing="false">
                <graphic>
-                  <Button accessibleRole="PARENT" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#goToLogin" prefWidth="88.0" style="-fx-background-color: transparent;" text="Log Out" textFill="#c5d8a4">
+                  <Button accessibleRole="PARENT" alignment="CENTER" mnemonicParsing="false" onAction="#goToLogin" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Log Out" textFill="#2c3639">
                      <font>
-                        <Font name="Times New Roman Bold" size="16.0" />
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+            
+                  <Button fx:id="customerInfor" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Profile" textFill="#2c3639">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <Button mnemonicParsing="false" onAction="#recharge" prefHeight="34.0" prefWidth="120.0" style="-fx-background-color: transparent;" text="Cash Top Up" textFill="#2c3639">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
                </graphic>
             </Menu>
          </menus>
       </MenuBar>
-      <TableView fx:id="i_tableView" layoutX="-1.0" layoutY="109.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1497.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="i_tableView" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="1562.0" style="-fx-background-color: #DCD7C9;">
          <columns>
-            <TableColumn fx:id="i_title" prefWidth="263.6666717529297" text="Title" />
-            <TableColumn fx:id="i_rentalType" prefWidth="193.3333282470703" text="Rental Type" />
-            <TableColumn fx:id="i_loanType" prefWidth="184.33331298828125" text="Loan Type" />
-            <TableColumn fx:id="i_numCopies" prefWidth="185.0" text="Num Copies" />
-            <TableColumn fx:id="i_rentalFee" prefWidth="182.0" text="Rental Fee" />
-            <TableColumn fx:id="i_rentalStatus" prefWidth="181.3333740234375" text="Rental Status" />
-            <TableColumn fx:id="i_genres" minWidth="0.0" prefWidth="197.6666259765625" text="Genres" />
-            <TableColumn fx:id="i_action" minWidth="0.0" prefWidth="115.0" text="Action" />
+            <TableColumn fx:id="i_title" prefWidth="288.98292541503906" text="Title" />
+            <TableColumn fx:id="i_rentalType" prefWidth="200.51705932617188" text="Rental Type" />
+            <TableColumn fx:id="i_loanType" prefWidth="198.85107421875" text="Loan Type" />
+            <TableColumn fx:id="i_numCopies" prefWidth="139.83404541015625" text="Num Copies" />
+            <TableColumn fx:id="i_rentalFee" prefWidth="171.09783935546875" text="Rental Fee" />
+            <TableColumn fx:id="i_rentalStatus" prefWidth="180.40216064453125" text="Rental Status" />
+            <TableColumn fx:id="i_genres" minWidth="0.0" prefWidth="190.0" text="Genres" />
+            <TableColumn fx:id="i_action" minWidth="0.0" prefWidth="168.0" text="Action" />
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
-
-      <Button fx:id="customerInfor" layoutX="539.0" layoutY="765.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #fff; -fx-border-radius: 15px;" text="Customer Information">
+      <Label alignment="CENTER" layoutX="7.0" layoutY="50.0" prefHeight="51.0" prefWidth="99.0" text="Search" textFill="#ebe8e8">
          <font>
-            <Font name="Times New Roman Bold" size="26.0" />
-         </font>
-      </Button>
-      <Label alignment="CENTER" layoutX="160.0" layoutY="64.0" prefHeight="51.0" prefWidth="99.0" text="Search" textFill="#ebe8e8">
-         <font>
-            <Font name="Calibri" size="24.0" />
+            <Font name="Tahoma" size="22.0" />
          </font></Label>
-      <Button layoutX="251.0" layoutY="7.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="696.0" style="-fx-background-color: transparent;">
+      <Label fx:id="balance" layoutX="1411.0" layoutY="64.0" prefHeight="28.0" prefWidth="137.0" text="MONEY" textFill="#dcd7c9">
          <font>
-            <Font name="Times New Roman" size="54.0" />
-         </font>
-      </Button>
-      <Button layoutX="751.0" layoutY="764.0" mnemonicParsing="false" onAction="#recharge" prefHeight="38.0" prefWidth="197.0" style="-fx-background-color: #fff; -fx-border-radius: 15px;" text="CASH TOP UP">
-         <font>
-            <Font name="Times New Roman Bold" size="18.0" />
-         </font>
-      </Button>
-      <Label fx:id="username" contentDisplay="CENTER" layoutX="160.0" layoutY="778.0" prefHeight="50.0" prefWidth="347.0" text="\$USERNAME" textAlignment="CENTER" textFill="#dfeaeb">
-         <font>
-            <Font name="Times New Roman Bold" size="24.0" />
+            <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="balance" layoutX="1372.0" layoutY="75.0" prefHeight="28.0" prefWidth="137.0" text="MONEY" textFill="#dcd7c9">
+      <Label layoutX="1324.0" layoutY="60.0" prefHeight="35.0" prefWidth="99.0" text="Balance:" textFill="#dcd7c9">
          <font>
-            <Font name="Calibri Bold" size="24.0" />
+            <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="1273.0" layoutY="72.0" prefHeight="35.0" prefWidth="99.0" text="Balance:" textFill="#dcd7c9">
+      <Label fx:id="accountType" alignment="CENTER" contentDisplay="CENTER" layoutX="795.0" layoutY="61.0" prefHeight="35.0" prefWidth="224.0" text="ACCOUNT TYPE" textFill="#9bbdbf">
          <font>
-            <Font name="Calibri Bold" size="24.0" />
+            <Font name="Tahoma Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="accountType" alignment="CENTER" contentDisplay="CENTER" layoutX="1273.0" layoutY="768.0" prefHeight="35.0" prefWidth="224.0" text="ACCOUNT TYPE" textFill="#9bbdbf">
+      <Label layoutX="1078.0" layoutY="58.0" prefHeight="35.0" prefWidth="99.0" text="Reward: " textFill="#dcd7c9">
          <font>
-            <Font name="Times New Roman Bold" size="24.0" />
+            <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="1039.0" layoutY="72.0" prefHeight="35.0" prefWidth="99.0" text="Reward: " textFill="#dcd7c9">
+      <Label fx:id="rewardPoint" layoutX="1163.0" layoutY="63.0" prefHeight="28.0" prefWidth="122.0" text="POINT" textFill="#dcd7c9">
          <font>
-            <Font name="Calibri Bold" size="24.0" />
+            <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="rewardPoint" layoutX="1129.0" layoutY="76.0" prefHeight="28.0" prefWidth="122.0" text="POINT" textFill="#dcd7c9">
+      <TextField fx:id="searchbar" layoutX="98.0" layoutY="62.0" prefHeight="19.0" prefWidth="682.0">
          <font>
-            <Font name="Calibri Bold" size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="searchbar" layoutX="258.0" layoutY="76.0" prefHeight="19.0" prefWidth="682.0" />
+            <Font name="Tahoma" size="13.0" />
+         </font></TextField>
    </children>
 </AnchorPane>

@@ -4,6 +4,8 @@ import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.ObservableMap;
 
 public class Game extends Item{
+
+    // Builder pattern for Constructor
     private Game(Game.GameBuilder builder) {
         this.setTitle(builder.title);
         this.setRentalType(builder.rentalType);
@@ -15,6 +17,7 @@ public class Game extends Item{
         this.setId(builder.id);
         this.setYear(builder.year);
 
+        // Generate ID
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -43,11 +46,13 @@ public class Game extends Item{
                 '}';
     }
 
+    // Making sure cannot getGenres
     @Override
     public String getGenres() {
         return null;
     }
 
+    // Builder pattern for Constructor
     public static class GameBuilder {
         private String id;
         private String title;
@@ -57,7 +62,6 @@ public class Game extends Item{
         private double rentalFee;
         private boolean rentalStatus;
         private String year;
-        private String imageFile;
 
         public GameBuilder(String id, String title, int copies, String loanType, double rentalFee, boolean rentalStatus, String year) {
             this.id = id;
@@ -67,11 +71,6 @@ public class Game extends Item{
             this.rentalFee = rentalFee;
             this.rentalStatus = rentalStatus;
             this.year = year;
-        }
-
-        public Game.GameBuilder buildId (String id) {
-            this.id = id;
-            return this;
         }
 
         public GameBuilder() {
@@ -128,11 +127,6 @@ public class Game extends Item{
 
         public GameBuilder buildYear(String year) {
             this.year = year;
-            return this;
-        }
-
-        public GameBuilder buildImage(String imageFile) {
-            this.imageFile = imageFile;
             return this;
         }
 

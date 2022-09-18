@@ -11,29 +11,29 @@
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="500.0" text="Enter amount of money you want to top up:" textAlignment="CENTER" textFill="#dcd7c9">
          <font>
-            <Font name="Times New Roman Bold" size="25.0" />
+            <Font name="Tahoma Bold" size="20.0" />
          </font>
       </Label>
       <HBox alignment="CENTER" prefHeight="66.0" prefWidth="391.0">
          <children>
             <Label prefHeight="34.0" prefWidth="33.0" text="  $" textFill="#dcd7c9">
                <font>
-                  <Font name="Times New Roman Bold" size="26.0" />
+                  <Font name="Tahoma Bold" size="24.0" />
                </font>
             </Label>
             <TextField fx:id="balanceInput" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="95.0">
                <font>
-                  <Font name="Times New Roman" size="20.0" />
+                  <Font name="Tahoma" size="20.0" />
                </font></TextField>
          </children>
       </HBox>
       <Label fx:id="validation" alignment="CENTER" prefHeight="46.0" prefWidth="425.0" textAlignment="CENTER" textFill="#d3c8a9">
          <font>
-            <Font name="Times New Roman" size="18.0" />
+            <Font name="Tahoma" size="18.0" />
          </font></Label>
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#topUpBalance" style="-fx-background-color: #C5D8A4;" text="TOP UP" textFill="#3f4e4f">
          <font>
-            <Font name="Times New Roman Bold" size="20.0" />
+            <Font name="Tahoma Bold" size="20.0" />
          </font>
       </Button>
    </children>

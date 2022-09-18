@@ -1,5 +1,4 @@
-I002-1999,Rat Race,DVD,TwoDays,25,1.99,true,1999,Action
-I004-2013,Halloween,DVD,TwoDays,1,0.99,false,2013,Action
-I005-2010,Gear medal,DVD,OneWeek,3,120.99,true,2010,Horror
-I006-2022,game,Game,TwoDays,32,32.0,true,2022
-I007-2022,game,DVD,TwoDays,1,32.0,true,2022,Action
+I001-2022,Valorant,Game,TwoDays,30,20.35,true,2022
+I002-2009,Titantic,DVD,TwoDays,10,5.99,true,2009,Comedy
+I003-2009,PUBG,Game,OneWeek,0,2.3,false,2009
+I004-2022,Superman,DVD,OneWeek,32,3.23,true,2022,Action

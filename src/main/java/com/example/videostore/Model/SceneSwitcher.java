@@ -16,6 +16,7 @@ public class SceneSwitcher {
     private static Scene scene;
     private static Parent root;
 
+    // SWITCH SCENES FUNCTIONS
     public static void switchToLogin(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Main.class.getResource("login.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -24,7 +25,6 @@ public class SceneSwitcher {
         stage.centerOnScreen();
         stage.show();
     }
-
 
     public static void switchToRegister(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Main.class.getResource("register.fxml"));

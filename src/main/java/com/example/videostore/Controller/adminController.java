@@ -1,5 +1,6 @@
 package com.example.videostore.Controller;
 
+import com.example.videostore.Main;
 import com.example.videostore.Model.*;
 import com.example.videostore.SystemBroker.SingletonDatabase;
 import javafx.collections.FXCollections;
@@ -10,18 +11,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import static com.example.videostore.Controller.notificationController.popAdminNotification;
 import static com.example.videostore.Controller.notificationController.popMenuNotification;
@@ -33,6 +40,7 @@ public class adminController extends adminAddItemDialogController implements Ini
     public TextField searchbarCustomer;
     public Button deleteCustomer;
     public Button deleteItem;
+    public Button newStockbtn;
 
     @FXML
     private Button returnToLoginButton;
@@ -123,7 +131,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         return customers;
     }
 
-
+    //display the information of item and customer data to the tables
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         c_listRental.setCellFactory(tc -> {
@@ -136,38 +144,17 @@ public class adminController extends adminAddItemDialogController implements Ini
             return cell ;
         });
 
-      /*  Item item1 = null;
-        item1 = new DVD.DVDBuilder().buildTitle("Rat Race").buildLoanType(1).buildCopies(1).buildRentalFee(1.99).buildGenres(2).buildYear("2015").build();
-        Item item2 = new Game.GameBuilder().buildTitle("Medal of Honour").buildLoanType(1).buildCopies(3).buildRentalFee(0.99).buildYear("2001").build();
-        Item item3 = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();*/
-
+        //add item data to the table
         items = SingletonDatabase.getItems();
-        /*Item itemNew = new Game.GameBuilder().buildTitle("Gear medal").buildLoanType(4).buildCopies(3).buildRentalFee(120.99).buildYear("2010").build();
-        items.add(itemNew);*/
-
         i_id.setCellValueFactory(new PropertyValueFactory<Item, String>("id"));
         menuController.loadTable(i_title, i_rentalType, i_loanType, i_numCopies, i_rentalFee, i_status, i_genres);
-
-
-/*
-        i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
-*/
-
-/*
-            i_genres.setCellValueFactory(new PropertyValueFactory<Item, String>("genres"));
-*/
-
         i_tableView.setItems(items);
-    /*    for(int i = 0; i < items.size(); i++) {
-            if(!i_rentalType.getCellData(i).equals("Game")) {
 
-                i_genres.setCellValueFactory(c-> new SimpleStringProperty(c.getValue().getGenres()));
-            }
-        }*/
+        //create search bar for item
         FilteredList<Item> filteredList = new FilteredList<>(items, b -> true);
-
         searchbarItem.textProperty().addListener((observable, oldValue, newValue )->
         {
+            System.out.println(filteredList);
             filteredList.setPredicate(item ->
             {
                 if(newValue == null || newValue.isEmpty())
@@ -178,15 +165,15 @@ public class adminController extends adminAddItemDialogController implements Ini
                     return true;
                 else return item.getId().toLowerCase().contains(lowerCAseFilter);
             });
+            SortedList<Item> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
+            i_tableView.setItems(sortedList);
         });
 
-        SortedList<Item> sortedList = new SortedList<>(filteredList);
-
-        sortedList.comparatorProperty().bind(i_tableView.comparatorProperty());
-        i_tableView.setItems(sortedList);
 
 
 
+        //add customer info to the table
         customers = SingletonDatabase.getCustomers();
         c_accountType.setCellValueFactory(new PropertyValueFactory<Customer, String>("accountType"));
         c_id.setCellValueFactory(new PropertyValueFactory<Customer, String>("id"));
@@ -204,6 +191,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
         c_tableView.setItems(customers);
 
+        //create search bar for account
         FilteredList<Customer> filteredList2 = new FilteredList<>(customers, b -> true);
 
         searchbarCustomer.textProperty().addListener((observable, oldValue, newValue )->
@@ -229,30 +217,80 @@ public class adminController extends adminAddItemDialogController implements Ini
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
+        //Delete the selected item
         deleteItem.setOnAction(e -> {
-            items.remove(i_tableView.getSelectionModel().getSelectedItem());
+            if(i_tableView.getSelectionModel().getSelectedItem() == null) {
+                popMenuNotification(adminPane, "Please select a row", "#FF0000");
+            } else {
+                for (Customer customer : customers) {
+                    ArrayList<String> myList = new ArrayList<String>(Arrays.asList(customer.getCombinedString().split(",")));
+                    removeAll(myList, i_tableView.getSelectionModel().getSelectedItem().getId());
+                    String str = arrayToString(myList);
+                    customer.setListRentals(myList);
+                    customer.setCombinedString(str);
+                }
+                items.remove(i_tableView.getSelectionModel().getSelectedItem());
+                popMenuNotification(adminPane, "Remove Item Successfully!", "#008000");
+                c_tableView.refresh();
+            }
         });
 
+        //Delete the selected customer
         deleteCustomer.setOnAction(e -> {
-            customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+            if(c_tableView.getSelectionModel().getSelectedItem() == null) {
+                popMenuNotification(adminPane, "Please select a row", "#FF0000");
+            } else {
+                for (Item item : items) {
+                    int count = 0;
+                    ArrayList<String> myList = new ArrayList<>(Arrays.asList(c_tableView.getSelectionModel().getSelectedItem().getCombinedString().split(",")));
+                    System.out.println(myList);
+                    for (String temp : myList) {
+                        if (temp.equals(item.getId())) {
+                            count++;
+                        }
+                    }
+                    item.setCopies(item.getCopies() + count);
+                }
+                customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+                i_tableView.refresh();
+                popMenuNotification(adminPane, "Remove Account Successfully!", "#008000");
+            }
         });
-
     }
 
+    public String arrayToString (ArrayList<String> arrayList){
+        if(arrayList==null||arrayList.isEmpty()){
+            return "";
+        }
+        return  String.join(",",arrayList);
+    }
+
+    void removeAll(ArrayList<String> list, String element) {
+        while (list.contains(element)) {
+            list.remove(element);
+        }
+    }
+
+    //Display the item out of stock to the table
     public void displayItemOutOfStock(ActionEvent event) {
         ObservableList<Item> itemsOutOfStock = FXCollections.observableArrayList();
+        FilteredList<Item> filterItem = new FilteredList<>(items);
 
-        for(Item item: items) {
-            if(item.getCopies() == 0) {
-                itemsOutOfStock.add(item);
-            }
-        }
-        i_tableView.setItems(itemsOutOfStock);
+
+        Predicate<Item> isOutOfStock = i -> i.getCopies() == 0;
+
+        filterItem.setPredicate(isOutOfStock);
+        i_tableView.setItems(filterItem);
     }
 
+    //Display all item in the table
     public void displayAllItems(ActionEvent event) {
-        i_tableView.setItems(items);
+        FilteredList<Item> filterItem = new FilteredList<>(items);
+        filterItem.setPredicate(null); // show all db again
+        i_tableView.setItems(filterItem);
     }
+
+    //display the dialog for the admin to add a new item
     public void showNewItemDialog()
     {
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -261,8 +299,6 @@ public class adminController extends adminAddItemDialogController implements Ini
         dialog.setHeaderText("Use this dialog to create a new item");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/addItemDialog.fxml"));
-//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
-//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -272,12 +308,15 @@ public class adminController extends adminAddItemDialogController implements Ini
             return;
         }
 
-        // Add button
+        // Add button OK and Cancel
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         adminAddItemDialogController controller = fxmlLoader.getController();
         controller.setNewLabel("");
+        //show the dialog and wait for response (click Okay or Cancel)
         Optional<ButtonType> result = dialog.showAndWait();
+
+        //create Item process
         if(result.isPresent() && result.get() == ButtonType.OK) {
             Item newItem = controller.processItem();
 
@@ -292,24 +331,21 @@ public class adminController extends adminAddItemDialogController implements Ini
 
             }
             if(result.get() == ButtonType.OK){
+                //Display notification
                 popAdminNotification(adminPane, "Successfully add new Item", "#008000");
                 SingletonDatabase.getItems().add(newItem);
-            }
-
-            if(result.get() == ButtonType.OK){ //just for testing
-                System.out.println("Ok pressed");
-            }else {
-                System.out.println("Cancel pressed");
             }
 
         } else {
             System.out.println("Cancel pressed");
         }
     }
-
+    //display the dialog for the admin to update a selected item
     public void showUpdateItemDialog() {
+        //save the selected item
         Item selectedItem = i_tableView.getSelectionModel().getSelectedItem();
         int itemIndex = 0;
+        //use try catch to handle error when item is not selected
         try {
             for(int i = 0; i < items.size(); i++){
                 if (selectedItem.getId().equals(items.get(i).getId())){
@@ -339,6 +375,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                 Window window = dialog.getDialogPane().getScene().getWindow();
                 Optional<ButtonType> result = dialog.showAndWait();
 
+                //update Item process
                 if (result.isPresent() && result.get() == ButtonType.OK) {
                     Item newItem = controller.processUpdateItem(selectedItem, items, itemIndex);
 
@@ -364,40 +401,10 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
         } catch (NullPointerException e) {
-            popMenuNotification(adminPane, "Please select row", "#FF0000");
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
         }
-
-//        if(result.isPresent() && result.get() == ButtonType.OK) {
-//            // get the controller of Dialog to call the function processResults
-//
-//            Item newItem = controller.processUpdateItem();
-//
-//            System.out.println(newItem);
-//            while((newItem == null && result.get() == ButtonType.OK) ){
-//                controller.setItemLabel();
-//                result = dialog.showAndWait();
-//                newItem = controller.processUpdateItem();
-//                if(newItem != null && result.get() == ButtonType.OK){
-//                    break;
-//                }
-//
-//            }
-//            if(result.get() == ButtonType.OK){
-//                popAdminNotification(adminPane, "Successfully update Item", "#008000");
-//                SingletonDatabase.getItems().add(newItem);
-//            }
-//
-//            if(result.get() == ButtonType.OK){ //just for testing
-//                System.out.println("Ok pressed");
-//            }else {
-//                System.out.println("Cancel pressed");
-//            }
-//
-//
-//        } else {
-//            System.out.println("Cancel pressed");
-//        }
     }
+    //display dialog for admin to create new account
     public void showNewAccountDialog(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(adminPane.getScene().getWindow());
@@ -414,11 +421,12 @@ public class adminController extends adminAddItemDialogController implements Ini
             return;
         }
 
-        // Add button
+        // Add button OK and Cancel
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         adminAddAccountDialogController controller = fxmlLoader.getController();
         controller.setAddAccountLabel("");
+        //show the dialog and wait for response (click Okay or Cancel)
         Optional<ButtonType> result = dialog.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
@@ -447,20 +455,15 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
     }
 
-    public void showUpdateAccountDialog() {
-        int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-        Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
-        /*Item selectedItem = c_tableView.getSelectionModel().getSelectedItem()*/
-
-        if (selectedIndex != -1) {
+    public void showNewStockDiag() throws IOException {
+        Item selectedItem = i_tableView.getSelectionModel().getSelectedItem();
+        if(selectedItem != null) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(adminPane.getScene().getWindow());
-            dialog.setTitle("Update Account");
-            dialog.setHeaderText("Use this dialog to update an account");
+            dialog.setTitle("Add New Stock");
+            dialog.setHeaderText("Use this dialog to add new stock arrives");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
-//        URL fxmlLocation = getClass().getResource("addItemDialog.fxml");
-//        FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/newStock.fxml"));
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -473,9 +476,72 @@ public class adminController extends adminAddItemDialogController implements Ini
             // Add button
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            newStockController controller = fxmlLoader.getController();
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+
+                try {
+                    int newStock = Integer.parseInt(controller.stockInput.getText());
+                    if(newStock >= 0) {
+                        selectedItem.setCopies(selectedItem.getCopies() + newStock);
+
+                        for(int i = 0; i < items.size(); i++) {
+                            if(items.get(i).getId().equals(selectedItem.getId())) {
+                                items.set(i, selectedItem);
+                                controller.valid.setText("Invalid Input");
+
+                            }
+                        }
+
+                        System.out.println("Ok pressed");
+                        popMenuNotification(adminPane, "New Stock arrived! ", "#008000");
+                    } else {
+                        popMenuNotification(adminPane, "Invalid input! ", "#FF0000");
+                    }
+
+                } catch (Exception e) {
+                    popMenuNotification(adminPane, "Invalid input! ", "#FF0000");
+                }
+            } else {
+                System.out.println("Cancel pressed");
+            }
+        } else {
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
+        }
+    }
+
+    //display the dialog for the admin to update a selected account
+    public void showUpdateAccountDialog() {
+        //save the selected customer
+        int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
+        Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
+
+
+        //check if the select index appear (!= -1)
+        if (selectedIndex != -1) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(adminPane.getScene().getWindow());
+            dialog.setTitle("Update Account");
+            dialog.setHeaderText("Use this dialog to add new stock");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateCustomerDialog.fxml"));
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException e) {
+                System.out.println("Couldn't load the dialog");
+                e.printStackTrace();
+                return;
+            }
+
+            // Add Okay and Cancel button
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
             adminUpdateAccountDialogController controller = fxmlLoader.getController();
             controller.setCustomerValue(selectedCus);
             Window window = dialog.getDialogPane().getScene().getWindow();
+            //display dialog pane and wait for response
             Optional<ButtonType> result = dialog.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -485,11 +551,13 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
                 System.out.println(newAccount);
 
+                //run while loop if newAccount return null (incorrect input)
                 while ((newAccount == null && result.get() == ButtonType.OK)) {
                     controller.setAccountLabel();
                     result = dialog.showAndWait();
 
                     newAccount = controller.processUpdateAccount(selectedCus, customers);
+                    //break the loop if the processUpdateAccount can return an update
                     if ((newAccount != null && result.get() == ButtonType.OK)) {
                         newAccount.setCombinedString(newAccount.arraytostring());
                         break;
@@ -500,16 +568,14 @@ public class adminController extends adminAddItemDialogController implements Ini
                     popAdminNotification(adminPane, "Successfully update Account", "#008000");
                 }
 
-                System.out.println("Ok pressed");
-
             } else {
-                System.out.println("Cancel pressed");
+                System.out.println("");
             }
         } else {
-            popMenuNotification(adminPane, "Please select row", "#FF0000");
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
         }
     }
-
+    //check for a string in text field if it is a double
     public static boolean isDouble(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty
             return false;
@@ -521,7 +587,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
         return true;
     }
-
+    //check for a string in text field if it is an integer
     public static boolean isInteger(String stringFromTextField) {
         if (stringFromTextField == null) { //Check if the text field is empty
             return false;
@@ -533,5 +599,7 @@ public class adminController extends adminAddItemDialogController implements Ini
         }
         return true;
     }
+
+
 }
 

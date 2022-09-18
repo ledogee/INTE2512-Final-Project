@@ -3,6 +3,8 @@ package com.example.videostore.Model;
 import java.util.List;
 
 public class Regular extends Customer {
+
+    // Builder pattern for Constructor
     public Regular(Regular.RegularBuilder builder) {
         this.setName(builder.name);
         this.setAddress(builder.address);
@@ -14,6 +16,8 @@ public class Regular extends Customer {
         this.setPassword(builder.password);
         this.setNumberOfReturn(builder.numOfReturn);
         this.setId(builder.id);
+
+        // Generate ID
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -44,6 +48,7 @@ public class Regular extends Customer {
                 '}';
     }
 
+    // Builder pattern for Constructor
     public static class RegularBuilder {
         private String id;
         private String name;
@@ -78,10 +83,6 @@ public class Regular extends Customer {
             this.username = cus.getUsername();
             this.password = cus.getPassword();
         }
-        public Regular.RegularBuilder buildId(String name) {
-            this.name = name;
-            return this;
-        }
 
         public Regular.RegularBuilder buildNumReturn(int numOfReturn) {
             this.numOfReturn = numOfReturn;
@@ -100,22 +101,6 @@ public class Regular extends Customer {
             this.phone = phone;
             return this;
         }
-
-        /*public Regular.RegularBuilder buildAccountType(int num) {
-            Account.AccountType enumAccountType = null;
-            if(num == 0) {
-                enumAccountType = Account.AccountType.Regular;
-            } else if(num == 1) {
-                enumAccountType = Account.AccountType.Regular;
-            } else if(num == 2) {
-                enumAccountType = Account.AccountType.Vip;
-            } else {
-                System.out.println("Enum out of bound");
-
-            }
-            this.accountType = String.valueOf(enumAccountType);
-            return this;
-        }*/
 
         public Regular.RegularBuilder buildListRentals(List<String> listRentals) {
             this.listRentals = listRentals;

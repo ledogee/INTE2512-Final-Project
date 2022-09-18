@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vip extends Customer {
-/*    private int rewardPoint = 0;*/
+    // Builder pattern for Constructor
     public Vip(Vip.VipBuilder builder) {
         this.setName(builder.name);
         this.setAddress(builder.address);
@@ -21,6 +21,8 @@ public class Vip extends Customer {
         this.setRewardPoint(builder.rewardPoint);
         this.setNumberOfReturn(builder.numOfReturn);
         this.setId(builder.id);
+
+        // Generate ID
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -36,8 +38,6 @@ public class Vip extends Customer {
         }
 
     }
-
-
 
     @Override
     public String toString() {
@@ -55,6 +55,7 @@ public class Vip extends Customer {
                 '}';
     }
 
+    // Overriding rent feature
     @Override
     public boolean rentItem(ObservableList<Item> itemObservableList, ObservableList<Customer> customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
@@ -65,10 +66,19 @@ public class Vip extends Customer {
                 if (item.getRentalFee() <= this.getBalance()) { // Enough balance to rent
                         itemObservableList.set(i, item);
                         // Condition for fee rent
-                        if(this.getRewardPoint() == 100) {
+                        if(this.getRewardPoint() >= 100) {
                             this.setRewardPoint(0);
                             rewardLabel.setText(this.getRewardPoint() + " point");
                             item.setCopies(item.getCopies() - 1);
+                            List<String> listItems;
+                            if(this.getListRentals() == null) {
+                                listItems = new ArrayList<>();
+                            } else {
+                                listItems = this.getListRentals();
+                            }
+                            listItems.add(item.getId());
+                            this.setListRentals(listItems);
+
                             if (item.getCopies() == 0) {
                                 btn.setDisable(true);
                                 item.setRentalStatus(false);
@@ -106,48 +116,7 @@ public class Vip extends Customer {
         return false;
     }
 
-    /*  @Override
-    public boolean rentItem(Item item) {
-        if(this.getRewardPoint() == 100) {
-            System.out.println("You able to rent a free item!");
-            item.setCopies(item.getCopies() - 1);
-            System.out.println("Rent successfully!");
-            this.setRewardPoint(0);
-            System.out.println("Your reward point change from 100 to " + this.getRewardPoint());
-
-            List<String> listRentals = super.getListRentals();
-            listRentals.add(item.getId());
-            super.setListRentals(listRentals);
-            System.out.println("Your rented items has add new one item!");
-            System.out.println(this.getListRentals());
-            return true;
-        }
-
-        if(super.getBalance() >= item.getRentalFee()) {
-            double currentBalance = super.getBalance();
-            int currentRewardPoint = this.getRewardPoint();
-            item.setCopies(item.getCopies() - 1);
-            System.out.println("Rent successfully!");
-            super.setBalance(super.getBalance() - item.getRentalFee());
-            System.out.println("Your balance change from " + currentBalance + " to " + super.getBalance());
-
-            this.setRewardPoint(this.getRewardPoint() + 10);
-            System.out.println("Your reward point change from " + currentRewardPoint + " to " + this.getRewardPoint());
-
-            List<String> listRentals = super.getListRentals();
-            listRentals.add(item.getId());
-            super.setListRentals(listRentals);
-            System.out.println("Your rented items has add new one item!");
-            System.out.println(this.getListRentals());
-
-
-            return true;
-        } else {
-            System.out.println("You don't have enough money to rent");
-            return false;
-        }
-    }*/
-
+    // Builder pattern for Constructor
     public static class VipBuilder {
         private String id;
         private String name;
@@ -191,12 +160,6 @@ public class Vip extends Customer {
             this.numOfReturn = numOfReturn;
             return this;
         }
-
-        public Vip.VipBuilder buildId(String id) {
-            this.id = id;
-            return this;
-        }
-
         public Vip.VipBuilder buildName(String name) {
             this.name = name;
             return this;
@@ -238,7 +201,6 @@ public class Vip extends Customer {
             }
             return this;
         }
-
 
         public Vip build() {
             return new Vip(this);
