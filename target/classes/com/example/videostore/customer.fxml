@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
+<AnchorPane fx:id="menuPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #3F4E4F;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.CustomerController">
     <children>
         <Label layoutX="28.0" layoutY="24.0" text="Customer Details" textFill="#dcd7c9">
             <font>

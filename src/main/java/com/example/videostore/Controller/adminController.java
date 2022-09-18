@@ -238,11 +238,23 @@ public class adminController extends adminAddItemDialogController implements Ini
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         deleteItem.setOnAction(e -> {
-            items.remove(i_tableView.getSelectionModel().getSelectedItem());
+            if(i_tableView.getSelectionModel().getSelectedItem() == null) {
+                popMenuNotification(adminPane, "Please select a row", "#FF0000");
+            } else {
+                items.remove(i_tableView.getSelectionModel().getSelectedItem());
+                popMenuNotification(adminPane, "Remove Item Successfully!", "#008000");
+            }
+
         });
 
         deleteCustomer.setOnAction(e -> {
-            customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+            if(c_tableView.getSelectionModel().getSelectedItem() == null) {
+                popMenuNotification(adminPane, "Please select a row", "#FF0000");
+            } else {
+                customers.remove(c_tableView.getSelectionModel().getSelectedItem());
+                popMenuNotification(adminPane, "Remove Account Successfully!", "#008000");
+            }
+
         });
 
     }
@@ -384,7 +396,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                 }
             }
         } catch (NullPointerException e) {
-            popMenuNotification(adminPane, "Please select row", "#FF0000");
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
         }
 
 //        if(result.isPresent() && result.get() == ButtonType.OK) {
@@ -495,24 +507,31 @@ public class adminController extends adminAddItemDialogController implements Ini
 
                 try {
                     int newStock = Integer.parseInt(controller.stockInput.getText());
-                    selectedItem.setCopies(selectedItem.getCopies() + newStock);
+                    if(newStock >= 0) {
+                        selectedItem.setCopies(selectedItem.getCopies() + newStock);
 
-                    for(int i = 0; i < items.size(); i++) {
-                        if(items.get(i).getId().equals(selectedItem.getId())) {
-                            items.set(i, selectedItem);
+                        for(int i = 0; i < items.size(); i++) {
+                            if(items.get(i).getId().equals(selectedItem.getId())) {
+                                items.set(i, selectedItem);
+                                controller.valid.setText("Invalid Input");
+
+                            }
                         }
+
+                        System.out.println("Ok pressed");
+                        popMenuNotification(adminPane, "New Stock arrived! ", "#008000");
+                    } else {
+                        popMenuNotification(adminPane, "Invalid input! ", "#FF0000");
                     }
 
-                    System.out.println("Ok pressed");
-                    popMenuNotification(adminPane, "New Stock arrived! ", "#008000");
                 } catch (Exception e) {
-                    controller.valid.setText("Invalid Input");
+                    popMenuNotification(adminPane, "Invalid input! ", "#FF0000");
                 }
             } else {
                 System.out.println("Cancel pressed");
             }
         } else {
-            popMenuNotification(adminPane, "Please select row", "#FF0000");
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
         }
     }
 
@@ -575,7 +594,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                 System.out.println("Cancel pressed");
             }
         } else {
-            popMenuNotification(adminPane, "Please select row", "#FF0000");
+            popMenuNotification(adminPane, "Please select a row", "#FF0000");
         }
     }
 
