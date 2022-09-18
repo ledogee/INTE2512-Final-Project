@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="menuPane" prefHeight="783.0" prefWidth="1481.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
+<AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="1562.0" style="-fx-background-color: #2C3639;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.Controller.menuController">
    <children>
-      <MenuBar layoutY="-2.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="36.0" prefWidth="1450.0" style="-fx-background-color: #dee0e1;">
+      <MenuBar layoutX="-15.0" layoutY="-3.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#goToLogin" prefHeight="35.0" prefWidth="1577.0" style="-fx-background-color: #dee0e1;">
          <menus>
             <Menu mnemonicParsing="false">
                <graphic>
@@ -44,7 +44,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <TableView fx:id="i_tableView" layoutX="-3.0" layoutY="111.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="1453.0" style="-fx-background-color: #DCD7C9;">
+      <TableView fx:id="i_tableView" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="1562.0" style="-fx-background-color: #DCD7C9;">
          <columns>
             <TableColumn fx:id="i_title" prefWidth="288.98292541503906" text="Title" />
             <TableColumn fx:id="i_rentalType" prefWidth="200.51705932617188" text="Rental Type" />
@@ -52,8 +52,8 @@
             <TableColumn fx:id="i_numCopies" prefWidth="139.83404541015625" text="Num Copies" />
             <TableColumn fx:id="i_rentalFee" prefWidth="171.09783935546875" text="Rental Fee" />
             <TableColumn fx:id="i_rentalStatus" prefWidth="180.40216064453125" text="Rental Status" />
-            <TableColumn fx:id="i_genres" minWidth="0.0" prefWidth="173.0" text="Genres" />
-            <TableColumn fx:id="i_action" minWidth="0.0" prefWidth="193.0" text="Action" />
+            <TableColumn fx:id="i_genres" minWidth="0.0" prefWidth="190.0" text="Genres" />
+            <TableColumn fx:id="i_action" minWidth="0.0" prefWidth="168.0" text="Action" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -63,27 +63,27 @@
          <font>
             <Font name="Tahoma" size="22.0" />
          </font></Label>
-      <Label fx:id="balance" layoutX="1344.0" layoutY="64.0" prefHeight="28.0" prefWidth="137.0" text="MONEY" textFill="#dcd7c9">
+      <Label fx:id="balance" layoutX="1411.0" layoutY="64.0" prefHeight="28.0" prefWidth="137.0" text="MONEY" textFill="#dcd7c9">
          <font>
             <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="1257.0" layoutY="60.0" prefHeight="35.0" prefWidth="99.0" text="Balance:" textFill="#dcd7c9">
+      <Label layoutX="1324.0" layoutY="60.0" prefHeight="35.0" prefWidth="99.0" text="Balance:" textFill="#dcd7c9">
          <font>
             <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="accountType" alignment="CENTER" contentDisplay="CENTER" layoutX="625.0" layoutY="731.0" prefHeight="35.0" prefWidth="224.0" text="ACCOUNT TYPE" textFill="#9bbdbf">
+      <Label fx:id="accountType" alignment="CENTER" contentDisplay="CENTER" layoutX="795.0" layoutY="61.0" prefHeight="35.0" prefWidth="224.0" text="ACCOUNT TYPE" textFill="#9bbdbf">
          <font>
             <Font name="Tahoma Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="1018.0" layoutY="58.0" prefHeight="35.0" prefWidth="99.0" text="Reward: " textFill="#dcd7c9">
+      <Label layoutX="1078.0" layoutY="58.0" prefHeight="35.0" prefWidth="99.0" text="Reward: " textFill="#dcd7c9">
          <font>
             <Font name="Tahoma" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="rewardPoint" layoutX="1103.0" layoutY="63.0" prefHeight="28.0" prefWidth="122.0" text="POINT" textFill="#dcd7c9">
+      <Label fx:id="rewardPoint" layoutX="1163.0" layoutY="63.0" prefHeight="28.0" prefWidth="122.0" text="POINT" textFill="#dcd7c9">
          <font>
             <Font name="Tahoma" size="22.0" />
          </font>

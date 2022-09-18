@@ -7,6 +7,7 @@ import java.io.IOException;
 public class Movie extends Item{
     private String genres;
 
+    // Builder pattern for Constructor
     private Movie(MovieBuilder builder) {
         this.genres = builder.genres;
         this.setTitle(builder.title);
@@ -18,6 +19,8 @@ public class Movie extends Item{
         this.setYear(builder.year);
         this.setId(builder.id);
         this.setYear(builder.year);
+
+        // Id generate
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -56,7 +59,7 @@ public class Movie extends Item{
     }
 
 
-    // Builder Class
+    // Builder pattern for Constructor
     public static class MovieBuilder {
         private String id;
         private String title;
@@ -67,7 +70,6 @@ public class Movie extends Item{
         private boolean rentalStatus;
         private String genres;
         private String year;
-        private String imageFile;
 
         public MovieBuilder() {
         }
@@ -89,14 +91,6 @@ public class Movie extends Item{
             this.rentalStatus = rentalStatus;
             this.year = year;
             this.genres = genres;
-        }
-
-        /*Movie movie = new Movie.MovieBuilder(id, title, rentType, numberOfCopies, rentalFee, genres1).build();*/
-
-
-        public Movie.MovieBuilder buildId (String id) {
-            this.id = id;
-            return this;
         }
 
         public Movie.MovieBuilder buildTitle (String title) {
@@ -133,7 +127,6 @@ public class Movie extends Item{
             return this;
         }
 
-
         public Movie.MovieBuilder buildGenres (int num) {
             Genres enumGenres = null;
             if(num == 0) {
@@ -153,11 +146,6 @@ public class Movie extends Item{
 
         public Movie.MovieBuilder buildYear(String year) {
             this.year = year;
-            return this;
-        }
-
-        public Movie.MovieBuilder builderImage(String imageFile) {
-            this.imageFile = imageFile;
             return this;
         }
 

@@ -24,6 +24,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -244,7 +245,6 @@ public class adminController extends adminAddItemDialogController implements Ini
                 items.remove(i_tableView.getSelectionModel().getSelectedItem());
                 popMenuNotification(adminPane, "Remove Item Successfully!", "#008000");
             }
-
         });
 
         deleteCustomer.setOnAction(e -> {
@@ -254,9 +254,7 @@ public class adminController extends adminAddItemDialogController implements Ini
                 customers.remove(c_tableView.getSelectionModel().getSelectedItem());
                 popMenuNotification(adminPane, "Remove Account Successfully!", "#008000");
             }
-
         });
-
     }
 
     public void displayItemOutOfStock(ActionEvent event) {
@@ -282,8 +280,6 @@ public class adminController extends adminAddItemDialogController implements Ini
         filterItem.setPredicate(null); // show all db again
         i_tableView.setItems(filterItem);
     }
-
-
 
     public void showNewItemDialog()
     {

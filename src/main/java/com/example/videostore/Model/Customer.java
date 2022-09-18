@@ -49,6 +49,7 @@ public abstract class Customer  {
     }
 
 
+    // Function Rent of Customer get the Database as ObservableList Type of customer and item then locate button rent at that row to create event
     public boolean rentItem( ObservableList<Item> itemObservableList, ObservableList<Customer>  customerObservableList, Button btn, Label balanceLabel, int indexUser, Label rewardLabel) {
         for(int i = 0; i < itemObservableList.size(); i++) {
             if (itemObservableList.get(i).getButtonRent() == btn) {
@@ -58,6 +59,7 @@ public abstract class Customer  {
                         itemObservableList.set(i, item);
                         this.setBalance(this.getBalance() - item.getRentalFee());
 
+                        // Create Empty listRental when the listItems of the Customer is null
                         List<String> listItems;
                         if(this.getListRentals() == null) {
                             listItems = new ArrayList<>();
@@ -66,6 +68,8 @@ public abstract class Customer  {
                         }
                         listItems.add(item.getId());
                         this.setListRentals(listItems);
+                        
+                        // Locate the index of the customer then update into the Observable List of Customer Database
                         customerObservableList.set(indexUser, this);
                         String result = String.format("%.2f", this.getBalance());
                         balanceLabel.setText(result + " $");
@@ -82,20 +86,30 @@ public abstract class Customer  {
         return false;
     }
 
+    // Function return of Customer get the Database as ObservableList Type of customer and item then locate button return at that row to create event
     public boolean returnItem(ObservableList<Item> itemObservableList,ObservableList<Item> rented, Button btn){
         for(int i = 0; i < rented.size();i++){
+            
+            // when the button is located 
             if(rented.get(i).getButtonReturn().equals(btn)){
+                
+                // Update the quality of the item in the item-list of customer
                 Item item = rented.get(i);
                 rented.get(i).setQuantity(rented.get(i).getQuantity()-1);
                 System.out.println(rented.get(i).getQuantity());
-                if(rented.get(i).getQuantity() == 0){
+                if(rented.get(i).getQuantity() == 0){ 
                     rented.remove(i);
                 }
+                
                 System.out.println(item.getTitle());
+                
+                // Locate the item in the item database
                 for (int j = 0; j < itemObservableList.size();j++){
                     if (item.getId().equals(itemObservableList.get(j).getId())) {
                         item = itemObservableList.get(j);
                         List<String> list = this.getListRentals();
+                        
+                        // Return the copies for the store
                         item.setCopies(item.getCopies()+1);
                         list.remove(item.getId());
                         this.setListRentals(list);
@@ -108,6 +122,8 @@ public abstract class Customer  {
         }
         return false;
     }
+
+    // Convert the list of ID into one string
     public String arraytostring (){
         if(this.listRentals==null||this.listRentals.isEmpty()){
             return "";
@@ -119,9 +135,9 @@ public abstract class Customer  {
 
     }
 
+    // Increase the idCount of each time the new Customer object created
     public Customer() {
         idCount++;
-
     }
 
     public int getRewardPoint() {
@@ -135,15 +151,12 @@ public abstract class Customer  {
     public static int getIdCount() {
         return idCount;
     }
-
-    public static void setIdCount(int idCount) {
-        Customer.idCount = idCount;
-    }
-
     public String getId() {
         return id;
     }
 
+
+    // Constraint if the id is already set make sure object cannot generate new ID
     public void setId(String id) {
         if(this.id == null) {
             this.id = id;
@@ -215,6 +228,11 @@ public abstract class Customer  {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getCombinedString() {
+        return combinedString;
+    }
+    // Function to generateId automatically
     public static int generateId() {
         ObservableList<Customer> customer = SingletonDatabase.getCustomers();
         System.out.println(customer.size());
@@ -226,12 +244,9 @@ public abstract class Customer  {
         }
         return 0;
     }
-    public String getCombinedString() {
-        return combinedString;
-    }
-
     public void setCombinedString(String combinedString) {
         this.combinedString = combinedString;
+
     }
 }
 

@@ -183,7 +183,7 @@
             </Menu>
             <Menu mnemonicParsing="false">
                <graphic>
-                    <Button mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: asparent;" text="Update Information" textFill="#3f4e4f">
+                    <Button mnemonicParsing="false" onAction="#UpdateInfoButtonHandler" style="-fx-background-color: transparent;" text="Update Information" textFill="#3f4e4f">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>

@@ -109,7 +109,7 @@
             <TableColumn fx:id="c_listRental" minWidth="0.0" prefWidth="97.0" text="ListRental" />
          </columns>
       </TableView>
-      <AnchorPane layoutX="24.0" layoutY="450.0" prefHeight="368.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
+      <AnchorPane layoutX="24.0" layoutY="450.0" prefHeight="401.0" prefWidth="342.0" style="-fx-background-color: #3F4E4F; -fx-background-radius: 7px;">
          <children>
             <GridPane layoutY="13.0" prefHeight="231.0" prefWidth="339.0">
                <columnConstraints>

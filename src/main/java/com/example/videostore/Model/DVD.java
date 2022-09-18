@@ -7,6 +7,8 @@ import java.io.IOException;
 public class DVD extends Item {
     private String genres;
 
+
+    // Builder pattern for Constructor
     private DVD(DVD.DVDBuilder builder) {
         this.genres = builder.genres;
         this.setTitle(builder.title);
@@ -18,6 +20,8 @@ public class DVD extends Item {
         this.setYear(builder.year);
         this.setId(builder.id);
         this.setYear(builder.year);
+
+        // ID generate
         if(this.getId() == null) {
             int id = generateId();
             id++;
@@ -55,6 +59,7 @@ public class DVD extends Item {
                 '}';
     }
 
+    // Builder pattern for Constructor
     public static class DVDBuilder {
         private String id;
         private String title;
@@ -65,7 +70,6 @@ public class DVD extends Item {
         private boolean rentalStatus;
         private String genres;
         private String year;
-        private String imageFile;
 
         public DVDBuilder() {
         }
@@ -157,10 +161,6 @@ public class DVD extends Item {
             return this;
         }
 
-        public DVD.DVDBuilder buildImage(String imageFile) {
-            this.imageFile = imageFile;
-            return this;
-        }
 
         public DVD build() {
             return new DVD(this);
