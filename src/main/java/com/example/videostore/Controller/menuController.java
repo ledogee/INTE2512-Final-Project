@@ -34,8 +34,7 @@ public class menuController
     public Label accountType;
     public AnchorPane menuPane;
 
-    @FXML
-    private Label username;
+
 
     @FXML
     private Label balance;
@@ -145,7 +144,7 @@ public class menuController
             }
         }
 
-        username.setText("WELCOME BACK " + user.getUsername());
+
         String result = String.format("%.2f", user.getBalance());
         balance.setText("$ " + result);
         if(user instanceof Vip) {

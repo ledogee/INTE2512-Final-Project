@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.videostore.Controller.notificationController.popAdminNotification;
+import static com.example.videostore.Controller.notificationController.popMenuNotification;
 
 public class adminController extends adminAddItemDialogController implements Initializable {
     @FXML
@@ -307,54 +308,65 @@ public class adminController extends adminAddItemDialogController implements Ini
     }
 
     public void showUpdateItemDialog() {
-        int selectedIndex = i_tableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.initOwner(adminPane.getScene().getWindow());
-            dialog.setTitle("Update Item");
-            dialog.setHeaderText("Use this dialog to update an item");
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
-
-            try {
-                dialog.getDialogPane().setContent(fxmlLoader.load());
-            } catch (IOException e) {
-                System.out.println("Couldn't load the dialog");
-                e.printStackTrace();
-                return;
+        Item selectedItem = i_tableView.getSelectionModel().getSelectedItem();
+        int itemIndex = 0;
+        try {
+            for(int i = 0; i < items.size(); i++){
+                if (selectedItem.getId().equals(items.get(i).getId())){
+                    itemIndex = i;
+                }
             }
+            if (selectedItem != null) {
+                Dialog<ButtonType> dialog = new Dialog<>();
+                dialog.initOwner(adminPane.getScene().getWindow());
+                dialog.setTitle("Update Item");
+                dialog.setHeaderText("Use this dialog to update an item");
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/example/videostore/updateItemDialog.fxml"));
 
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-            adminUpdateItemDialogController controller = fxmlLoader.getController();
-            controller.setItemValue(selectedIndex);
-            Window window = dialog.getDialogPane().getScene().getWindow();
-            Optional<ButtonType> result = dialog.showAndWait();
+                try {
+                    dialog.getDialogPane().setContent(fxmlLoader.load());
+                } catch (IOException e) {
+                    System.out.println("Couldn't load the dialog");
+                    e.printStackTrace();
+                    return;
+                }
 
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                Item newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                adminUpdateItemDialogController controller = fxmlLoader.getController();
+                controller.setItemValue(itemIndex);
+                Window window = dialog.getDialogPane().getScene().getWindow();
+                Optional<ButtonType> result = dialog.showAndWait();
 
-                System.out.println(newItem);
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    Item newItem = controller.processUpdateItem(selectedItem, items, itemIndex);
 
-                while ((newItem == null && result.get() == ButtonType.OK)) {
-                    controller.setItemLabel();
-                    result = dialog.showAndWait();
-                    newItem = controller.processUpdateItem(items.get(selectedIndex), items, selectedIndex);
-                    if ((newItem != null && result.get() == ButtonType.OK)) {
-                        break;
+                    System.out.println(newItem);
+
+                    while ((newItem == null && result.get() == ButtonType.OK)) {
+                        controller.setItemLabel();
+                        result = dialog.showAndWait();
+                        newItem = controller.processUpdateItem(selectedItem, items, itemIndex);
+                        if ((newItem != null && result.get() == ButtonType.OK)) {
+                            break;
+                        }
+                        window.setOnCloseRequest(event -> window.hide());
                     }
-                    window.setOnCloseRequest(event -> window.hide());
-                }
-                if (result.get() == ButtonType.OK) { //Display notification
-                    popAdminNotification(adminPane, "Successfully update Item", "#008000");
-                }
+                    if (result.get() == ButtonType.OK) { //Display notification
+                        popAdminNotification(adminPane, "Successfully update Item", "#008000");
+                    }
 
-                System.out.println("Ok pressed");
+                    System.out.println("Ok pressed");
 
-            } else {
-                System.out.println("Cancel pressed");
+                } else {
+                    System.out.println("Cancel pressed");
+                }
             }
+        } catch (NullPointerException e) {
+            popMenuNotification(adminPane, "Please select row", "#FF0000");
         }
+
 //        if(result.isPresent() && result.get() == ButtonType.OK) {
 //            // get the controller of Dialog to call the function processResults
 //
@@ -437,9 +449,7 @@ public class adminController extends adminAddItemDialogController implements Ini
 
     public void showUpdateAccountDialog() {
         int selectedIndex = c_tableView.getSelectionModel().getSelectedIndex();
-
         Customer selectedCus = c_tableView.getSelectionModel().getSelectedItem();
-
         /*Item selectedItem = c_tableView.getSelectionModel().getSelectedItem()*/
 
         if (selectedIndex != -1) {
@@ -495,6 +505,8 @@ public class adminController extends adminAddItemDialogController implements Ini
             } else {
                 System.out.println("Cancel pressed");
             }
+        } else {
+            popMenuNotification(adminPane, "Please select row", "#FF0000");
         }
     }
 
