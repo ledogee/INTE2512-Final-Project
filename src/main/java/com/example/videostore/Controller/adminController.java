@@ -20,6 +20,8 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -207,15 +209,38 @@ public class adminController extends adminAddItemDialogController implements Ini
         //Allows users select multiple rows at once
         i_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         c_tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
         //Delete the selected item
         deleteItem.setOnAction(e -> {
+            for(Customer customer : customers){
+                  ArrayList<String> myList = new ArrayList<String>(Arrays.asList(customer.getCombinedString().split(",")));
+                  removeAll(myList, i_tableView.getSelectionModel().getSelectedItem().getId());
+                  String str = arrayToString(myList);
+                  customer.setListRentals(myList);
+                  customer.setCombinedString(str);
+            }
             items.remove(i_tableView.getSelectionModel().getSelectedItem());
+            c_tableView.refresh();
         });
+
         //Delete the selected customer
         deleteCustomer.setOnAction(e -> {
             customers.remove(c_tableView.getSelectionModel().getSelectedItem());
         });
 
+    }
+
+    public String arrayToString (ArrayList<String> arrayList){
+        if(arrayList==null||arrayList.isEmpty()){
+            return "";
+        }
+        return  String.join(",",arrayList);
+    }
+
+    void removeAll(ArrayList<String> list, String element) {
+        while (list.contains(element)) {
+            list.remove(element);
+        }
     }
 
     //Display the item out of stock to the table
